@@ -1,5 +1,4 @@
 import 'package:all_in_one3/src/core/theme/colors.dart';
-import 'package:all_in_one3/src/core/theme/text_style.dart';
 import 'package:all_in_one3/src/features/common_features/skill/model/skills_model.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +27,12 @@ class SkillCardState extends State<SkillCard> {
         children: [
           Text(
             widget.course?.skill ?? '',
-            style: AppTextStyle.bold16,
+           style: TextStyle(
+              color: Color(0xFF262626),
+              fontSize: 14,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ],
       ),

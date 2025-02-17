@@ -23,6 +23,7 @@ class PrimaryButton extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: backgroundColor ?? CommonColor.purpleColor1,
+        border: Border.all(color: Color(0xFFCFD4DC)),
         // gradient: const LinearGradient(
         //   colors: [
         //     CommonColor.purpleColor1,
