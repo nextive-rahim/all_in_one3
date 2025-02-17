@@ -67,8 +67,7 @@ class AllInterviewsViewController extends GetxController {
       Log.error(e.toString());
       Log.error(stackTrace.toString());
       // _pageStateController(PageState.error);
-       SnackBarService.showErrorSnackBar('Interview Not Confirmed');
-    
+      SnackBarService.showErrorSnackBar('Interview Not Confirmed');
     }
   }
 }

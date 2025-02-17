@@ -33,10 +33,7 @@ class CourseContent extends GetView<StudentCourseContentViewController> {
         const SizedBox(height: 12),
         Container(
           width: SizeConfig.screenWidth,
-          padding: const EdgeInsets.only(
-            top: 20,
-            bottom: 10,
-          ),
+          padding: const EdgeInsets.only(top: 20, bottom: 10),
           decoration: ShapeDecoration(
             color: Colors.white,
             shape: RoundedRectangleBorder(
@@ -48,7 +45,7 @@ class CourseContent extends GetView<StudentCourseContentViewController> {
                 blurRadius: 20,
                 offset: Offset(0, 4),
                 spreadRadius: 0,
-              )
+              ),
             ],
           ),
           child: Column(
@@ -59,7 +56,8 @@ class CourseContent extends GetView<StudentCourseContentViewController> {
                   return const Offstage();
                 }
                 return ContentTileBuilder(
-                    contentList: controller.contentTileList);
+                  contentList: controller.contentTileList,
+                );
               }),
               const SizedBox(height: 15),
               const TextWidget(

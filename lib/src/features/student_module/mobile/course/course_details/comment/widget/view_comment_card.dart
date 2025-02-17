@@ -18,10 +18,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ViewCommentCard extends StatefulWidget {
-  const ViewCommentCard({
-    super.key,
-    required this.comment,
-  });
+  const ViewCommentCard({super.key, required this.comment});
   final ViewCommentResponseData comment;
   @override
   State<ViewCommentCard> createState() => _ViewCommentCardState();
@@ -57,15 +54,16 @@ class _ViewCommentCardState extends State<ViewCommentCard> {
             height: 50,
             decoration: const BoxDecoration(),
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.network(
-                    profileController.userModel?.image ?? noImageFound)
-                //  AppCachedNetworkImage(
-                //   imageUrl: profileController.userModel?.image,
-                //   cachedHeight: 131,
-                //   cachedWidth: 131,
-                // ),
-                ),
+              borderRadius: BorderRadius.circular(50),
+              child: Image.network(
+                profileController.userModel?.image ?? noImageFound,
+              ),
+              //  AppCachedNetworkImage(
+              //   imageUrl: profileController.userModel?.image,
+              //   cachedHeight: 131,
+              //   cachedWidth: 131,
+              // ),
+            ),
           ),
           const SizedBox(width: 15),
           Expanded(
@@ -110,9 +108,10 @@ class _ViewCommentCardState extends State<ViewCommentCard> {
                     'Reply',
                     style: AppTextStyle.bold12.copyWith(
                       height: 16 / 12,
-                      color: focusedCommentBoxKey == widget.key
-                          ? AppColors.primary
-                          : null,
+                      color:
+                          focusedCommentBoxKey == widget.key
+                              ? AppColors.primary
+                              : null,
                     ),
                   ),
                 ),

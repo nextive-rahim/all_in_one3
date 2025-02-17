@@ -6,10 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CommentSection extends GetView<ViewCommentViewController> {
-  const CommentSection({
-    super.key,
-    required this.collectinListData,
-  });
+  const CommentSection({super.key, required this.collectinListData});
   final CourseModel collectinListData;
   @override
   Widget build(BuildContext context) {

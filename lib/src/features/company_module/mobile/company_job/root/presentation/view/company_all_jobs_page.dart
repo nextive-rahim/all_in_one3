@@ -57,7 +57,7 @@ class CompanyAllJobsMobilePage extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CandidateProfileSection extends StatefulWidget {
-  const CandidateProfileSection({
-    super.key,
-    required this.user,
-  });
+  const CandidateProfileSection({super.key, required this.user});
   final UserDetailsResponseModelData? user;
   @override
   State<CandidateProfileSection> createState() =>
@@ -36,8 +33,10 @@ class _CandidateProfileSectionState extends State<CandidateProfileSection> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(Routes.resume,
-                          arguments: widget.user!.data!.resume ?? '');
+                      Get.toNamed(
+                        Routes.resume,
+                        arguments: widget.user!.data!.resume ?? '',
+                      );
                     },
                     child: Container(
                       width: 199,

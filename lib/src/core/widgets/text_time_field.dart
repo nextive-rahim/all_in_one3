@@ -22,25 +22,26 @@ class TextTimeFieldWidget extends StatefulWidget {
   final FontWeight? fontWeight;
   final String? fontFamily;
   final double? fontSize;
-  const TextTimeFieldWidget(
-      {super.key,
-      required this.controller,
-      required this.valtext,
-      this.obscureText = false,
-      required this.hintText,
-      this.hintTextColor = CommonColor.hintTextColor,
-      required this.readOnly,
-      required this.maxLine,
-      required this.keyType,
-      this.wordLimit,
-      required this.onChanged,
-      this.suffixIcon,
-      this.onSuffixTap,
-      this.prefixIcon,
-      this.height,
-      required this.fontFamily,
-      required this.fontWeight,
-      required this.fontSize});
+  const TextTimeFieldWidget({
+    super.key,
+    required this.controller,
+    required this.valtext,
+    this.obscureText = false,
+    required this.hintText,
+    this.hintTextColor = CommonColor.hintTextColor,
+    required this.readOnly,
+    required this.maxLine,
+    required this.keyType,
+    this.wordLimit,
+    required this.onChanged,
+    this.suffixIcon,
+    this.onSuffixTap,
+    this.prefixIcon,
+    this.height,
+    required this.fontFamily,
+    required this.fontWeight,
+    required this.fontSize,
+  });
   @override
   State<TextTimeFieldWidget> createState() => _TextTimeFieldWidgetState();
 }
@@ -51,7 +52,6 @@ class _TextTimeFieldWidgetState extends State<TextTimeFieldWidget> {
     return SizedBox(
       child: TextFormField(
         //autofocus: false,
-
         cursorColor: CommonColor.blackColor,
         obscureText: widget.obscureText,
         controller: widget.controller,
@@ -59,11 +59,10 @@ class _TextTimeFieldWidgetState extends State<TextTimeFieldWidget> {
         keyboardType: widget.keyType,
         maxLines: widget.maxLine,
         textCapitalization: TextCapitalization.sentences,
-        inputFormatters: widget.wordLimit != null
-            ? [
-                LengthLimitingTextInputFormatter(widget.wordLimit),
-              ]
-            : null,
+        inputFormatters:
+            widget.wordLimit != null
+                ? [LengthLimitingTextInputFormatter(widget.wordLimit)]
+                : null,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return widget.valtext;
@@ -72,59 +71,59 @@ class _TextTimeFieldWidgetState extends State<TextTimeFieldWidget> {
         },
         onChanged: (selectedDate) {},
         onTap: () {
-          showTimePicker(
-            context: context,
-            initialTime: TimeOfDay.now(),
-          ).then(
-            (selectedTime) {
-              if (selectedTime != null) {
-                setState(
-                  () {
-                    final now = DateTime.now();
-                    widget.onChanged(
-                      DateFormat('HH:mm').format(
-                        DateTime(
-                          now.year,
-                          now.month,
-                          now.day,
-                          selectedTime.hour,
-                          selectedTime.minute,
-                        ),
-                      ),
-                    );
-                    widget.controller.text = DateFormat.jm().format(
-                      DateTime(
-                        now.year,
-                        now.month,
-                        now.day,
-                        selectedTime.hour,
-                        selectedTime.minute,
-                      ),
-                    );
-                  },
+          showTimePicker(context: context, initialTime: TimeOfDay.now()).then((
+            selectedTime,
+          ) {
+            if (selectedTime != null) {
+              setState(() {
+                final now = DateTime.now();
+                widget.onChanged(
+                  DateFormat('HH:mm').format(
+                    DateTime(
+                      now.year,
+                      now.month,
+                      now.day,
+                      selectedTime.hour,
+                      selectedTime.minute,
+                    ),
+                  ),
                 );
-              }
-            },
-          );
+                widget.controller.text = DateFormat.jm().format(
+                  DateTime(
+                    now.year,
+                    now.month,
+                    now.day,
+                    selectedTime.hour,
+                    selectedTime.minute,
+                  ),
+                );
+              });
+            }
+          });
         },
         autofocus: false,
         style: TextStyle(
-            color: CommonColor.blackColor,
-            fontFamily: widget.fontFamily,
-            fontWeight: widget.fontWeight,
-            fontSize: 16),
+          color: CommonColor.blackColor,
+          fontFamily: widget.fontFamily,
+          fontWeight: widget.fontWeight,
+          fontSize: 16,
+        ),
         decoration: InputDecoration(
           isDense: true,
           contentPadding: const EdgeInsets.fromLTRB(12, 10, 12, 0),
           focusedBorder: const OutlineInputBorder(
             //borderRadius: BorderRadius.circular(5),
-            borderSide:
-                BorderSide(color: CommonColor.textFieldBorderColor, width: 1.0),
+            borderSide: BorderSide(
+              color: CommonColor.textFieldBorderColor,
+              width: 1.0,
+            ),
           ),
           enabledBorder: const OutlineInputBorder(
             //borderRadius: BorderRadius.circular(5),
-            borderSide:
-                BorderSide(color: CommonColor.textFieldBorderColor, width: 1.0),
+            borderSide: BorderSide(
+              color: CommonColor.textFieldBorderColor,
+              width: 1.0,
+            ),
           ),
           errorBorder: const OutlineInputBorder(
             // borderRadius: BorderRadius.circular(5),
@@ -136,20 +135,24 @@ class _TextTimeFieldWidgetState extends State<TextTimeFieldWidget> {
           ),
           hintText: widget.hintText,
           hintStyle: TextStyle(
-              color: widget.hintTextColor,
-              fontFamily: AppStrings.inter,
-              fontWeight: FontWeight.w400,
-              fontSize: 16),
-          suffixIcon: widget.suffixIcon == null
-              ? null
-              : GestureDetector(
-                  onTap: () {
-                    widget.onSuffixTap!();
-                  },
-                  child: widget.suffixIcon),
-          prefixIcon: widget.prefixIcon == null
-              ? null
-              : GestureDetector(child: widget.prefixIcon),
+            color: widget.hintTextColor,
+            fontFamily: AppStrings.inter,
+            fontWeight: FontWeight.w400,
+            fontSize: 16,
+          ),
+          suffixIcon:
+              widget.suffixIcon == null
+                  ? null
+                  : GestureDetector(
+                    onTap: () {
+                      widget.onSuffixTap!();
+                    },
+                    child: widget.suffixIcon,
+                  ),
+          prefixIcon:
+              widget.prefixIcon == null
+                  ? null
+                  : GestureDetector(child: widget.prefixIcon),
         ),
       ),
     );

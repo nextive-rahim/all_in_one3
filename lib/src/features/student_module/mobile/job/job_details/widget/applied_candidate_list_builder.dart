@@ -15,20 +15,21 @@ class AppliedCandidateListBuilder extends GetView<CompanyJobViewController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.unSeletedCandidate?.value = controller.appliedCandidateList!
-        .where((v) => v.isSelected == 0)
-        .toList();
+    controller.unSeletedCandidate?.value =
+        controller.appliedCandidateList!
+            .where((v) => v.isSelected == 0)
+            .toList();
     return
-        // appliedusers.isNotEmpty
-        //     ?
-
-        Obx(() {
+    // appliedusers.isNotEmpty
+    //     ?
+    Obx(() {
       if (controller.unSeletedCandidate!.isEmpty) {
         return const Center(
-            child: Text(
-          'No Applied Candidate Found',
-          style: TextStyle(color: AppColors.red),
-        ));
+          child: Text(
+            'No Applied Candidate Found',
+            style: TextStyle(color: AppColors.red),
+          ),
+        );
       }
       return ListView.separated(
         shrinkWrap: true,

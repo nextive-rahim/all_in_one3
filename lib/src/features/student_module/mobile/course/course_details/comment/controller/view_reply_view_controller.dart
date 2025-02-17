@@ -24,9 +24,7 @@ class ViewReplyViewController extends GetxController {
   Future<void> getReplys(int commentId) async {
     _pageStateController(PageState.loading);
 
-    Map<String, dynamic> requestBody = {
-      "course_comment_id": commentId,
-    };
+    Map<String, dynamic> requestBody = {"course_comment_id": commentId};
     Log.debug(requestBody.toString());
 
     try {

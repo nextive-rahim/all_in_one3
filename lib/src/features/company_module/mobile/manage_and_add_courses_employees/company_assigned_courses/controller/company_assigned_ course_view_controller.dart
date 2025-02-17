@@ -17,7 +17,8 @@ class CompanyAssignedCouseViewController extends GetxController {
   final RxList<int> courseIDList = <int>[].obs;
 
   Future<RegistrationResponseModel> companyAssingedCourse(
-      int employeeID) async {
+    int employeeID,
+  ) async {
     _pageStateController(PageState.loading);
 
     Map<String, dynamic> body = {

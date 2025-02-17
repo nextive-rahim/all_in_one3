@@ -18,8 +18,9 @@ class InterviewerHomePageMobile extends StatefulWidget {
 }
 
 class _InterviewerHomePageMobileState extends State<InterviewerHomePageMobile> {
-  final interviewTestRequestController =
-      Get.find<InterviewerTestRequestViewController>();
+  final interviewTestRequestController = Get.put(
+    InterviewerTestRequestViewController(),
+  );
   final profileController = Get.put(ProfileViewController());
   final allInterviewontroller = Get.put(AllInterviewsViewController());
   @override
@@ -38,35 +39,45 @@ class _InterviewerHomePageMobileState extends State<InterviewerHomePageMobile> {
             allInterviewontroller.getAllInterviews();
           }
         },
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Obx(() {
-            if (profileController.pageState == PageState.loading) {
-              return const Offstage();
-            }
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                profileController.profileResponseModel.testRequest == null
-                    ? InterviewerTestRequestCard(
-                        profileController: profileController)
-                    : interviewTestRequestController
-                                .verificationPending.value ||
-                            profileController
-                                    .profileResponseModel.testRequest?.status ==
-                                1
-                        ? const InterviewerTestResultPendingCard()
-                        : (interviewTestRequestController
-                                    .isInterviewerApproved.value ||
-                                profileController.profileResponseModel
-                                        .testRequest?.status ==
-                                    3)
-                            ? const AllInterviewsSection()
-                            : const Offstage()
-              ],
-            );
-          }),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Obx(() {
+              if (profileController.pageState == PageState.loading) {
+                return const Offstage();
+              }
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  profileController.profileResponseModel.testRequest == null
+                      ? InterviewerTestRequestCard(
+                        profileController: profileController,
+                      )
+                      : interviewTestRequestController
+                              .verificationPending
+                              .value ||
+                          profileController
+                                  .profileResponseModel
+                                  .testRequest
+                                  ?.status ==
+                              1
+                      ? const InterviewerTestResultPendingCard()
+                      : (interviewTestRequestController
+                              .isInterviewerApproved
+                              .value ||
+                          profileController
+                                  .profileResponseModel
+                                  .testRequest
+                                  ?.status ==
+                              3)
+                      ? const AllInterviewsSection()
+                      : const Offstage(),
+                ],
+              );
+            }),
+          ),
         ),
       ),
     );

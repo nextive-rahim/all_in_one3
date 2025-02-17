@@ -26,26 +26,14 @@ class _CompanyAppliedJonCardState extends State<CompanyAppliedJonCard> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Name :  ",
-            style: AppTextStyle.bold14,
-          ),
-          Text(
-            widget.course?.name ?? '',
-            style: AppTextStyle.bold16,
-          ),
+          const Text("Name :  ", style: AppTextStyle.bold14),
+          Text(widget.course?.name ?? '', style: AppTextStyle.bold16),
         ],
       ),
       subtitle: Wrap(
         children: [
-          const Text(
-            "ID  :   ",
-            style: AppTextStyle.bold14,
-          ),
-          Text(
-            widget.course?.id.toString() ?? '',
-            style: AppTextStyle.bold16,
-          ),
+          const Text("ID  :   ", style: AppTextStyle.bold14),
+          Text(widget.course?.id.toString() ?? '', style: AppTextStyle.bold16),
         ],
       ),
       // trailing: Wrap(

@@ -24,9 +24,7 @@ class ViewCommentViewController extends GetxController {
   Future<void> getComments(String courseId) async {
     _pageStateController(PageState.loading);
 
-    Map<String, dynamic> requestBody = {
-      "course_id": courseId,
-    };
+    Map<String, dynamic> requestBody = {"course_id": courseId};
 
     Log.debug(requestBody.toString());
 

@@ -15,14 +15,10 @@ class CoursePriceViewController extends GetxController {
   late CoursePriceResponse coursePriceModel;
   List<CoursePriceResponseData> coursePriceReponseData = [];
   int? coursRateId;
-  Future<void> checkCoursePrice(
-    int id,
-  ) async {
+  Future<void> checkCoursePrice(int id) async {
     _pageStateController(PageState.loading);
 
-    Map<String, dynamic> body = {
-      "course_id": id,
-    };
+    Map<String, dynamic> body = {"course_id": id};
 
     try {
       final res = await _repository.coursePrice(body);

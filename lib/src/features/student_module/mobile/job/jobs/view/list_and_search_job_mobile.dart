@@ -35,10 +35,7 @@ class ListAndSearchJobStudentMobile extends GetView<JobsViewController> {
                   Container(
                     color: CommonColor.greyColor15,
                     child: const Padding(
-                      padding: EdgeInsets.only(
-                        top: 10,
-                        bottom: 60,
-                      ),
+                      padding: EdgeInsets.only(top: 10, bottom: 60),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -49,7 +46,7 @@ class ListAndSearchJobStudentMobile extends GetView<JobsViewController> {
                             firstTabViewItems: [AllJobsTab()],
                             secondTabViewItems: [SavedJobsTab()],
                             thirdTabViewItems: [AppliedTab()],
-                          )
+                          ),
                         ],
                       ),
                     ),

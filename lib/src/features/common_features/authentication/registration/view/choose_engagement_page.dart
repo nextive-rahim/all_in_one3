@@ -1,3 +1,4 @@
+import 'package:all_in_one3/main.dart';
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/image_constant.dart';
@@ -6,10 +7,11 @@ import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class ChooseEngagementPage extends StatefulWidget {
-  const ChooseEngagementPage({super.key});
+  const ChooseEngagementPage({super.key, required this.title});
+  final String title;
 
   @override
   State<ChooseEngagementPage> createState() => _ChooseEngagementPageState();
@@ -29,155 +31,161 @@ class _ChooseEngagementPageState extends State<ChooseEngagementPage> {
       // appBar: AppBar(
       //   title: const Text('Choose Engagement'),
       // ),
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 24,
-                right: 18,
-                top: 16,
-                bottom: 16,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _headerIsMounted(),
-                  const SizedBox(height: 30),
-                  ListView.separated(
-                    itemCount: 4,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    separatorBuilder: (context, ind) {
-                      return const SizedBox(height: 8);
-                    },
-                    itemBuilder: (context, index) {
-                      return index == 1
-                          ? const Offstage()
-                          : _buildItem(index, 118);
-                    },
-                  ),
-                  const SizedBox(height: 18),
-                  GestureDetector(
-                    onTap: () {
-                      if (_selectedIndex != null) {
-                        Get.toNamed(Routes.registration,
-                            arguments: (_selectedIndex! + 1).toString());
-                      } else {
-                        Util.displayErrorToast(
-                          context,
-                          AppStrings.chooseEngagementMsg,
-                        );
-                      }
-                    },
-                    child: Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: _selectedIndex != null
-                            ? CommonColor.purpleColor1
-                            : CommonColor.headingTextColor1,
-                      ),
-                      alignment: Alignment.center,
-                      child: const TextWidget(
-                        text: AppStrings.continueTxt,
-                        color: CommonColor.whiteColor,
-                        maxLine: 1,
-                        fontFamily: AppStrings.inter,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+              top: 16,
+              bottom: 16,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _headerIsMounted(),
+                const SizedBox(height: 30),
+                ListView.separated(
+                  itemCount: 4,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  separatorBuilder: (context, ind) {
+                    return const SizedBox(height: 8);
+                  },
+                  itemBuilder: (context, index) {
+                    return index == 1
+                        ? const Offstage()
+                        : _buildItem(index, 118);
+                  },
+                ),
+                const SizedBox(height: 18),
+                GestureDetector(
+                  onTap: () {
+                    if (_selectedIndex != null) {
+                      replaceBrowserHistory({}, Routes.registration);
+                      context.goNamed(
+                        Routes.registration,
+                        queryParameters: {
+                          'userType': (_selectedIndex! + 1).toString(),
+                        },
+                      );
+                      // Navigator.pushReplacementNamed(
+                      //     context, Routes.registration);
+                      // Get.toNamed(Routes.registration,
+                      //     arguments: (_selectedIndex! + 1).toString());
+                    } else {
+                      Util.displayErrorToast(
+                        context,
+                        AppStrings.chooseEngagementMsg,
+                      );
+                    }
+                  },
+                  child: Container(
+                    height: 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color:
+                          _selectedIndex != null
+                              ? CommonColor.purpleColor1
+                              : CommonColor.headingTextColor1,
+                    ),
+                    alignment: Alignment.center,
+                    child: const TextWidget(
+                      text: AppStrings.continueTxt,
+                      color: CommonColor.whiteColor,
+                      maxLine: 1,
+                      fontFamily: AppStrings.inter,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
                     ),
                   ),
-                  const SizedBox(height: 41),
-                  Container(
-                    width: SizeConfig.screenWidth,
-                    height: 1,
-                    color: CommonColor.backgroundColor2,
-                  ),
-                  const SizedBox(
-                    height: 21,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 3,
-                            height: 3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: CommonColor.headingTextColor1,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const TextWidget(
-                            text: AppStrings.termsOfUse,
+                ),
+                const SizedBox(height: 41),
+                Container(
+                  width: SizeConfig.screenWidth,
+                  height: 1,
+                  color: CommonColor.backgroundColor2,
+                ),
+                const SizedBox(height: 21),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 3,
+                          height: 3,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
                             color: CommonColor.headingTextColor1,
-                            maxLine: 1,
-                            fontFamily: AppStrings.aeonikTRIAL,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10,
                           ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            width: 3,
-                            height: 3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: CommonColor.headingTextColor1,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const TextWidget(
-                            text: AppStrings.dataCollectionRights,
+                        ),
+                        const SizedBox(width: 8),
+                        const TextWidget(
+                          text: AppStrings.termsOfUse,
+                          color: CommonColor.headingTextColor1,
+                          maxLine: 1,
+                          fontFamily: AppStrings.aeonikTRIAL,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 10,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 3,
+                          height: 3,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
                             color: CommonColor.headingTextColor1,
-                            maxLine: 1,
-                            fontFamily: AppStrings.aeonikTRIAL,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10,
                           ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            width: 3,
-                            height: 3,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: CommonColor.headingTextColor1,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const TextWidget(
-                            text: AppStrings.privacyAndPolicy,
+                        ),
+                        const SizedBox(width: 8),
+                        const TextWidget(
+                          text: AppStrings.dataCollectionRights,
+                          color: CommonColor.headingTextColor1,
+                          maxLine: 1,
+                          fontFamily: AppStrings.aeonikTRIAL,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 10,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 3,
+                          height: 3,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
                             color: CommonColor.headingTextColor1,
-                            maxLine: 1,
-                            fontFamily: AppStrings.aeonikTRIAL,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10,
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  const TextWidget(
-                    text: AppStrings.appVersion,
-                    color: CommonColor.lightGreyForText1,
-                    maxLine: 1,
-                    fontFamily: AppStrings.aeonikTRIAL,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 10,
-                  ),
-                  const SizedBox(height: 22),
-                ],
-              ),
+                        ),
+                        const SizedBox(width: 8),
+                        const TextWidget(
+                          text: AppStrings.privacyAndPolicy,
+                          color: CommonColor.headingTextColor1,
+                          maxLine: 1,
+                          fontFamily: AppStrings.aeonikTRIAL,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 10,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                const TextWidget(
+                  text: AppStrings.appVersion,
+                  color: CommonColor.lightGreyForText1,
+                  maxLine: 1,
+                  fontFamily: AppStrings.aeonikTRIAL,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 10,
+                ),
+                const SizedBox(height: 22),
+              ],
             ),
           ),
         ),
@@ -198,14 +206,16 @@ class _ChooseEngagementPageState extends State<ChooseEngagementPage> {
       child: Container(
         height: height,
         decoration: BoxDecoration(
-            border: Border.all(
-              width: 1.0,
-              color: _selectedIndex == index
-                  ? CommonColor.purpleColor1
-                  : CommonColor.borderColor1,
-            ),
-            borderRadius: BorderRadius.circular(8),
-            color: CommonColor.whiteColor),
+          border: Border.all(
+            width: 1.0,
+            color:
+                _selectedIndex == index
+                    ? CommonColor.purpleColor1
+                    : CommonColor.borderColor1,
+          ),
+          borderRadius: BorderRadius.circular(8),
+          color: CommonColor.whiteColor,
+        ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(
@@ -234,9 +244,10 @@ class _ChooseEngagementPageState extends State<ChooseEngagementPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextWidget(
-                          text: AppStrings.chooseEngagementContetTitles[index]
-                              .split(' ')
-                              .first,
+                          text:
+                              AppStrings.chooseEngagementContetTitles[index]
+                                  .split(' ')
+                                  .first,
                           color: CommonColor.headingTextColor2,
                           maxLine: 1,
                           fontFamily: AppStrings.inter,
@@ -245,9 +256,10 @@ class _ChooseEngagementPageState extends State<ChooseEngagementPage> {
                         ),
                         const SizedBox(width: 5),
                         TextWidget(
-                          text: AppStrings.chooseEngagementContetTitles[index]
-                              .split(' ')
-                              .last,
+                          text:
+                              AppStrings.chooseEngagementContetTitles[index]
+                                  .split(' ')
+                                  .last,
                           color: CommonColor.hintTextColor,
                           maxLine: 1,
                           fontFamily: AppStrings.inter,
@@ -272,12 +284,16 @@ class _ChooseEngagementPageState extends State<ChooseEngagementPage> {
                 height: 16,
                 width: 16,
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 1, color: CommonColor.textFieldBorderColor),
-                    borderRadius: BorderRadius.circular(100),
-                    color: _selectedIndex == index
-                        ? CommonColor.purpleColor1
-                        : CommonColor.whiteColor),
+                  border: Border.all(
+                    width: 1,
+                    color: CommonColor.textFieldBorderColor,
+                  ),
+                  borderRadius: BorderRadius.circular(100),
+                  color:
+                      _selectedIndex == index
+                          ? CommonColor.purpleColor1
+                          : CommonColor.whiteColor,
+                ),
                 alignment: Alignment.center,
               ),
             ],
@@ -292,17 +308,13 @@ class _ChooseEngagementPageState extends State<ChooseEngagementPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          width: SizeConfig.screenWidth,
-          alignment: Alignment.center,
-          child: Image.asset(
-            ImageConstant.appLogo,
-            height: 75,
-            width: 75,
-            fit: BoxFit.fill,
-          ),
+        Image.asset(
+          ImageConstant.appLogo,
+          height: 50,
+          width: 50,
+          fit: BoxFit.fill,
         ),
-        const SizedBox(height: 18),
+        const SizedBox(width: 18),
         const TextWidget(
           text: AppStrings.chooseEngagement,
           color: CommonColor.headingTextColor1,
@@ -319,7 +331,7 @@ class _ChooseEngagementPageState extends State<ChooseEngagementPage> {
           fontFamily: AppStrings.sfProDisplay,
           fontWeight: FontWeight.w400,
           fontSize: 14,
-        )
+        ),
       ],
     );
   }

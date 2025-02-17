@@ -1,5 +1,5 @@
 class ImageConstant {
-  static String appLogo = 'assets/images/aio_logo.png';
+  static String appLogo = 'assets/images/logo.png';
   static String aioLogo = 'assets/images/aio_logo.png';
   static String regComplete = 'assets/images/reg_complete.png';
   static String profilePic = 'assets/images/profile_pic.png';

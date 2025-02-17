@@ -26,10 +26,7 @@ class SkillCardState extends State<SkillCard> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            widget.course?.skill ?? '',
-            style: AppTextStyle.bold16,
-          ),
+          Text(widget.course?.skill ?? '', style: AppTextStyle.bold16),
         ],
       ),
       leading: _mainUI(widget.isSelectItem),

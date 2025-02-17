@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EditJobIcon extends GetView<PostCompanyNewJobViewController> {
-  const EditJobIcon({
-    super.key,
-    required this.job,
-  });
+  const EditJobIcon({super.key, required this.job});
   final JobModel job;
 
   @override
@@ -22,10 +19,7 @@ class EditJobIcon extends GetView<PostCompanyNewJobViewController> {
         controller.isFromPostEdit.value = true;
         controller.job = job;
         controller.popolateTextFormField(job).then((v) {
-          Get.toNamed(
-            Routes.postCompanyNewJob,
-            arguments: job,
-          );
+          Get.toNamed(Routes.postCompanyNewJob, arguments: job);
         });
       },
       child: Row(

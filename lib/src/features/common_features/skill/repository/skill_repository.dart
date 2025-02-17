@@ -4,10 +4,7 @@ import 'package:all_in_one3/src/core/utils/url_constant.dart';
 
 class SkillRepository {
   Future<dynamic> skills() async {
-    final res = await RestClient.dev().get(
-      APIType.PUBLIC,
-      API.skill,
-    );
+    final res = await RestClient.dev().get(APIType.PUBLIC, API.skill);
     return res.data;
   }
 

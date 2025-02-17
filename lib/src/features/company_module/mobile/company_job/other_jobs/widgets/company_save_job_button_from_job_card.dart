@@ -9,10 +9,7 @@ import 'package:get/get.dart';
 
 class CompanySaveJobButtonFromJobCard
     extends GetView<OtherCompanyJobsViewController> {
-  CompanySaveJobButtonFromJobCard({
-    super.key,
-    required this.job,
-  });
+  CompanySaveJobButtonFromJobCard({super.key, required this.job});
   final JobModel job;
   final ValueNotifier<bool> isSavedJob = ValueNotifier<bool>(false);
   @override
@@ -47,9 +44,10 @@ class CompanySaveJobButtonFromJobCard
                     ? Icons.bookmark
                     : Icons.bookmark_add_outlined,
                 size: 20,
-                color: value || job.isSaved != 0
-                    ? CommonColor.blueColor1
-                    : CommonColor.blackColor1,
+                color:
+                    value || job.isSaved != 0
+                        ? CommonColor.blueColor1
+                        : CommonColor.blackColor1,
               ),
               const SizedBox(width: 5),
               const TextWidget(

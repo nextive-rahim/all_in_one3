@@ -56,11 +56,7 @@ class _InterviewerTestRequestCardState
                 fit: BoxFit.fill,
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 40,
-                  top: 63,
-                  right: 20,
-                ),
+                padding: const EdgeInsets.only(left: 40, top: 63, right: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -94,28 +90,23 @@ class _InterviewerTestRequestCardState
                     const SizedBox(height: 23),
                     GestureDetector(
                       onTap: () {
-                        requestForInterviewBottomSheet().then(
-                          (value1) {
-                            if (value1) {
-                              interviewTestRequestController
-                                  .interviewRequest(1)
-                                  .then(
-                                (value2) {
+                        requestForInterviewBottomSheet().then((value1) {
+                          if (value1) {
+                            interviewTestRequestController
+                                .interviewRequest(1)
+                                .then((value2) {
                                   requestSubmittedBottomSheet(
-                                          'SuccessFully Submitted Interview Request')
-                                      .then(
-                                    (value3) {
-                                      if (value3) {
-                                        interviewTestRequestController
-                                            .verificationPending.value = true;
-                                      }
-                                    },
-                                  );
-                                },
-                              );
-                            }
-                          },
-                        );
+                                    'SuccessFully Submitted Interview Request',
+                                  ).then((value3) {
+                                    if (value3) {
+                                      interviewTestRequestController
+                                          .verificationPending
+                                          .value = true;
+                                    }
+                                  });
+                                });
+                          }
+                        });
                       },
                       child: Container(
                         width: SizeConfig.screenWidth! * 0.7,
@@ -137,16 +128,13 @@ class _InterviewerTestRequestCardState
                               blurRadius: 2,
                               offset: Offset(0, 1),
                               spreadRadius: 0,
-                            )
+                            ),
                           ],
                         ),
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.alarm,
-                              color: CommonColor.whiteColor,
-                            ),
+                            Icon(Icons.alarm, color: CommonColor.whiteColor),
                             SizedBox(width: 12),
                             TextWidget(
                               text: AppStrings.scheduleMyTest,
@@ -162,7 +150,7 @@ class _InterviewerTestRequestCardState
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -174,9 +162,7 @@ class _InterviewerTestRequestCardState
   Future<bool> requestForInterviewBottomSheet() async {
     return await showModalBottomSheet(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(25.0),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
           ),
           backgroundColor: Colors.transparent,
           context: context,
@@ -185,11 +171,7 @@ class _InterviewerTestRequestCardState
           useRootNavigator: true,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.only(
-                left: 0,
-                right: 0,
-                bottom: 0,
-              ),
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
                   return Container(
@@ -206,7 +188,7 @@ class _InterviewerTestRequestCardState
                           blurRadius: 100,
                           offset: Offset(0, 4),
                           spreadRadius: 5,
-                        )
+                        ),
                       ],
                     ),
                     child: Padding(
@@ -261,32 +243,32 @@ class _InterviewerTestRequestCardState
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                 ),
-                                const SizedBox(
-                                  height: 7,
-                                ),
+                                const SizedBox(height: 7),
                                 TextDateFieldWidget(
-                                    controller: interviewTestRequestController
-                                        .dateMonthYearController,
-                                    valtext: AppStrings.commonTextVal,
-                                    height: 40,
-                                    hintText: "16th May , 2023",
-                                    readOnly: false,
-                                    maxLine: 1,
-                                    keyType: TextInputType.text,
-                                    wordLimit: 100,
-                                    fontFamily: AppStrings.inter,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        // pastlink2Text = value;
-                                        // selectedDate = value;
-                                      });
-                                    },
-                                    prefixIcon: const Icon(
-                                      Icons.mail_outline_outlined,
-                                      color: CommonColor.hintTextColor,
-                                    )),
+                                  controller:
+                                      interviewTestRequestController
+                                          .dateMonthYearController,
+                                  valtext: AppStrings.commonTextVal,
+                                  height: 40,
+                                  hintText: "16th May , 2023",
+                                  readOnly: false,
+                                  maxLine: 1,
+                                  keyType: TextInputType.text,
+                                  wordLimit: 100,
+                                  fontFamily: AppStrings.inter,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      // pastlink2Text = value;
+                                      // selectedDate = value;
+                                    });
+                                  },
+                                  prefixIcon: const Icon(
+                                    Icons.mail_outline_outlined,
+                                    color: CommonColor.hintTextColor,
+                                  ),
+                                ),
                                 const SizedBox(height: 30),
                                 const TextWidget(
                                   text: AppStrings.preferredTimeSlotA,
@@ -298,8 +280,9 @@ class _InterviewerTestRequestCardState
                                 ),
                                 const SizedBox(height: 7),
                                 TextTimeFieldWidget(
-                                  controller: interviewTestRequestController
-                                      .timeSlotAController,
+                                  controller:
+                                      interviewTestRequestController
+                                          .timeSlotAController,
                                   valtext: AppStrings.commonTextVal,
                                   height: 40,
                                   hintText: "9:00 AM",
@@ -329,8 +312,9 @@ class _InterviewerTestRequestCardState
                                 ),
                                 const SizedBox(height: 7),
                                 TextTimeFieldWidget(
-                                  controller: interviewTestRequestController
-                                      .timeSlotBController,
+                                  controller:
+                                      interviewTestRequestController
+                                          .timeSlotBController,
                                   valtext: AppStrings.commonTextVal,
                                   height: 40,
                                   hintText: "10:00 AM",
@@ -352,13 +336,20 @@ class _InterviewerTestRequestCardState
                             GestureDetector(
                               onTap: () {
                                 if (interviewTestRequestController
-                                        .dateMonthYearController.text.isEmpty ||
+                                        .dateMonthYearController
+                                        .text
+                                        .isEmpty ||
                                     interviewTestRequestController
-                                        .timeSlotAController.text.isEmpty ||
+                                        .timeSlotAController
+                                        .text
+                                        .isEmpty ||
                                     interviewTestRequestController
-                                        .timeSlotBController.text.isEmpty) {
+                                        .timeSlotBController
+                                        .text
+                                        .isEmpty) {
                                   SnackBarService.showErrorSnackBar(
-                                      AppStrings.plzFillAllFields);
+                                    AppStrings.plzFillAllFields,
+                                  );
                                 } else {
                                   Navigator.pop(context, true);
                                 }
@@ -372,8 +363,9 @@ class _InterviewerTestRequestCardState
                                   color: CommonColor.blueColor1,
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
-                                        width: 0.50,
-                                        color: CommonColor.blueColor1),
+                                      width: 0.50,
+                                      color: CommonColor.blueColor1,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -382,7 +374,7 @@ class _InterviewerTestRequestCardState
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: const TextWidget(
@@ -409,8 +401,9 @@ class _InterviewerTestRequestCardState
                                   color: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
-                                        width: 0.50,
-                                        color: CommonColor.greyColor5),
+                                      width: 0.50,
+                                      color: CommonColor.greyColor5,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -419,7 +412,7 @@ class _InterviewerTestRequestCardState
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: const TextWidget(
@@ -449,9 +442,7 @@ class _InterviewerTestRequestCardState
   Future<bool> requestSubmittedBottomSheet(String msg) async {
     return await showModalBottomSheet(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(25.0),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
           ),
           backgroundColor: Colors.transparent,
           context: context,
@@ -460,205 +451,200 @@ class _InterviewerTestRequestCardState
           useRootNavigator: true,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.only(
-                left: 0,
-                right: 0,
-                bottom: 0,
-              ),
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
               child: StatefulBuilder(
-                  builder: (BuildContext context, StateSetter setState) {
-                return Container(
-                  height: SizeConfig.screenHeight * 0.85,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                builder: (BuildContext context, StateSetter setState) {
+                  return Container(
+                    height: SizeConfig.screenHeight * 0.85,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x3F000000),
+                          blurRadius: 100,
+                          offset: Offset(0, 4),
+                          spreadRadius: 5,
+                        ),
+                      ],
                     ),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x3F000000),
-                        blurRadius: 100,
-                        offset: Offset(0, 4),
-                        spreadRadius: 5,
-                      )
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      right: 47,
-                      left: 47,
-                      top: 15,
-                      bottom: 15,
-                    ),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 90,
-                            height: 2,
-                            color: CommonColor.greyColor18,
-                          ),
-                          SizedBox(
-                            height: SizeConfig.screenWidth! * 0.25,
-                          ),
-                          Container(
-                            width: 170,
-                            height: 170,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(85),
-                              color: CommonColor.greenColor1,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        right: 47,
+                        left: 47,
+                        top: 15,
+                        bottom: 15,
+                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 90,
+                              height: 2,
+                              color: CommonColor.greyColor18,
                             ),
-                            child: const Icon(
-                              Icons.check,
-                              size: 120,
-                              color: CommonColor.whiteColor,
+                            SizedBox(height: SizeConfig.screenWidth! * 0.25),
+                            Container(
+                              width: 170,
+                              height: 170,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(85),
+                                color: CommonColor.greenColor1,
+                              ),
+                              child: const Icon(
+                                Icons.check,
+                                size: 120,
+                                color: CommonColor.whiteColor,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 24),
-                          TextWidget(
+                            const SizedBox(height: 24),
+                            TextWidget(
                               text: msg, //AppStrings.requestSubmitted,
                               color: CommonColor.greyColor6,
                               maxLine: 1,
                               fontFamily: AppStrings.aeonikTRIAL,
                               fontWeight: FontWeight.w700,
-                              fontSize: 18),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          Text.rich(
-                            TextSpan(
-                              children: [
-                                const TextSpan(
-                                  text:
-                                      'Your introductory test is scheduled on ',
-                                  style: TextStyle(
-                                    color: CommonColor.blackColor1,
-                                    fontSize: 24,
-                                    fontFamily: AppStrings.sfProDisplay,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: interviewTestRequestController
-                                      .dateMonthYearController
-                                      .text, //'16th May 2023',
-                                  style: const TextStyle(
-                                    color: CommonColor.blackColor1,
-                                    fontSize: 24,
-                                    fontFamily: AppStrings.sfProDisplay,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                const TextSpan(
-                                  text: ' at ',
-                                  style: TextStyle(
-                                    color: CommonColor.blackColor1,
-                                    fontSize: 24,
-                                    fontFamily: AppStrings.sfProDisplay,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: interviewTestRequestController
-                                      .timeSlotAController.text, //'9:00 AM ',
-                                  style: const TextStyle(
-                                    color: CommonColor.blackColor1,
-                                    fontSize: 24,
-                                    fontFamily: AppStrings.sfProDisplay,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                const TextSpan(
-                                  text: 'or',
-                                  style: TextStyle(
-                                    color: CommonColor.blackColor1,
-                                    fontSize: 24,
-                                    fontFamily: AppStrings.sfProDisplay,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: interviewTestRequestController
-                                      .timeSlotBController.text, //' 10:00 AM',
-                                  style: const TextStyle(
-                                    color: CommonColor.blackColor1,
-                                    fontSize: 24,
-                                    fontFamily: AppStrings.sfProDisplay,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ],
+                              fontSize: 18,
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(
-                            height: 28,
-                          ),
-                          const TextWidget(
+                            const SizedBox(height: 12),
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  const TextSpan(
+                                    text:
+                                        'Your introductory test is scheduled on ',
+                                    style: TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 24,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        interviewTestRequestController
+                                            .dateMonthYearController
+                                            .text, //'16th May 2023',
+                                    style: const TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 24,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const TextSpan(
+                                    text: ' at ',
+                                    style: TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 24,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        interviewTestRequestController
+                                            .timeSlotAController
+                                            .text, //'9:00 AM ',
+                                    style: const TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 24,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const TextSpan(
+                                    text: 'or',
+                                    style: TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 24,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        interviewTestRequestController
+                                            .timeSlotBController
+                                            .text, //' 10:00 AM',
+                                    style: const TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 24,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 28),
+                            const TextWidget(
                               text: AppStrings.wishYouAllTheBest,
                               color: CommonColor.greenColor2,
                               maxLine: 2,
                               fontFamily: AppStrings.sfProDisplay,
                               fontWeight: FontWeight.w400,
-                              fontSize: 18),
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context, true);
-                            },
-                            child: Container(
-                              width: SizeConfig.screenWidth,
-                              height: 60,
-                              alignment: Alignment.center,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: ShapeDecoration(
-                                color: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                  side: const BorderSide(
+                              fontSize: 18,
+                            ),
+                            const SizedBox(height: 24),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context, true);
+                              },
+                              child: Container(
+                                width: SizeConfig.screenWidth,
+                                height: 60,
+                                alignment: Alignment.center,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: ShapeDecoration(
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
                                       width: 0.50,
-                                      color: CommonColor.greyColor5),
-                                  borderRadius: BorderRadius.circular(8),
+                                      color: CommonColor.greyColor5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  shadows: const [
+                                    BoxShadow(
+                                      color: CommonColor.blackColor3,
+                                      blurRadius: 2,
+                                      offset: Offset(0, 1),
+                                      spreadRadius: 0,
+                                    ),
+                                  ],
                                 ),
-                                shadows: const [
-                                  BoxShadow(
-                                    color: CommonColor.blackColor3,
-                                    blurRadius: 2,
-                                    offset: Offset(0, 1),
-                                    spreadRadius: 0,
-                                  )
-                                ],
-                              ),
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.check),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  TextWidget(
-                                    text: AppStrings.okGotIt,
-                                    color: CommonColor.blackColor4,
-                                    maxLine: 1,
-                                    fontFamily: AppStrings.inter,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18,
-                                  ),
-                                ],
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.check),
+                                    SizedBox(width: 8),
+                                    TextWidget(
+                                      text: AppStrings.okGotIt,
+                                      color: CommonColor.blackColor4,
+                                      maxLine: 1,
+                                      fontFamily: AppStrings.inter,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 15),
-                        ],
+                            const SizedBox(height: 15),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                },
+              ),
             );
           },
         ) ??

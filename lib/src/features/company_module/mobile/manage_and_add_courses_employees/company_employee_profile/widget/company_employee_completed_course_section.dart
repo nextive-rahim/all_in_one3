@@ -20,17 +20,15 @@ class CompanyEmployeeCompletedCourseSection
         return const Column(
           children: [
             TextWidget(
-                text: 'Assigned Courses :',
-                color: CommonColor.blackColor1,
-                maxLine: 1,
-                fontFamily: AppStrings.sfProDisplay,
-                fontWeight: FontWeight.w600,
-                fontSize: 18),
-            SizedBox(height: 15),
-            Text(
-              'No Course Assigned',
-              style: TextStyle(color: AppColors.red),
+              text: 'Assigned Courses :',
+              color: CommonColor.blackColor1,
+              maxLine: 1,
+              fontFamily: AppStrings.sfProDisplay,
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
             ),
+            SizedBox(height: 15),
+            Text('No Course Assigned', style: TextStyle(color: AppColors.red)),
           ],
         );
       }
@@ -38,12 +36,13 @@ class CompanyEmployeeCompletedCourseSection
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const TextWidget(
-              text: 'Assigned Courses :',
-              color: CommonColor.blackColor1,
-              maxLine: 1,
-              fontFamily: AppStrings.sfProDisplay,
-              fontWeight: FontWeight.w600,
-              fontSize: 18),
+            text: 'Assigned Courses :',
+            color: CommonColor.blackColor1,
+            maxLine: 1,
+            fontFamily: AppStrings.sfProDisplay,
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+          ),
           const SizedBox(height: 15),
           ListView.separated(
             shrinkWrap: true,
@@ -65,9 +64,7 @@ class CompanyEmployeeCompletedCourseSection
 }
 
 class _AssignedCourseCard extends StatelessWidget {
-  const _AssignedCourseCard({
-    required this.assignCourse,
-  });
+  const _AssignedCourseCard({required this.assignCourse});
   final CourseModel? assignCourse;
   @override
   Widget build(BuildContext context) {
@@ -88,7 +85,7 @@ class _AssignedCourseCard extends StatelessWidget {
               blurRadius: 20,
               offset: Offset(0, 4),
               spreadRadius: 0,
-            )
+            ),
           ],
         ),
         child: Padding(
@@ -112,7 +109,9 @@ class _AssignedCourseCard extends StatelessWidget {
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
-                            width: 0.50, color: CommonColor.greyColor5),
+                          width: 0.50,
+                          color: CommonColor.greyColor5,
+                        ),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       shadows: const [
@@ -121,7 +120,7 @@ class _AssignedCourseCard extends StatelessWidget {
                           blurRadius: 2,
                           offset: Offset(0, 1),
                           spreadRadius: 0,
-                        )
+                        ),
                       ],
                     ),
                     child: const Icon(
@@ -135,29 +134,27 @@ class _AssignedCourseCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextWidget(
-                          text: assignCourse!.title ?? '',
-                          color: CommonColor.greyColor11,
-                          maxLine: 1,
-                          fontFamily: AppStrings.sfProDisplay,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14),
-                      const SizedBox(
-                        height: 8,
+                        text: assignCourse!.title ?? '',
+                        color: CommonColor.greyColor11,
+                        maxLine: 1,
+                        fontFamily: AppStrings.sfProDisplay,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
                       ),
+                      const SizedBox(height: 8),
                       TextWidget(
-                          text: assignCourse!.totalTime ?? '',
-                          color: CommonColor.greyColor11,
-                          maxLine: 1,
-                          fontFamily: AppStrings.sfProDisplay,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12),
+                        text: assignCourse!.totalTime ?? '',
+                        color: CommonColor.greyColor11,
+                        maxLine: 1,
+                        fontFamily: AppStrings.sfProDisplay,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                      ),
                     ],
                   ),
                 ],
               ),
-              DeletedAssignCourse(
-                course: assignCourse!,
-              )
+              DeletedAssignCourse(course: assignCourse!),
               // const Icon(
               //   Icons.more_vert,
               //   color: CommonColor.purpleColor1,

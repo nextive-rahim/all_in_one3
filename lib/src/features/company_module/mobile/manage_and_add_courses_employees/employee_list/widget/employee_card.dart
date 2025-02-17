@@ -1,5 +1,7 @@
 import 'package:all_in_one3/src/core/gobal_function.dart';
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_keys.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/theme/text_style.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
@@ -7,23 +9,22 @@ import 'package:all_in_one3/src/core/utils/string.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/model/employee_model.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/widget/delete_employee_button.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class EmployeeCard extends StatelessWidget {
-  const EmployeeCard({
-    super.key,
-    required this.employee,
-  });
+  const EmployeeCard({super.key, required this.employee});
   final EmployeeModel employee;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(
-          Routes.companyEmployeeProfilePage,
-          arguments: employee,
-        );
+        CacheService.boxAuth.write(CacheKeys.employeeModel, employee);
+        context.pushNamed(Routes.companyEmployeeProfilePage);
+        // Get.toNamed(
+        //   Routes.companyEmployeeProfilePage,
+        //   arguments: employee,
+        // );
       },
       child: Container(
         width: SizeConfig.screenWidth,
@@ -39,10 +40,12 @@ class EmployeeCard extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  Get.toNamed(
-                    Routes.companyEmployeeProfilePage,
-                    arguments: employee,
-                  );
+                  CacheService.boxAuth.write(CacheKeys.employeeModel, employee);
+                  context.pushNamed(Routes.companyEmployeeProfilePage);
+                  // Get.toNamed(
+                  //   Routes.companyEmployeeProfilePage,
+                  //   arguments: employee,
+                  // );
                 },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,27 +62,31 @@ class EmployeeCard extends StatelessWidget {
                               color: Color(0xFFECECEC),
                               shape: CircleBorder(),
                             ),
-                            child: employee.image != null
-                                ? ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.network(
-                                      employee.image!,
-                                      fit: BoxFit.fill,
-                                      width: double.infinity,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return Image.network(noImageFound);
-                                      },
+                            child:
+                                employee.image != null
+                                    ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Image.network(
+                                        employee.image!,
+                                        fit: BoxFit.fill,
+                                        width: double.infinity,
+                                        errorBuilder: (
+                                          context,
+                                          error,
+                                          stackTrace,
+                                        ) {
+                                          return Image.network(noImageFound);
+                                        },
+                                      ),
+                                    )
+                                    : Text(
+                                      getInitials(employee.name ?? ''),
+                                      style: const TextStyle(
+                                        color: Color(0xFF5A5959),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
-                                  )
-                                : Text(
-                                    getInitials(employee.name ?? ''),
-                                    style: const TextStyle(
-                                      color: Color(0xFF5A5959),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
                           ),
                           const SizedBox(width: 21),
                           Expanded(
@@ -117,11 +124,11 @@ class EmployeeCard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
-                    DeleteEmployeeButton(employee: employee)
+                    DeleteEmployeeButton(employee: employee),
                   ],
                 ),
               ),
@@ -145,13 +152,14 @@ class EmployeeCard extends StatelessWidget {
                   Row(
                     children: [
                       InkWell(
-                          onTap: () {
-                            hotlineSupport(employee.phone ?? '');
-                          },
-                          child: const Icon(
-                            Icons.call_outlined,
-                            color: CommonColor.purpleColor1,
-                          )),
+                        onTap: () {
+                          hotlineSupport(employee.phone ?? '');
+                        },
+                        child: const Icon(
+                          Icons.call_outlined,
+                          color: CommonColor.purpleColor1,
+                        ),
+                      ),
                       const SizedBox(width: 20),
                       InkWell(
                         onTap: () {
@@ -161,41 +169,39 @@ class EmployeeCard extends StatelessWidget {
                           Icons.mail_outline_outlined,
                           color: CommonColor.purpleColor1,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(
-                        Routes.companyAssignedCourses,
-                        arguments: employee,
+                      CacheService.boxAuth.write(
+                        CacheKeys.employeeModel,
+                        employee,
                       );
+                      context.pushNamed(Routes.companyAssignedCourses);
+                      // Get.toNamed(
+                      //   Routes.companyAssignedCourses,
+                      //   arguments: employee,
+                      // );
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          border: Border.all(
-                            width: .5,
-                          ),
-                          borderRadius: BorderRadius.circular(5)),
+                        border: Border.all(width: .5),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                       child: const Padding(
                         padding: EdgeInsets.all(3.0),
                         child: Row(
                           children: [
-                            Icon(
-                              Icons.add,
-                              color: CommonColor.purpleColor1,
-                            ),
-                            Text(
-                              'Assing courses',
-                              style: AppTextStyle.bold12,
-                            )
+                            Icon(Icons.add, color: CommonColor.purpleColor1),
+                            Text('Assing courses', style: AppTextStyle.bold12),
                           ],
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -203,7 +209,8 @@ class EmployeeCard extends StatelessWidget {
     );
   }
 
-  String getInitials(String name) => name.isNotEmpty
-      ? name.trim().split(' ').map((l) => l[0]).take(2).join()
-      : '';
+  String getInitials(String name) =>
+      name.isNotEmpty
+          ? name.trim().split(' ').map((l) => l[0]).take(2).join()
+          : '';
 }

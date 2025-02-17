@@ -26,9 +26,7 @@ class JobCard extends StatelessWidget {
     return Container(
       decoration: ShapeDecoration(
         color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
       child: Padding(
         padding: const EdgeInsets.only(
@@ -64,9 +62,7 @@ class JobCard extends StatelessWidget {
                         fit: BoxFit.fill,
                         // color: CommonColor.purpleColor1,
                       ),
-                      const SizedBox(
-                        width: 15,
-                      ),
+                      const SizedBox(width: 15),
                       TextWidget(
                         textAlign: TextAlign.center,
                         text: job.workLocation ?? '',
@@ -88,17 +84,16 @@ class JobCard extends StatelessWidget {
                         fit: BoxFit.fill,
                         // color: CommonColor.purpleColor1,
                       ),
-                      const SizedBox(
-                        width: 15,
-                      ),
+                      const SizedBox(width: 15),
                       TextWidget(
-                          textAlign: TextAlign.center,
-                          text: "${job.paysalary ?? ''}/yr.",
-                          color: CommonColor.greyColor4,
-                          maxLine: 1,
-                          fontFamily: AppStrings.sfProDisplay,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12),
+                        textAlign: TextAlign.center,
+                        text: "${job.paysalary ?? ''}/yr.",
+                        color: CommonColor.greyColor4,
+                        maxLine: 1,
+                        fontFamily: AppStrings.sfProDisplay,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 6),
@@ -132,10 +127,10 @@ class JobCard extends StatelessWidget {
                 isFromSaveJob
                     ? DeletedSaveJobButtonFromJobCard(job: job)
                     : isFromAppliedJob
-                        ? const Offstage()
-                        : SaveJobButtonFromJobCard(job: job)
+                    ? const Offstage()
+                    : SaveJobButtonFromJobCard(job: job),
               ],
-            )
+            ),
           ],
         ),
       ),

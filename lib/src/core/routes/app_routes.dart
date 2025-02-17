@@ -17,6 +17,19 @@ abstract class Routes {
   static const profileUpdatePage = '/profileUpdatePage';
   static const otpVerification = '/otpVerification';
 
+  static const String homeTab = '/homeTab';
+  static const String homeTabEmployee = '/homeTabEmployee';
+  static const String jobTab = '/jobTab';
+  static const String profileTab = '/profileTab';
+  static const String profileTabCompany = '/profileTabCompany';
+
+  /// Companay  Shell Route
+  static const String homeTabCompany = '/homeTabCompany';
+  static const String companyProfileTab = '/companyProfileTab';
+  static const String companyEmployeeListTab = '/companyEmployeeListTab';
+  static const String companyPaymentTab = '/companyPaymentTab';
+  static const String companyInvoiceTab = '/companyInvoiceTab';
+
   /// Dashboard
   static const responsibileDashboardFirstTime =
       '/responsibileDashboardFirstTime';

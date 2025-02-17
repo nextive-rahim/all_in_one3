@@ -11,28 +11,23 @@ class NotificationViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Notification'),
-      ),
-      body: Obx(
-        () {
-          if (controller.pageState == PageState.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (controller.notificationList.isEmpty) {
-            return const EmptyScreen();
-          }
-          return Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: SingleChildScrollView(
-              child: NotificationBuilder(
-                  notificationModel: controller.notificationList),
+      appBar: AppBar(title: const Text('Notification')),
+      body: Obx(() {
+        if (controller.pageState == PageState.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (controller.notificationList.isEmpty) {
+          return const EmptyScreen();
+        }
+        return Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: SingleChildScrollView(
+            child: NotificationBuilder(
+              notificationModel: controller.notificationList,
             ),
-          );
-        },
-      ),
+          ),
+        );
+      }),
     );
   }
 }

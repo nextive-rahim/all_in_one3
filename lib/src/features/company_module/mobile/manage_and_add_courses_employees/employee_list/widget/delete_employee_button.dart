@@ -6,10 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeleteEmployeeButton extends GetView<CompanyEmployeeListViewController> {
-  const DeleteEmployeeButton({
-    super.key,
-    required this.employee,
-  });
+  const DeleteEmployeeButton({super.key, required this.employee});
   final EmployeeModel employee;
 
   @override
@@ -49,8 +46,9 @@ class DeleteEmployeeButton extends GetView<CompanyEmployeeListViewController> {
               onPressed: () {
                 controller.deleteEmployee(employee.userId ?? 0).then((v) {
                   if (v.success == true) {
-                    controller.employeeList
-                        .removeWhere((v) => v.id == employee.id);
+                    controller.employeeList.removeWhere(
+                      (v) => v.id == employee.id,
+                    );
                   } else {
                     SnackBarService.showErrorSnackBar(v.message ?? '');
                   }
@@ -61,7 +59,7 @@ class DeleteEmployeeButton extends GetView<CompanyEmployeeListViewController> {
                 'OK',
                 style: TextStyle(color: CommonColor.redColors),
               ),
-            )
+            ),
           ],
         );
       },

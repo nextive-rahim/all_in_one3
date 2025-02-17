@@ -10,10 +10,7 @@ import 'package:get/get.dart';
 
 class DeleteOtherCompanySavedJobCard
     extends GetView<OtherCompanyJobsViewController> {
-  DeleteOtherCompanySavedJobCard({
-    super.key,
-    required this.job,
-  });
+  DeleteOtherCompanySavedJobCard({super.key, required this.job});
   final JobModel job;
   final ValueNotifier<bool> isSavedJob = ValueNotifier<bool>(false);
   @override
@@ -22,11 +19,10 @@ class DeleteOtherCompanySavedJobCard
       onTap: () {
         controller.deleteSaveJob(job.id!).then((value) {
           if (value.success == true) {
-            controller.companySavedJobList
-                .removeWhere((element) => element.id == job.id);
-            SnackBarService.showInfoSnackBar(
-              'Successfully Delete Saved job',
+            controller.companySavedJobList.removeWhere(
+              (element) => element.id == job.id,
             );
+            SnackBarService.showInfoSnackBar('Successfully Delete Saved job');
 
             controller.getOtherCompanyjobList();
             // Get.find<AppliedJobsViewController>().appliedjobList();

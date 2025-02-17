@@ -13,10 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class WriteComment extends GetView<WriteCommentViewController> {
-  const WriteComment({
-    super.key,
-    required this.collectinListData,
-  });
+  const WriteComment({super.key, required this.collectinListData});
   final CourseModel collectinListData;
   @override
   Widget build(BuildContext context) {
@@ -82,10 +79,7 @@ class WriteComment extends GetView<WriteCommentViewController> {
           Visibility(
             visible: controller.writeComment.value,
             child: Padding(
-              padding: const EdgeInsets.only(
-                top: 20,
-                bottom: 30,
-              ),
+              padding: const EdgeInsets.only(top: 20, bottom: 30),
               child: Column(
                 children: [
                   SizedBox(
@@ -148,27 +142,38 @@ class WriteComment extends GetView<WriteCommentViewController> {
                       GestureDetector(
                         onTap: () {
                           if (controller
-                              .writeCommentTextController.text.isNotEmpty) {
+                              .writeCommentTextController
+                              .text
+                              .isNotEmpty) {
                             controller
-                                .writeComments(collectinListData.id!,
-                                    controller.writeCommentTextController.text)
+                                .writeComments(
+                                  collectinListData.id!,
+                                  controller.writeCommentTextController.text,
+                                )
                                 .then((value) {
-                              Get.find<ViewCommentViewController>()
-                                  .addNewComment((ViewCommentResponseData(
-                                      updatedAt: DateTime.now(),
-                                      username:
-                                          Get.find<ProfileViewController>()
+                                  Get.find<ViewCommentViewController>()
+                                      .addNewComment(
+                                        (ViewCommentResponseData(
+                                          updatedAt: DateTime.now(),
+                                          username:
+                                              Get.find<ProfileViewController>()
                                                   .userModel
                                                   ?.name ??
                                               '',
-                                      commentText: controller
-                                          .writeCommentTextController.text)));
+                                          commentText:
+                                              controller
+                                                  .writeCommentTextController
+                                                  .text,
+                                        )),
+                                      );
 
-                              controller.writeCommentTextController.text = '';
-                            });
+                                  controller.writeCommentTextController.text =
+                                      '';
+                                });
                           } else {
                             SnackBarService.showErrorSnackBar(
-                                "Please make a comment");
+                              "Please make a comment",
+                            );
                           }
                         },
                         child: Container(

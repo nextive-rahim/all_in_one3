@@ -40,9 +40,7 @@ class _CompanyInvoiceTabSectionState extends State<CompanyInvoiceTabSection>
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            bottom: 15,
-          ),
+          padding: const EdgeInsets.only(bottom: 15),
           child: Container(
             height: 50,
             decoration: BoxDecoration(
@@ -74,16 +72,10 @@ class _CompanyInvoiceTabSectionState extends State<CompanyInvoiceTabSection>
                 left: 20,
                 right: 20,
               ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 00,
-                vertical: 0,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 00, vertical: 0),
               labelColor: CommonColor.purpleColor1,
               unselectedLabelColor: Colors.black,
-              labelPadding: const EdgeInsets.only(
-                left: 5,
-                right: 5,
-              ),
+              labelPadding: const EdgeInsets.only(left: 5, right: 5),
               unselectedLabelStyle: const TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 16,

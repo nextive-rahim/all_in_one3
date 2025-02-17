@@ -69,10 +69,7 @@ class CompanyEmployeeProfileEvaluationSection extends StatelessWidget {
         const SizedBox(height: 20),
         GestureDetector(
           onTap: () {
-            Get.toNamed(
-              Routes.resume,
-              arguments: employee.resume,
-            );
+            Get.toNamed(Routes.resume, arguments: employee.resume);
           },
           child: Container(
             width: 199,

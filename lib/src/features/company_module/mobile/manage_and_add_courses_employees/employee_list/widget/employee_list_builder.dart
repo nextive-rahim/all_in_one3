@@ -19,17 +19,13 @@ class EmployeeListSection extends GetView<CompanyEmployeeListViewController> {
       if (controller.employeeList.isEmpty) {
         return const EmptyScreen();
       }
-      return _EmployeeListBuilder(
-        employeeList: controller.employeeList,
-      );
+      return _EmployeeListBuilder(employeeList: controller.employeeList);
     });
   }
 }
 
 class _EmployeeListBuilder extends StatelessWidget {
-  const _EmployeeListBuilder({
-    required this.employeeList,
-  });
+  const _EmployeeListBuilder({required this.employeeList});
   final List<EmployeeModel> employeeList;
   @override
   Widget build(BuildContext context) {
@@ -39,9 +35,7 @@ class _EmployeeListBuilder extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: employeeList.length,
       itemBuilder: ((context, index) {
-        return EmployeeCard(
-          employee: employeeList[index],
-        );
+        return EmployeeCard(employee: employeeList[index]);
       }),
       separatorBuilder: ((context, index) {
         return const SizedBox(height: 15);

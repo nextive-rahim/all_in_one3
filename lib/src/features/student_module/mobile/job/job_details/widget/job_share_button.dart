@@ -2,6 +2,7 @@ import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 class JobShareButton extends StatelessWidget {
   const JobShareButton({super.key});
@@ -25,18 +26,16 @@ class JobShareButton extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-             // _shareLink();
+              _shareLink();
             },
-            child: Icon(
-              Icons.share,
-              size: 30,
-              color: CommonColor.blue300,
-            ),
-          )
+            child: Icon(Icons.share, size: 30, color: CommonColor.blue300),
+          ),
         ],
       ),
     );
   }
 
- 
+  Future<void> _shareLink() async {
+    await Share.shareUri(Uri.parse('www.google.com'));
+  }
 }

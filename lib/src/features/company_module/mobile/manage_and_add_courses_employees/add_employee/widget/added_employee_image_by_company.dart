@@ -28,9 +28,9 @@ class AddedEployeeImageByCompany
               await FileService().pickAFile().then((value) {
                 controller.isUploadFile.value = true;
                 controller.fileImagelink.value = value!.path;
-                Get.put(UpdateProfileiewController())
-                    .uploadFile(value.file)
-                    .then((value2) {
+                Get.put(
+                  UpdateProfileiewController(),
+                ).uploadFile(value.file).then((value2) {
                   controller.isUploadFile.value = false;
                   controller.imagelink.value = value2;
                 });
@@ -47,29 +47,27 @@ class AddedEployeeImageByCompany
                     children: [
                       controller.fileImagelink.value != ''
                           ? SizedBox(
-                              height: 140,
-                              width: 140,
-                              child: Image.file(
-                                File(controller.fileImagelink.value),
-                                fit: BoxFit.cover,
-                              ),
-                            )
-                          : SizedBox(
-                              height: 140,
-                              width: 140,
-                              child: Image.network(
-                                'https://nextivesolution.sgp1.cdn.digitaloceanspaces.com/static/not-found.jpg',
-                                fit: BoxFit.cover,
-                              ),
+                            height: 140,
+                            width: 140,
+                            child: Image.file(
+                              File(controller.fileImagelink.value),
+                              fit: BoxFit.cover,
                             ),
+                          )
+                          : SizedBox(
+                            height: 140,
+                            width: 140,
+                            child: Image.network(
+                              'https://nextivesolution.sgp1.cdn.digitaloceanspaces.com/static/not-found.jpg',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                       Positioned(
                         bottom: 0,
                         right: 0,
                         left: 0,
                         child: Container(
-                          constraints: const BoxConstraints(
-                            minHeight: 60,
-                          ),
+                          constraints: const BoxConstraints(minHeight: 60),
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.black.withOpacity(0.6),

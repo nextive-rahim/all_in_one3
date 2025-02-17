@@ -14,7 +14,6 @@ class CompanyJobViewController extends GetxController {
   get pageState => _pageStateController.value;
   late RegistrationResponseModel signupModel;
 
-  
   //late JobResponseModel jobListResponse;
   int? companyJonID;
   UserDetail? user;
@@ -60,7 +59,7 @@ class CompanyJobViewController extends GetxController {
   }
 
   Future<RegistrationResponseModel>
-      companySelecteCandidateForInterview() async {
+  companySelecteCandidateForInterview() async {
     // if (!formKey.currentState!.validate()) {
     //   return;
     // }
@@ -88,9 +87,7 @@ class CompanyJobViewController extends GetxController {
   }
 
   Future<RegistrationResponseModel> deleteCompanyJob(int id) async {
-    Map<String, dynamic> body = {
-      "job_id": id,
-    };
+    Map<String, dynamic> body = {"job_id": id};
 
     try {
       final res = await _repository.deleteCompanyJob(body);

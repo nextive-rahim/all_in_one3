@@ -59,13 +59,7 @@ class _CourseBuilderState extends State<_CourseBuilder> {
   @override
   Widget build(BuildContext context) {
     if (widget.courseList!.isEmpty) {
-      return Center(
-        child: Image.asset(
-          '',
-          height: 150,
-          fit: BoxFit.contain,
-        ),
-      );
+      return Center(child: Image.asset('', height: 150, fit: BoxFit.contain));
     }
     return ListView.builder(
       itemCount: widget.courseList!.length,
@@ -76,23 +70,25 @@ class _CourseBuilderState extends State<_CourseBuilder> {
         CourseModel course = widget.courseList![courseIndex];
 
         final bool alreadyAssinged = couseController
-            .employeeModel!.assignCourse!
+            .employeeModel!
+            .assignCourse!
             .any((v) => v.id == course.id);
 
         return Container(
-            width: 360,
-            margin: const EdgeInsets.only(right: 0),
-            child: CompanyAssingnedCoursesCard(
-              onTap: () {
-                if (alreadyAssinged) {
-                  return;
-                }
-                selectedsID(course);
-              },
-              course: course,
-              isSelectItem: alreadyAssinged ||
-                  controller.courseIDList.contains(course.id),
-            ));
+          width: 360,
+          margin: const EdgeInsets.only(right: 0),
+          child: CompanyAssingnedCoursesCard(
+            onTap: () {
+              if (alreadyAssinged) {
+                return;
+              }
+              selectedsID(course);
+            },
+            course: course,
+            isSelectItem:
+                alreadyAssinged || controller.courseIDList.contains(course.id),
+          ),
+        );
       },
     );
   }

@@ -42,44 +42,42 @@ class UpdateProfileImageSecton extends GetView<UpdateProfileiewController> {
                     children: [
                       controller.fileImagelink.value != ''
                           ? SizedBox(
-                              height: 140,
-                              width: 140,
-                              child: Image.file(
-                                File(controller.fileImagelink.value),
-                                fit: BoxFit.cover,
-                              ),
-                            )
+                            height: 140,
+                            width: 140,
+                            child: Image.file(
+                              File(controller.fileImagelink.value),
+                              fit: BoxFit.cover,
+                            ),
+                          )
                           : SizedBox(
-                              height: 140,
-                              width: 140,
-                              child: Image.network(
-                                profileController.userModel?.image ??
-                                    noImageFound,
-                                cacheHeight: 367,
-                                cacheWidth: 367,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Image.network(
-                                    noImageFound,
-                                    cacheHeight: 367,
-                                    cacheWidth: 367,
-                                  );
-                                },
-                              )
+                            height: 140,
+                            width: 140,
+                            child: Image.network(
+                              profileController.userModel?.image ??
+                                  noImageFound,
+                              cacheHeight: 367,
+                              cacheWidth: 367,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Image.network(
+                                  noImageFound,
+                                  cacheHeight: 367,
+                                  cacheWidth: 367,
+                                );
+                              },
+                            ),
 
-                              // AppCachedNetworkImage(
-                              //   imageUrl: profileController.userModel?.image,
-                              //   cachedHeight: 367,
-                              //   cachedWidth: 367,
-                              // ),
-                              ),
+                            // AppCachedNetworkImage(
+                            //   imageUrl: profileController.userModel?.image,
+                            //   cachedHeight: 367,
+                            //   cachedWidth: 367,
+                            // ),
+                          ),
                       Positioned(
                         bottom: 0,
                         right: 0,
                         left: 0,
                         child: Container(
-                          constraints: const BoxConstraints(
-                            minHeight: 60,
-                          ),
+                          constraints: const BoxConstraints(minHeight: 60),
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.black.withOpacity(0.6),

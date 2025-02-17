@@ -23,8 +23,8 @@ class LoginViewController extends GetxController {
   get pageState => _pageStateController.value;
 
   late LoginResponseModel loginModel;
-
-  Future<void> login(GlobalKey<FormState> formKey) async {
+  final formKey = GlobalKey<FormState>();
+  Future<void> login() async {
     if (!formKey.currentState!.validate()) {
       return;
     }
@@ -48,8 +48,10 @@ class LoginViewController extends GetxController {
       }
       _pageStateController(PageState.success);
 
-      CacheService.boxAuth
-          .write(CacheKeys.userType, loginModel.data?.userType ?? 0);
+      CacheService.boxAuth.write(
+        CacheKeys.userType,
+        loginModel.data?.userType ?? 0,
+      );
       CacheService.boxAuth.write(CacheKeys.userId, loginModel.data?.id ?? 0);
       CacheService.boxAuth.write(CacheKeys.token, loginModel.token);
       return;
@@ -66,9 +68,7 @@ class LoginViewController extends GetxController {
   Future<void> resentOtpForVerifyMail() async {
     _pageStateController(PageState.loading);
 
-    Map<String, dynamic> requestBody = {
-      'username': userNameController.text,
-    };
+    Map<String, dynamic> requestBody = {'username': userNameController.text};
 
     Log.debug(requestBody.toString());
 

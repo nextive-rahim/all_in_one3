@@ -7,6 +7,7 @@ import 'package:all_in_one3/src/features/common_features/profile/controller/prof
 import 'package:all_in_one3/src/features/common_features/profile/controller/profile_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class UpdateProfileButton extends GetView<UpdateProfileiewController> {
   const UpdateProfileButton({super.key});
@@ -15,20 +16,23 @@ class UpdateProfileButton extends GetView<UpdateProfileiewController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 65),
         child: PrimaryButton(
           isLoading: controller.pageState == PageState.loading,
           onTap: () async {
-            await controller.updateProfile().then(
-              (value) {
-                if (value.success == true) {
-                  SnackBarService.showInfoSnackBar(
-                      'Update Profile Successfully');
-                }
-              },
-            ).then((v) {
-              Get.find<ProfileViewController>().getUser();
-            });
+            await controller
+                .updateProfile()
+                .then((value) {
+                  if (value.success == true) {
+                    SnackBarService.showInfoSnackBar(
+                      'Update Profile Successfully',
+                    );
+                  }
+                })
+                .then((v) {
+                  Get.find<ProfileViewController>().getUser();
+                  context.pop();
+                });
           },
           widget: Text(
             'Update Profile',

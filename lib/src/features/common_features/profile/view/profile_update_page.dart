@@ -10,15 +10,14 @@ import 'package:get/get.dart';
 class ProfileUpdatePage extends GetView<UpdateProfileiewController> {
   ProfileUpdatePage({super.key}) {
     controller.profileDataPopulate(
-        Get.find<ProfileViewController>().profileResponseModel);
+      Get.find<ProfileViewController>().profileResponseModel,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile Update'),
-      ),
+      appBar: AppBar(title: const Text('Profile Update')),
       body: const Padding(
         padding: EdgeInsets.symmetric(vertical: 20),
         child: Column(
@@ -27,10 +26,7 @@ class ProfileUpdatePage extends GetView<UpdateProfileiewController> {
             SizedBox(height: 0),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                'Update Profile',
-                style: AppTextStyle.bold20,
-              ),
+              child: Text('Update Profile', style: AppTextStyle.bold20),
             ),
             SizedBox(height: 20),
             Expanded(
@@ -38,10 +34,7 @@ class ProfileUpdatePage extends GetView<UpdateProfileiewController> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
-                    children: [
-                      UpdateProfileImageSecton(),
-                      UpdateProfileForm(),
-                    ],
+                    children: [UpdateProfileImageSecton(), UpdateProfileForm()],
                   ),
                 ),
               ),

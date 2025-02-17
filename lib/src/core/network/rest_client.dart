@@ -103,9 +103,7 @@ class RestClient {
 
     final standardHeaders = await _getOptions(apiType);
     if (headers != null) {
-      standardHeaders.headers?.addAll({
-        'Content-Type': 'multipart/form-data',
-      });
+      standardHeaders.headers?.addAll({'Content-Type': 'multipart/form-data'});
     }
 
     return _dio
@@ -134,11 +132,7 @@ class RestClient {
     }
 
     return _dio
-        .put(
-          path,
-          data: data,
-          options: standardHeaders,
-        )
+        .put(path, data: data, options: standardHeaders)
         .then((value) => value)
         .catchError(_getDioException);
   }
@@ -155,20 +149,12 @@ class RestClient {
 
     final standardHeaders = await _getOptions(apiType);
     if (headers != null) {
-      standardHeaders.headers?.addAll({
-        'Content-Type': 'multipart/form-data',
-      });
+      standardHeaders.headers?.addAll({'Content-Type': 'multipart/form-data'});
     }
-    data.addAll({
-      '_method': 'PUT',
-    });
+    data.addAll({'_method': 'PUT'});
 
     return _dio
-        .post(
-          path,
-          data: FormData.fromMap(data),
-          options: standardHeaders,
-        )
+        .post(path, data: FormData.fromMap(data), options: standardHeaders)
         .then((value) => value)
         .catchError(_getDioException);
   }
@@ -193,10 +179,7 @@ class RestClient {
         .catchError(_getDioException);
   }
 
-  Future<Response<dynamic>> downloadFile(
-    String url,
-    String savePath,
-  ) async {
+  Future<Response<dynamic>> downloadFile(String url, String savePath) async {
     return _dio
         .download(
           url,
@@ -204,7 +187,8 @@ class RestClient {
           onReceiveProgress: (received, total) {
             if (total != -1) {
               Log.info(
-                  'Download progress: ${(received / total * 100).toStringAsFixed(0)}%');
+                'Download progress: ${(received / total * 100).toStringAsFixed(0)}%',
+              );
             }
           },
         )
@@ -215,7 +199,8 @@ class RestClient {
   dynamic _getDioException(error) {
     if (error is DioException) {
       Log.error(
-          'DIO ERROR: ${error.type} ENDPOINT: ${error.requestOptions.baseUrl}${error.requestOptions.path}');
+        'DIO ERROR: ${error.type} ENDPOINT: ${error.requestOptions.baseUrl}${error.requestOptions.path}',
+      );
       final errorMessage = error.response?.data;
       switch (error.type) {
         case DioExceptionType.cancel:
@@ -231,22 +216,17 @@ class RestClient {
         case DioExceptionType.unknown:
           final message = errorMessage ?? '${error.response?.data['message']}';
           SnackBarService.showErrorSnackBar(message.toString());
-          throw UnknownException(
-            002,
-          );
+          throw UnknownException(002);
         case DioExceptionType.receiveTimeout:
           SnackBarService.showErrorSnackBar(
-              error.message.toString().toString());
-          throw ReceiveTimeoutException(
-            004,
+            error.message.toString().toString(),
           );
+          throw ReceiveTimeoutException(004);
         case DioExceptionType.sendTimeout:
           final message = errorMessage ?? '${error.response?.data['message']}';
 
           SnackBarService.showErrorSnackBar(message.toString().toString());
-          throw RequestTimeoutException(
-            004,
-          );
+          throw RequestTimeoutException(004);
         case DioExceptionType.badCertificate:
           throw BadRequestException(
             408,
@@ -254,10 +234,9 @@ class RestClient {
           );
         case DioExceptionType.connectionError:
           SnackBarService.showErrorSnackBar(
-              'You don not have internet connection');
-          throw RequestTimeoutException(
-            522,
+            'You don not have internet connection',
           );
+          throw RequestTimeoutException(522);
         case DioExceptionType.badResponse:
           switch (error.response?.statusCode) {
             case 400:
@@ -279,9 +258,7 @@ class RestClient {
               final message =
                   errorMessage ?? '${error.response?.data['message']}';
               SnackBarService.showErrorSnackBar(message.toString());
-              throw NotFoundException(
-                404,
-              );
+              throw NotFoundException(404);
             case 409:
               throw ConflictException(
                 409,
@@ -291,27 +268,22 @@ class RestClient {
               final message =
                   errorMessage ?? '${error.response?.data['message']}';
               SnackBarService.showErrorSnackBar(message.toString());
-              throw RequestTimeoutException(
-                408,
-              );
+              throw RequestTimeoutException(408);
             case 500:
-              final message = errorMessage ??
+              final message =
+                  errorMessage ??
                   '${error.response?.data['message']['message']}';
               SnackBarService.showErrorSnackBar(message['message'].toString());
-              throw InternalServerException(
-                500,
-              );
+              throw InternalServerException(500);
             case 422:
               final message =
                   errorMessage ?? '${error.response?.data['message']}';
               (message as Map).entries.first.value != null
                   ? SnackBarService.showErrorSnackBar(
-                      message.toString().replaceAll(RegExp('[{}]'), ''),
-                    )
+                    message.toString().replaceAll(RegExp('[{}]'), ''),
+                  )
                   : null;
-              throw UnprocessableEntityException(
-                422,
-              );
+              throw UnprocessableEntityException(422);
             default:
               throw DefaultException(
                 0002,
@@ -320,10 +292,7 @@ class RestClient {
           }
       }
     } else {
-      throw UnexpectedException(
-        000,
-        'Something went wrong. Please try again.',
-      );
+      throw UnexpectedException(000, 'Something went wrong. Please try again.');
     }
   }
 

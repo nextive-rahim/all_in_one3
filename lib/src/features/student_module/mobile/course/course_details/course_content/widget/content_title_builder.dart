@@ -7,10 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ContentTileBuilder extends StatelessWidget {
-  const ContentTileBuilder({
-    super.key,
-    required this.contentList,
-  });
+  const ContentTileBuilder({super.key, required this.contentList});
   final RxList<ContentTittle> contentList;
   @override
   Widget build(BuildContext context) {
@@ -46,7 +43,7 @@ class ContentTileBuilder extends StatelessWidget {
                 ),
                 ContentVideoBuilder(
                   contentVideoList: contentList[index].courseContent ?? [],
-                )
+                ),
               ],
             );
           },

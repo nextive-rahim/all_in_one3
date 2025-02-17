@@ -7,12 +7,12 @@ import 'package:all_in_one3/src/core/utils/image_constant.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import 'package:go_router/go_router.dart';
+import 'dart:html' as html;
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({
-    super.key,
-  });
+  const SplashPage({super.key});
 
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -29,41 +29,50 @@ class _SplashPageState extends State<SplashPage> {
     Future.delayed(const Duration(seconds: 2)).then((value) {
       log("Auth Token.... : ${CacheService.boxAuth.read(CacheKeys.token)}");
       if (CacheService.boxAuth.read(CacheKeys.token) == null) {
-        //  Get.rootDelegate.toNamed(Routes.bottomNavBarStudent);
-        Get.offNamed(Routes.login);
-        return;
+        if (kIsWeb) {
+          html.window.history.replaceState(null, '', Routes.login);
+          context.replaceNamed(Routes.login);
+        } else {
+          html.window.history.replaceState(null, '', Routes.login);
+          context.replaceNamed(Routes.login);
+        }
       }
       final userType = CacheService.boxAuth.read(CacheKeys.userType);
       print('User Type : $userType');
       if (userType == 1) {
         if (kIsWeb) {
-          print('object');
-          Get.rootDelegate.toNamed(Routes.bottomNavBarStudent);
-          // Get.offNamed(Routes.bottomNavBarStudent);
+          html.window.history.replaceState(null, '', Routes.homeTab);
+          context.replaceNamed(Routes.homeTab);
+
+          // Get.rootDelegate.toNamed(Routes.homeTab);
+          // Get.offNamed(Routes.homeTab);
         } else {
-          // Get.rootDelegate.toNamed(Routes.bottomNavBarStudent);
-          Get.offNamed(Routes.bottomNavBarStudent);
+          // Get.rootDelegate.toNamed(Routes.homeTab);
+          context.goNamed(Routes.homeTab);
         }
       } else if (userType == 2) {
         if (kIsWeb) {
-          Get.rootDelegate.toNamed(Routes.bottomNavBarStudent);
+          html.window.history.replaceState(null, '', Routes.homeTabEmployee);
+          context.replaceNamed(Routes.homeTabEmployee);
+
           // Get.offNamed(Routes.bottomNavBarEmployee);
         } else {
-          // Get.rootDelegate.toNamed(Routes.bottomNavBarStudent);
-          Get.offNamed(Routes.bottomNavBarEmployee);
+          // Get.rootDelegate.toNamed(Routes.homeTab);
+          context.goNamed(Routes.bottomNavBarEmployee);
         }
       } else if (userType == 3) {
         if (kIsWeb) {
-          Get.offNamed(Routes.bottomNavBarCompany);
+          html.window.history.replaceState(null, '', Routes.homeTabCompany);
+          context.replaceNamed(Routes.homeTabCompany);
         } else {
-          Get.offNamed(Routes.bottomNavBarCompany);
+          context.goNamed(Routes.homeTabCompany);
           // Get.offNamed(Routes.dashboardRegFirstTimeEmployeeWeb);
         }
       } else if (userType == 4) {
         if (kIsWeb) {
-          Get.offNamed(Routes.bottomNavBarInterview);
+          context.goNamed(Routes.bottomNavBarInterview);
         } else {
-          Get.offNamed(Routes.bottomNavBarInterview);
+          context.goNamed(Routes.bottomNavBarInterview);
         }
       }
     });
@@ -71,6 +80,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    log("Auth Token.... : ${CacheService.boxAuth.read(CacheKeys.token)}");
     SizeConfig().init(context);
     return Scaffold(
       backgroundColor: CommonColor.whiteColor,

@@ -18,9 +18,7 @@ class _CompanyAddEmployeePageMobileState
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      appBar: AppBar(
-        title: const Text('Added New employee'),
-      ),
+      appBar: AppBar(title: const Text('Added New employee')),
       body: const Padding(
         padding: EdgeInsets.symmetric(vertical: 20),
         child: Column(
@@ -34,25 +32,21 @@ class _CompanyAddEmployeePageMobileState
             //   searchHintText: AppStrings.searchForJobs,
             //   // onSearchListener: (value) {},
             // ),
-
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                'Added New Employee :',
-                style: AppTextStyle.bold20,
-              ),
+              child: Text('Added New Employee :', style: AppTextStyle.bold20),
             ),
             SizedBox(height: 20),
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     children: [
                       AddedEployeeImageByCompany(),
                       AddedNewEmployeeFormField(),
                       //  _AddedCoursesForEmployee()
-                      SizedBox(height: 70)
+                      SizedBox(height: 70),
                     ],
                   ),
                 ),
@@ -65,6 +59,3 @@ class _CompanyAddEmployeePageMobileState
     );
   }
 }
-
-
-

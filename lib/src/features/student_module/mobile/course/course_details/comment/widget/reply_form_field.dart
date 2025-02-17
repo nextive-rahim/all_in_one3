@@ -10,10 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CommentReplyCard extends GetView<WriteReplyViewController> {
-  const CommentReplyCard({
-    super.key,
-    required this.comment,
-  });
+  const CommentReplyCard({super.key, required this.comment});
   final ViewCommentResponseData comment;
   @override
   Widget build(BuildContext context) {
@@ -37,34 +34,32 @@ class CommentReplyCard extends GetView<WriteReplyViewController> {
         ),
         const SizedBox(width: 20),
         IconButton(
-            onPressed: () {
-              if (controller.repleCommentTextController.text.isEmpty) {
-                SnackBarService.showErrorSnackBar('Please make a reply');
-                return;
-              }
-              controller
-                  .addReply(
-                comment.id!,
-                controller.repleCommentTextController.text,
-              )
-                  .then((value) {
-                Get.find<ViewReplyViewController>().viewReply(
+          onPressed: () {
+            if (controller.repleCommentTextController.text.isEmpty) {
+              SnackBarService.showErrorSnackBar('Please make a reply');
+              return;
+            }
+            controller
+                .addReply(
+                  comment.id!,
+                  controller.repleCommentTextController.text,
+                )
+                .then((value) {
+                  Get.find<ViewReplyViewController>().viewReply(
                     (ViewCommentResponseData(
-                        updatedAt: DateTime.now(),
-                        username:
-                            Get.find<ProfileViewController>().userModel?.name ??
-                                '',
-                        replyText:
-                            controller.repleCommentTextController.text)));
+                      updatedAt: DateTime.now(),
+                      username:
+                          Get.find<ProfileViewController>().userModel?.name ??
+                          '',
+                      replyText: controller.repleCommentTextController.text,
+                    )),
+                  );
 
-                controller.repleCommentTextController.text = '';
-              });
-            },
-            icon: const Icon(
-              Icons.send,
-              size: 30,
-              color: AppColors.blueDarker,
-            ))
+                  controller.repleCommentTextController.text = '';
+                });
+          },
+          icon: const Icon(Icons.send, size: 30, color: AppColors.blueDarker),
+        ),
       ],
     );
   }

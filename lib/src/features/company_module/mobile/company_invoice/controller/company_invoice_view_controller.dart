@@ -94,9 +94,7 @@ class CompanyInvoiceViewController extends GetxController {
   Future<InvoiceLinkResponseModel> invoiceLink(int invoiceId) async {
     isInvoiceLinkLoading.value = false;
 
-    Map<String, dynamic> requestBody = {
-      'id': invoiceId,
-    };
+    Map<String, dynamic> requestBody = {'id': invoiceId};
 
     Log.debug(requestBody.toString());
 

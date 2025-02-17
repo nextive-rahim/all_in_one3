@@ -4,6 +4,7 @@ import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_co
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/widget/employee_list_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class CompanyEmployeeListPageMobile extends StatelessWidget {
   const CompanyEmployeeListPageMobile({super.key});
@@ -36,8 +37,8 @@ class CompanyEmployeeListPageMobile extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(
-                          left: 15,
-                          right: 15,
+                          left: 10,
+                          right: 10,
                           top: 5,
                         ),
                         child: Column(
@@ -46,7 +47,7 @@ class CompanyEmployeeListPageMobile extends StatelessWidget {
                             // const SizedBox(height: 17),
                             // const EmployeeListFilterSection(),
                             const SizedBox(height: 14),
-                            _addEmployeeButton(),
+                            _addEmployeeButton(context),
                             const SizedBox(height: 30),
                             const EmployeeListSection(),
                           ],
@@ -64,10 +65,11 @@ class CompanyEmployeeListPageMobile extends StatelessWidget {
     );
   }
 
-  Widget _addEmployeeButton() {
+  Widget _addEmployeeButton(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routes.companyAddEmployeePageMobile);
+        context.pushNamed(Routes.companyAddEmployeePageMobile);
+        // Get.toNamed(Routes.companyAddEmployeePageMobile);
       },
       child: Container(
         width: 160,
@@ -86,7 +88,7 @@ class CompanyEmployeeListPageMobile extends StatelessWidget {
               blurRadius: 2,
               offset: Offset(0, 1),
               spreadRadius: 0,
-            )
+            ),
           ],
         ),
         child: const Row(
@@ -94,10 +96,7 @@ class CompanyEmployeeListPageMobile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
-              Icons.add,
-              size: 20,
-            ),
+            Icon(Icons.add, size: 20),
             SizedBox(width: 5),
             Text(
               'Add new employee',

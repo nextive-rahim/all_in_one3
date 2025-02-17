@@ -5,10 +5,7 @@ import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/model/vi
 import 'package:flutter/material.dart';
 
 class JobDetailsHeader extends StatelessWidget {
-  const JobDetailsHeader({
-    super.key,
-    required this.job,
-  });
+  const JobDetailsHeader({super.key, required this.job});
   final JobModel job;
   @override
   Widget build(BuildContext context) {

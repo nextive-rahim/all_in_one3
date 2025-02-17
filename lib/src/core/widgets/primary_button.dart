@@ -31,22 +31,21 @@ class PrimaryButton extends StatelessWidget {
         // ),
       ),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-        ),
+        style: ElevatedButton.styleFrom(backgroundColor: backgroundColor),
         onPressed: isLoading ? null : () => onTap(),
-        child: isLoading
-            ? const Center(
-                child: SizedBox(
-                  height: 25,
-                  width: 25,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    backgroundColor: Colors.white,
+        child:
+            isLoading
+                ? const Center(
+                  child: SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      backgroundColor: Colors.white,
+                    ),
                   ),
-                ),
-              )
-            : widget,
+                )
+                : widget,
       ),
     );
   }

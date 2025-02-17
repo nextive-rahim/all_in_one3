@@ -30,8 +30,9 @@ class _CompanyAppliedJobBuilderState extends State<CompanyAppliedJobBuilder> {
             selectedsID(widget.homeCourses[index]);
           },
           course: widget.homeCourses[index],
-          isSelectItem: widget.controller.courseIDList
-              .contains(widget.homeCourses[index].id),
+          isSelectItem: widget.controller.courseIDList.contains(
+            widget.homeCourses[index].id,
+          ),
         );
       },
     );

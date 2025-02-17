@@ -26,7 +26,9 @@ class InterviewCardLoading extends StatelessWidget {
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
                   side: const BorderSide(
-                      width: 0.9, color: CommonColor.greyColor18),
+                    width: 0.9,
+                    color: CommonColor.greyColor18,
+                  ),
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
@@ -49,13 +51,7 @@ class InterviewCardLoading extends StatelessWidget {
                       fontSize: 20,
                     ),
                     SizedBox(height: 16),
-                    Row(
-                      children: [
-                        Text(''),
-                        SizedBox(width: 10),
-                        Text(''),
-                      ],
-                    ),
+                    Row(children: [Text(''), SizedBox(width: 10), Text('')]),
 
                     // widget.isFormConfirmInterviews
                     //     ? Padding(

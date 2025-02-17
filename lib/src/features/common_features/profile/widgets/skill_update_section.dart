@@ -42,7 +42,7 @@ class SkillUpdateSection extends GetView<UpdateProfileiewController> {
                     Get.back();
                   },
                   child: const Text('Confirm'),
-                )
+                ),
               ],
             );
           },
@@ -60,10 +60,7 @@ class SkillUpdateSection extends GetView<UpdateProfileiewController> {
             height: 50,
             width: double.infinity,
             decoration: BoxDecoration(
-              border: Border.all(
-                width: .5,
-                color: AppColors.lightBlack40,
-              ),
+              border: Border.all(width: .5, color: AppColors.lightBlack40),
               borderRadius: BorderRadius.circular(5.0),
             ),
             child: Row(
@@ -73,47 +70,51 @@ class SkillUpdateSection extends GetView<UpdateProfileiewController> {
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Obx(
-                    () => Get.find<ProfileViewController>()
-                            .profileResponseModel
-                            .userSkill!
-                            .isEmpty
-                        ? Text(
-                            controller.selectedSkillNameList.isEmpty
-                                ? 'Select Skills'
-                                : List<String>.generate(
-                                        controller.selectedSkillNameList.length,
-                                        (int index) => controller
-                                            .selectedSkillNameList[index])
-                                    .toString(),
-                            style: const TextStyle(
-                                color: CommonColor.hintTextColor),
-                          )
-                        : controller.selectedSkillNameList.isNotEmpty
+                    () =>
+                        Get.find<ProfileViewController>()
+                                .profileResponseModel
+                                .userSkill!
+                                .isEmpty
                             ? Text(
-                                List<String>.generate(
-                                        controller.selectedSkillNameList.length,
-                                        (int index) => controller
-                                            .selectedSkillNameList[index])
-                                    .toString(),
-                              )
+                              controller.selectedSkillNameList.isEmpty
+                                  ? 'Select Skills'
+                                  : List<String>.generate(
+                                    controller.selectedSkillNameList.length,
+                                    (int index) =>
+                                        controller.selectedSkillNameList[index],
+                                  ).toString(),
+                              style: const TextStyle(
+                                color: CommonColor.hintTextColor,
+                              ),
+                            )
+                            : controller.selectedSkillNameList.isNotEmpty
+                            ? Text(
+                              List<String>.generate(
+                                controller.selectedSkillNameList.length,
+                                (int index) =>
+                                    controller.selectedSkillNameList[index],
+                              ).toString(),
+                            )
                             : Text(
-                                List<String>.generate(
-                                    Get.find<ProfileViewController>()
-                                        .profileResponseModel
-                                        .userSkill!
-                                        .length, (int index) {
+                              List<String>.generate(
+                                Get.find<ProfileViewController>()
+                                    .profileResponseModel
+                                    .userSkill!
+                                    .length,
+                                (int index) {
                                   return Get.find<ProfileViewController>()
                                           .profileResponseModel
                                           .userSkill![index]
                                           .skill ??
                                       '';
-                                }).toString(),
-                              ),
+                                },
+                              ).toString(),
+                            ),
                   ),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

@@ -5,6 +5,7 @@ import 'package:all_in_one3/src/features/company_module/mobile/company_job/my_co
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/post_new_job/controller/post_company_new_job_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class PostNewJobButton extends GetView<PostCompanyNewJobViewController> {
   const PostNewJobButton({super.key});
@@ -12,7 +13,7 @@ class PostNewJobButton extends GetView<PostCompanyNewJobViewController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 200),
       child: GestureDetector(
         onTap: () {
           if (!controller.formKey.currentState!.validate()) {
@@ -23,7 +24,8 @@ class PostNewJobButton extends GetView<PostCompanyNewJobViewController> {
           if (controller.isFromPostEdit.value) {
             controller.editCompanyJob(controller.job!.id!).then((value) {
               if (value.success == true) {
-                Get.back();
+                //Get.back();
+                context.pop();
                 SnackBarService.showInfoSnackBar('Post Edit Successfully');
 
                 Get.find<CompanyJobViewController>().getCompanyjobList();
@@ -32,7 +34,8 @@ class PostNewJobButton extends GetView<PostCompanyNewJobViewController> {
           } else {
             controller.postNewJob().then((value) {
               if (value.success == true) {
-                Get.back();
+                context.pop();
+                // Get.back();
                 SnackBarService.showInfoSnackBar('Post Added Successfully');
 
                 Get.find<CompanyJobViewController>().getCompanyjobList();
@@ -42,8 +45,9 @@ class PostNewJobButton extends GetView<PostCompanyNewJobViewController> {
         },
         child: Container(
           decoration: BoxDecoration(
-              color: AppColors.deepBlue,
-              borderRadius: BorderRadius.circular(10)),
+            color: AppColors.deepBlue,
+            borderRadius: BorderRadius.circular(10),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(

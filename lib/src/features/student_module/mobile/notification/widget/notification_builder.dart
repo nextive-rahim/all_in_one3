@@ -8,10 +8,11 @@ class NotificationBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        shrinkWrap: true,
-        itemCount: notificationModel?.length,
-        itemBuilder: (context, index) {
-          return NotificationCard(notificationModel: notificationModel![index]);
-        });
+      shrinkWrap: true,
+      itemCount: notificationModel?.length,
+      itemBuilder: (context, index) {
+        return NotificationCard(notificationModel: notificationModel![index]);
+      },
+    );
   }
 }

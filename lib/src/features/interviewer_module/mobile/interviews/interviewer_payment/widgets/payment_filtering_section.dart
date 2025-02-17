@@ -13,20 +13,13 @@ class PaymentFilteringSection extends StatefulWidget {
 
 class _PaymentFilteringSectionState extends State<PaymentFilteringSection> {
   String? dropdownValue = 'All';
-  List<String> courseLevelDropdown = [
-    'All',
-    'Paid',
-    'In-Process',
-  ];
+  List<String> courseLevelDropdown = ['All', 'Paid', 'In-Process'];
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          AppStrings.filterAndOptions,
-          style: TextStyle(fontSize: 15),
-        ),
+        const Text(AppStrings.filterAndOptions, style: TextStyle(fontSize: 15)),
         const SizedBox(height: 10),
         Row(
           children: [
@@ -42,8 +35,9 @@ class _PaymentFilteringSectionState extends State<PaymentFilteringSection> {
             const SizedBox(width: 10),
             Container(
               decoration: BoxDecoration(
-                  border: Border.all(width: 1),
-                  borderRadius: BorderRadius.circular(5)),
+                border: Border.all(width: 1),
+                borderRadius: BorderRadius.circular(5),
+              ),
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Row(
@@ -53,11 +47,11 @@ class _PaymentFilteringSectionState extends State<PaymentFilteringSection> {
                       size: 25,
                       color: CommonColor.blackColor2,
                     ),
-                    Text(AppStrings.sortedByLatest)
+                    Text(AppStrings.sortedByLatest),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ],

@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeletedCompanyJob extends GetView<CompanyJobViewController> {
-  const DeletedCompanyJob({
-    super.key,
-    required this.job,
-  });
+  const DeletedCompanyJob({super.key, required this.job});
   final JobModel job;
   @override
   Widget build(BuildContext context) {
@@ -63,9 +60,7 @@ class DeletedCompanyJob extends GetView<CompanyJobViewController> {
               onPressed: () {
                 controller.deleteCompanyJob(job.id!).then((v) {
                   controller.companyJobList.removeWhere((v) => v.id == job.id);
-                  SnackBarService.showInfoSnackBar(
-                    'Successfully delete job.',
-                  );
+                  SnackBarService.showInfoSnackBar('Successfully delete job.');
                 });
 
                 Navigator.of(context).pop();
@@ -74,7 +69,7 @@ class DeletedCompanyJob extends GetView<CompanyJobViewController> {
                 'OK',
                 style: TextStyle(color: CommonColor.redColors),
               ),
-            )
+            ),
           ],
         );
       },

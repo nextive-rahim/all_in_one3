@@ -1,5 +1,9 @@
+import 'package:all_in_one3/src/core/service/cache/cache_keys.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/comment/controller/view_comment_view_controller.dart';
+import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/comment/controller/view_reply_view_controller.dart';
+import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/comment/controller/write_comment_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/comment/view/comment_section.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/course_content/controller/is_watch_video_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/course_content/controller/student_course_content_view_controller.dart';
@@ -14,8 +18,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CourseDetailMobilePage extends StatefulWidget {
-  const CourseDetailMobilePage({super.key, this.collectinListData});
-  final CourseModel? collectinListData;
+  const CourseDetailMobilePage({super.key});
+  // final CourseModel? collectinListData;
   @override
   State<CourseDetailMobilePage> createState() => _CourseDetailMobilePageState();
 }
@@ -25,17 +29,22 @@ class _CourseDetailMobilePageState extends State<CourseDetailMobilePage> {
   //final Function onLogout = Get.arguments[1];
 
   String? editorResult = '';
-  final contentController = Get.find<StudentCourseContentViewController>();
-  final commentController = Get.find<ViewCommentViewController>();
-  final registrationController = Get.find<CourseRegistrationViewController>();
-  final coursePriceController = Get.find<CoursePriceViewController>();
-  final userCourseAvailablityController =
-      Get.find<UserCourseAvailabilityViewController>();
-  final videoController = Get.find<IsWatchVideoViewController>();
+  final contentController = Get.put(StudentCourseContentViewController());
+  final commentController = Get.put(ViewCommentViewController());
+  final registrationController = Get.put(CourseRegistrationViewController());
+  final coursePriceController = Get.put(CoursePriceViewController());
+
+  final userCourseAvailablityController = Get.put(
+    UserCourseAvailabilityViewController(),
+  );
+  final videoController = Get.put(IsWatchVideoViewController());
   String dropdownValue = AppStrings.courseLevelDropdown.first;
   @override
   void initState() {
-    collectinListData = widget.collectinListData ?? Get.arguments;
+    Get.put(WriteCommentViewController());
+    Get.put(ViewReplyViewController());
+    collectinListData =
+        CacheService.boxAuth.read(CacheKeys.courseModel) ?? Get.arguments;
     videoController.videolink.value = collectinListData!.introVideo ?? '';
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       contentController.getCourseContents(
@@ -43,8 +52,8 @@ class _CourseDetailMobilePageState extends State<CourseDetailMobilePage> {
         collectinListData!.coursesLevel == 'Beginner'
             ? 1
             : collectinListData!.coursesLevel == 'Intermediate'
-                ? 2
-                : 3,
+            ? 2
+            : 3,
       );
       commentController.getComments(collectinListData!.id!.toString());
       coursePriceController.checkCoursePrice(collectinListData!.id!);
@@ -55,48 +64,90 @@ class _CourseDetailMobilePageState extends State<CourseDetailMobilePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size.width < 650);
     return Scaffold(
       extendBody: true,
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(
-          collectinListData!.title ?? "",
-        ),
-      ),
-      body: Column(
-        children: [
-          // const SizedBox(height: 3),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: CourseDetailsVideoSection(
-              collectinListData: collectinListData!,
-              registrationController: registrationController,
-            ),
-          ),
-          // CourseLevelSection(collectinListData: collectinListData!),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  right: 10,
-                  left: 10,
-                  bottom: 60,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // CourseShareSection(collectinListData: collectinListData!),
-
-                    const CourseContent(),
-                    CommentSection(collectinListData: collectinListData!),
-                  ],
-                ),
+      appBar: AppBar(elevation: 0, title: Text(collectinListData!.title ?? "")),
+      body:
+          MediaQuery.of(context).size.width < 650
+              ? Column(
+                children: [
+                  // const SizedBox(height: 3),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Column(
+                      children: [
+                        CourseDetailsVideoSection(
+                          collectinListData: collectinListData!,
+                          registrationController: registrationController,
+                        ),
+                      ],
+                    ),
+                  ),
+                  // CourseLevelSection(collectinListData: collectinListData!),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 10,
+                          right: 10,
+                          left: 10,
+                          bottom: 60,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // CourseShareSection(collectinListData: collectinListData!),
+                            const CourseContent(),
+                            CommentSection(
+                              collectinListData: collectinListData!,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+              : Row(
+                children: [
+                  // const SizedBox(height: 3),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      children: [
+                        CourseDetailsVideoSection(
+                          collectinListData: collectinListData!,
+                          registrationController: registrationController,
+                        ),
+                      ],
+                    ),
+                  ),
+                  // CourseLevelSection(collectinListData: collectinListData!),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 10,
+                          right: 10,
+                          left: 10,
+                          bottom: 60,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // CourseShareSection(collectinListData: collectinListData!),
+                            const CourseContent(),
+                            CommentSection(
+                              collectinListData: collectinListData!,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-        ],
-      ),
       bottomNavigationBar: SizedBox(
         height: 60,
         child: Padding(
@@ -111,6 +162,4 @@ class _CourseDetailMobilePageState extends State<CourseDetailMobilePage> {
       ),
     );
   }
-
- 
 }

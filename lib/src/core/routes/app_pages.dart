@@ -1,21 +1,14 @@
-import 'package:all_in_one3/main.dart';
-import 'package:all_in_one3/src/core/widgets/mobile/bottom_nav_bar_company.dart';
-import 'package:all_in_one3/src/core/widgets/mobile/bottom_nav_bar_employee.dart';
 import 'package:all_in_one3/src/core/widgets/mobile/bottom_nav_bar_interviewer.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/forget_password/view/forget_password_email_page.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/forget_password/view/forget_password_page.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/forget_password/view/otp_verification_view_controller.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/login/view/login_page.dart';
-import 'package:all_in_one3/src/features/common_features/authentication/registration/view/choose_engagement_page.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/registration/view/registration_completed_page.dart';
-import 'package:all_in_one3/src/features/common_features/authentication/registration/view/registration_page.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/root/binding/auth_binding.dart';
-import 'package:all_in_one3/src/features/common_features/user_details/binding/user_details_binding.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/applied_job_for_multiple_employee/binding/company_applied_job_binding.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/applied_job_for_multiple_employee/view/company_applied_job_page.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_profile/binding/company_profile_update_binding.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_profile/view/company_profile_update_page.dart';
-import 'package:all_in_one3/src/features/company_module/mobile/company_job/my_company_jobs/my_company_job_applied_candidate_profile/view/company_job_applied_candidate_profile.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/post_new_job/binding/post_job_binding.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/post_new_job/view/post_company_new_job_page.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/add_employee/binding/add_new_employee_binding.dart';
@@ -31,25 +24,15 @@ import 'package:all_in_one3/src/features/common_features/user_details/view/selec
 import 'package:all_in_one3/src/features/common_features/splash/splash_page.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/binding/appear_test_binding.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/view/appear_test_and_schedule_interview_mobile.dart';
-import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/root/binding/course_details_binding.dart';
-import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/root/view/course_details_mobile_page.dart';
-import 'package:all_in_one3/src/features/student_module/mobile/course/home_course/binding/student_binding.dart';
-import 'package:all_in_one3/src/features/student_module/mobile/course/home_course/view/category_wise_course_page.dart';
-import 'package:all_in_one3/src/features/student_module/mobile/job/job_details/view/job_details_page_mobile.dart';
-import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/binding/job_list_binding.dart';
 import 'package:all_in_one3/src/features/common_features/profile/binding/profile_binding.dart';
 import 'package:all_in_one3/src/features/common_features/profile/view/change_password_page.dart';
 import 'package:all_in_one3/src/features/common_features/profile/view/profile_update_page.dart';
-import 'package:all_in_one3/src/core/widgets/mobile/bottom_nav_bar_student.dart';
 import 'package:all_in_one3/src/features/common_features/profile/view/resume_view_page.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/notification/view/notification_view_page.dart';
-import 'package:all_in_one3/src/features/student_module/web/register/dashboard_reg_fist_time_web_large.dart';
 import 'package:all_in_one3/src/features/student_module/web/root/view/responsive_layout_course_detail_form_reg.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
-
-import '../../features/company_module/mobile/company_invoice/view/invoice_view_page.dart';
 
 part './app_routes.dart';
 
@@ -80,50 +63,50 @@ class AppPages {
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 50),
     ),
-    GetPage(
-      name: Routes.engagement,
-      page: () => const ChooseEngagementPage(),
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
-    GetPage(
-      name: Routes.responsibileDashboardFirstTime,
-      page: () => const Responsive(
-        desktop: DashboardRegFirstTimeWebLarge(),
-        tablet: DashboardRegFirstTimeWebLarge(),
-        mobile: BottomNavBarStudent(),
-      ),
-      bindings: [
-        StudentModuleBinding(),
-        JobListBinding(),
-      ],
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
-    GetPage(
-      name: Routes.bottomNavBarStudent,
-      page: () => const BottomNavBarStudent(),
-      bindings: [
-        StudentModuleBinding(),
-        JobListBinding(),
-      ],
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
-    GetPage(
-      name: Routes.bottomNavBarEmployee,
-      page: () => const BottomNavBarEmployee(),
-      bindings: [
-        StudentModuleBinding(),
-        JobListBinding(),
-      ],
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
+    // GetPage(
+    //   name: Routes.engagement,
+    //   page: () => const ChooseEngagementPage(),
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
+    // GetPage(
+    //   name: Routes.responsibileDashboardFirstTime,
+    //   page: () => const Responsive(
+    //     desktop: DashboardRegFirstTimeWebLarge(),
+    //     tablet: DashboardRegFirstTimeWebLarge(),
+    //     mobile: BottomNavBarStudent(),
+    //   ),
+    //   bindings: [
+    //     StudentModuleBinding(),
+    //     JobListBinding(),
+    //   ],
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
+    // GetPage(
+    //   name: Routes.bottomNavBarStudent,
+    //   page: () => const BottomNavBarStudent(),
+    //   bindings: [
+    //     StudentModuleBinding(),
+    //     JobListBinding(),
+    //   ],
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
+    // GetPage(
+    //   name: Routes.bottomNavBarEmployee,
+    //   page: () => const BottomNavBarEmployee(),
+    //   bindings: [
+    //     StudentModuleBinding(),
+    //     JobListBinding(),
+    //   ],
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
     // GetPage(
     //   name: Routes.responsiveLayoutDashboardInterview,
     //   page: () => const ResponsiveLayoutDashboardInterview(
@@ -138,10 +121,7 @@ class AppPages {
     GetPage(
       name: Routes.bottomNavBarInterview,
       page: () => const BottomNavBarInterviewer(),
-      bindings: [
-        InterViewerTestRequestBinding(),
-        InterviewsBinding(),
-      ],
+      bindings: [InterViewerTestRequestBinding(), InterviewsBinding()],
       transition: Transition.fade,
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 50),
@@ -156,13 +136,13 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: 50),
     ),
 
-    GetPage(
-      name: Routes.bottomNavBarEmployee,
-      page: () => const BottomNavBarEmployee(),
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
+    // GetPage(
+    //   name: Routes.bottomNavBarEmployee,
+    //   page: () => const BottomNavBarEmployee(),
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
     GetPage(
       name: Routes.myCompanyJobListPageWeb,
       page: () => const MyCompanyJobListPageWeb(),
@@ -176,23 +156,23 @@ class AppPages {
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 50),
     ),
-    GetPage(
-      name: Routes.bottomNavBarCompany,
-      page: () => const BottomNavBarCompany(),
-      binding: JobListBinding(),
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
+    // GetPage(
+    //   name: Routes.bottomNavBarCompany,
+    //   page: () => const BottomNavBarCompany(),
+    //   binding: JobListBinding(),
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
 
-    GetPage(
-      name: Routes.registration,
-      page: () => const RegistrationPage(),
-      // binding: SupportBinding(),
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
+    // GetPage(
+    //   name: Routes.registration,
+    //   page: () => const RegistrationPage(),
+    //   // binding: SupportBinding(),
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
     GetPage(
       name: Routes.registrationCompleted,
       page: () => const RegistrationCompletedPage(),
@@ -200,22 +180,22 @@ class AppPages {
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 50),
     ),
-    GetPage(
-      name: Routes.courseDetailMobilePage,
-      page: () => const CourseDetailMobilePage(),
-      binding: CourseDetailsBinding(),
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
-    GetPage(
-      name: Routes.categoryWiseCourse,
-      page: () => const CategoryWiseCoursePage(),
-      binding: CourseDetailsBinding(),
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
+    // GetPage(
+    //   name: Routes.courseDetailMobilePage,
+    //   page: () => const CourseDetailMobilePage(),
+    //   binding: CourseDetailsBinding(),
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
+    // GetPage(
+    //   name: Routes.categoryWiseCourse,
+    //   page: () => const CategoryWiseCoursePage(),
+    //   binding: CourseDetailsBinding(),
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
     GetPage(
       name: Routes.appearTestAndScheduleInterviewMobilePage,
       page: () => const AppearTestAndScheduleInterviewMobilePage(),
@@ -233,15 +213,15 @@ class AppPages {
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 50),
     ),
-    GetPage(
-      name: Routes.jobDetails,
-      page: () => const JobDetailsPageMobile(),
-      // binding: BlogsBinding(),
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
 
+    // GetPage(
+    //   name: Routes.jobDetails,
+    //   page: () => const JobDetailsPageMobile(),
+    //   // binding: BlogsBinding(),
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
     GetPage(
       name: Routes.postCompanyNewJob,
       page: () => const PostCompanyNewJobPage(),
@@ -276,23 +256,23 @@ class AppPages {
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 50),
     ),
-    GetPage(
-      name: Routes.companyJobAppliedCandidateProfile,
-      bindings: [CourseDetailsBinding(), UserDetailsBinding()],
-      page: () => const CompanyJobAppliedCandidateProfile(),
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
-    GetPage(
-      name: Routes.companyInvoicePage,
-      page: () => const CompanyInvoiceViewPage(),
-      binding: CourseDetailsBinding(),
-      transition: Transition.fade,
-      curve: Curves.easeInOut,
-      transitionDuration: const Duration(milliseconds: 50),
-    ),
 
+    // GetPage(
+    //   name: Routes.companyJobAppliedCandidateProfile,
+    //   bindings: [CourseDetailsBinding(), UserDetailsBinding()],
+    //   page: () => const CompanyJobAppliedCandidateProfile(),
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
+    // GetPage(
+    //   name: Routes.companyInvoicePage,
+    //   page: () => const CompanyInvoiceViewPage(),
+    //   binding: CourseDetailsBinding(),
+    //   transition: Transition.fade,
+    //   curve: Curves.easeInOut,
+    //   transitionDuration: const Duration(milliseconds: 50),
+    // ),
     GetPage(
       name: Routes.companyEmployeeProfilePage,
       page: () => const CompanyEmployeeProfilePage(),

@@ -102,48 +102,52 @@ class UpdateProfileForm extends GetView<UpdateProfileiewController> {
               String link = value.split('/').last;
               controller.uploadResumeController.text = link;
             },
-            suffixIcon: Obx(() => IconButton(
-                  onPressed: () async {
-                    await FileService().pickAFile(pdfOnly: true).then((value) {
-                      if (value == null) {
-                        return;
-                      }
-                      if (value.file.path.isNotEmpty) {
-                        controller.isUploadFile.value = true;
-                      }
-
-                      Get.put(UpdateProfileiewController())
-                          .uploadFile(value.file)
-                          .then((value2) {
-                        controller.resumeLink.value = value2;
-                        controller.uploadResumeController.text =
-                            controller.resumeLink.value;
-                        controller.isUploadFile.value = false;
-                      });
-
+            suffixIcon: Obx(
+              () => IconButton(
+                onPressed: () async {
+                  await FileService().pickAFile(pdfOnly: true).then((value) {
+                    if (value == null) {
                       return;
+                    }
+                    if (value.file.path.isNotEmpty) {
+                      controller.isUploadFile.value = true;
+                    }
+
+                    Get.put(
+                      UpdateProfileiewController(),
+                    ).uploadFile(value.file).then((value2) {
+                      controller.resumeLink.value = value2;
+                      controller.uploadResumeController.text =
+                          controller.resumeLink.value;
+                      controller.isUploadFile.value = false;
                     });
 
-                    // await FileService()
-                    //     .pickAFile(pdfOnly: true)
-                    //     .then((value) async {
-                    //   controller.isUploadFile.value = true;
-                    //   await controller.uploadFile(value!.file).then((value2) {
-                    //     controller.resumeLink.value = value2;
-                    //     controller.uploadResumeController.text =
-                    //         controller.resumeLink.value;
-                    //   });
-                    //   controller.isUploadFile.value = false;
-                    //   return;
-                    // });
-                  },
-                  icon: controller.isUploadFile.value
-                      ? const SizedBox(
+                    return;
+                  });
+
+                  // await FileService()
+                  //     .pickAFile(pdfOnly: true)
+                  //     .then((value) async {
+                  //   controller.isUploadFile.value = true;
+                  //   await controller.uploadFile(value!.file).then((value2) {
+                  //     controller.resumeLink.value = value2;
+                  //     controller.uploadResumeController.text =
+                  //         controller.resumeLink.value;
+                  //   });
+                  //   controller.isUploadFile.value = false;
+                  //   return;
+                  // });
+                },
+                icon:
+                    controller.isUploadFile.value
+                        ? const SizedBox(
                           height: 13,
                           width: 13,
-                          child: CircularProgressIndicator())
-                      : const Icon(Icons.upload),
-                )),
+                          child: CircularProgressIndicator(),
+                        )
+                        : const Icon(Icons.upload),
+              ),
+            ),
           ),
           labelText(' Description'),
           TextFormFieldWidget(
@@ -168,14 +172,8 @@ class UpdateProfileForm extends GetView<UpdateProfileiewController> {
 
   Widget labelText(String title) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 10,
-        top: 20,
-      ),
-      child: Title(
-        color: AppColors.black,
-        child: Text(title),
-      ),
+      padding: const EdgeInsets.only(bottom: 10, top: 20),
+      child: Title(color: AppColors.black, child: Text(title)),
     );
   }
 }

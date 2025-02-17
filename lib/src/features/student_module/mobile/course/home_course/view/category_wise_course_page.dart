@@ -1,4 +1,6 @@
 import 'package:all_in_one3/src/core/page_state/state.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_keys.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/empty_screen.dart';
@@ -9,32 +11,45 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryWiseCoursePage extends StatefulWidget {
-  const CategoryWiseCoursePage({super.key});
-
+  const CategoryWiseCoursePage({
+    super.key,
+    required this.title,
+    // required this.categoryWiseCourse,
+  });
+  final String? title;
+  //final List<CourseModel> categoryWiseCourse;
   @override
   State<CategoryWiseCoursePage> createState() => _CategoryWiseCoursePageState();
 }
 
 class _CategoryWiseCoursePageState extends State<CategoryWiseCoursePage> {
-  final studentDashboardController = Get.find<StudentHomeViewController>();
-//final List<CourseCard> courseList=Get.arguments;
-  final String title = Get.arguments[1];
+  final studentDashboardController = Get.put(StudentHomeViewController());
+  //final List<CourseCard> courseList=Get.arguments;
+  String? title;
+  // Map<String, dynamic>? arguments;
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      studentDashboardController.categoryWiseCourse.value = Get.arguments[0];
-      //studentDashboardController.getStudentHomeData();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    studentDashboardController.categoryWiseCourse.value = CacheService.boxAuth
+        .read(CacheKeys.categoryWisecourseList);
+    //setState(() {
+    // arguments = Get.arguments;
+    title = widget.title;
+    // });
+
+    //studentDashboardController.getStudentHomeData();
+    // });
     // TODO: implement initState
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final String id = Get.parameters['title'] ?? 'Unknown ID';
+    print(id);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      key: UniqueKey(),
+      appBar: AppBar(title: Text(title ?? 'no found')),
       resizeToAvoidBottomInset: false,
       // backgroundColor: CommonColor.greyColor1,
       body: RefreshIndicator(
@@ -44,8 +59,8 @@ class _CategoryWiseCoursePageState extends State<CategoryWiseCoursePage> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(
-              left: 10,
-              right: 10,
+              left: 20,
+              right: 20,
               // top: 30,
               bottom: 50,
             ),
@@ -87,29 +102,26 @@ class _CategoryWiseCoursePageState extends State<CategoryWiseCoursePage> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Obx(
-                  () {
-                    if (studentDashboardController.pageState ==
-                        PageState.loading) {
-                      return const CourseCardLoading();
-                    }
-                    if (studentDashboardController.categoryWiseCourse.isEmpty) {
-                      return const EmptyScreen();
-                    }
-                    if (studentDashboardController.searchCourse.isNotEmpty) {
-                      return CategoryWiseCourseBuilder(
-                        courseList: studentDashboardController.searchCourse,
-                        // onLogout: widget.onLogout,
-                      );
-                    } else {
-                      return CategoryWiseCourseBuilder(
-                        courseList:
-                            studentDashboardController.categoryWiseCourse,
-                        // onLogout: widget.onLogout,
-                      );
-                    }
-                  },
-                ),
+                Obx(() {
+                  if (studentDashboardController.pageState ==
+                      PageState.loading) {
+                    return const CourseCardLoading();
+                  }
+                  if (studentDashboardController.categoryWiseCourse.isEmpty) {
+                    return const EmptyScreen();
+                  }
+                  if (studentDashboardController.searchCourse.isNotEmpty) {
+                    return CategoryWiseCourseBuilder(
+                      courseList: studentDashboardController.searchCourse,
+                      // onLogout: widget.onLogout,
+                    );
+                  } else {
+                    return CategoryWiseCourseBuilder(
+                      courseList: studentDashboardController.categoryWiseCourse,
+                      // onLogout: widget.onLogout,
+                    );
+                  }
+                }),
               ],
             ),
           ),

@@ -11,10 +11,7 @@ import 'package:get/get.dart';
 
 class SubmitExamResultLinkSection
     extends GetView<SubmitResultLinkViewController> {
-  const SubmitExamResultLinkSection({
-    super.key,
-    required this.course,
-  });
+  const SubmitExamResultLinkSection({super.key, required this.course});
   final CourseModel course;
   @override
   Widget build(BuildContext context) {
@@ -66,13 +63,15 @@ class SubmitExamResultLinkSection
                 blurRadius: 2,
                 offset: Offset(0, 1),
                 spreadRadius: 0,
-              )
+              ),
             ],
           ),
           child: GestureDetector(
             onTap: () {
               if (controller.submitExamLinkController.text.isNotEmpty) {
-                controller.submitExamLink(course.id!).then(
+                controller
+                    .submitExamLink(course.id!)
+                    .then(
                       (value) => SnackBarService.showInfoSnackBar(
                         'Successfully submitted result link',
                       ),
@@ -81,7 +80,8 @@ class SubmitExamResultLinkSection
                 controller.submitExamLinkController.clear();
               } else {
                 SnackBarService.showErrorSnackBar(
-                    'Please enter exam result link');
+                  'Please enter exam result link',
+                );
               }
             },
             child: const TextWidget(

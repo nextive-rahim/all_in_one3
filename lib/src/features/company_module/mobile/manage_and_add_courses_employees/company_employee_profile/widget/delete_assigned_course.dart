@@ -6,22 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeletedAssignCourse extends GetView<CompanyEmployeeListViewController> {
-  const DeletedAssignCourse({
-    super.key,
-    required this.course,
-  });
+  const DeletedAssignCourse({super.key, required this.course});
   final CourseModel course;
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        padding: EdgeInsets.zero,
-        onPressed: () {
-          _showDailogBox(context);
-        },
-        icon: const Icon(
-          Icons.delete_forever,
-          color: CommonColor.redColors,
-        ));
+      padding: EdgeInsets.zero,
+      onPressed: () {
+        _showDailogBox(context);
+      },
+      icon: const Icon(Icons.delete_forever, color: CommonColor.redColors),
+    );
   }
 
   void _showDailogBox(BuildContext context) {
@@ -44,19 +39,24 @@ class DeletedAssignCourse extends GetView<CompanyEmployeeListViewController> {
               onPressed: () {
                 controller
                     .deleteAssingCourse(
-                        course.id!, controller.employeeModel!.userId!)
+                      course.id!,
+                      controller.employeeModel!.userId!,
+                    )
                     .then((v) {
-                  controller.assignedCouseList
-                      .removeWhere((v) => v.id == course.id);
-                  Get.back();
-                  SnackBarService.showInfoSnackBar('Successfully delete job.');
-                });
+                      controller.assignedCouseList.removeWhere(
+                        (v) => v.id == course.id,
+                      );
+                      Get.back();
+                      SnackBarService.showInfoSnackBar(
+                        'Successfully delete job.',
+                      );
+                    });
               },
               child: const Text(
                 'OK',
                 style: TextStyle(color: CommonColor.redColors),
               ),
-            )
+            ),
           ],
         );
       },

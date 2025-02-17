@@ -1,30 +1,21 @@
-import 'dart:io';
-
-import 'package:all_in_one3/src/core/routes/app_pages.dart';
+import 'package:all_in_one3/src/core/navigation/router_configuration.dart';
 import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/theme/theme.dart';
-import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/nav2/get_nav_config.dart';
-import 'package:get/get_navigation/src/nav2/get_router_delegate.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:go_router/go_router.dart';
+import 'dart:html' as html;
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-  }
+void replaceBrowserHistory(dynamic data, String path) {
+  html.window.history.replaceState(data, '', path);
 }
 
 Future<void> main() async {
+  usePathUrlStrategy();
+  GoRouter.optionURLReflectsImperativeAPIs = true;
   WidgetsFlutterBinding.ensureInitialized();
-  // HttpOverrides.global = MyHttpOverrides();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
   await CacheService().initialize();
   runApp(const MyApp());
 }
@@ -36,35 +27,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // debugInvertOversizedImages = true;
-    return GetMaterialApp(
+    return GetMaterialApp.router(
+      navigatorObservers: [RouteObserver<ModalRoute<void>>()],
+      key: UniqueKey(),
       scaffoldMessengerKey: SnackBarService.scaffoldKey,
       debugShowCheckedModeBanner: false,
-      title: AppStrings.appName,
-      // routerDelegate: AppRouterDelegate(),
-      navigatorObservers: [RouteObserver<ModalRoute<void>>()],
-      getPages: AppPages.pages,
+      routerDelegate: router.routerDelegate,
+      routeInformationParser: router.routeInformationParser,
+      routeInformationProvider: router.routeInformationProvider,
+      //routerConfig: router,
+      builder: (_, router) {
+        return MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: const TextScaler.linear(1.0)),
+          child: router!,
+        );
+      },
       theme: themeData,
-      // home:bo
-      //     //BottomNavBarStudent()
-      //     //BottomNavBarEmployee()
-      //     // BottomNavBarInterviewer()
-      //     //BottomNavBar(),
-      //     //DashboardRegFirstTimeWeb()
-      //     SplashPage(),
-      // //BottomNavBarCompany()
-    );
-  }
-}
-
-class AppRouterDelegate extends GetDelegate {
-  @override
-  Widget build(BuildContext context) {
-    return Navigator(
-      onPopPage: (route, result) => route.didPop(result),
-      pages:
-          currentConfiguration != null
-              ? [currentConfiguration!.currentPage!]
-              : [GetNavConfig.fromRoute(Routes.splash)!.currentPage!],
     );
   }
 }

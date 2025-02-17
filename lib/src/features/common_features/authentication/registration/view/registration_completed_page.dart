@@ -5,7 +5,7 @@ import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class RegistrationCompletedPage extends StatefulWidget {
   const RegistrationCompletedPage({super.key});
@@ -20,22 +20,14 @@ class _RegistrationCompletedPageState extends State<RegistrationCompletedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CommonColor.whiteColor,
-      appBar: AppBar(
-        title: const Text('Complete Registration'),
-      ),
+      appBar: AppBar(title: const Text('Complete Registration')),
       body: Padding(
-        padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-        ),
+        padding: const EdgeInsets.only(left: 16, right: 16),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 46,
-                  right: 46,
-                ),
+                padding: const EdgeInsets.only(left: 46, right: 46),
                 child: Column(
                   children: [
                     const SizedBox(height: 92),
@@ -66,13 +58,15 @@ class _RegistrationCompletedPageState extends State<RegistrationCompletedPage> {
                     const SizedBox(height: 45),
                     GestureDetector(
                       onTap: () {
-                        Get.offNamed(Routes.login);
+                        context.goNamed(Routes.login);
+                        // Get.offNamed(Routes.login);
                       },
                       child: Container(
                         height: 60,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: CommonColor.headingTextColor1),
+                          borderRadius: BorderRadius.circular(10),
+                          color: CommonColor.headingTextColor1,
+                        ),
                         alignment: Alignment.center,
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

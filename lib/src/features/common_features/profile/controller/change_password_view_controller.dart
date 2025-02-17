@@ -17,7 +17,8 @@ class ChangePasswordViewController extends GetxController {
   RegistrationResponseModel loginModel = RegistrationResponseModel();
 
   Future<RegistrationResponseModel> changePassword(
-      GlobalKey<FormState> formKey) async {
+    GlobalKey<FormState> formKey,
+  ) async {
     _pageStateController(PageState.loading);
 
     Map<String, dynamic> requestBody = {

@@ -5,6 +5,7 @@ import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/post_new_job/controller/post_company_new_job_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class PostCompanyJob extends GetView<PostCompanyNewJobViewController> {
   const PostCompanyJob({super.key});
@@ -15,7 +16,8 @@ class PostCompanyJob extends GetView<PostCompanyNewJobViewController> {
       onTap: () {
         controller.isFromPostEdit.value = false;
         controller.clearTextFields().then((v) {
-          Get.toNamed(Routes.postCompanyNewJob);
+          context.pushNamed(Routes.postCompanyNewJob);
+          // Get.toNamed(Routes.postCompanyNewJob);
         });
       },
       child: Padding(
@@ -39,7 +41,7 @@ class PostCompanyJob extends GetView<PostCompanyNewJobViewController> {
                 blurRadius: 2,
                 offset: Offset(0, 1),
                 spreadRadius: 0,
-              )
+              ),
             ],
           ),
           child: const Row(

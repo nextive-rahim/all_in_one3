@@ -18,11 +18,12 @@ import 'package:all_in_one3/src/features/common_features/skill/controller/skill_
 import 'package:all_in_one3/src/features/common_features/skill/widget/skill-builder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 //import 'dart:io' show Platform;
 
 class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({super.key});
-
+  const RegistrationPage({super.key, required this.userTyper});
+  final String userTyper;
   @override
   State<RegistrationPage> createState() => _RegistrationPageState();
 }
@@ -30,8 +31,8 @@ class RegistrationPage extends StatefulWidget {
 class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
 
-  final controller = Get.find<RegistrationViewController>();
-  final skillController = Get.find<SkillViewController>();
+  final controller = Get.put(RegistrationViewController());
+  final skillController = Get.put(SkillViewController());
   @override
   void initState() {
     // skillController.getSkills();
@@ -40,15 +41,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('User Type : ${Get.arguments}');
+    print('User Type : ${widget.userTyper}');
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Registration'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Registration'),
+      // ),
       backgroundColor: CommonColor.whiteColor,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           child: Form(
             key: _formKey,
             child: Column(
@@ -70,7 +71,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           0.0, // Move to right 7.0 horizontally
                           0.0, // Move to bottom 8.0 Vertically
                         ),
-                      )
+                      ),
                     ],
                   ),
                   child: Padding(
@@ -96,75 +97,81 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           hintText: AppStrings.phoneNumberHint,
                           keyboardType: TextInputType.phone,
                         ),
-                        Get.arguments == 3
+                        widget.userTyper == '3'
                             ? const Offstage()
                             : InkWell(
-                                onTap: () {
-                                  _showError(
-                                      SkillBuilder(
-                                        selectedSkillIdList:
-                                            controller.selectedSkillIdList,
-                                        selectedSkillNameList:
-                                            controller.selectedSkillNameList,
-                                      ),
-                                      title: "Selecte Skills");
-                                },
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Select Skills',
-                                      style: AppTextStyle.medium14
-                                          .copyWith(color: AppColors.black),
+                              onTap: () {
+                                _showError(
+                                  SkillBuilder(
+                                    selectedSkillIdList:
+                                        controller.selectedSkillIdList,
+                                    selectedSkillNameList:
+                                        controller.selectedSkillNameList,
+                                  ),
+                                  title: "Selecte Skills",
+                                );
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Select Skills',
+                                    style: AppTextStyle.medium14.copyWith(
+                                      color: AppColors.black,
                                     ),
-                                    const SizedBox(height: 6),
-                                    Container(
-                                      height: 50,
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: .5,
-                                          color: AppColors.lightBlack40,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(5.0),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  Container(
+                                    height: 50,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: .5,
+                                        color: AppColors.lightBlack40,
                                       ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 20),
-                                            child: Obx(
-                                              () => controller
-                                                      .selectedSkillIdList
-                                                      .isEmpty
-                                                  ? const Text(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 20,
+                                          ),
+                                          child: Obx(
+                                            () =>
+                                                controller
+                                                        .selectedSkillIdList
+                                                        .isEmpty
+                                                    ? const Text(
                                                       'Select Skills',
                                                       style: TextStyle(
-                                                          color: CommonColor
-                                                              .hintTextColor),
+                                                        color:
+                                                            CommonColor
+                                                                .hintTextColor,
+                                                      ),
                                                     )
-                                                  : Text(
+                                                    : Text(
                                                       List<String>.generate(
-                                                          controller
-                                                              .selectedSkillNameList
-                                                              .length,
-                                                          (int index) => controller
-                                                                  .selectedSkillNameList[
-                                                              index]).toString(),
+                                                        controller
+                                                            .selectedSkillNameList
+                                                            .length,
+                                                        (int index) =>
+                                                            controller
+                                                                .selectedSkillNameList[index],
+                                                      ).toString(),
                                                     ),
-                                            ),
                                           ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
+                            ),
                         10.sh,
                         OutlinedInputField(
                           labelText: AppStrings.password,
@@ -231,16 +238,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             color: CommonColor.headingTextColor1,
                           ),
                         ),
-                        const SizedBox(
-                          width: 8,
-                        ),
+                        const SizedBox(width: 8),
                         const TextWidget(
-                            text: AppStrings.termsOfUse,
-                            color: CommonColor.headingTextColor1,
-                            maxLine: 1,
-                            fontFamily: AppStrings.aeonikTRIAL,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10),
+                          text: AppStrings.termsOfUse,
+                          color: CommonColor.headingTextColor1,
+                          maxLine: 1,
+                          fontFamily: AppStrings.aeonikTRIAL,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 10,
+                        ),
                       ],
                     ),
                     Row(
@@ -253,16 +259,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             color: CommonColor.headingTextColor1,
                           ),
                         ),
-                        const SizedBox(
-                          width: 8,
-                        ),
+                        const SizedBox(width: 8),
                         const TextWidget(
-                            text: AppStrings.dataCollectionRights,
-                            color: CommonColor.headingTextColor1,
-                            maxLine: 1,
-                            fontFamily: AppStrings.aeonikTRIAL,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 10),
+                          text: AppStrings.dataCollectionRights,
+                          color: CommonColor.headingTextColor1,
+                          maxLine: 1,
+                          fontFamily: AppStrings.aeonikTRIAL,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 10,
+                        ),
                       ],
                     ),
                     Row(
@@ -342,7 +347,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   }
 
   void onTap() {
-    controller.registration(_formKey, Get.arguments).then((value) {
+    controller.registration(_formKey, widget.userTyper).then((value) {
       if (controller.selectedSkillIdList.isEmpty) {
         SnackBarService.showErrorSnackBar('Please Select Skills');
 
@@ -353,8 +358,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
         SnackBarService.showErrorSnackBar(AppStrings.registrationFailedMessage);
       } else {
         SnackBarService.showInfoSnackBar(AppStrings.registrationFailedMessage);
-
-        Get.offNamed(Routes.registrationCompleted);
+        context.pushNamed(Routes.registrationCompleted);
+        // Get.offNamed(Routes.registrationCompleted);
       }
     });
   }
@@ -369,16 +374,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                context.pop();
               },
               child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
-                Get.back();
+                context.pop();
+                // Get.back();
               },
               child: const Text('Confirm'),
-            )
+            ),
           ],
         );
       },

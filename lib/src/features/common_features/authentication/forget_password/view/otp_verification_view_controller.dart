@@ -14,6 +14,7 @@ import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/forget_password/controller/otp_verification_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class OTPverificationPage extends StatefulWidget {
   const OTPverificationPage({super.key});
@@ -23,21 +24,21 @@ class OTPverificationPage extends StatefulWidget {
 }
 
 class OTPverificationPageState extends State<OTPverificationPage> {
-  final controller = Get.find<OtpVerificationViewController>();
+  final controller = Get.put(OtpVerificationViewController());
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Verify OTP'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Verify OTP'),
+      // ),
       backgroundColor: CommonColor.whiteColor,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -58,7 +59,7 @@ class OTPverificationPageState extends State<OTPverificationPage> {
                               0.0, // Move to right 7.0 horizontally
                               0.0, // Move to bottom 8.0 Vertically
                             ),
-                          )
+                          ),
                         ],
                       ),
                       child: Padding(
@@ -131,18 +132,18 @@ class OTPverificationPageState extends State<OTPverificationPage> {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-    controller.otpverification(_formKey).then(
-      (response) {
-        if (controller.loginModel.success == false) {
-          SnackBarService.showErrorSnackBar(
-              controller.loginModel.message.toString());
-        } else {
-          SnackBarService.showInfoSnackBar(
-              controller.loginModel.message.toString());
-
-          Get.toNamed(Routes.forgotPassword);
-        }
-      },
-    );
+    controller.otpverification(_formKey).then((response) {
+      if (controller.loginModel.success == false) {
+        SnackBarService.showErrorSnackBar(
+          controller.loginModel.message.toString(),
+        );
+      } else {
+        SnackBarService.showInfoSnackBar(
+          controller.loginModel.message.toString(),
+        );
+        context.pushNamed(Routes.forgotPassword);
+        //   Get.toNamed(Routes.forgotPassword);
+      }
+    });
   }
 }

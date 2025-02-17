@@ -56,9 +56,7 @@ class JobsViewController extends GetxController {
   Future<RegistrationResponseModel> saveJob(int id) async {
     // _pageStateController(PageState.loading);
     isLoadingSavedJob.value = true;
-    Map<String, dynamic> body = {
-      "job_id": id,
-    };
+    Map<String, dynamic> body = {"job_id": id};
 
     try {
       final res = await _repository.saveJob(body);
@@ -76,9 +74,7 @@ class JobsViewController extends GetxController {
   }
 
   Future<RegistrationResponseModel> deleteSaveJob(int id) async {
-    Map<String, dynamic> body = {
-      "job_id": id,
-    };
+    Map<String, dynamic> body = {"job_id": id};
 
     try {
       final res = await _repository.deleteSaveJob(body);
@@ -99,9 +95,7 @@ class JobsViewController extends GetxController {
   Future<RegistrationResponseModel> applyJob(int id) async {
     isLoadingAppliedJob.value = true;
 
-    Map<String, dynamic> body = {
-      "company_job_id": id,
-    };
+    Map<String, dynamic> body = {"company_job_id": id};
 
     try {
       final res = await _repository.applyJob(body);

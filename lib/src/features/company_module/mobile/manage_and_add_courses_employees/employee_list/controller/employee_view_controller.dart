@@ -54,9 +54,7 @@ class CompanyEmployeeListViewController extends GetxController {
   Future<LoginResponseModel> deleteEmployee(int employeeID) async {
     // _pageStateController(PageState.loading);
 
-    Map<String, dynamic> requestBody = {
-      "employee_id": employeeID,
-    };
+    Map<String, dynamic> requestBody = {"employee_id": employeeID};
 
     Log.debug(requestBody.toString());
 
@@ -76,7 +74,9 @@ class CompanyEmployeeListViewController extends GetxController {
   }
 
   Future<RegistrationResponseModel> deleteAssingCourse(
-      int courseID, int employeeID) async {
+    int courseID,
+    int employeeID,
+  ) async {
     Map<String, dynamic> body = {
       "employee_id": employeeID,
       "course_id": courseID,

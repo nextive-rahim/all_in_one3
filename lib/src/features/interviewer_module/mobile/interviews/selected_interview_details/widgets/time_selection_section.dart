@@ -11,10 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class InterviewTimeSelectedSection extends StatefulWidget {
-  const InterviewTimeSelectedSection({
-    super.key,
-    required this.interview,
-  });
+  const InterviewTimeSelectedSection({super.key, required this.interview});
   final ViewInterviewResponseData interview;
   @override
   State<InterviewTimeSelectedSection> createState() =>
@@ -59,7 +56,8 @@ class _InterviewTimeSelectedSectionState
                             ),
                             TextSpan(
                               text: getFormattedDate(
-                                  widget.interview.date), //'16th May 2023',
+                                widget.interview.date,
+                              ), //'16th May 2023',
                               style: const TextStyle(
                                 color: CommonColor.blackColor1,
                                 fontSize: 20,
@@ -100,15 +98,18 @@ class _InterviewTimeSelectedSectionState
                                 alignment: Alignment.center,
                                 clipBehavior: Clip.antiAlias,
                                 decoration: ShapeDecoration(
-                                  color: selectSlotA.value
-                                      ? CommonColor.blueColor1
-                                      : CommonColor.whiteColor,
+                                  color:
+                                      selectSlotA.value
+                                          ? CommonColor.blueColor1
+                                          : CommonColor.whiteColor,
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
-                                        width: 0.50,
-                                        color: selectSlotA.value
-                                            ? CommonColor.blueColor1
-                                            : CommonColor.greyColor5),
+                                      width: 0.50,
+                                      color:
+                                          selectSlotA.value
+                                              ? CommonColor.blueColor1
+                                              : CommonColor.greyColor5,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -117,14 +118,15 @@ class _InterviewTimeSelectedSectionState
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: TextWidget(
                                   text: widget.interview.timeSlotA ?? '',
-                                  color: selectSlotA.value
-                                      ? CommonColor.whiteColor
-                                      : CommonColor.blackColor4,
+                                  color:
+                                      selectSlotA.value
+                                          ? CommonColor.whiteColor
+                                          : CommonColor.blackColor4,
                                   maxLine: 1,
                                   fontFamily: AppStrings.inter,
                                   fontWeight: FontWeight.w500,
@@ -152,15 +154,18 @@ class _InterviewTimeSelectedSectionState
                                 alignment: Alignment.center,
                                 clipBehavior: Clip.antiAlias,
                                 decoration: ShapeDecoration(
-                                  color: selectSlotB.value
-                                      ? CommonColor.blueColor1
-                                      : Colors.white,
+                                  color:
+                                      selectSlotB.value
+                                          ? CommonColor.blueColor1
+                                          : Colors.white,
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
-                                        width: 0.50,
-                                        color: selectSlotB.value
-                                            ? CommonColor.blueColor1
-                                            : CommonColor.greyColor5),
+                                      width: 0.50,
+                                      color:
+                                          selectSlotB.value
+                                              ? CommonColor.blueColor1
+                                              : CommonColor.greyColor5,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -169,15 +174,16 @@ class _InterviewTimeSelectedSectionState
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: TextWidget(
                                   text:
                                       widget.interview.timeSlotB!, //"10:00 AM",
-                                  color: selectSlotB.value
-                                      ? CommonColor.whiteColor
-                                      : CommonColor.blackColor4,
+                                  color:
+                                      selectSlotB.value
+                                          ? CommonColor.whiteColor
+                                          : CommonColor.blackColor4,
                                   maxLine: 1,
                                   fontFamily: AppStrings.inter,
                                   fontWeight: FontWeight.w500,
@@ -210,7 +216,7 @@ class _InterviewTimeSelectedSectionState
                           selectedTime: selectedTime.value,
                           interview: widget.interview,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),

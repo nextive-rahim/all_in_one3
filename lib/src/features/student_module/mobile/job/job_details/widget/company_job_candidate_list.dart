@@ -21,11 +21,7 @@ class CompanyJobInterviewCandidateList
         Container(
           color: CommonColor.greyColor15,
           child: Padding(
-            padding: const EdgeInsets.only(
-              left: 15,
-              right: 15,
-              bottom: 60,
-            ),
+            padding: const EdgeInsets.only(left: 15, right: 15, bottom: 60),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -54,15 +50,16 @@ class CompanyJobInterviewCandidateList
                 const AppliedCandidateListBuilder(),
                 const SizedBox(height: 40),
                 const TextWidget(
-                    textAlign: TextAlign.center,
-                    text: AppStrings.selectedProfiles,
-                    color: CommonColor.greyColor4,
-                    maxLine: 1,
-                    fontFamily: AppStrings.sfProDisplay,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18),
+                  textAlign: TextAlign.center,
+                  text: AppStrings.selectedProfiles,
+                  color: CommonColor.greyColor4,
+                  maxLine: 1,
+                  fontFamily: AppStrings.sfProDisplay,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                ),
                 const SizedBox(height: 15),
-                const SelectedCandidateListBuilder()
+                const SelectedCandidateListBuilder(),
               ],
             ),
           ),

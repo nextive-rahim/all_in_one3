@@ -15,7 +15,7 @@ class SubmitResultLinkViewController extends GetxController {
 
   final TextEditingController submitExamLinkController =
       TextEditingController();
-   bool isSubmittedResultLink = false;
+  bool isSubmittedResultLink = false;
 
   Future<void> submitExamLink(int courseId) async {
     _pageStateController(PageState.loading);
@@ -23,7 +23,7 @@ class SubmitResultLinkViewController extends GetxController {
     Map<String, dynamic> requestBody = {
       "course_id": courseId,
       "marks": 1,
-      "project_links": submitExamLinkController.text
+      "project_links": submitExamLinkController.text,
     };
     Log.debug(requestBody.toString());
 

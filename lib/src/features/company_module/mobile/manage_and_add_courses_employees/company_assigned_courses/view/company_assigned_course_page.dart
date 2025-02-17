@@ -1,4 +1,6 @@
 import 'package:all_in_one3/src/core/page_state/state.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_keys.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/theme/text_style.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/company_assigned_courses/widget/company_assigned_course_builder.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/company_assigned_courses/widget/company_assigned_course_button.dart';
@@ -11,11 +13,11 @@ class CompanyAssignedCourses extends GetView<StudentHomeViewController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.employeeModel = Get.arguments;
+    controller.employeeModel = CacheService.boxAuth.read(
+      CacheKeys.employeeModel,
+    );
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Assigned Courses'),
-      ),
+      appBar: AppBar(title: const Text('Assigned Courses')),
       body: RefreshIndicator(
         onRefresh: () async {
           await controller.getStudentHomeData();
@@ -27,7 +29,7 @@ class CompanyAssignedCourses extends GetView<StudentHomeViewController> {
             children: [
               const SizedBox(height: 10),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 160),
                 child: Text(
                   'Assigned courses for employee',
                   style: AppTextStyle.bold20,
@@ -52,8 +54,9 @@ class CompanyAssignedCourses extends GetView<StudentHomeViewController> {
           ),
         ),
       ),
-      bottomNavigationBar:
-          CompanyAssignedCourseButton(employee: controller.employeeModel!),
+      bottomNavigationBar: CompanyAssignedCourseButton(
+        employee: controller.employeeModel!,
+      ),
     );
   }
 }

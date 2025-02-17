@@ -9,16 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryWithCoursePage extends StatefulWidget {
-  const CategoryWithCoursePage({
-    super.key,
-  });
+  const CategoryWithCoursePage({super.key});
 
   @override
   State<CategoryWithCoursePage> createState() => _CategoryWithCoursePageState();
 }
 
 class _CategoryWithCoursePageState extends State<CategoryWithCoursePage> {
-  final studentDashboardController = Get.find<StudentHomeViewController>();
+  final studentDashboardController = Get.put(StudentHomeViewController());
 
   @override
   void initState() {
@@ -32,6 +30,7 @@ class _CategoryWithCoursePageState extends State<CategoryWithCoursePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: UniqueKey(),
       resizeToAvoidBottomInset: false,
       // backgroundColor: CommonColor.greyColor1,
       body: RefreshIndicator(
@@ -41,8 +40,8 @@ class _CategoryWithCoursePageState extends State<CategoryWithCoursePage> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(
-              left: 15,
-              right: 15,
+              left: 20,
+              right: 20,
               // top: 30,
               bottom: 50,
             ),
@@ -84,29 +83,27 @@ class _CategoryWithCoursePageState extends State<CategoryWithCoursePage> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Obx(
-                  () {
-                    if (studentDashboardController.pageState ==
-                        PageState.loading) {
-                      return const CourseCardLoading();
-                    }
-                    if (studentDashboardController.homeCourses.isEmpty) {
-                      return const EmptyScreen();
-                    }
-                    // if (studentDashboardController.searchCourse.isNotEmpty) {
-                    //   return CategoryWithCourseBuilder(
-                    //     categories: studentDashboardController.searchCourse,
-                    //     // onLogout: widget.onLogout,
-                    //   );
-                    // } else {
+                Obx(() {
+                  if (studentDashboardController.pageState ==
+                      PageState.loading) {
+                    return const CourseCardLoading();
+                  }
+                  if (studentDashboardController.homeCourses.isEmpty) {
+                    return const EmptyScreen();
+                  }
+                  // if (studentDashboardController.searchCourse.isNotEmpty) {
+                  //   return CategoryWithCourseBuilder(
+                  //     categories: studentDashboardController.searchCourse,
+                  //     // onLogout: widget.onLogout,
+                  //   );
+                  // } else {
 
-                    return CategoryWithCourseBuilder(
-                      categories: studentDashboardController.homeCourses,
-                      // onLogout: widget.onLogout,
-                    );
-                    //  }
-                  },
-                ),
+                  return CategoryWithCourseBuilder(
+                    categories: studentDashboardController.homeCourses,
+                    // onLogout: widget.onLogout,
+                  );
+                  //  }
+                }),
               ],
             ),
           ),

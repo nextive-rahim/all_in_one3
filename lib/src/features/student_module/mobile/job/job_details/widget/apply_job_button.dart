@@ -11,10 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ApplyJobButton extends GetView<JobsViewController> {
-  ApplyJobButton({
-    super.key,
-    required this.job,
-  });
+  ApplyJobButton({super.key, required this.job});
   final JobModel job;
   final ValueNotifier<bool> isAppliedJob = ValueNotifier<bool>(false);
   @override
@@ -26,9 +23,10 @@ class ApplyJobButton extends GetView<JobsViewController> {
         builder: (BuildContext context, bool value, child) {
           return Obx(
             () => PrimaryButton(
-              backgroundColor: job.isApplied != 0 || value
-                  ? AppColors.grey
-                  : CommonColor.purpleColor1,
+              backgroundColor:
+                  job.isApplied != 0 || value
+                      ? AppColors.grey
+                      : CommonColor.purpleColor1,
               isLoading: controller.isLoadingAppliedJob.value == true,
               onTap: () {
                 if (job.isApplied != 0 || isAppliedJob.value) {
@@ -39,7 +37,8 @@ class ApplyJobButton extends GetView<JobsViewController> {
                 controller.applyJob(job.id!).then((value) {
                   if (value.success == true) {
                     SnackBarService.showInfoSnackBar(
-                        'Successfully applied job');
+                      'Successfully applied job',
+                    );
 
                     isAppliedJob.value = true;
                     controller.getjobList();

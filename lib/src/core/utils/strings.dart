@@ -1,7 +1,7 @@
 class AppStrings {
-  static const inter = 'Inter';
-  static const aeonikTRIAL = 'Inter';
-  static const sfProDisplay = 'Inter';
+  static const inter = 'NotoSerifBengali';
+  static const aeonikTRIAL = 'NotoSerifBengali';
+  static const sfProDisplay = 'NotoSerifBengali';
 
   static const appName = 'All in One';
 
@@ -9,7 +9,7 @@ class AppStrings {
 
   static const heyWelcomeback = 'Hey ✋ Welcome back!';
 
-  static const username = 'Username';
+  static const username = 'Email';
   static const name = 'Name';
   static const nameHint = 'Enter your name';
   static const phoneNumber = 'Phone number';
@@ -21,7 +21,6 @@ class AppStrings {
   static const mininumJobExperience = 'Minimun Job Experience';
   static const hintTextToHelpUser = 'This is a hint text to help user.';
   static const password = 'Password';
-  static const passwordHintext = 'Type in your password';
   static const oldPassword = 'Old Password';
   static const newPassword = 'New Password';
   static const passHintText = 'Type in your password';
@@ -170,7 +169,7 @@ class AppStrings {
   ];
 
   static const appliedJobs = 'Applied Jobs';
-  static const savedJobs = 'Saved Jobs';
+  static const savedJobs = 'Saved\nJobs';
   static const myJob = 'My Job';
   static const helpfulLinks = 'Helpful Links';
   static const editProfile = 'Edit Profile';
@@ -262,8 +261,8 @@ class AppStrings {
   static const myCompanyJobs = 'My  Company Jobs';
   static const postNewJob = 'Post New Job';
   static const searchForJobs = 'Search for jobs';
-  static const ourJobs = 'Our Jobs';
-  static const otherJobs = 'Other Jobs';
+  static const ourJobs = 'Our\nJobs';
+  static const otherJobs = 'Other\nJobs';
   static const edit = 'Edit';
   static const delete = 'Delete';
   static const appliedProfiles = 'Unselected profiles -';

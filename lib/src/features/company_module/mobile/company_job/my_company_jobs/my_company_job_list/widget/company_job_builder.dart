@@ -13,29 +13,26 @@ class CompanyJobBuilder extends GetView<CompanyJobViewController> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 0),
-      child: Obx(
-        () {
-          if (controller.pageState == PageState.loading) {
-            return const JobCardLoading();
-          }
-          return controller.companyJobList.isEmpty
-              ? const EmptyScreen()
-              : ListView.separated(
-                  reverse: true,
-                  padding: const EdgeInsets.only(bottom: 00),
-                  itemCount: controller.companyJobList.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(height: 10);
-                  },
-                  itemBuilder: (context, index) {
-                    return CompanyJobCard(
-                        job: controller.companyJobList[index]);
-                  },
-                );
-        },
-      ),
+      child: Obx(() {
+        if (controller.pageState == PageState.loading) {
+          return const JobCardLoading();
+        }
+        return controller.companyJobList.isEmpty
+            ? const EmptyScreen()
+            : ListView.separated(
+              reverse: true,
+              padding: const EdgeInsets.only(bottom: 00),
+              itemCount: controller.companyJobList.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              separatorBuilder: (context, index) {
+                return const SizedBox(height: 10);
+              },
+              itemBuilder: (context, index) {
+                return CompanyJobCard(job: controller.companyJobList[index]);
+              },
+            );
+      }),
     );
   }
 }

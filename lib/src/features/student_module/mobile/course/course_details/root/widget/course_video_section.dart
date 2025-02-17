@@ -50,15 +50,16 @@ class _CourseDetailsVideoSectionState extends State<CourseDetailsVideoSection> {
               SnackBarService.showErrorSnackBar("Please register your course");
             }
           },
-          child: Obx(
-            () {
-              return CommonVideoPlayer(
+          child: Obx(() {
+            return SizedBox(
+              height: MediaQuery.of(context).size.width < 650 ? 200 : 400,
+              child: CommonVideoPlayer(
                 key: ValueKey(videoController.videolink.value),
                 videoLink: videoController.videolink.value,
                 autoPlayVideo: true,
-              );
-            },
-          ),
+              ),
+            );
+          }),
         ),
         const SizedBox(height: 10),
       ],

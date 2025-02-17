@@ -22,7 +22,7 @@ class SubmitPortfolioLinkSubmitViewController extends GetxController {
     Map<String, dynamic> requestBody = {
       "course_id": courseId,
       "marks": 1,
-      "project_links": submitExamLinkController.text
+      "project_links": submitExamLinkController.text,
     };
     Log.debug(requestBody.toString());
 

@@ -15,45 +15,41 @@ class ResumeViewPage extends StatelessWidget {
     String url = Get.arguments;
     String name = url.split('/').last;
     return Scaffold(
-        //  key: controller.key,
-        appBar: AppBar(
-          title: Text(name),
-          actions: [
-            Obx(
-              () => IconButton(
-                  onPressed: () async {
-                    controller.permissionReady =
-                        await controller.checkPermission();
-                    if (controller.permissionReady) {
-                      await controller.prepareSaveDir();
-                      controller.dowmloadInvoice(url);
-                    }
-                  },
-                  icon: controller.dowdloadProgress.value == 0
+      //  key: controller.key,
+      appBar: AppBar(
+        title: Text(name),
+        actions: [
+          Obx(
+            () => IconButton(
+              onPressed: () async {
+                controller.permissionReady = await controller.checkPermission();
+                if (controller.permissionReady) {
+                  await controller.prepareSaveDir();
+                  controller.dowmloadInvoice(url);
+                }
+              },
+              icon:
+                  controller.dowdloadProgress.value == 0
                       ? const Icon(
-                          Icons.download,
-                          color: CommonColor.whiteColor,
-                        )
+                        Icons.download,
+                        color: CommonColor.whiteColor,
+                      )
                       : controller.dowdloadProgress.value == 100
-                          ? const Icon(
-                              Icons.download_done,
-                              color: CommonColor.whiteColor,
-                            )
-                          : Text(
-                              '${controller.dowdloadProgress.value}%',
-                              style: AppTextStyle.bold16.copyWith(
-                                color: AppColors.white,
-                              ),
-                            )),
-            )
-          ],
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: CommonPDFViewer(pdfLink: url),
+                      ? const Icon(
+                        Icons.download_done,
+                        color: CommonColor.whiteColor,
+                      )
+                      : Text(
+                        '${controller.dowdloadProgress.value}%',
+                        style: AppTextStyle.bold16.copyWith(
+                          color: AppColors.white,
+                        ),
+                      ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+      body: Column(children: [Expanded(child: CommonPDFViewer(pdfLink: url))]),
+    );
   }
 }

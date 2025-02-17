@@ -12,31 +12,25 @@ class CompanyProfileUpdatePage
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Update Profile'),
-        actions: const [],
-      ),
+      appBar: AppBar(title: const Text('Update Profile'), actions: const []),
       body: const SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CompanyLogoUpdateSection(),
-                  CompanyProfileUpdateFormField()
+                  CompanyProfileUpdateFormField(),
                 ],
               ),
             ),
           ),
         ),
       ),
-      bottomNavigationBar: const Padding(
-        padding: EdgeInsets.all(0.0),
-        child: CompanyProfileUpdateButton(),
-      ),
+      bottomNavigationBar: const CompanyProfileUpdateButton(),
     );
   }
 }

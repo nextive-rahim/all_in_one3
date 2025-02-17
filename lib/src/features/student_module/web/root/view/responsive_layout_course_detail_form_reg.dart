@@ -17,27 +17,30 @@ class ResponsiveLayoutCourseDetailFormRegister extends StatelessWidget {
   // @override
   // State<ResponsiveLayoutDashboardFirstTime> createState() =>
   //     _ResponsiveLayoutDashboardFirstTimeState();
-// }
+  // }
 
-// class _ResponsiveLayoutDashboardFirstTimeState
-//     extends State<ResponsiveLayoutDashboardFirstTime> {
+  // class _ResponsiveLayoutDashboardFirstTimeState
+  //     extends State<ResponsiveLayoutDashboardFirstTime> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      print(constraints.maxWidth);
-      if (constraints.maxWidth > 1100) {
-        return CourseDetailFormRegisterLargeWebPage(
-            collectinListData: Get.arguments!);
-      } else if (constraints.minWidth > 650) {
-        return const Text('data');
-       // const CourseDetailFormRegisterMediumWebPage();
-      } else {
-        return CourseDetailMobilePage(
-          collectinListData: Get.arguments!,
-        );
-      }
-    });
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        print(constraints.maxWidth);
+        if (constraints.maxWidth > 1100) {
+          return CourseDetailFormRegisterLargeWebPage(
+            collectinListData: Get.arguments!,
+          );
+        } else if (constraints.minWidth > 650) {
+          return const Text('data');
+          // const CourseDetailFormRegisterMediumWebPage();
+        } else {
+          return const CourseDetailMobilePage(
+            // collectinListData: Get.arguments!,
+          );
+        }
+      },
+    );
   }
 }
 

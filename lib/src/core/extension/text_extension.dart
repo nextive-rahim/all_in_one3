@@ -2,14 +2,13 @@ import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 extension TextExtension on Text {
-  Text fontSize(
-    double fontSize,
-  ) {
+  Text fontSize(double fontSize) {
     Text newWidget = Text(
       data!,
-      style: style == null
-          ? TextStyle(fontSize: fontSize)
-          : style?.copyWith(fontSize: fontSize),
+      style:
+          style == null
+              ? TextStyle(fontSize: fontSize)
+              : style?.copyWith(fontSize: fontSize),
     );
     return newWidget;
   }
@@ -17,9 +16,10 @@ extension TextExtension on Text {
   Text bold([FontWeight fontWeight = FontWeight.w500]) {
     Text newWidget = Text(
       data!,
-      style: style == null
-          ? TextStyle(fontWeight: fontWeight)
-          : style?.copyWith(fontWeight: fontWeight),
+      style:
+          style == null
+              ? TextStyle(fontWeight: fontWeight)
+              : style?.copyWith(fontWeight: fontWeight),
     );
     return newWidget;
   }
@@ -27,9 +27,10 @@ extension TextExtension on Text {
   Text lineHeight([double lineHeight = 20]) {
     Text newWidget = Text(
       data!,
-      style: style == null
-          ? TextStyle(height: lineHeight)
-          : style?.copyWith(height: lineHeight),
+      style:
+          style == null
+              ? TextStyle(height: lineHeight)
+              : style?.copyWith(height: lineHeight),
     );
     return newWidget;
   }
@@ -37,9 +38,10 @@ extension TextExtension on Text {
   Text color([Color color = AppColors.black]) {
     Text newWidget = Text(
       data!,
-      style: style == null
-          ? TextStyle(color: color)
-          : style?.copyWith(color: color),
+      style:
+          style == null
+              ? TextStyle(color: color)
+              : style?.copyWith(color: color),
     );
     return newWidget;
   }

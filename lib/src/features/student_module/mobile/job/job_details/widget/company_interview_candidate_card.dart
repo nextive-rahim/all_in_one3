@@ -8,11 +8,9 @@ import 'package:all_in_one3/src/features/company_module/mobile/company_job/my_co
 import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/model/view_job_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
-enum IsCadidateSelect {
-  seleted,
-  notSelected,
-}
+enum IsCadidateSelect { seleted, notSelected }
 
 class CompanyInterviewCandidateCard extends GetView<UserDetailsViewController> {
   const CompanyInterviewCandidateCard({
@@ -28,29 +26,22 @@ class CompanyInterviewCandidateCard extends GetView<UserDetailsViewController> {
       onTap: () {
         Get.find<CompanyJobViewController>().user = user;
 
-        controller.userDetails(
-          userId: user.id,
-          userType: user.userType,
-        );
+        controller.userDetails(userId: user.id, userType: user.userType);
         if (user.isSelected == 0) {
-          Get.toNamed(
+          context.pushNamed(
             Routes.companyJobAppliedCandidateProfile,
-            arguments: IsCadidateSelect.notSelected.name,
+            queryParameters: {'isSelected': IsCadidateSelect.notSelected.name},
+          );
+        } else {
+          context.pushNamed(
+            Routes.companyJobAppliedCandidateProfile,
+            queryParameters: {'isSelected': IsCadidateSelect.seleted.name},
           );
         }
-        Get.toNamed(
-          Routes.companyJobAppliedCandidateProfile,
-          arguments: IsCadidateSelect.seleted.name,
-        );
       },
       child: Row(
         children: [
-          Image.asset(
-            ImageConstant.link2,
-            height: 15,
-            width: 15,
-            color: color,
-          ),
+          Image.asset(ImageConstant.link2, height: 15, width: 15, color: color),
           const SizedBox(width: 8),
           TextWidget(
             textAlign: TextAlign.start,

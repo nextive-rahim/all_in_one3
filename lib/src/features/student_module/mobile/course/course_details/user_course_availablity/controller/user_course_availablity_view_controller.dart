@@ -21,9 +21,7 @@ class UserCourseAvailabilityViewController extends GetxController {
   Future<void> checkUserCourseAvailability() async {
     _pageStateController(PageState.loading);
 
-    Map<String, dynamic> body = {
-      "user_id": userId,
-    };
+    Map<String, dynamic> body = {"user_id": userId};
 
     try {
       final res = await _repository.userCourseAvailabilisty(body);

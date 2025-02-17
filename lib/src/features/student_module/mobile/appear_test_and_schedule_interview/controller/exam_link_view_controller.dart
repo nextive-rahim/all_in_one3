@@ -18,9 +18,7 @@ class ExamLinkViewController extends GetxController {
   Future<void> getExam(String courseId) async {
     _pageStateController(PageState.loading);
 
-    Map<String, dynamic> requestBody = {
-      "course_id": courseId,
-    };
+    Map<String, dynamic> requestBody = {"course_id": courseId};
 
     Log.debug(requestBody.toString());
 

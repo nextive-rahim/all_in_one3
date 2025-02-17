@@ -1,4 +1,6 @@
 import 'package:all_in_one3/src/core/page_state/state.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_keys.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/features/common_features/user_details/controller/user_details_view_controller.dart';
 import 'package:all_in_one3/src/features/interviewer_module/mobile/interviews/all_interviews/model/all_interviews_model.dart';
@@ -19,12 +21,15 @@ class SelectedInterviewDetailsPage extends StatefulWidget {
 
 class _SelectedInterviewDetailsPageState
     extends State<SelectedInterviewDetailsPage> {
-  ViewInterviewResponseData interview = Get.arguments;
+  ViewInterviewResponseData? interview;
   final userDetailsController = Get.put(UserDetailsViewController());
   @override
   void initState() {
+    interview = CacheService.boxAuth.read(CacheKeys.interviewModel);
     userDetailsController.userDetails(
-        userId: interview.userId, userType: interview.userType);
+      userId: interview?.userId,
+      userType: interview?.userType,
+    );
     // TODO: implement initState
     super.initState();
   }
@@ -44,11 +49,7 @@ class _SelectedInterviewDetailsPageState
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(
-          right: 15,
-          left: 15,
-          bottom: 20,
-        ),
+        padding: const EdgeInsets.only(right: 15, left: 15, bottom: 20),
         child: Obx(() {
           if (userDetailsController.pageState == PageState.loading) {
             return const Center(child: CircularProgressIndicator());
@@ -58,15 +59,17 @@ class _SelectedInterviewDetailsPageState
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 InterviewDetailsHeader(
-                  interview: interview,
+                  interview: interview!,
                   user: userDetailsController.userModel,
                 ),
                 CandidateProfileSection(
-                    user: userDetailsController.userDetailsModel),
+                  user: userDetailsController.userDetailsModel,
+                ),
                 CandidateCompletedTopicsSection(
-                    user: userDetailsController.userDetailsModel),
+                  user: userDetailsController.userDetailsModel,
+                ),
                 const SizedBox(height: 30),
-                InterviewTimeSelectedSection(interview: interview)
+                InterviewTimeSelectedSection(interview: interview!),
               ],
             ),
           );

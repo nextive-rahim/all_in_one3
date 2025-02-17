@@ -18,10 +18,7 @@ class SendNotificationViewController extends GetxController {
   Future<void> sendNotification({int? userId, String? text}) async {
     _pageStateController(PageState.loading);
 
-    Map<String, dynamic> requestBody = {
-      "users_id": userId,
-      "text": text,
-    };
+    Map<String, dynamic> requestBody = {"users_id": userId, "text": text};
 
     Log.debug(requestBody.toString());
 

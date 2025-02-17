@@ -14,18 +14,17 @@ import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/common_features/profile/controller/change_password_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class ChangePasswordPage extends StatefulWidget {
-  const ChangePasswordPage({
-    super.key,
-  });
+  const ChangePasswordPage({super.key});
 
   @override
   State<ChangePasswordPage> createState() => _ChangePasswordPageState();
 }
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
-  final controller = Get.find<ChangePasswordViewController>();
+  final controller = Get.put(ChangePasswordViewController());
   final _formKey = GlobalKey<FormState>();
 
   bool hintUsernameHelperText = false, hintPasswordHelperText = false;
@@ -41,77 +40,79 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       backgroundColor: CommonColor.whiteColor,
       appBar: AppBar(title: const Text('Change Password')),
       body: SingleChildScrollView(
-          child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              const SizedBox(height: 30),
-              _headerNotMounted(),
-              const SizedBox(height: 30),
-              Container(
-                width: SizeConfig.screenWidth,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: CommonColor.whiteColor,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: CommonColor.greyColor,
-                      blurRadius: 0.5,
-                      spreadRadius: 0.1,
-                      offset: Offset(
-                        0.0, // Move to right 7.0 horizontally
-                        0.0, // Move to bottom 8.0 Vertically
-                      ),
-                    )
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(21.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      OutlinedInputField(
-                        isPasswordField: true,
-                        labelText: AppStrings.oldPassword,
-                        controller: controller.oldPasswordController,
-                        hintText: AppStrings.oldPassword,
-                        validator: InputFieldValidator.password(),
-                      ),
-                      OutlinedInputField(
-                        isPasswordField: true,
-                        labelText: AppStrings.newPassword,
-                        controller: controller.newPasswordController,
-                        hintText: AppStrings.newPassword,
-                        validator: InputFieldValidator.password(),
-                        onChanged: (v) {
-                          if (v.isEmpty || v.length >= 6) {
-                            setState(() {});
-                          }
-                        },
-                      ),
-                      10.sh,
-                      const SizedBox(height: 30),
-                      Obx(
-                        () => PrimaryButton(
-                          isLoading: controller.pageState == PageState.loading,
-                          onTap: onTap,
-                          widget: const Text('Change Password')
-                              .fontSize(16)
-                              .bold(FontWeight.w600)
-                              .color(AppColors.white),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                const SizedBox(height: 30),
+                _headerNotMounted(),
+                const SizedBox(height: 30),
+                Container(
+                  width: SizeConfig.screenWidth,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: CommonColor.whiteColor,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: CommonColor.greyColor,
+                        blurRadius: 0.5,
+                        spreadRadius: 0.1,
+                        offset: Offset(
+                          0.0, // Move to right 7.0 horizontally
+                          0.0, // Move to bottom 8.0 Vertically
                         ),
                       ),
-                      const SizedBox(height: 30),
                     ],
                   ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(21.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        OutlinedInputField(
+                          isPasswordField: true,
+                          labelText: AppStrings.oldPassword,
+                          controller: controller.oldPasswordController,
+                          hintText: AppStrings.oldPassword,
+                          validator: InputFieldValidator.password(),
+                        ),
+                        OutlinedInputField(
+                          isPasswordField: true,
+                          labelText: AppStrings.newPassword,
+                          controller: controller.newPasswordController,
+                          hintText: AppStrings.newPassword,
+                          validator: InputFieldValidator.password(),
+                          onChanged: (v) {
+                            if (v.isEmpty || v.length >= 6) {
+                              setState(() {});
+                            }
+                          },
+                        ),
+                        10.sh,
+                        const SizedBox(height: 30),
+                        Obx(
+                          () => PrimaryButton(
+                            isLoading:
+                                controller.pageState == PageState.loading,
+                            onTap: onTap,
+                            widget: const Text('Change Password')
+                                .fontSize(16)
+                                .bold(FontWeight.w600)
+                                .color(AppColors.white),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      )),
+      ),
     );
   }
 
@@ -128,19 +129,16 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             fit: BoxFit.fill,
           ),
         ),
-        const SizedBox(
-          height: 7,
-        ),
+        const SizedBox(height: 7),
         const TextWidget(
-            text: 'Change Your Password',
-            color: CommonColor.headingTextColor1,
-            maxLine: 1,
-            fontFamily: AppStrings.aeonikTRIAL,
-            fontWeight: FontWeight.w700,
-            fontSize: 28),
-        const SizedBox(
-          height: 10,
+          text: 'Change Your Password',
+          color: CommonColor.headingTextColor1,
+          maxLine: 1,
+          fontFamily: AppStrings.aeonikTRIAL,
+          fontWeight: FontWeight.w700,
+          fontSize: 28,
         ),
+        const SizedBox(height: 10),
       ],
     );
   }
@@ -151,9 +149,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     }
     controller.changePassword(_formKey).then((response) {
       if (controller.loginModel.message == 'Password Change Successfully.') {
-        Get.back();
+        context.pop();
         SnackBarService.showInfoSnackBar(
-            controller.loginModel.message.toString());
+          controller.loginModel.message.toString(),
+        );
 
         return;
       }

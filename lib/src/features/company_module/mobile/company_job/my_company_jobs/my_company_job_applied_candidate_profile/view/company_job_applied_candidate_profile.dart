@@ -22,55 +22,50 @@ bool jobAppliedStatus = false;
 
 class CompanyJobAppliedCandidateProfile
     extends GetView<UserDetailsViewController> {
-  const CompanyJobAppliedCandidateProfile({super.key});
-
+  const CompanyJobAppliedCandidateProfile({
+    super.key,
+    required this.isSelected,
+  });
+  final String isSelected;
   @override
   Widget build(BuildContext context) {
-    controller.isFrom = Get.arguments;
+    controller.isFrom = isSelected;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Candidate Profile'),
-      ),
-      body: Obx(
-        () {
-          if (controller.pageState == PageState.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return const Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 18,
-                          right: 18,
-                          top: 7,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _CompanyJobCandidateProfileHeader(),
-                            SizedBox(height: 10),
-                            AppliedCandidateCommunicationLink(),
-                            SizedBox(height: 10),
-                            CompanySelecteCandidateForInterview(),
-                            SizedBox(height: 30),
-                            CompanyJobCandidateProfileDetails(),
-                            SizedBox(height: 30),
-                          ],
-                        ),
+      appBar: AppBar(title: const Text('Candidate Profile')),
+      body: Obx(() {
+        if (controller.pageState == PageState.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return const Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 18, right: 18, top: 7),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _CompanyJobCandidateProfileHeader(),
+                          SizedBox(height: 10),
+                          AppliedCandidateCommunicationLink(),
+                          SizedBox(height: 10),
+                          CompanySelecteCandidateForInterview(),
+                          SizedBox(height: 30),
+                          CompanyJobCandidateProfileDetails(),
+                          SizedBox(height: 30),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              )
-            ],
-          );
-        },
-      ),
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }

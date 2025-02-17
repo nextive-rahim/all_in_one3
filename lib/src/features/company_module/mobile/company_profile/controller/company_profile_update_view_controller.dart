@@ -68,10 +68,7 @@ class CompanyProfileUpdateViewController extends GetxController {
     String fileName = file.path.split('/').last;
 
     Map<String, dynamic> requestBody = {
-      "avatar": await MultipartFile.fromFile(
-        file.path,
-        filename: fileName,
-      ),
+      "avatar": await MultipartFile.fromFile(file.path, filename: fileName),
     };
 
     Log.debug(requestBody.toString());

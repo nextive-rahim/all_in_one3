@@ -38,9 +38,7 @@ class InterviewerTestResultPendingCard
               height: SizeConfig.screenHeight * 0.5,
               fit: BoxFit.fill,
             ),
-            const SizedBox(
-              height: 50,
-            ),
+            const SizedBox(height: 50),
             const TextWidget(
               text: AppStrings.verificationPending,
               color: CommonColor.greyColor6,
@@ -53,10 +51,7 @@ class InterviewerTestResultPendingCard
             Container(
               width: 165,
               height: 40,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 10,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               clipBehavior: Clip.antiAlias,
               decoration: ShapeDecoration(
                 color: Colors.white,
@@ -73,7 +68,7 @@ class InterviewerTestResultPendingCard
                     blurRadius: 2,
                     offset: Offset(0, 1),
                     spreadRadius: 0,
-                  )
+                  ),
                 ],
               ),
               child: Row(

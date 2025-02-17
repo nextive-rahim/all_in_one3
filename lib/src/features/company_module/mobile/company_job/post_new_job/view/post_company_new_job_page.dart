@@ -15,7 +15,8 @@ class PostCompanyNewJobPage extends GetView<PostCompanyNewJobViewController> {
       appBar: AppBar(
         title: Obx(
           () => Text(
-              controller.isFromPostEdit.value ? 'Edit Job' : 'Post new job'),
+            controller.isFromPostEdit.value ? 'Edit Job' : 'Post new job',
+          ),
         ),
       ),
       body: RefreshIndicator(
@@ -27,18 +28,15 @@ class PostCompanyNewJobPage extends GetView<PostCompanyNewJobViewController> {
             children: [
               SizedBox(height: 20),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 190),
                 child: Text('Post a job', style: AppTextStyle.bold20),
               ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
-                      padding: EdgeInsets.only(
-                        right: 20,
-                        left: 20,
-                        bottom: 70,
-                      ),
-                      child: CompanyNewJobPostFormField()),
+                    padding: EdgeInsets.only(right: 10, left: 10, bottom: 70),
+                    child: CompanyNewJobPostFormField(),
+                  ),
                 ),
               ),
             ],

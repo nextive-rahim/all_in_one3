@@ -34,43 +34,42 @@ class _CourseLevelSectionState extends State<CourseLevelSection> {
         //   height: 14,
         // ),
         Container(
-            width: 142,
-            height: 36,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 14,
-              vertical: 8,
-            ),
-            clipBehavior: Clip.antiAlias,
-            alignment: Alignment.center,
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                    width: 0.50, color: CommonColor.greyColor5),
-                borderRadius: BorderRadius.circular(8),
+          width: 142,
+          height: 36,
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          clipBehavior: Clip.antiAlias,
+          alignment: Alignment.center,
+          decoration: ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(
+                width: 0.50,
+                color: CommonColor.greyColor5,
               ),
+              borderRadius: BorderRadius.circular(8),
             ),
-            child: Text(widget.collectinListData?.coursesLevel ?? '')
+          ),
+          child: Text(widget.collectinListData?.coursesLevel ?? ''),
 
-            //  DropdownButton<String>(
-            //   value: dropdownValue,
-            //   underline: Container(),
-            //   icon: const Icon(Icons.expand_more),
-            //   style: const TextStyle(color: Colors.black),
-            //   onChanged: (String? value) {
-            //     dropdownValue = value!;
-            //     setState(() {});
-            //   },
-            //   items: courseLevelDropdown.map<DropdownMenuItem<String>>(
-            //     (LevelModel value) {
-            //       return DropdownMenuItem<String>(
-            //         value: value.name,
-            //         child: Text(value.name ?? ''),
-            //       );
-            //     },
-            //   ).toList(),
-            // ),
-            ),
+          //  DropdownButton<String>(
+          //   value: dropdownValue,
+          //   underline: Container(),
+          //   icon: const Icon(Icons.expand_more),
+          //   style: const TextStyle(color: Colors.black),
+          //   onChanged: (String? value) {
+          //     dropdownValue = value!;
+          //     setState(() {});
+          //   },
+          //   items: courseLevelDropdown.map<DropdownMenuItem<String>>(
+          //     (LevelModel value) {
+          //       return DropdownMenuItem<String>(
+          //         value: value.name,
+          //         child: Text(value.name ?? ''),
+          //       );
+          //     },
+          //   ).toList(),
+          // ),
+        ),
         const SizedBox(height: 14),
       ],
     );

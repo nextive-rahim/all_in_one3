@@ -132,9 +132,9 @@ class AddedNewEmployeeFormField
                       controller.isUploadFile.value = true;
                     }
 
-                    Get.put(UpdateProfileiewController())
-                        .uploadFile(value.file)
-                        .then((value2) {
+                    Get.put(
+                      UpdateProfileiewController(),
+                    ).uploadFile(value.file).then((value2) {
                       controller.resumeLink.value = value2;
                       controller.uploadResumeController.text =
                           controller.resumeLink.value;
@@ -144,12 +144,14 @@ class AddedNewEmployeeFormField
                     return;
                   });
                 },
-                icon: controller.isUploadFile.value
-                    ? const SizedBox(
-                        height: 13,
-                        width: 13,
-                        child: CircularProgressIndicator())
-                    : const Icon(Icons.upload),
+                icon:
+                    controller.isUploadFile.value
+                        ? const SizedBox(
+                          height: 13,
+                          width: 13,
+                          child: CircularProgressIndicator(),
+                        )
+                        : const Icon(Icons.upload),
               ),
             ),
           ),
@@ -176,14 +178,8 @@ class AddedNewEmployeeFormField
 
   Widget labelText(String title) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 10,
-        top: 20,
-      ),
-      child: Title(
-        color: AppColors.black,
-        child: Text(title),
-      ),
+      padding: const EdgeInsets.only(bottom: 10, top: 20),
+      child: Title(color: AppColors.black, child: Text(title)),
     );
   }
 }

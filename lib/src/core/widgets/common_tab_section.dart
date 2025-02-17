@@ -43,9 +43,7 @@ class _CommonTabSectionState extends State<CommonTabSection>
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            bottom: 15,
-          ),
+          padding: const EdgeInsets.only(bottom: 15),
           child: Container(
             height: 50,
             decoration: BoxDecoration(
@@ -68,31 +66,29 @@ class _CommonTabSectionState extends State<CommonTabSection>
                   tabController?.animateTo(index);
                 });
               },
-              controller: tabController, tabAlignment: TabAlignment.start,
-              isScrollable: true,
-              // indicatorWeight: 100,
-              indicatorSize: TabBarIndicatorSize.tab, padding: EdgeInsets.zero,
+              controller: tabController,
+              dividerHeight: 0,
+              isScrollable: false,
+              indicatorWeight: 0,
+              indicatorSize: TabBarIndicatorSize.tab,
               indicatorPadding: const EdgeInsets.only(
-                top: 45,
-                left: 0,
+                top: 47,
+                left: 20,
                 right: 20,
               ),
-
+              padding: const EdgeInsets.symmetric(horizontal: 00, vertical: 0),
               labelColor: CommonColor.purpleColor1,
               unselectedLabelColor: Colors.black,
-              labelPadding: const EdgeInsets.only(
-                left: 0,
-                right: 35,
-              ),
+              labelPadding: const EdgeInsets.only(left: 5, right: 5),
               unselectedLabelStyle: const TextStyle(
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w400,
                 fontSize: 16,
                 height: 18 / 16,
               ),
               labelStyle: const TextStyle(
-                fontWeight: FontWeight.w800,
-                fontSize: 28,
-                // height: 21 / 16,
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+                height: 21 / 16,
                 letterSpacing: 0.2,
               ),
               indicator: BoxDecoration(

@@ -15,18 +15,17 @@ import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/forget_password/controller/forget_password_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
-  const ForgetPasswordPage({
-    super.key,
-  });
+  const ForgetPasswordPage({super.key});
 
   @override
   State<ForgetPasswordPage> createState() => _ForgetPasswordPageState();
 }
 
 class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
-  final controller = Get.find<ForgetPasswordViewController>();
+  final controller = Get.put(ForgetPasswordViewController());
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -46,15 +45,13 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     _headerNotMounted(),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    const SizedBox(height: 30),
                     Container(
                       width: SizeConfig.screenWidth,
                       decoration: BoxDecoration(
@@ -69,7 +66,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                               0.0, // Move to right 7.0 horizontally
                               0.0, // Move to bottom 8.0 Vertically
                             ),
-                          )
+                          ),
                         ],
                       ),
                       child: Padding(
@@ -149,12 +146,13 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
         ),
         const SizedBox(height: 7),
         const TextWidget(
-            text: 'Reset Your Password',
-            color: CommonColor.headingTextColor1,
-            maxLine: 1,
-            fontFamily: AppStrings.aeonikTRIAL,
-            fontWeight: FontWeight.w700,
-            fontSize: 28),
+          text: 'Reset Your Password',
+          color: CommonColor.headingTextColor1,
+          maxLine: 1,
+          fontFamily: AppStrings.aeonikTRIAL,
+          fontWeight: FontWeight.w700,
+          fontSize: 28,
+        ),
         const SizedBox(height: 10),
       ],
     );
@@ -167,12 +165,14 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
     controller.resetPassword(_formKey).then((response) {
       if (controller.loginModel.success == false) {
         SnackBarService.showErrorSnackBar(
-            controller.loginModel.message.toString());
+          controller.loginModel.message.toString(),
+        );
       } else {
         SnackBarService.showInfoSnackBar(
-            controller.loginModel.message.toString());
-
-        Get.offNamed(Routes.login);
+          controller.loginModel.message.toString(),
+        );
+        context.goNamed(Routes.login);
+        // Get.offNamed(Routes.login);
       }
     });
   }

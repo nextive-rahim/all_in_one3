@@ -72,14 +72,11 @@ class _OutlinedInputFieldState extends State<OutlinedInputField> {
         children: [
           widget.labelText != null
               ? Text(
-                  widget.labelText ?? '',
-                  style: TextStyle(
-                    color: Color(0xFF344053),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    height: 1.43,
-                  ),
-                )
+                widget.labelText ?? '',
+                style: AppTextStyle.medium14.copyWith(
+                  color: widget.labelTextColor ?? AppColors.black,
+                ),
+              )
               : const Offstage(),
           widget.showBorder == false
               ? const SizedBox(height: 7)
@@ -110,60 +107,62 @@ class _OutlinedInputFieldState extends State<OutlinedInputField> {
                   obscureText:
                       widget.isPasswordField ? !showPassword.value : false,
                   decoration: InputDecoration(
-                    disabledBorder: widget.isEnabled == false
-                        ? OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(2),
-                            borderSide: const BorderSide(
-                              width: 0.5,
-                              color: CommonColor.purpleColor1,
-                            ),
-                          )
-                        : null,
-                    enabledBorder: widget.showBorder == false
-                        ? OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(2),
-                            borderSide: const BorderSide(
-                              width: 0.5,
-                              color: Colors.transparent,
-                            ),
-                          )
-                        : Theme.of(context)
-                            .inputDecorationTheme
-                            .enabledBorder
-                            ?.copyWith(
+                    disabledBorder:
+                        widget.isEnabled == false
+                            ? OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(2),
+                              borderSide: const BorderSide(
+                                width: 0.5,
+                                color: CommonColor.purpleColor1,
+                              ),
+                            )
+                            : null,
+                    enabledBorder:
+                        widget.showBorder == false
+                            ? OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(2),
+                              borderSide: const BorderSide(
+                                width: 0.5,
+                                color: Colors.transparent,
+                              ),
+                            )
+                            : Theme.of(
+                              context,
+                            ).inputDecorationTheme.enabledBorder?.copyWith(
                               borderSide: BorderSide(
-                                color: widget.borderColor ??
+                                color:
+                                    widget.borderColor ??
                                     AppColors.lightBlack40,
                                 width: 0.5,
                               ),
                             ),
                     focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(0.0),
+                      borderRadius: BorderRadius.circular(2.0),
                       borderSide: BorderSide(
-                        color: widget.showBorder == false
-                            ? Colors.transparent
-                            : CommonColor.purpleColor1,
+                        color:
+                            widget.showBorder == false
+                                ? Colors.transparent
+                                : CommonColor.purpleColor1,
                       ),
                     ),
                     filled: true,
-                    fillColor: widget.isEnabled == false
-                        ? AppColors.transparent
-                        : widget.fillColor ?? AppColors.transparent,
+                    fillColor:
+                        widget.isEnabled == false
+                            ? AppColors.transparent
+                            : widget.fillColor ?? AppColors.transparent,
                     prefixIcon: widget.prefix,
-                    suffixIcon: widget.isPasswordField
-                        ? _passwordSuffix()
-                        : widget.suffix,
+                    suffixIcon:
+                        widget.isPasswordField
+                            ? _passwordSuffix()
+                            : widget.suffix,
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 20,
                       vertical: 15,
                     ),
                     isDense: true,
                     hintText: widget.hintText,
-                    hintStyle: TextStyle(
-                      color: Color(0xFF667084),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      height: 1.50,
+                    hintStyle: const TextStyle(
+                      color: CommonColor.hintTextColor,
                     ),
                   ),
                   inputFormatters: widget.inputFormatters,
@@ -195,10 +194,7 @@ class _OutlinedInputFieldState extends State<OutlinedInputField> {
                 builder: (BuildContext context, String? value, child) {
                   if (showError.value && errorMessage.value != null) {
                     return Padding(
-                      padding: const EdgeInsets.only(
-                        top: 5.0,
-                        left: 5,
-                      ),
+                      padding: const EdgeInsets.only(top: 5.0, left: 5),
                       child: Text(
                         value.toString(),
                         style: const TextStyle(color: Colors.red),
@@ -210,7 +206,7 @@ class _OutlinedInputFieldState extends State<OutlinedInputField> {
                 },
               );
             },
-          )
+          ),
         ],
       ),
     );
@@ -225,9 +221,9 @@ class _OutlinedInputFieldState extends State<OutlinedInputField> {
       },
       icon: Icon(
         !showPassword.value
-            ? Icons.visibility_off_outlined
-            : Icons.visibility_outlined,
-        color: CommonColor.blackColor,
+            ? Icons.visibility_outlined
+            : Icons.visibility_off_outlined,
+        color: CommonColor.purpleColor1,
         size: 20,
       ),
     );
@@ -254,27 +250,28 @@ class TextFormFieldWidget extends StatefulWidget {
   final double? fontSize;
   final bool isEmailField;
   final String? Function(String?)? validator;
-  const TextFormFieldWidget(
-      {super.key,
-      required this.controller,
-      this.isEmailField = false,
-      required this.valtext,
-      this.obscureText = false,
-      this.validator,
-      required this.hintText,
-      this.hintTextColor = CommonColor.hintTextColor,
-      required this.readOnly,
-      required this.maxLine,
-      required this.keyType,
-      this.wordLimit,
-      required this.onChanged,
-      this.suffixIcon,
-      this.onSuffixTap,
-      this.prefixIcon,
-      this.height,
-      required this.fontFamily,
-      required this.fontWeight,
-      required this.fontSize});
+  const TextFormFieldWidget({
+    super.key,
+    required this.controller,
+    this.isEmailField = false,
+    required this.valtext,
+    this.obscureText = false,
+    this.validator,
+    required this.hintText,
+    this.hintTextColor = CommonColor.hintTextColor,
+    required this.readOnly,
+    required this.maxLine,
+    required this.keyType,
+    this.wordLimit,
+    required this.onChanged,
+    this.suffixIcon,
+    this.onSuffixTap,
+    this.prefixIcon,
+    this.height,
+    required this.fontFamily,
+    required this.fontWeight,
+    required this.fontSize,
+  });
   @override
   State<TextFormFieldWidget> createState() => _TextFormFieldWidgetState();
 }
@@ -291,14 +288,14 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
       keyboardType: widget.keyType,
       maxLines: widget.maxLine,
       textCapitalization: TextCapitalization.sentences,
-      inputFormatters: widget.wordLimit != null
-          ? [
-              LengthLimitingTextInputFormatter(widget.wordLimit),
-            ]
-          : null,
+      inputFormatters:
+          widget.wordLimit != null
+              ? [LengthLimitingTextInputFormatter(widget.wordLimit)]
+              : null,
       validator: (value) {
         if (widget.isEmailField) {
-          const pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
+          const pattern =
+              r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
               r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
               r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
               r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
@@ -321,23 +318,32 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
       },
       autofocus: false,
       style: TextStyle(
-          color: CommonColor.blackColor,
-          fontFamily: widget.fontFamily,
-          fontWeight: widget.fontWeight,
-          fontSize: widget.fontSize),
+        color: CommonColor.blackColor,
+        fontFamily: widget.fontFamily,
+        fontWeight: widget.fontWeight,
+        fontSize: widget.fontSize,
+      ),
       decoration: InputDecoration(
         isDense: true,
-        contentPadding:
-            EdgeInsets.fromLTRB(12, widget.maxLine != 1 ? 30 : 10, 12, 0),
+        contentPadding: EdgeInsets.fromLTRB(
+          12,
+          widget.maxLine != 1 ? 30 : 10,
+          12,
+          0,
+        ),
         focusedBorder: const OutlineInputBorder(
           //borderRadius: BorderRadius.circular(5),
-          borderSide:
-              BorderSide(color: CommonColor.textFieldBorderColor, width: 1.0),
+          borderSide: BorderSide(
+            color: CommonColor.textFieldBorderColor,
+            width: 1.0,
+          ),
         ),
         enabledBorder: const OutlineInputBorder(
           //borderRadius: BorderRadius.circular(5),
-          borderSide:
-              BorderSide(color: CommonColor.textFieldBorderColor, width: 1.0),
+          borderSide: BorderSide(
+            color: CommonColor.textFieldBorderColor,
+            width: 1.0,
+          ),
         ),
         errorBorder: const OutlineInputBorder(
           // borderRadius: BorderRadius.circular(5),
@@ -354,16 +360,19 @@ class _TextFormFieldWidgetState extends State<TextFormFieldWidget> {
           fontWeight: widget.fontWeight,
           fontSize: widget.fontSize,
         ),
-        suffixIcon: widget.suffixIcon == null
-            ? null
-            : GestureDetector(
-                onTap: () {
-                  widget.onSuffixTap!();
-                },
-                child: widget.suffixIcon),
-        prefixIcon: widget.prefixIcon == null
-            ? null
-            : GestureDetector(child: widget.prefixIcon),
+        suffixIcon:
+            widget.suffixIcon == null
+                ? null
+                : GestureDetector(
+                  onTap: () {
+                    widget.onSuffixTap!();
+                  },
+                  child: widget.suffixIcon,
+                ),
+        prefixIcon:
+            widget.prefixIcon == null
+                ? null
+                : GestureDetector(child: widget.prefixIcon),
       ),
     );
   }

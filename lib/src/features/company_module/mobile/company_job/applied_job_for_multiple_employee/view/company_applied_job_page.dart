@@ -34,9 +34,7 @@ class _CompanyAppliedJobForMultipleEmployeeState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Apply job'),
-      ),
+      appBar: AppBar(title: const Text('Apply job')),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(

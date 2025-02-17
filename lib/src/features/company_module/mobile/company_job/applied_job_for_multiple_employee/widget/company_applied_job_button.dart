@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CompanyAppliedJobButton extends GetView<CompanyAppliedJobViewController> {
-  const CompanyAppliedJobButton({
-    super.key,
-    required this.job,
-  });
+  const CompanyAppliedJobButton({super.key, required this.job});
   final JobModel job;
   @override
   Widget build(BuildContext context) {
@@ -23,19 +20,16 @@ class CompanyAppliedJobButton extends GetView<CompanyAppliedJobViewController> {
 
           return;
         }
-        controller.companyAppliedjob(job.id!).then(
-          (value) {
-            if (value.success == true) {
-              Get.back();
-              Get.back();
-              Get.find<OtherCompanyJobsViewController>()
-                  .getOtherCompanyjobList();
-              SnackBarService.showInfoSnackBar('Apply job successfully.');
-            } else {
-              SnackBarService.showErrorSnackBar('Apply job Failed.');
-            }
-          },
-        );
+        controller.companyAppliedjob(job.id!).then((value) {
+          if (value.success == true) {
+            Get.back();
+            Get.back();
+            Get.find<OtherCompanyJobsViewController>().getOtherCompanyjobList();
+            SnackBarService.showInfoSnackBar('Apply job successfully.');
+          } else {
+            SnackBarService.showErrorSnackBar('Apply job Failed.');
+          }
+        });
       },
       child: Padding(
         padding: const EdgeInsets.only(
@@ -47,8 +41,9 @@ class CompanyAppliedJobButton extends GetView<CompanyAppliedJobViewController> {
         child: Container(
           height: 50,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: CommonColor.blueColor1),
+            borderRadius: BorderRadius.circular(10),
+            color: CommonColor.blueColor1,
+          ),
           child: Center(
             child: Text(
               'Apply Job',

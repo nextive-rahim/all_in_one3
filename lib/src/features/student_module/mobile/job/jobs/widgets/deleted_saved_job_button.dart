@@ -7,10 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeletedSaveJobButtonFromJobCard extends GetView<JobsViewController> {
-  DeletedSaveJobButtonFromJobCard({
-    super.key,
-    required this.job,
-  });
+  DeletedSaveJobButtonFromJobCard({super.key, required this.job});
   final JobModel job;
   final ValueNotifier<bool> isSavedJob = ValueNotifier<bool>(false);
   @override
@@ -19,8 +16,9 @@ class DeletedSaveJobButtonFromJobCard extends GetView<JobsViewController> {
       onTap: () {
         controller.deleteSaveJob(job.id!).then((value) {
           if (value.success == true) {
-            controller.savedJobList
-                .removeWhere((element) => element.id == job.id);
+            controller.savedJobList.removeWhere(
+              (element) => element.id == job.id,
+            );
             SnackBarService.showInfoSnackBar('Successfully delete Saved job');
 
             controller.getjobList();

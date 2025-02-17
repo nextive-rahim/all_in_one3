@@ -34,10 +34,7 @@ class InterviewerPaymentCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Interview Title Need',
-                style: AppTextStyle.bold16,
-              ),
+              const Text('Interview Title Need', style: AppTextStyle.bold16),
               const SizedBox(height: 5),
               const SizedBox(height: 10),
               Row(
@@ -53,10 +50,7 @@ class InterviewerPaymentCard extends StatelessWidget {
                       Text(getFormattedDate(paymentModel.createdAt)!),
                     ],
                   ),
-                  Text(
-                    '+ £${paymentModel.amount}',
-                    style: AppTextStyle.bold16,
-                  )
+                  Text('+ £${paymentModel.amount}', style: AppTextStyle.bold16),
                 ],
               ),
               const SizedBox(height: 10),
@@ -76,7 +70,7 @@ class InterviewerPaymentCard extends StatelessWidget {
                   Text(
                     '√ ${paymentModel.status == 1 ? 'Peding' : 'Completed'}',
                     style: AppTextStyle.bold16.copyWith(color: AppColors.green),
-                  )
+                  ),
                 ],
               ),
               const SizedBox(height: 10),
@@ -85,13 +79,11 @@ class InterviewerPaymentCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Icon(
-                        Icons.person,
-                        color: CommonColor.purpleColor1,
-                      ),
+                      const Icon(Icons.person, color: CommonColor.purpleColor1),
                       const SizedBox(width: 10),
-                      Text(Get.find<ProfileViewController>().userModel!.name ??
-                          '')
+                      Text(
+                        Get.find<ProfileViewController>().userModel!.name ?? '',
+                      ),
                     ],
                   ),
                 ],
@@ -111,9 +103,7 @@ class InterviewerPaymentCard extends StatelessWidget {
 }
 
 class _FeedBackSection extends StatefulWidget {
-  const _FeedBackSection({
-    required this.paymentModel,
-  });
+  const _FeedBackSection({required this.paymentModel});
   final InterviewerPaymentModel paymentModel;
 
   @override
@@ -131,10 +121,7 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              'Interviewer Feedback',
-              style: AppTextStyle.bold16,
-            ),
+            const Text('Interviewer Feedback', style: AppTextStyle.bold16),
             GestureDetector(
               onTap: () {
                 interviewfeedbackBottomSheet(context);
@@ -146,14 +133,14 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
                 height: 20,
                 fit: BoxFit.fill,
               ),
-            )
+            ),
           ],
         ),
         const SizedBox(height: 5),
         Text(
           widget.paymentModel.feedbackContent ?? '',
           style: AppTextStyle.bold14.copyWith(color: AppColors.lightBlack80),
-        )
+        ),
       ],
     );
   }
@@ -164,9 +151,7 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
   ) async {
     return await showModalBottomSheet(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(25.0),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
           ),
           backgroundColor: Colors.transparent,
           context: context,
@@ -175,11 +160,7 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
           useRootNavigator: true,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.only(
-                left: 0,
-                right: 0,
-                bottom: 0,
-              ),
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
                   return Container(
@@ -196,7 +177,7 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
                           blurRadius: 100,
                           offset: Offset(0, 4),
                           spreadRadius: 5,
-                        )
+                        ),
                       ],
                     ),
                     child: Padding(
@@ -276,7 +257,8 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
                                         ),
                                         TextSpan(
                                           text: getFormattedDate(
-                                              widget.paymentModel.createdAt),
+                                            widget.paymentModel.createdAt,
+                                          ),
                                           style: const TextStyle(
                                             color: CommonColor.blackColor1,
                                             fontSize: 16,
@@ -341,17 +323,22 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
                               onTap: () {
                                 if (_interviewFeedbackController.text.isEmpty) {
                                   Util.displayErrorToast(
-                                      context, AppStrings.plzFillAllFields);
+                                    context,
+                                    AppStrings.plzFillAllFields,
+                                  );
                                 } else {
                                   controller
                                       .editFeedback(
-                                          widget.paymentModel.feedbackId!,
-                                          _interviewFeedbackController.text)
+                                        widget.paymentModel.feedbackId!,
+                                        _interviewFeedbackController.text,
+                                      )
                                       .then((v) {
-                                    Navigator.pop(context, true);
-                                    Get.find<InterviewerPaymentViewController>()
-                                        .getInterviewerPayment();
-                                  });
+                                        Navigator.pop(context, true);
+                                        Get.find<
+                                              InterviewerPaymentViewController
+                                            >()
+                                            .getInterviewerPayment();
+                                      });
                                 }
                               },
                               child: Container(
@@ -363,8 +350,9 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
                                   color: CommonColor.blueColor1,
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
-                                        width: 0.50,
-                                        color: CommonColor.blueColor1),
+                                      width: 0.50,
+                                      color: CommonColor.blueColor1,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -373,7 +361,7 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: const TextWidget(
@@ -400,8 +388,9 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
                                   color: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
-                                        width: 0.50,
-                                        color: CommonColor.greyColor5),
+                                      width: 0.50,
+                                      color: CommonColor.greyColor5,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -410,7 +399,7 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: const TextWidget(

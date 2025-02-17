@@ -17,22 +17,15 @@ class CommonPopupMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
       color: AppColors.primary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       onSelected: onSelected,
       itemBuilder: (context) {
         return [
           for (var value in data)
             PopupMenuItem(
               value: value,
-              child: Text(
-                value,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            )
+              child: Text(value, style: const TextStyle(color: Colors.white)),
+            ),
         ];
       },
       child: Container(
@@ -49,10 +42,7 @@ class CommonPopupMenu extends StatelessWidget {
                 selectedValue!,
                 style: const TextStyle(color: CommonColor.blackColor),
               ),
-              const Icon(
-                Icons.keyboard_arrow_down_rounded,
-                size: 25,
-              )
+              const Icon(Icons.keyboard_arrow_down_rounded, size: 25),
             ],
           ),
         ),
@@ -76,22 +66,15 @@ class SkillCommonPopupMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
       color: AppColors.primary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       onSelected: onSelected,
       itemBuilder: (context) {
         return [
           for (var value in data)
             PopupMenuItem(
               value: value,
-              child: Text(
-                value,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            )
+              child: Text(value, style: const TextStyle(color: Colors.white)),
+            ),
         ];
       },
       child: Container(
@@ -105,14 +88,13 @@ class SkillCommonPopupMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                List.generate(selectedValue!.length,
-                    (int index) => selectedValue?[index]).toString(),
+                List.generate(
+                  selectedValue!.length,
+                  (int index) => selectedValue?[index],
+                ).toString(),
                 style: const TextStyle(color: CommonColor.blackColor),
               ),
-              const Icon(
-                Icons.keyboard_arrow_down_rounded,
-                size: 25,
-              )
+              const Icon(Icons.keyboard_arrow_down_rounded, size: 25),
             ],
           ),
         ),

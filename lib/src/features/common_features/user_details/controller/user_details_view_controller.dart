@@ -27,7 +27,7 @@ class UserDetailsViewController extends GetxController {
 
     Map<String, dynamic> requestBody = {
       "user_id": userId,
-      "user_type": userType
+      "user_type": userType,
     };
 
     Log.debug(requestBody.toString());

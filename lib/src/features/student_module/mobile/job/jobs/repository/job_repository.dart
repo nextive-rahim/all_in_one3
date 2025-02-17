@@ -21,7 +21,8 @@ class JobListRepository {
   }
 
   Future<dynamic> companySelectCandidateforInterview(
-      Map<String, dynamic> data) async {
+    Map<String, dynamic> data,
+  ) async {
     final res = await RestClient.dev().post(
       APIType.PROTECTED,
       API.companySelectCandidateForInterview,

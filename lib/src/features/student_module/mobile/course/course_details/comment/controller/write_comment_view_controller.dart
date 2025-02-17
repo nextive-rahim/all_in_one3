@@ -17,16 +17,10 @@ class WriteCommentViewController extends GetxController {
   final writeCommentTextController = TextEditingController();
   late CommonResponse commentResponse;
 
-  Future<void> writeComments(
-    int id,
-    String text,
-  ) async {
+  Future<void> writeComments(int id, String text) async {
     _pageStateController(PageState.loading);
 
-    Map<String, dynamic> requestBody = {
-      "course_id": id,
-      "comment_text": text,
-    };
+    Map<String, dynamic> requestBody = {"course_id": id, "comment_text": text};
 
     try {
       final res = await _repository.writeComment(requestBody);

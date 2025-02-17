@@ -6,10 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class CompanyEmployeeSkillSection extends StatefulWidget {
-  const CompanyEmployeeSkillSection({
-    super.key,
-    required this.user,
-  });
+  const CompanyEmployeeSkillSection({super.key, required this.user});
   final EmployeeModel? user;
   @override
   State<CompanyEmployeeSkillSection> createState() =>
@@ -40,11 +37,11 @@ class _CompanyEmployeeSkillSectionState
           itemCount: widget.user?.userSkill!.length,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // number of items in each row
-              mainAxisSpacing: 8.0, // spacing between rows
-              crossAxisSpacing: 8.0,
-              mainAxisExtent: 50 // spacing between columns
-              ),
+            crossAxisCount: 2, // number of items in each row
+            mainAxisSpacing: 8.0, // spacing between rows
+            crossAxisSpacing: 8.0,
+            mainAxisExtent: 50, // spacing between columns
+          ),
           itemBuilder: (context, index) {
             return TextWidget(
               text:

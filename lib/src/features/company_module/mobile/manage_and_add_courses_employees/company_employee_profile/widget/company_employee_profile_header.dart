@@ -4,10 +4,7 @@ import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_co
 import 'package:flutter/material.dart';
 
 class CompanyEmployeeProfileHeader extends StatelessWidget {
-  const CompanyEmployeeProfileHeader({
-    super.key,
-    required this.employee,
-  });
+  const CompanyEmployeeProfileHeader({super.key, required this.employee});
   final EmployeeModel employee;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +20,7 @@ class CompanyEmployeeProfileHeader extends StatelessWidget {
               spreadRadius: 0,
               blurRadius: 5, // Increased blur radius
               offset: const Offset(0, 2),
-            )
+            ),
           ],
           borderRadius: BorderRadius.circular(14),
           color: CommonColor.whiteColor,
@@ -39,26 +36,27 @@ class CompanyEmployeeProfileHeader extends StatelessWidget {
                 color: const Color(0xFFF3F4FA),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: employee.image != null
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        employee.image!,
-                        fit: BoxFit.fill,
-                        width: double.infinity,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.network(noImageFound);
-                        },
+              child:
+                  employee.image != null
+                      ? ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          employee.image!,
+                          fit: BoxFit.fill,
+                          width: double.infinity,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.network(noImageFound);
+                          },
+                        ),
+                      )
+                      : Text(
+                        getInitials(employee.name ?? ''),
+                        style: const TextStyle(
+                          color: Color(0xFF5A5959),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                    )
-                  : Text(
-                      getInitials(employee.name ?? ''),
-                      style: const TextStyle(
-                        color: Color(0xFF5A5959),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
             ),
             const SizedBox(width: 15),
             Expanded(
@@ -121,7 +119,8 @@ class CompanyEmployeeProfileHeader extends StatelessWidget {
     );
   }
 
-  String getInitials(String name) => name.isNotEmpty
-      ? name.trim().split(' ').map((l) => l[0]).take(2).join()
-      : '';
+  String getInitials(String name) =>
+      name.isNotEmpty
+          ? name.trim().split(' ').map((l) => l[0]).take(2).join()
+          : '';
 }

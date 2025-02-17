@@ -19,16 +19,13 @@ class CourseRegistrationViewController extends GetxController {
   RxBool isCourseAllVideosWatched = false.obs;
   late CommonResponse registration;
   final userId = CacheService.boxAuth.read(CacheKeys.userId);
-  Future<void> checkCourseRegistration(
-    int id,
-    String rateId,
-  ) async {
+  Future<void> checkCourseRegistration(int id, String rateId) async {
     _pageStateController(PageState.loading);
 
     Map<String, dynamic> body = {
       "course_id": id,
       "user_id": userId,
-      "course_rate_id": rateId
+      "course_rate_id": rateId,
     };
 
     try {

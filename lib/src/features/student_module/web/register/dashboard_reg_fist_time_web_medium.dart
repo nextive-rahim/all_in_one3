@@ -9,9 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DashboardRegFirstTimeWebMedium extends StatefulWidget {
-  const DashboardRegFirstTimeWebMedium({
-    super.key,
-  });
+  const DashboardRegFirstTimeWebMedium({super.key});
 
   @override
   State<DashboardRegFirstTimeWebMedium> createState() =>
@@ -49,7 +47,6 @@ class _DashboardRegFirstTimeWebMediumState
         //       fontWeight: FontWeight.w500,
         //       fontSize: 14),
         // ),
-
         backgroundColor: CommonColor.greyColor1,
         body: Row(
           children: [
@@ -79,29 +76,30 @@ class _DashboardRegFirstTimeWebMediumState
                       child: Row(
                         children: [
                           const Expanded(
-                              flex: 6,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TextWidget(
-                                      text: AppStrings.welcomeBackJoydeep,
-                                      color: CommonColor.headingTextColor1,
-                                      maxLine: 2,
-                                      fontFamily: AppStrings.aeonikTRIAL,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 35),
-                                  TextWidget(
-                                      text: AppStrings.startLearningToday,
-                                      color: CommonColor.headingTextColor1,
-                                      maxLine: 2,
-                                      fontFamily: AppStrings.sfProDisplay,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 18),
-                                ],
-                              )),
-                          const SizedBox(
-                            width: 32,
+                            flex: 6,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextWidget(
+                                  text: AppStrings.welcomeBackJoydeep,
+                                  color: CommonColor.headingTextColor1,
+                                  maxLine: 2,
+                                  fontFamily: AppStrings.aeonikTRIAL,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 35,
+                                ),
+                                TextWidget(
+                                  text: AppStrings.startLearningToday,
+                                  color: CommonColor.headingTextColor1,
+                                  maxLine: 2,
+                                  fontFamily: AppStrings.sfProDisplay,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18,
+                                ),
+                              ],
+                            ),
                           ),
+                          const SizedBox(width: 32),
                           Container(
                             width: _sizeConfig.getSize(320),
                             decoration: const BoxDecoration(
@@ -111,7 +109,7 @@ class _DashboardRegFirstTimeWebMediumState
                                   blurRadius: 50,
                                   offset: Offset(0, 4),
                                   spreadRadius: 0,
-                                )
+                                ),
                               ],
                             ),
                             child: TextFormFieldSearchWidget(
@@ -149,47 +147,48 @@ class _DashboardRegFirstTimeWebMediumState
                               },
                             ),
                           ),
-                          const SizedBox(
-                            width: 32,
-                          ),
+                          const SizedBox(width: 32),
                           SizedBox(
                             height: _sizeConfig.getSize(40),
                             width: _sizeConfig.getSize(50),
-                            child: Stack(children: [
-                              const Positioned(
-                                left: 0,
-                                bottom: 0,
-                                child: Icon(
-                                  Icons.notifications_none_outlined,
-                                  color: CommonColor.headingTextColor1,
+                            child: Stack(
+                              children: [
+                                const Positioned(
+                                  left: 0,
+                                  bottom: 0,
+                                  child: Icon(
+                                    Icons.notifications_none_outlined,
+                                    color: CommonColor.headingTextColor1,
+                                  ),
                                 ),
-                              ),
-                              Positioned(
-                                top: 0,
-                                right: 0,
-                                child: SizedBox(
-                                  height: _sizeConfig.getSize(30),
-                                  width: _sizeConfig.getSize(30),
-                                  child: Card(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      //set border radius more than 50% of height and width to make circle
-                                    ),
-                                    color: CommonColor.whiteColor,
-                                    elevation: 5,
-                                    child: const TextWidget(
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: SizedBox(
+                                    height: _sizeConfig.getSize(30),
+                                    width: _sizeConfig.getSize(30),
+                                    child: Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                        //set border radius more than 50% of height and width to make circle
+                                      ),
+                                      color: CommonColor.whiteColor,
+                                      elevation: 5,
+                                      child: const TextWidget(
                                         textAlign: TextAlign.center,
                                         text: '2',
                                         color: CommonColor.headingTextColor1,
                                         maxLine: 1,
                                         fontFamily: AppStrings.sfProDisplay,
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 10),
+                                        fontSize: 10,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              )
-                            ]),
-                          )
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -210,30 +209,28 @@ class _DashboardRegFirstTimeWebMediumState
                               child: Row(
                                 children: [
                                   const TextWidget(
-                                      textAlign: TextAlign.center,
-                                      text: AppStrings.latestCourses,
-                                      color: CommonColor.headingTextColor1,
-                                      maxLine: 2,
-                                      fontFamily: AppStrings.aeonikTRIAL,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 25),
-                                  SizedBox(
-                                    width: _sizeConfig.getSize(8),
+                                    textAlign: TextAlign.center,
+                                    text: AppStrings.latestCourses,
+                                    color: CommonColor.headingTextColor1,
+                                    maxLine: 2,
+                                    fontFamily: AppStrings.aeonikTRIAL,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 25,
                                   ),
+                                  SizedBox(width: _sizeConfig.getSize(8)),
                                   const TextWidget(
-                                      textAlign: TextAlign.center,
-                                      text: AppStrings.fromTopExperts,
-                                      color: CommonColor.headingTextColor1,
-                                      maxLine: 2,
-                                      fontFamily: AppStrings.aeonikTRIAL,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 25),
+                                    textAlign: TextAlign.center,
+                                    text: AppStrings.fromTopExperts,
+                                    color: CommonColor.headingTextColor1,
+                                    maxLine: 2,
+                                    fontFamily: AppStrings.aeonikTRIAL,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 25,
+                                  ),
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              height: _sizeConfig.getSize(31),
-                            ),
+                            SizedBox(height: _sizeConfig.getSize(31)),
                             // Obx(
                             //   () {
                             //     if (studentDashboardController.pageState ==
@@ -264,7 +261,7 @@ class _DashboardRegFirstTimeWebMediumState
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

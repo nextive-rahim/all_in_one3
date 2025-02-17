@@ -15,17 +15,16 @@ class SelectedCandidateListBuilder extends GetView<CompanyJobViewController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.seletedCandidate?.value = controller.appliedCandidateList!
-        .where((v) => v.isSelected == 1)
-        .toList();
+    controller.seletedCandidate?.value =
+        controller.appliedCandidateList!
+            .where((v) => v.isSelected == 1)
+            .toList();
     return Obx(() {
       if (controller.seletedCandidate!.isEmpty) {
         return const Center(
           child: Text(
             'No SeletedCandidate Founded',
-            style: TextStyle(
-              color: CommonColor.redColors,
-            ),
+            style: TextStyle(color: CommonColor.redColors),
           ),
         );
       }

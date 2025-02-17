@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ContentVideoBuilder extends StatefulWidget {
-  const ContentVideoBuilder({
-    super.key,
-    required this.contentVideoList,
-  });
+  const ContentVideoBuilder({super.key, required this.contentVideoList});
   final List<CourseContent> contentVideoList;
 
   @override
@@ -57,13 +54,15 @@ class _ContentVideoBuilderState extends State<ContentVideoBuilder> {
     if (!isWachVideoList.contains(false)) {
       courseRegistratoinController.isCourseAllVideosWatched.value = true;
       print(
-          "isWatchedAllVideo :  ${courseRegistratoinController.isCourseAllVideosWatched.value}");
+        "isWatchedAllVideo :  ${courseRegistratoinController.isCourseAllVideosWatched.value}",
+      );
     }
 
     print(" Any UnWatched Vedio: ${isWachVideoList.contains(false)}");
 
     print(
-        'Is  Register course : ${(userType == 1 && profileController.profileResponseModel.isSubscribed == 1)}');
+      'Is  Register course : ${(userType == 1 && profileController.profileResponseModel.isSubscribed == 1)}',
+    );
     if (userType == 1 &&
         profileController.profileResponseModel.isSubscribed == 1) {
       courseRegistratoinController.courseRegistered.value = true;
@@ -74,43 +73,46 @@ class _ContentVideoBuilderState extends State<ContentVideoBuilder> {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index2) {
         return CheckboxListTile(
-          value: widget.contentVideoList[index2].isWatch == 1 ||
+          value:
+              widget.contentVideoList[index2].isWatch == 1 ||
               isWachVideoList[index2],
           title: GestureDetector(
-              onTap: () {
+            onTap: () {
+              print(" Any UNWatched Vedio: ${isWachVideoList.contains(false)}");
+              if (((userType == 1 &&
+                      profileController.profileResponseModel.isSubscribed !=
+                          1) ||
+                  !courseRegistratoinController.courseRegistered.value)) {
+                SnackBarService.showErrorSnackBar(
+                  "Please register the course first",
+                );
+                return;
+              }
+              videoController.videolink.value =
+                  // 'https://www.youtube.com/watch?v=B5i-MSifHvY';
+                  widget.contentVideoList[index2].videoLink ?? '';
+              if (!isWachVideoList.contains(false)) {
+                courseRegistratoinController.isCourseAllVideosWatched.value =
+                    true;
                 print(
-                    " Any UNWatched Vedio: ${isWachVideoList.contains(false)}");
-                if (((userType == 1 &&
-                        profileController.profileResponseModel.isSubscribed !=
-                            1) ||
-                    !courseRegistratoinController.courseRegistered.value)) {
-                  SnackBarService.showErrorSnackBar(
-                      "Please register the course first");
-                  return;
-                }
-                videoController.videolink.value =
-                    // 'https://www.youtube.com/watch?v=B5i-MSifHvY';
-                    widget.contentVideoList[index2].videoLink ?? '';
-                if (!isWachVideoList.contains(false)) {
-                  courseRegistratoinController.isCourseAllVideosWatched.value =
-                      true;
-                  print(
-                      "isWatchedAllVideo :  ${courseRegistratoinController.isCourseAllVideosWatched.value}");
-                }
+                  "isWatchedAllVideo :  ${courseRegistratoinController.isCourseAllVideosWatched.value}",
+                );
+              }
 
-                if (widget.contentVideoList[index2].isWatch != 1) {
-                  videoController.isWatchVideo(
-                    widget.contentVideoList[index2].id!,
-                    widget.contentVideoList[index2].courseId!,
-                  );
-                }
-                setState(() {
-                  isWachVideoList[index2] = true;
-                });
+              if (widget.contentVideoList[index2].isWatch != 1) {
+                videoController.isWatchVideo(
+                  widget.contentVideoList[index2].id!,
+                  widget.contentVideoList[index2].courseId!,
+                );
+              }
+              setState(() {
+                isWachVideoList[index2] = true;
+              });
 
-                //  print(dataList.map((e) => e));
-              },
-              child: Text(widget.contentVideoList[index2].name ?? '')),
+              //  print(dataList.map((e) => e));
+            },
+            child: Text(widget.contentVideoList[index2].name ?? ''),
+          ),
           controlAffinity: ListTileControlAffinity.leading,
           onChanged: (checked) {
             //  isShownVideo = checked!;
@@ -124,6 +126,4 @@ class _ContentVideoBuilderState extends State<ContentVideoBuilder> {
       },
     );
   }
-
-
 }

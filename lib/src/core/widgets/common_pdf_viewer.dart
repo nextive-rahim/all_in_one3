@@ -1,9 +1,6 @@
-import 'dart:io';
 import 'package:all_in_one3/src/core/theme/colors.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CommonPDFViewer extends StatefulWidget {
@@ -32,30 +29,30 @@ class _CommonPDFViewerState extends State<CommonPDFViewer> {
   String title = '';
   PDFViewController? _pdfViewController;
   final textEditingController = TextEditingController();
-  Future<File> getFileFromUrl(String url) async {
-    String fileName = url.split('/').last;
-    try {
-      Directory dir = await getApplicationDocumentsDirectory();
-      String filePath = '${dir.path}/$fileName';
-      File file = File(filePath);
+  // Future<File> getFileFromUrl(String url) async {
+  //   String fileName = url.split('/').last;
+  //   try {
+  //     Directory dir = await getApplicationDocumentsDirectory();
+  //     String filePath = '${dir.path}/$fileName';
+  //     File file = File(filePath);
 
-      if (await file.exists()) {
-        return file;
-      }
+  //     if (await file.exists()) {
+  //       return file;
+  //     }
 
-      await Dio().download(
-        url,
-        filePath,
-        onReceiveProgress: (count, total) {
-          _loadingProgress.value =
-              '${(count / total * 100).toStringAsFixed(0)}%';
-        },
-      );
-      return file;
-    } catch (e) {
-      throw Exception('Error opening url file');
-    }
-  }
+  //     await Dio().download(
+  //       url,
+  //       filePath,
+  //       onReceiveProgress: (count, total) {
+  //         _loadingProgress.value =
+  //             '${(count / total * 100).toStringAsFixed(0)}%';
+  //       },
+  //     );
+  //     return file;
+  //   } catch (e) {
+  //     throw Exception('Error opening url file');
+  //   }
+  // }
 
   void requestPermission() async {
     await Permission.storage.request();
@@ -65,13 +62,13 @@ class _CommonPDFViewerState extends State<CommonPDFViewer> {
   void initState() {
     requestPermission();
 
-    getFileFromUrl(widget.pdfLink).then(
-      (value) => {
-        _urlPDFPath.value = value.path,
-        _loaded.value = true,
-        _exists.value = true,
-      },
-    );
+    // getFileFromUrl(widget.pdfLink).then(
+    //   (value) => {
+    //     _urlPDFPath.value = value.path,
+    //     _loaded.value = true,
+    //     _exists.value = true,
+    //   },
+    // );
 
     super.initState();
   }
@@ -98,32 +95,33 @@ class _CommonPDFViewerState extends State<CommonPDFViewer> {
           return Stack(
             children: [
               ValueListenableBuilder<bool>(
-                  valueListenable: _loaded,
-                  builder: (BuildContext context, bool value, child) {
-                    return PDFView(
-                      filePath: _urlPDFPath.value,
-                      enableSwipe: true,
-                      swipeHorizontal: false,
-                      autoSpacing: false,
-                      pageFling: true,
-                      pageSnap: true,
-                      fitPolicy: FitPolicy.BOTH,
-                      onError: (e) {
-                        //Show some error message or UI
-                      },
-                      onRender: (pages) {
-                        _totalPages.value = pages!.toInt();
-                        _pdfReady.value = true;
-                      },
-                      onViewCreated: (PDFViewController vc) {
-                        _pdfViewController = vc;
-                      },
-                      onPageChanged: (int? page, int? total) {
-                        _currentPage.value = page!.toInt();
-                      },
-                      onPageError: (page, e) {},
-                    );
-                  }),
+                valueListenable: _loaded,
+                builder: (BuildContext context, bool value, child) {
+                  return PDFView(
+                    filePath: widget.pdfLink,
+                    enableSwipe: true,
+                    swipeHorizontal: false,
+                    autoSpacing: false,
+                    pageFling: true,
+                    pageSnap: true,
+                    fitPolicy: FitPolicy.BOTH,
+                    onError: (e) {
+                      //Show some error message or UI
+                    },
+                    onRender: (pages) {
+                      _totalPages.value = pages!.toInt();
+                      _pdfReady.value = true;
+                    },
+                    onViewCreated: (PDFViewController vc) {
+                      _pdfViewController = vc;
+                    },
+                    onPageChanged: (int? page, int? total) {
+                      _currentPage.value = page!.toInt();
+                    },
+                    onPageError: (page, e) {},
+                  );
+                },
+              ),
               if (widget.showPageNavigation)
                 Positioned(
                   bottom: 0,
@@ -140,18 +138,19 @@ class _CommonPDFViewerState extends State<CommonPDFViewer> {
               if (value) {
                 //Replace with your loading UI
                 return ValueListenableBuilder<String>(
-                    valueListenable: _loadingProgress,
-                    builder: (BuildContext context, String value, child) {
-                      return Center(
-                        child: Text(
-                          'Loading... $value',
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  valueListenable: _loadingProgress,
+                  builder: (BuildContext context, String value, child) {
+                    return Center(
+                      child: Text(
+                        'Loading... $value',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                      );
-                    });
+                      ),
+                    );
+                  },
+                );
               } else {
                 //Replace Error UI
                 return const Text(
@@ -182,10 +181,7 @@ class _CommonPDFViewerState extends State<CommonPDFViewer> {
               textAlign: TextAlign.left,
               textAlignVertical: TextAlignVertical.center,
               keyboardType: TextInputType.number,
-              style: const TextStyle(
-                fontWeight: FontWeight.w300,
-                fontSize: 14,
-              ),
+              style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14),
               onChanged: (page) {
                 if (textEditingController.text.isEmpty) {
                   return;
@@ -204,16 +200,15 @@ class _CommonPDFViewerState extends State<CommonPDFViewer> {
                 isDense: true,
                 hintText: 'Page Number',
                 hintStyle: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w300,
-                    fontSize: 14,
-                    color: Colors.black38),
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w300,
+                  fontSize: 14,
+                  color: Colors.black38,
+                ),
                 fillColor: Colors.transparent,
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  borderSide: const BorderSide(
-                    color: AppColors.lightBlack20,
-                  ),
+                  borderSide: const BorderSide(color: AppColors.lightBlack20),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),

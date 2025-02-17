@@ -11,10 +11,7 @@ import 'package:get/get.dart';
 
 class CompanySaveJobButtonFromJobDetails
     extends GetView<OtherCompanyJobsViewController> {
-  CompanySaveJobButtonFromJobDetails({
-    super.key,
-    required this.job,
-  });
+  CompanySaveJobButtonFromJobDetails({super.key, required this.job});
   final JobModel job;
   final ValueNotifier<bool> isSavedJob = ValueNotifier<bool>(false);
   @override
@@ -24,9 +21,10 @@ class CompanySaveJobButtonFromJobDetails
       builder: (BuildContext context, bool value, child) {
         return Obx(
           () => PrimaryButton(
-            backgroundColor: job.isSaved != 0 || value
-                ? AppColors.grey
-                : CommonColor.purpleColor1,
+            backgroundColor:
+                job.isSaved != 0 || value
+                    ? AppColors.grey
+                    : CommonColor.purpleColor1,
             isLoading: controller.isLoadingSavedJob.value == true,
             onTap: () {
               if (job.isSaved != 0 || isSavedJob.value) {

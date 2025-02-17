@@ -12,10 +12,7 @@ class MyCompanyJobListPageMobile extends StatelessWidget {
     Get.put(CompanyJobViewController());
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        PostCompanyJob(),
-        CompanyJobBuilder(),
-      ],
+      children: [PostCompanyJob(), CompanyJobBuilder()],
     );
   }
 }

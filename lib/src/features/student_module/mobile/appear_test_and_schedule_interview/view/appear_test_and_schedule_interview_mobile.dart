@@ -1,3 +1,5 @@
+import 'package:all_in_one3/src/core/service/cache/cache_keys.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/formated_date_time.dart';
 import 'package:all_in_one3/src/core/utils/image_constant.dart';
@@ -5,6 +7,9 @@ import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/controller/exam_link_view_controller.dart';
+import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/controller/student_interview_request_view_controller.dart';
+import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/controller/submit_portfolio_link_view_controller.dart';
+import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/controller/sunmit_result_link_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/widget/exam_link_section.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/widget/interview_request_section.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/widget/submit_exam_result_link_section.dart';
@@ -12,11 +17,10 @@ import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_s
 import 'package:all_in_one3/src/features/student_module/mobile/course/home_course/model/student_home_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class AppearTestAndScheduleInterviewMobilePage extends StatefulWidget {
-  const AppearTestAndScheduleInterviewMobilePage({
-    super.key,
-  });
+  const AppearTestAndScheduleInterviewMobilePage({super.key});
 
   @override
   State<AppearTestAndScheduleInterviewMobilePage> createState() =>
@@ -25,8 +29,7 @@ class AppearTestAndScheduleInterviewMobilePage extends StatefulWidget {
 
 class _AppearTestAndScheduleInterviewMobilePageState
     extends State<AppearTestAndScheduleInterviewMobilePage> {
-  final CourseModel collectinListData = Get.arguments[0];
-  final Function onLogout = Get.arguments[1];
+  CourseModel? collectinListData;
 
   final _timeSlotAController = TextEditingController();
   final _timeSlotBController = TextEditingController();
@@ -38,56 +41,60 @@ class _AppearTestAndScheduleInterviewMobilePageState
 
   // YoutubePlayerController? _controller;
   String dropdownValue = AppStrings.courseLevelDropdown.first;
-  final examController = Get.find<ExamLinkViewController>();
+
   @override
   void initState() {
+    collectinListData = CacheService.boxAuth.read(CacheKeys.courseModel);
+    final examController = Get.put(ExamLinkViewController());
+    Get.put(SubmitResultLinkViewController());
+    Get.put(SubmitPortfolioLinkSubmitViewController());
+    Get.put(StudentInterviewRequestViewController());
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      examController.getExam(collectinListData.id.toString());
+      examController.getExam(collectinListData!.id.toString());
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print(CacheService.boxAuth.read(CacheKeys.courseModel));
     return Scaffold(
-        // backgroundColor: CommonColor.whiteColor,
-        appBar: AppBar(
-          elevation: 0,
-          title: const Text(
-            AppStrings.testYourSkills,
+      // backgroundColor: CommonColor.whiteColor,
+      appBar: AppBar(
+        elevation: 0,
+        title: const Text(AppStrings.testYourSkills),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(
+            top: 0,
+            right: 20,
+            left: 20,
+            bottom: 0,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const ExamLinkSection(),
+              const SizedBox(height: 40),
+              SubmitExamResultLinkSection(course: collectinListData!),
+              const SizedBox(height: 40),
+              const SubmitPortfolioLinkSection(),
+              const SizedBox(height: 40),
+              InterviewRequestSection(course: collectinListData!),
+              const SizedBox(height: 70),
+            ],
           ),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 0,
-              right: 17,
-              left: 20,
-              bottom: 0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const ExamLinkSection(),
-                const SizedBox(height: 40),
-                SubmitExamResultLinkSection(course: collectinListData),
-                const SizedBox(height: 40),
-                const SubmitPortfolioLinkSection(),
-                const SizedBox(height: 40),
-                InterviewRequestSection(course: collectinListData),
-                const SizedBox(height: 70),
-              ],
-            ),
-          ),
-        ));
+      ),
+    );
   }
 
   Future<bool> requestSubmittedBottomSheet(String msg) async {
     return await showModalBottomSheet(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(25.0),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
           ),
           backgroundColor: Colors.transparent,
           context: context,
@@ -96,11 +103,7 @@ class _AppearTestAndScheduleInterviewMobilePageState
           useRootNavigator: true,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.only(
-                left: 0,
-                right: 0,
-                bottom: 0,
-              ),
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
                   return Container(
@@ -117,7 +120,7 @@ class _AppearTestAndScheduleInterviewMobilePageState
                           blurRadius: 100,
                           offset: Offset(0, 4),
                           spreadRadius: 5,
-                        )
+                        ),
                       ],
                     ),
                     child: Padding(
@@ -136,9 +139,7 @@ class _AppearTestAndScheduleInterviewMobilePageState
                               height: 2,
                               color: CommonColor.greyColor18,
                             ),
-                            SizedBox(
-                              height: SizeConfig.screenWidth! * 0.25,
-                            ),
+                            SizedBox(height: SizeConfig.screenWidth! * 0.25),
                             Image.asset(
                               ImageConstant.requestSubmitted,
                               height: 117,
@@ -161,10 +162,10 @@ class _AppearTestAndScheduleInterviewMobilePageState
                                 children: [
                                   TextSpan(
                                     text: FormatedDateTime.formatedDateTime1(
-                                        _chooseDateForApi ?? '',
-                                        inputFormat: "yyyy-MM-dd",
-                                        outputFormat:
-                                            "yMMMMd"), //'26th May 2023',
+                                      _chooseDateForApi ?? '',
+                                      inputFormat: "yyyy-MM-dd",
+                                      outputFormat: "yMMMMd",
+                                    ), //'26th May 2023',
                                     style: const TextStyle(
                                       color: CommonColor.blackColor1,
                                       fontSize: 18,
@@ -201,8 +202,9 @@ class _AppearTestAndScheduleInterviewMobilePageState
                                     ),
                                   ),
                                   TextSpan(
-                                    text: _timeSlotBController
-                                        .text, //' 10:00 AM',
+                                    text:
+                                        _timeSlotBController
+                                            .text, //' 10:00 AM',
                                     style: const TextStyle(
                                       color: CommonColor.blackColor1,
                                       fontSize: 18,
@@ -226,7 +228,7 @@ class _AppearTestAndScheduleInterviewMobilePageState
                             const SizedBox(height: 70),
                             GestureDetector(
                               onTap: () {
-                                Navigator.pop(context);
+                                context.pop();
                               },
                               child: Container(
                                 width: SizeConfig.screenWidth,
@@ -237,8 +239,9 @@ class _AppearTestAndScheduleInterviewMobilePageState
                                   color: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
-                                        width: 0.50,
-                                        color: CommonColor.greyColor5),
+                                      width: 0.50,
+                                      color: CommonColor.greyColor5,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -247,16 +250,14 @@ class _AppearTestAndScheduleInterviewMobilePageState
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(Icons.check),
-                                    SizedBox(
-                                      width: 8,
-                                    ),
+                                    SizedBox(width: 8),
                                     TextWidget(
                                       text: AppStrings.okGotIt,
                                       color: CommonColor.blackColor4,

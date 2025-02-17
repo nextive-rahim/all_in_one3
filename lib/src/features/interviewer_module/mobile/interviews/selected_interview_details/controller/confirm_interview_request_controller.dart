@@ -23,7 +23,7 @@ class ConfirmInterviewREquestViewController extends GetxController {
       "id": id,
       "link": interviewLInk.text,
       "approved_slot_a": selectedTimeSlotA.value,
-      "approved_slot_b": selectedTimeSlotB.value
+      "approved_slot_b": selectedTimeSlotB.value,
     };
 
     try {

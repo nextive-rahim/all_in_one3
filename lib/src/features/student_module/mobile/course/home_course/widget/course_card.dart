@@ -1,4 +1,6 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_keys.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -6,13 +8,10 @@ import 'package:all_in_one3/src/features/student_module/mobile/course/home_cours
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class CourseCard extends StatelessWidget {
-  const CourseCard({
-    super.key,
-    required this.course,
-    this.onTap,
-  });
+  const CourseCard({super.key, required this.course, this.onTap});
   final CourseModel course;
   final void Function()? onTap;
   @override
@@ -34,13 +33,12 @@ class CourseCard extends StatelessWidget {
               ),
             ),
             child: GestureDetector(
-              onTap: onTap ??
+              onTap:
+                  onTap ??
                   () {
                     if (kIsWeb) {
-                      Get.rootDelegate.toNamed(
-                        Routes.courseDetailMobilePage,
-                        arguments: course,
-                      );
+                      CacheService.boxAuth.write(CacheKeys.courseModel, course);
+                      context.pushNamed(Routes.courseDetailMobilePage);
                       return;
                     }
                     Get.toNamed(
@@ -56,10 +54,7 @@ class CourseCard extends StatelessWidget {
                   color: Colors.white,
                   shape: CircleBorder(side: BorderSide.none),
                 ),
-                child: const Icon(
-                  Icons.play_arrow_outlined,
-                  size: 30,
-                ),
+                child: const Icon(Icons.play_arrow_outlined, size: 30),
               ),
             ),
           ),
@@ -83,7 +78,7 @@ class CourseCard extends StatelessWidget {
           fontWeight: FontWeight.w300,
           fontSize: 13,
         ),
-        const SizedBox(height: 30)
+        const SizedBox(height: 30),
       ],
     );
   }

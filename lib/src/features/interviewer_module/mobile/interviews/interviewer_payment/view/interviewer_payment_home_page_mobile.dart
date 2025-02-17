@@ -38,7 +38,7 @@ class InterviewerPaymentHomePageMobile extends StatelessWidget {
                       title1: 'All\nPayments',
                       title2: 'Pending\nPayments',
                       title3: 'Completed\nPayments',
-                    )
+                    ),
                   ],
                 ),
               ),

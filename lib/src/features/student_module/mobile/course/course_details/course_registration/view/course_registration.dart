@@ -15,6 +15,7 @@ import 'package:all_in_one3/src/features/student_module/mobile/course/course_det
 import 'package:all_in_one3/src/features/student_module/mobile/course/home_course/model/student_home_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class CourseRegistrationSection
     extends GetView<CourseRegistrationViewController> {
@@ -27,7 +28,7 @@ class CourseRegistrationSection
   final CourseModel collectinListData;
   final CoursePriceViewController coursePriceViewController;
   final UserCourseAvailabilityViewController
-      userCourseAvailabilityViewController;
+  userCourseAvailabilityViewController;
   @override
   Widget build(BuildContext context) {
     final profileController = Get.find<ProfileViewController>();
@@ -40,152 +41,153 @@ class CourseRegistrationSection
     print(controller.appearInTest.value);
     return Column(
       children: [
-        Obx(
-          () {
-            if (coursePriceViewController.pageState == PageState.loading) {
-              return Container(
-                height: 44,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: AppColors.lightBlack10,
-                ),
-              );
-            }
-            return controller.appearInTest.value ||
-                    profileController.profileResponseModel.isSubscribed == 1
-                ? GestureDetector(
-                    onTap: () {
-                      print(courseRegistratoinController
-                          .isCourseAllVideosWatched.value);
-                      if (!courseRegistratoinController
-                          .isCourseAllVideosWatched.value) {
-                        SnackBarService.showErrorSnackBar(
-                            "Please watch the all videos first");
-                      } else {
-                        Get.toNamed(
-                          Routes.appearTestAndScheduleInterviewMobilePage,
-                          arguments: [
-                            collectinListData,
-                            () {},
-                          ],
-                        );
-                      }
-                    },
-                    child: Container(
-                      width: SizeConfig.screenWidth,
-                      height: 44,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 18,
-                        vertical: 10,
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      decoration: ShapeDecoration(
+        Obx(() {
+          if (coursePriceViewController.pageState == PageState.loading) {
+            return Container(
+              height: 44,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: AppColors.lightBlack10,
+              ),
+            );
+          }
+          return controller.appearInTest.value ||
+                  profileController.profileResponseModel.isSubscribed == 1
+              ? GestureDetector(
+                onTap: () {
+                  print(
+                    courseRegistratoinController.isCourseAllVideosWatched.value,
+                  );
+                  if (!courseRegistratoinController
+                      .isCourseAllVideosWatched
+                      .value) {
+                    SnackBarService.showErrorSnackBar(
+                      "Please watch the all videos first",
+                    );
+                  } else {
+                    context.pushNamed(
+                      Routes.appearTestAndScheduleInterviewMobilePage,
+                    );
+                    // Get.toNamed(
+                    //   Routes.appearTestAndScheduleInterviewMobilePage,
+                    //   arguments: [
+                    //     collectinListData,
+                    //     () {},
+                    //   ],
+                    // );
+                  }
+                },
+                child: Container(
+                  width: SizeConfig.screenWidth,
+                  height: 44,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 18,
+                    vertical: 10,
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    color: CommonColor.blueColor1,
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                        width: 0.50,
                         color: CommonColor.blueColor1,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                            width: 0.50,
-                            color: CommonColor.blueColor1,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        shadows: const [
-                          BoxShadow(
-                            color: CommonColor.blackColor3,
-                            blurRadius: 2,
-                            offset: Offset(0, 1),
-                            spreadRadius: 0,
-                          )
-                        ],
                       ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.edit,
-                            color: CommonColor.whiteColor,
-                            size: 24,
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            AppStrings.appearInTest,
-                            style: TextStyle(
-                              color: CommonColor.whiteColor,
-                              fontSize: 16,
-                              fontFamily: AppStrings.inter,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                  )
-                : GestureDetector(
-                    onTap: () {
-                      // Util.showLoader(context);
-                      controller
-                          .checkCourseRegistration(
-                              collectinListData.id!,
-                              coursePriceViewController
-                                  .coursePriceReponseData[0].courseReteId
-                                  .toString())
-                          .then((value) {
-                        Get.find<ProfileViewController>().getUser();
+                    shadows: const [
+                      BoxShadow(
+                        color: CommonColor.blackColor3,
+                        blurRadius: 2,
+                        offset: Offset(0, 1),
+                        spreadRadius: 0,
+                      ),
+                    ],
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.edit, color: CommonColor.whiteColor, size: 24),
+                      SizedBox(width: 8),
+                      Text(
+                        AppStrings.appearInTest,
+                        style: TextStyle(
+                          color: CommonColor.whiteColor,
+                          fontSize: 16,
+                          fontFamily: AppStrings.inter,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+              : GestureDetector(
+                onTap: () {
+                  // Util.showLoader(context);
+                  controller
+                      .checkCourseRegistration(
+                        collectinListData.id!,
+                        coursePriceViewController
+                            .coursePriceReponseData[0]
+                            .courseReteId
+                            .toString(),
+                      )
+                      .then((value) {
+                        Get.put(ProfileViewController()).getUser();
                         controller.appearInTest.value = true;
                         controller.courseRegistered.value = true;
                         courseRegistrationSuccessfulBottomSheet(
-                                controller.registration.message, context)
-                            .then((value) {
+                          controller.registration.message,
+                          context,
+                        ).then((value) {
                           //if (true) {
                           controller.appearInTest.value = true;
                           controller.courseRegistered.value = true;
                           // }
                         });
                       });
-                    },
-                    child: Container(
-                      width: SizeConfig.screenWidth,
-                      height: 44,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 18,
-                        vertical: 10,
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      decoration: ShapeDecoration(
+                },
+                child: Container(
+                  width: SizeConfig.screenWidth,
+                  height: 44,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 18,
+                    vertical: 10,
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  decoration: ShapeDecoration(
+                    color: CommonColor.blueColor1,
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                        width: 0.50,
                         color: CommonColor.blueColor1,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                            width: 0.50,
-                            color: CommonColor.blueColor1,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
                       ),
-                      child: const TextWidget(
-                        text: AppStrings.registerInThisCourse,
-                        color: CommonColor.whiteColor,
-                        maxLine: 1,
-                        fontFamily: AppStrings.inter,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                      ),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                  );
-          },
-        ),
+                  ),
+                  child: const TextWidget(
+                    text: AppStrings.registerInThisCourse,
+                    color: CommonColor.whiteColor,
+                    maxLine: 1,
+                    fontFamily: AppStrings.inter,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  ),
+                ),
+              );
+        }),
       ],
     );
   }
 
   Future<bool> courseRegistrationSuccessfulBottomSheet(
-      String msg, BuildContext context) async {
+    String msg,
+    BuildContext context,
+  ) async {
     return await showModalBottomSheet(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(25.0),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
           ),
           backgroundColor: Colors.transparent,
           context: context,
@@ -193,11 +195,7 @@ class CourseRegistrationSection
           isDismissible: false,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.only(
-                left: 12,
-                right: 12,
-                bottom: 60,
-              ),
+              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 60),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
                   return Container(
@@ -214,7 +212,7 @@ class CourseRegistrationSection
                           blurRadius: 100,
                           offset: Offset(0, 4),
                           spreadRadius: 5,
-                        )
+                        ),
                       ],
                     ),
                     child: Padding(
@@ -234,22 +232,19 @@ class CourseRegistrationSection
                                 Icons.check_circle_outline_outlined,
                                 color: CommonColor.greenColor1,
                               ),
-                              const SizedBox(
-                                width: 8,
-                              ),
+                              const SizedBox(width: 8),
                               const TextWidget(
-                                  text: AppStrings.courseRegistrationSuccessful,
-                                  color: CommonColor.greenColor1,
-                                  maxLine: 2,
-                                  fontFamily: AppStrings.aeonikTRIAL,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 16),
-                              const SizedBox(
-                                width: 8,
+                                text: AppStrings.courseRegistrationSuccessful,
+                                color: CommonColor.greenColor1,
+                                maxLine: 2,
+                                fontFamily: AppStrings.aeonikTRIAL,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 16,
                               ),
+                              const SizedBox(width: 8),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.pop(context, true);
+                                  context.pop();
                                 },
                                 child: Container(
                                   width: 36,
@@ -260,8 +255,9 @@ class CourseRegistrationSection
                                     color: Colors.white,
                                     shape: RoundedRectangleBorder(
                                       side: const BorderSide(
-                                          width: 0.50,
-                                          color: CommonColor.greyColor5),
+                                        width: 0.50,
+                                        color: CommonColor.greyColor5,
+                                      ),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     shadows: const [
@@ -270,7 +266,7 @@ class CourseRegistrationSection
                                         blurRadius: 2,
                                         offset: Offset(0, 1),
                                         spreadRadius: 0,
-                                      )
+                                      ),
                                     ],
                                   ),
                                   child: Container(
@@ -278,18 +274,13 @@ class CourseRegistrationSection
                                     height: 20,
                                     alignment: Alignment.center,
                                     decoration: const BoxDecoration(),
-                                    child: const Icon(
-                                      Icons.clear,
-                                      size: 18,
-                                    ),
+                                    child: const Icon(Icons.clear, size: 18),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 30,
-                          ),
+                          const SizedBox(height: 30),
                           TextWidget(
                             text: msg,
                             //'You have successfully registered to this couse - React Native IOS and Android App Development for Beginners (KM0063)',

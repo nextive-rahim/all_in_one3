@@ -7,13 +7,11 @@ import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_co
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/model/employee_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class CompanyAssignedCourseButton
     extends GetView<CompanyAssignedCouseViewController> {
-  const CompanyAssignedCourseButton({
-    super.key,
-    required this.employee,
-  });
+  const CompanyAssignedCourseButton({super.key, required this.employee});
   final EmployeeModel employee;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,8 @@ class CompanyAssignedCourseButton
         controller.companyAssingedCourse(employee.userId!).then((value) {
           if (value.success == true) {
             Get.find<CompanyEmployeeListViewController>().getEmployeeList();
-            Get.back();
+            context.pop();
+            // Get.back();
             SnackBarService.showInfoSnackBar('course added successfully.');
           } else {
             SnackBarService.showErrorSnackBar('course added Failed.');
@@ -38,14 +37,15 @@ class CompanyAssignedCourseButton
         padding: const EdgeInsets.only(
           top: 20,
           bottom: 20,
-          left: 20,
-          right: 20,
+          left: 160,
+          right: 160,
         ),
         child: Container(
           height: 50,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: CommonColor.blueColor1),
+            borderRadius: BorderRadius.circular(10),
+            color: CommonColor.blueColor1,
+          ),
           child: Center(
             child: Text(
               'Adde Courses',

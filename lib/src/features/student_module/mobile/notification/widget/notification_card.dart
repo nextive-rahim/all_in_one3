@@ -14,11 +14,9 @@ class NotificationCard extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Container(
         decoration: BoxDecoration(
-            border: Border.all(
-              width: .5,
-              color: AppColors.black,
-            ),
-            borderRadius: BorderRadius.circular(5)),
+          border: Border.all(width: .5, color: AppColors.black),
+          borderRadius: BorderRadius.circular(5),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -28,10 +26,8 @@ class NotificationCard extends StatelessWidget {
               10.sh,
               Text(
                 getFormattedDateTime(notificationModel?.createdAt) ?? '',
-                style: const TextStyle(
-                  color: CommonColor.purpleColor1,
-                ),
-              )
+                style: const TextStyle(color: CommonColor.purpleColor1),
+              ),
             ],
           ),
         ),

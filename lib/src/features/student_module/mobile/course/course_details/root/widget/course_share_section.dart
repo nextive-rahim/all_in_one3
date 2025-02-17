@@ -6,10 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CourseShareSection extends StatelessWidget {
-  const CourseShareSection({
-    super.key,
-    required this.collectinListData,
-  });
+  const CourseShareSection({super.key, required this.collectinListData});
   final CourseModel collectinListData;
   @override
   Widget build(BuildContext context) {
@@ -54,7 +51,9 @@ class CourseShareSection extends StatelessWidget {
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
                     side: const BorderSide(
-                        width: 0.50, color: CommonColor.greyColor5),
+                      width: 0.50,
+                      color: CommonColor.greyColor5,
+                    ),
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),

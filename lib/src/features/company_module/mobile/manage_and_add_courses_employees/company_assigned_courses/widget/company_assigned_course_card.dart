@@ -22,34 +22,19 @@ class CompanyAssingnedCoursesCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Name :  ",
-            style: AppTextStyle.bold14,
-          ),
-          Text(
-            course?.title ?? '',
-            style: AppTextStyle.bold16,
-          ),
+          const Text("Name :  ", style: AppTextStyle.bold14),
+          Text(course?.title ?? '', style: AppTextStyle.bold16),
         ],
       ),
       subtitle: Wrap(
         children: [
-          const Text(
-            "ID  :   ",
-            style: AppTextStyle.bold14,
-          ),
-          Text(
-            course?.id.toString() ?? '',
-            style: AppTextStyle.bold16,
-          ),
+          const Text("ID  :   ", style: AppTextStyle.bold14),
+          Text(course?.id.toString() ?? '', style: AppTextStyle.bold16),
         ],
       ),
       trailing: Column(
         children: [
-          const Text(
-            "Level  :   ",
-            style: AppTextStyle.bold14,
-          ),
+          const Text("Level  :   ", style: AppTextStyle.bold14),
           Text(
             course?.coursesLevel.toString() ?? '',
             style: AppTextStyle.bold13.copyWith(color: CommonColor.greyColor),

@@ -9,9 +9,7 @@ import 'package:all_in_one3/src/core/widgets/my_separator.dart';
 import 'package:flutter/material.dart';
 
 class CompanyPaymentPageMobile extends StatefulWidget {
-  const CompanyPaymentPageMobile({
-    super.key,
-  });
+  const CompanyPaymentPageMobile({super.key});
 
   @override
   State<CompanyPaymentPageMobile> createState() =>
@@ -33,7 +31,6 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
         //       fontWeight: FontWeight.w500,
         //       fontSize: 14),
         // ),
-
         backgroundColor: CommonColor.greyColor1,
         body: Column(
           children: [
@@ -47,7 +44,7 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 20, 16, 60),
+                  padding: const EdgeInsets.fromLTRB(10, 20, 10, 60),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -57,7 +54,9 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(
-                                width: 1, color: Color(0xFFEBEBEB)),
+                              width: 1,
+                              color: Color(0xFFEBEBEB),
+                            ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
@@ -118,7 +117,7 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                               ),
                               const SizedBox(height: 20),
                               const SizedBox(
-                                width: 265,
+                                width: 20,
                                 child: Text(
                                   'Requested to pay within first week of this month.',
                                   style: TextStyle(
@@ -130,13 +129,12 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                height: 40,
-                              ),
+                              const SizedBox(height: 40),
                               InkWell(
                                 onTap: () {
                                   SnackBarService.showErrorSnackBar(
-                                      'Payment gateway not ready yet');
+                                    'Payment gateway not ready yet',
+                                  );
                                 },
                                 child: Container(
                                   width: 165,
@@ -150,7 +148,9 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                                     color: AppColors.primary,
                                     shape: RoundedRectangleBorder(
                                       side: const BorderSide(
-                                          width: 1, color: Color(0xFFEBEBEB)),
+                                        width: 1,
+                                        color: Color(0xFFEBEBEB),
+                                      ),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     shadows: const [
@@ -159,7 +159,7 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                                         blurRadius: 2,
                                         offset: Offset(0, 1),
                                         spreadRadius: 0,
-                                      )
+                                      ),
                                     ],
                                   ),
                                   child: const Center(
@@ -193,15 +193,11 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          SizedBox(
-                            width: 20,
-                          ),
+                          SizedBox(width: 20),
                           Icon(Icons.info_outline),
                         ],
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      const SizedBox(height: 20),
                       Container(
                         width: SizeConfig.screenWidth,
                         height: 467,
@@ -209,7 +205,9 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(
-                                width: 1, color: Color(0xFFEBEBEB)),
+                              width: 1,
+                              color: Color(0xFFEBEBEB),
+                            ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           shadows: const [
@@ -218,7 +216,7 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                               blurRadius: 20,
                               offset: Offset(0, 4),
                               spreadRadius: 0,
-                            )
+                            ),
                           ],
                         ),
                         child: Padding(
@@ -238,9 +236,9 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                                     ),
                                   ),
                                   10.sw,
-                                  Text(getFormattedDate(DateTime.now())!)
-                                      .fontSize(20)
-                                      .bold(FontWeight.w600)
+                                  Text(
+                                    getFormattedDate(DateTime.now())!,
+                                  ).fontSize(20).bold(FontWeight.w600),
                                 ],
                               ),
                               const SizedBox(height: 28),
@@ -248,7 +246,8 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                                 width: SizeConfig.screenWidth,
                                 height: 5,
                                 decoration: const BoxDecoration(
-                                    color: Color(0xFFEBEBEB)),
+                                  color: Color(0xFFEBEBEB),
+                                ),
                               ),
                               const SizedBox(height: 28),
                               SizedBox(
@@ -372,7 +371,9 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                                     color: AppColors.primary,
                                     shape: RoundedRectangleBorder(
                                       side: const BorderSide(
-                                          width: 1, color: Color(0xFFCFD4DC)),
+                                        width: 1,
+                                        color: Color(0xFFCFD4DC),
+                                      ),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     shadows: const [
@@ -381,13 +382,14 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                                         blurRadius: 2,
                                         offset: Offset(0, 1),
                                         spreadRadius: 0,
-                                      )
+                                      ),
                                     ],
                                   ),
                                   child: InkWell(
                                     onTap: () {
                                       SnackBarService.showErrorSnackBar(
-                                          'Payment gateway not ready yet');
+                                        'Payment gateway not ready yet',
+                                      );
                                     },
                                     child: const Text(
                                       'Pay Now',
@@ -441,7 +443,7 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                                     ],
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),

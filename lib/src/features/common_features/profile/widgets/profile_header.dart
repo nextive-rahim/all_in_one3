@@ -8,21 +8,15 @@ import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/common_features/profile/controller/profile_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileHeader extends GetView<ProfileViewController> {
-  const ProfileHeader({
-    super.key,
-    this.isFromcompany = false,
-  });
+  const ProfileHeader({super.key, this.isFromcompany = false});
   final bool isFromcompany;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 15,
-        right: 15,
-        top: 15,
-      ),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -32,10 +26,7 @@ class ProfileHeader extends GetView<ProfileViewController> {
             decoration: BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                width: .1,
-                color: AppColors.lightBlack40,
-              ),
+              border: Border.all(width: .1, color: AppColors.lightBlack40),
               // boxShadow: const [
               //   BoxShadow(
               //     color: Color.fromRGBO(0, 0, 0, 0.1),
@@ -57,10 +48,7 @@ class ProfileHeader extends GetView<ProfileViewController> {
                     height: 100,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        width: 5,
-                        color: AppColors.white,
-                      ),
+                      border: Border.all(width: 5, color: AppColors.white),
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -91,7 +79,7 @@ class ProfileHeader extends GetView<ProfileViewController> {
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                               color: Colors.black,
-                              fontFamily: 'Inter',
+                              fontFamily: 'NotoSerifBengali',
                             ),
                           ),
                         ),
@@ -105,7 +93,7 @@ class ProfileHeader extends GetView<ProfileViewController> {
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color: AppColors.lightBlack40,
-                              fontFamily: 'Inter',
+                              fontFamily: 'NotoSerifBengali',
                             ),
                             children: [
                               TextSpan(
@@ -115,7 +103,7 @@ class ProfileHeader extends GetView<ProfileViewController> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black,
                                   height: 20 / 17,
-                                  fontFamily: 'Inter',
+                                  fontFamily: 'NotoSerifBengali',
                                 ),
                               ),
                             ],
@@ -131,7 +119,7 @@ class ProfileHeader extends GetView<ProfileViewController> {
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color: AppColors.lightBlack40,
-                              fontFamily: 'Inter',
+                              fontFamily: 'NotoSerifBengali',
                             ),
                             children: [
                               TextSpan(
@@ -141,7 +129,7 @@ class ProfileHeader extends GetView<ProfileViewController> {
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black,
                                   height: 20 / 17,
-                                  fontFamily: 'Inter',
+                                  fontFamily: 'NotoSerifBengali',
                                 ),
                               ),
                             ],
@@ -152,8 +140,10 @@ class ProfileHeader extends GetView<ProfileViewController> {
                       GestureDetector(
                         onTap: () {
                           isFromcompany == true
-                              ? Get.toNamed(Routes.companyProfileUpdatePage)
-                              : Get.toNamed(Routes.profileUpdatePage);
+                              ? context.pushNamed(
+                                Routes.companyProfileUpdatePage,
+                              )
+                              : context.pushNamed(Routes.profileUpdatePage);
                         },
                         child: Container(
                           width: 161,
@@ -167,7 +157,9 @@ class ProfileHeader extends GetView<ProfileViewController> {
                             color: Colors.white,
                             shape: RoundedRectangleBorder(
                               side: const BorderSide(
-                                  width: 0.50, color: CommonColor.greyColor5),
+                                width: 0.50,
+                                color: CommonColor.greyColor5,
+                              ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             shadows: const [
@@ -176,7 +168,7 @@ class ProfileHeader extends GetView<ProfileViewController> {
                                 blurRadius: 2,
                                 offset: Offset(0, 1),
                                 spreadRadius: 0,
-                              )
+                              ),
                             ],
                           ),
                           child: Row(
@@ -202,7 +194,7 @@ class ProfileHeader extends GetView<ProfileViewController> {
                         ),
                       ),
                     ],
-                  )
+                  ),
 
                   // Row(
                   //   children: [

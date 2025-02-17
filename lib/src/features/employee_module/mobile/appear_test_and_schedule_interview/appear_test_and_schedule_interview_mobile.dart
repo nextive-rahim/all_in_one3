@@ -9,9 +9,7 @@ import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppearTestAndScheduleInterviewEmployeeMobilePage extends StatefulWidget {
-  const AppearTestAndScheduleInterviewEmployeeMobilePage({
-    super.key,
-  });
+  const AppearTestAndScheduleInterviewEmployeeMobilePage({super.key});
 
   @override
   State<AppearTestAndScheduleInterviewEmployeeMobilePage> createState() =>
@@ -39,54 +37,50 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CommonColor.whiteColor,
+      appBar: AppBar(
+        elevation: 0,
         backgroundColor: CommonColor.whiteColor,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: CommonColor.whiteColor,
-          title: const TextWidget(
-              text: "Back",
-              color: CommonColor.greyColor6,
-              maxLine: 1,
-              fontFamily: AppStrings.inter,
-              fontWeight: FontWeight.w500,
-              fontSize: 16),
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: CommonColor.greyColor6,
-              size: 18,
-            ),
+        title: const TextWidget(
+          text: "Back",
+          color: CommonColor.greyColor6,
+          maxLine: 1,
+          fontFamily: AppStrings.inter,
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+        ),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: CommonColor.greyColor6,
+            size: 18,
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(
-            top: 0,
-            right: 17,
-            left: 20,
-            bottom: 0,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const TextWidget(
-                text: AppStrings.testYourSkills,
-                color: CommonColor.blackColor1,
-                maxLine: 1,
-                fontFamily: AppStrings.aeonikTRIAL,
-                fontWeight: FontWeight.w400,
-                fontSize: 26,
-              ),
-              const SizedBox(height: 15),
-              Container(
-                width: SizeConfig.screenWidth,
-                height: 1,
-                color: CommonColor.greyColor18,
-              ),
-              Expanded(
-                  child: SingleChildScrollView(
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 0, right: 17, left: 20, bottom: 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const TextWidget(
+              text: AppStrings.testYourSkills,
+              color: CommonColor.blackColor1,
+              maxLine: 1,
+              fontFamily: AppStrings.aeonikTRIAL,
+              fontWeight: FontWeight.w400,
+              fontSize: 26,
+            ),
+            const SizedBox(height: 15),
+            Container(
+              width: SizeConfig.screenWidth,
+              height: 1,
+              color: CommonColor.greyColor18,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -109,7 +103,7 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                                     blurRadius: 3.75,
                                     offset: Offset(0, 1.50),
                                     spreadRadius: 0,
-                                  )
+                                  ),
                                 ],
                               ),
                               child: Image.asset(ImageConstant.link3),
@@ -127,51 +121,52 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                         ),
                         const SizedBox(width: 16),
                         const Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextWidget(
-                              text: AppStrings.step01,
-                              color: CommonColor.greyColor12,
-                              maxLine: 1,
-                              fontFamily: AppStrings.sfProDisplay,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                            ),
-                            SizedBox(height: 7),
-                            TextWidget(
-                              text: AppStrings.openYourTestLinkBrowser,
-                              color: CommonColor.blackColor1,
-                              maxLine: 2,
-                              fontFamily: AppStrings.sfProDisplay,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 18,
-                            ),
-                            SizedBox(height: 7),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.lock_outline_rounded,
-                                  size: 12,
-                                  color: CommonColor.greenColor1,
-                                ),
-                                TextWidget(
-                                    text: AppStrings
-                                        .allLinksAreSafeAndVerifiedByOurTeam,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextWidget(
+                                text: AppStrings.step01,
+                                color: CommonColor.greyColor12,
+                                maxLine: 1,
+                                fontFamily: AppStrings.sfProDisplay,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                              ),
+                              SizedBox(height: 7),
+                              TextWidget(
+                                text: AppStrings.openYourTestLinkBrowser,
+                                color: CommonColor.blackColor1,
+                                maxLine: 2,
+                                fontFamily: AppStrings.sfProDisplay,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 18,
+                              ),
+                              SizedBox(height: 7),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.lock_outline_rounded,
+                                    size: 12,
+                                    color: CommonColor.greenColor1,
+                                  ),
+                                  TextWidget(
+                                    text:
+                                        AppStrings
+                                            .allLinksAreSafeAndVerifiedByOurTeam,
                                     color: CommonColor.greyColor6,
                                     maxLine: 2,
                                     fontFamily: AppStrings.sfProDisplay,
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 12),
-                              ],
-                            )
-                          ],
-                        ))
+                                    fontSize: 12,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    const SizedBox(height: 30),
                     Container(
                       width: SizeConfig.screenWidth,
                       height: 62,
@@ -194,14 +189,15 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                             SizedBox(
                               width: SizeConfig.screenWidth! * 0.55,
                               child: const TextWidget(
-                                  text:
-                                      'https://www.flipgrid.com/common-test/assesment.asp',
-                                  underline: TextDecoration.underline,
-                                  color: CommonColor.greyColor11,
-                                  maxLine: 2,
-                                  fontFamily: AppStrings.sfProDisplay,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
+                                text:
+                                    'https://www.flipgrid.com/common-test/assesment.asp',
+                                underline: TextDecoration.underline,
+                                color: CommonColor.greyColor11,
+                                maxLine: 2,
+                                fontFamily: AppStrings.sfProDisplay,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                              ),
                             ),
                             Container(
                               width: 52.46,
@@ -213,8 +209,9 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                                 color: Colors.white,
                                 shape: RoundedRectangleBorder(
                                   side: const BorderSide(
-                                      width: 0.50,
-                                      color: CommonColor.greyColor5),
+                                    width: 0.50,
+                                    color: CommonColor.greyColor5,
+                                  ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 shadows: const [
@@ -223,7 +220,7 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                                     blurRadius: 2,
                                     offset: Offset(0, 1),
                                     spreadRadius: 0,
-                                  )
+                                  ),
                                 ],
                               ),
                               child: Image.asset(
@@ -232,24 +229,21 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                                 width: 15,
                                 color: CommonColor.purpleColor1,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 40,
-                    ),
+                    const SizedBox(height: 40),
                     const TextWidget(
-                        text: AppStrings.pasteYourResultsFromFlipgrid,
-                        color: CommonColor.blackColor2,
-                        maxLine: 1,
-                        fontFamily: AppStrings.sfProDisplay,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16),
-                    const SizedBox(
-                      height: 12,
+                      text: AppStrings.pasteYourResultsFromFlipgrid,
+                      color: CommonColor.blackColor2,
+                      maxLine: 1,
+                      fontFamily: AppStrings.sfProDisplay,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
                     ),
+                    const SizedBox(height: 12),
                     TextFormFieldWidget(
                       controller: _pastlink1Controller,
                       valtext: AppStrings.commonTextVal,
@@ -276,19 +270,16 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                       //   });
                       // },
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    const SizedBox(height: 8),
                     const TextWidget(
-                        text: AppStrings.pleaseEnsureFlipgridOnly,
-                        color: CommonColor.blackColor1,
-                        maxLine: 2,
-                        fontFamily: AppStrings.inter,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                    const SizedBox(
-                      height: 16,
+                      text: AppStrings.pleaseEnsureFlipgridOnly,
+                      color: CommonColor.blackColor1,
+                      maxLine: 2,
+                      fontFamily: AppStrings.inter,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
                     ),
+                    const SizedBox(height: 16),
                     Container(
                       width: 109,
                       height: 44,
@@ -298,7 +289,9 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                         color: CommonColor.blueColor1,
                         shape: RoundedRectangleBorder(
                           side: const BorderSide(
-                              width: 0.50, color: CommonColor.blueColor1),
+                            width: 0.50,
+                            color: CommonColor.blueColor1,
+                          ),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         shadows: const [
@@ -307,28 +300,25 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                             blurRadius: 2,
                             offset: Offset(0, 1),
                             spreadRadius: 0,
-                          )
+                          ),
                         ],
                       ),
                       child: const TextWidget(
-                          text: AppStrings.submit,
-                          color: CommonColor.whiteColor,
-                          maxLine: 1,
-                          fontFamily: AppStrings.inter,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16),
+                        text: AppStrings.submit,
+                        color: CommonColor.whiteColor,
+                        maxLine: 1,
+                        fontFamily: AppStrings.inter,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      ),
                     ),
-                    const SizedBox(
-                      height: 40,
-                    ),
+                    const SizedBox(height: 40),
                     Container(
                       width: SizeConfig.screenWidth,
                       height: 1,
                       color: CommonColor.greyColor18,
                     ),
-                    const SizedBox(
-                      height: 40,
-                    ),
+                    const SizedBox(height: 40),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -347,55 +337,52 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                                     blurRadius: 3.75,
                                     offset: Offset(0, 1.50),
                                     spreadRadius: 0,
-                                  )
+                                  ),
                                 ],
                               ),
-                              child:
-                                  Image.asset(ImageConstant.clipboardDownload),
+                              child: Image.asset(
+                                ImageConstant.clipboardDownload,
+                              ),
                             ),
-                            const SizedBox(
-                              height: 8,
-                            ),
+                            const SizedBox(height: 8),
                             const TextWidget(
-                                text: "02",
-                                color: CommonColor.greyColor11,
-                                maxLine: 1,
-                                fontFamily: AppStrings.sfProDisplay,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16),
+                              text: "02",
+                              color: CommonColor.greyColor11,
+                              maxLine: 1,
+                              fontFamily: AppStrings.sfProDisplay,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
                           ],
                         ),
-                        const SizedBox(
-                          width: 16,
-                        ),
+                        const SizedBox(width: 16),
                         const Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextWidget(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextWidget(
                                 text: AppStrings.step02,
                                 color: CommonColor.greyColor12,
                                 maxLine: 1,
                                 fontFamily: AppStrings.sfProDisplay,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 16),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            TextWidget(
+                                fontSize: 16,
+                              ),
+                              SizedBox(height: 7),
+                              TextWidget(
                                 text: AppStrings.submitYourProjectPortfolioLink,
                                 color: CommonColor.blackColor1,
                                 maxLine: 2,
                                 fontFamily: AppStrings.sfProDisplay,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 18),
-                          ],
-                        ))
+                                fontSize: 18,
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     TextFormFieldWidget(
                       controller: _pastlink2Controller,
                       valtext: AppStrings.commonTextVal,
@@ -428,19 +415,16 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                         });
                       },
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    const SizedBox(height: 8),
                     const TextWidget(
-                        text: AppStrings.pleaseEnterValidGithubURLProceed,
-                        color: CommonColor.greyColor20,
-                        maxLine: 2,
-                        fontFamily: AppStrings.inter,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                    const SizedBox(
-                      height: 10,
+                      text: AppStrings.pleaseEnterValidGithubURLProceed,
+                      color: CommonColor.greyColor20,
+                      maxLine: 2,
+                      fontFamily: AppStrings.inter,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
                     ),
+                    const SizedBox(height: 10),
                     GestureDetector(
                       onTap: () {
                         if (_pastlink2Text!.isNotEmpty) {
@@ -455,12 +439,15 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                         alignment: Alignment.center,
                         clipBehavior: Clip.antiAlias,
                         decoration: ShapeDecoration(
-                          color: _pastlink2Text!.isNotEmpty
-                              ? CommonColor.blueColor1
-                              : Colors.white,
+                          color:
+                              _pastlink2Text!.isNotEmpty
+                                  ? CommonColor.blueColor1
+                                  : Colors.white,
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(
-                                width: 0.50, color: CommonColor.borderColor1),
+                              width: 0.50,
+                              color: CommonColor.borderColor1,
+                            ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           shadows: const [
@@ -469,31 +456,29 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                               blurRadius: 2,
                               offset: Offset(0, 1),
                               spreadRadius: 0,
-                            )
+                            ),
                           ],
                         ),
                         child: TextWidget(
-                            text: AppStrings.saveURL,
-                            color: _pastlink2Text!.isNotEmpty
-                                ? CommonColor.whiteColor
-                                : CommonColor.greyColor5,
-                            maxLine: 1,
-                            fontFamily: AppStrings.inter,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16),
+                          text: AppStrings.saveURL,
+                          color:
+                              _pastlink2Text!.isNotEmpty
+                                  ? CommonColor.whiteColor
+                                  : CommonColor.greyColor5,
+                          maxLine: 1,
+                          fontFamily: AppStrings.inter,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 40,
-                    ),
+                    const SizedBox(height: 40),
                     Container(
                       width: SizeConfig.screenWidth,
                       height: 1,
                       color: CommonColor.greyColor18,
                     ),
-                    const SizedBox(
-                      height: 40,
-                    ),
+                    const SizedBox(height: 40),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -512,54 +497,50 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                                     blurRadius: 3.75,
                                     offset: Offset(0, 1.50),
                                     spreadRadius: 0,
-                                  )
+                                  ),
                                 ],
                               ),
                               child: Image.asset(ImageConstant.userPlus),
                             ),
-                            const SizedBox(
-                              height: 8,
-                            ),
+                            const SizedBox(height: 8),
                             const TextWidget(
-                                text: "03",
-                                color: CommonColor.greyColor11,
-                                maxLine: 1,
-                                fontFamily: AppStrings.sfProDisplay,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16),
+                              text: "03",
+                              color: CommonColor.greyColor11,
+                              maxLine: 1,
+                              fontFamily: AppStrings.sfProDisplay,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
                           ],
                         ),
-                        const SizedBox(
-                          width: 16,
-                        ),
+                        const SizedBox(width: 16),
                         const Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextWidget(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextWidget(
                                 text: AppStrings.step03,
                                 color: CommonColor.greyColor12,
                                 maxLine: 1,
                                 fontFamily: AppStrings.sfProDisplay,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 16),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            TextWidget(
+                                fontSize: 16,
+                              ),
+                              SizedBox(height: 7),
+                              TextWidget(
                                 text: "${AppStrings.requestForInterview}:",
                                 color: CommonColor.blackColor1,
                                 maxLine: 2,
                                 fontFamily: AppStrings.sfProDisplay,
                                 fontWeight: FontWeight.w400,
-                                fontSize: 18),
-                          ],
-                        ))
+                                fontSize: 18,
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 25,
-                    ),
+                    const SizedBox(height: 25),
                     GestureDetector(
                       onTap: () {
                         //if (_activeRequistForInterview) {
@@ -575,7 +556,9 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(
-                                width: 0.50, color: CommonColor.borderColor1),
+                              width: 0.50,
+                              color: CommonColor.borderColor1,
+                            ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           shadows: const [
@@ -584,7 +567,7 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                               blurRadius: 2,
                               offset: Offset(0, 1),
                               spreadRadius: 0,
-                            )
+                            ),
                           ],
                         ),
                         child: Row(
@@ -592,511 +575,499 @@ class _AppearTestAndScheduleInterviewEmployeeMobilePageState
                           children: [
                             Image.asset(
                               ImageConstant.userPlus,
-                              color: _activeRequistForInterview
-                                  ? CommonColor.blackColor4
-                                  : CommonColor.textFieldBorderColor,
+                              color:
+                                  _activeRequistForInterview
+                                      ? CommonColor.blackColor4
+                                      : CommonColor.textFieldBorderColor,
                             ),
-                            const SizedBox(
-                              width: 12,
-                            ),
+                            const SizedBox(width: 12),
                             TextWidget(
-                                text: AppStrings.requestForInterview,
-                                color: _activeRequistForInterview
-                                    ? CommonColor.blackColor4
-                                    : CommonColor.greyColor5,
-                                maxLine: 1,
-                                fontFamily: AppStrings.inter,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
+                              text: AppStrings.requestForInterview,
+                              color:
+                                  _activeRequistForInterview
+                                      ? CommonColor.blackColor4
+                                      : CommonColor.greyColor5,
+                              maxLine: 1,
+                              fontFamily: AppStrings.inter,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                            ),
                           ],
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 70,
-                    ),
+                    const SizedBox(height: 70),
                   ],
                 ),
-              )),
-            ],
-          ),
-        ));
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Future<bool> requestForInterviewBottomSheet() async {
     return await showModalBottomSheet(
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(25.0),
-              ),
-            ),
-            backgroundColor: Colors.transparent,
-            context: context,
-            isScrollControlled: true,
-            isDismissible: false,
-            useRootNavigator: true,
-            builder: (context) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                child: StatefulBuilder(
-                    builder: (BuildContext context, StateSetter setState) {
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+          ),
+          backgroundColor: Colors.transparent,
+          context: context,
+          isScrollControlled: true,
+          isDismissible: false,
+          useRootNavigator: true,
+          builder: (context) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+              child: StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
                   return Container(
-                      height: SizeConfig.screenHeight * 0.85,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        shadows: const [
-                          BoxShadow(
-                            color: Color(0x3F000000),
-                            blurRadius: 100,
-                            offset: Offset(0, 4),
-                            spreadRadius: 5,
-                          )
-                        ],
+                    height: SizeConfig.screenHeight * 0.85,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            right: 20, left: 20, top: 15, bottom: 15),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 90,
-                                height: 2,
-                                color: CommonColor.greyColor18,
-                              ),
-                              const SizedBox(
-                                height: 25,
-                              ),
-                              const TextWidget(
-                                  text: AppStrings.requestForInterview,
-                                  color: CommonColor.blackColor1,
-                                  maxLine: 1,
-                                  fontFamily: AppStrings.aeonikTRIAL,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Text.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Course:',
-                                      style: TextStyle(
-                                        color: CommonColor.greyColor6,
-                                        fontSize: 16,
-                                        fontFamily: AppStrings.sfProDisplay,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text:
-                                          ' React Native IOS and Android App Development for Beginners(WKM025)\n',
-                                      style: TextStyle(
-                                        color: CommonColor.greyColor6,
-                                        fontSize: 16,
-                                        fontFamily: AppStrings.sfProDisplay,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x3F000000),
+                          blurRadius: 100,
+                          offset: Offset(0, 4),
+                          spreadRadius: 5,
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        right: 20,
+                        left: 20,
+                        top: 15,
+                        bottom: 15,
+                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 90,
+                              height: 2,
+                              color: CommonColor.greyColor18,
+                            ),
+                            const SizedBox(height: 25),
+                            const TextWidget(
+                              text: AppStrings.requestForInterview,
+                              color: CommonColor.blackColor1,
+                              maxLine: 1,
+                              fontFamily: AppStrings.aeonikTRIAL,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18,
+                            ),
+                            const SizedBox(height: 10),
+                            const Text.rich(
+                              TextSpan(
                                 children: [
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  const TextWidget(
-                                      text: AppStrings.chooseDate,
-                                      color: CommonColor.blackColor4,
-                                      maxLine: 1,
-                                      fontFamily: AppStrings.inter,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14),
-                                  const SizedBox(
-                                    height: 7,
-                                  ),
-                                  TextDateFieldWidget(
-                                      controller: _chooseDateController,
-                                      valtext: AppStrings.commonTextVal,
-                                      height: 40,
-                                      hintText: "16th May , 2023",
-                                      readOnly: false,
-                                      maxLine: 1,
-                                      keyType: TextInputType.text,
-                                      wordLimit: 100,
-                                      fontFamily: AppStrings.inter,
+                                  TextSpan(
+                                    text: 'Course:',
+                                    style: TextStyle(
+                                      color: CommonColor.greyColor6,
                                       fontSize: 16,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        ' React Native IOS and Android App Development for Beginners(WKM025)\n',
+                                    style: TextStyle(
+                                      color: CommonColor.greyColor6,
+                                      fontSize: 16,
+                                      fontFamily: AppStrings.sfProDisplay,
                                       fontWeight: FontWeight.w400,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          _pastlink2Text = value;
-                                        });
-                                      },
-                                      prefixIcon: const Icon(
-                                        Icons.mail_outline_outlined,
-                                        color: CommonColor.hintTextColor,
-                                      )),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  const TextWidget(
-                                      text: AppStrings.preferredTimeSlotA,
-                                      color: CommonColor.blackColor4,
-                                      maxLine: 1,
-                                      fontFamily: AppStrings.inter,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14),
-                                  const SizedBox(
-                                    height: 7,
-                                  ),
-                                  TextTimeFieldWidget(
-                                    controller: _timeSlotAController,
-                                    valtext: AppStrings.commonTextVal,
-                                    height: 40,
-                                    hintText: "9:00 AM",
-                                    readOnly: false,
-                                    maxLine: 1,
-                                    keyType: TextInputType.text,
-                                    wordLimit: 100,
-                                    fontFamily: AppStrings.inter,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _pastlink2Text = value;
-                                      });
-                                    },
-                                    suffixIcon: const SizedBox(),
-                                  ),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  const TextWidget(
-                                      text: AppStrings.preferredTimeSlotB,
-                                      color: CommonColor.blackColor4,
-                                      maxLine: 1,
-                                      fontFamily: AppStrings.inter,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14),
-                                  const SizedBox(
-                                    height: 7,
-                                  ),
-                                  TextTimeFieldWidget(
-                                    controller: _timeSlotBController,
-                                    valtext: AppStrings.commonTextVal,
-                                    height: 40,
-                                    hintText: "10:00 AM",
-                                    readOnly: false,
-                                    maxLine: 1,
-                                    keyType: TextInputType.text,
-                                    wordLimit: 100,
-                                    fontFamily: AppStrings.inter,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _pastlink2Text = value;
-                                      });
-                                    },
-                                    suffixIcon: const SizedBox(),
+                                    ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  // if (_chooseDateController.text.isEmpty ||
-                                  //     _timeSlotAController.text.isEmpty ||
-                                  //     _timeSlotBController.text.isEmpty) {
-                                  //   Util.displayToast(
-                                  //       context,
-                                  //       AppStrings.plzFillAllFields,
-                                  //       CommonColor.redColors);
-                                  // } else {
-                                  Navigator.pop(context);
-                                  requestSubmittedBottomSheet();
-                                  //}
-                                },
-                                child: Container(
-                                  width: SizeConfig.screenWidth,
-                                  height: 60,
-                                  alignment: Alignment.center,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    color: CommonColor.blueColor1,
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                          width: 0.50,
-                                          color: CommonColor.blueColor1),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    shadows: const [
-                                      BoxShadow(
-                                        color: CommonColor.blackColor3,
-                                        blurRadius: 2,
-                                        offset: Offset(0, 1),
-                                        spreadRadius: 0,
-                                      )
-                                    ],
+                              textAlign: TextAlign.center,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 30),
+                                const TextWidget(
+                                  text: AppStrings.chooseDate,
+                                  color: CommonColor.blackColor4,
+                                  maxLine: 1,
+                                  fontFamily: AppStrings.inter,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                ),
+                                const SizedBox(height: 7),
+                                TextDateFieldWidget(
+                                  controller: _chooseDateController,
+                                  valtext: AppStrings.commonTextVal,
+                                  height: 40,
+                                  hintText: "16th May , 2023",
+                                  readOnly: false,
+                                  maxLine: 1,
+                                  keyType: TextInputType.text,
+                                  wordLimit: 100,
+                                  fontFamily: AppStrings.inter,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _pastlink2Text = value;
+                                    });
+                                  },
+                                  prefixIcon: const Icon(
+                                    Icons.mail_outline_outlined,
+                                    color: CommonColor.hintTextColor,
                                   ),
-                                  child: const TextWidget(
-                                      text: AppStrings.requestForInterview,
-                                      color: CommonColor.whiteColor,
-                                      maxLine: 1,
-                                      fontFamily: AppStrings.inter,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18),
+                                ),
+                                const SizedBox(height: 30),
+                                const TextWidget(
+                                  text: AppStrings.preferredTimeSlotA,
+                                  color: CommonColor.blackColor4,
+                                  maxLine: 1,
+                                  fontFamily: AppStrings.inter,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                ),
+                                const SizedBox(height: 7),
+                                TextTimeFieldWidget(
+                                  controller: _timeSlotAController,
+                                  valtext: AppStrings.commonTextVal,
+                                  height: 40,
+                                  hintText: "9:00 AM",
+                                  readOnly: false,
+                                  maxLine: 1,
+                                  keyType: TextInputType.text,
+                                  wordLimit: 100,
+                                  fontFamily: AppStrings.inter,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _pastlink2Text = value;
+                                    });
+                                  },
+                                  suffixIcon: const SizedBox(),
+                                ),
+                                const SizedBox(height: 30),
+                                const TextWidget(
+                                  text: AppStrings.preferredTimeSlotB,
+                                  color: CommonColor.blackColor4,
+                                  maxLine: 1,
+                                  fontFamily: AppStrings.inter,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                ),
+                                const SizedBox(height: 7),
+                                TextTimeFieldWidget(
+                                  controller: _timeSlotBController,
+                                  valtext: AppStrings.commonTextVal,
+                                  height: 40,
+                                  hintText: "10:00 AM",
+                                  readOnly: false,
+                                  maxLine: 1,
+                                  keyType: TextInputType.text,
+                                  wordLimit: 100,
+                                  fontFamily: AppStrings.inter,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _pastlink2Text = value;
+                                    });
+                                  },
+                                  suffixIcon: const SizedBox(),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 30),
+                            GestureDetector(
+                              onTap: () {
+                                // if (_chooseDateController.text.isEmpty ||
+                                //     _timeSlotAController.text.isEmpty ||
+                                //     _timeSlotBController.text.isEmpty) {
+                                //   Util.displayToast(
+                                //       context,
+                                //       AppStrings.plzFillAllFields,
+                                //       CommonColor.redColors);
+                                // } else {
+                                Navigator.pop(context);
+                                requestSubmittedBottomSheet();
+                                //}
+                              },
+                              child: Container(
+                                width: SizeConfig.screenWidth,
+                                height: 60,
+                                alignment: Alignment.center,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: ShapeDecoration(
+                                  color: CommonColor.blueColor1,
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                      width: 0.50,
+                                      color: CommonColor.blueColor1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  shadows: const [
+                                    BoxShadow(
+                                      color: CommonColor.blackColor3,
+                                      blurRadius: 2,
+                                      offset: Offset(0, 1),
+                                      spreadRadius: 0,
+                                    ),
+                                  ],
+                                ),
+                                child: const TextWidget(
+                                  text: AppStrings.requestForInterview,
+                                  color: CommonColor.whiteColor,
+                                  maxLine: 1,
+                                  fontFamily: AppStrings.inter,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
                                 ),
                               ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  width: SizeConfig.screenWidth,
-                                  height: 60,
-                                  alignment: Alignment.center,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    color: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                          width: 0.50,
-                                          color: CommonColor.greyColor5),
-                                      borderRadius: BorderRadius.circular(8),
+                            ),
+                            const SizedBox(height: 8),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                width: SizeConfig.screenWidth,
+                                height: 60,
+                                alignment: Alignment.center,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: ShapeDecoration(
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                      width: 0.50,
+                                      color: CommonColor.greyColor5,
                                     ),
-                                    shadows: const [
-                                      BoxShadow(
-                                        color: CommonColor.blackColor3,
-                                        blurRadius: 2,
-                                        offset: Offset(0, 1),
-                                        spreadRadius: 0,
-                                      )
-                                    ],
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child: const TextWidget(
-                                      text: AppStrings.cancel,
-                                      color: CommonColor.blackColor4,
-                                      maxLine: 1,
-                                      fontFamily: AppStrings.inter,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18),
+                                  shadows: const [
+                                    BoxShadow(
+                                      color: CommonColor.blackColor3,
+                                      blurRadius: 2,
+                                      offset: Offset(0, 1),
+                                      spreadRadius: 0,
+                                    ),
+                                  ],
+                                ),
+                                child: const TextWidget(
+                                  text: AppStrings.cancel,
+                                  color: CommonColor.blackColor4,
+                                  maxLine: 1,
+                                  fontFamily: AppStrings.inter,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
                                 ),
                               ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(height: 15),
+                          ],
                         ),
-                      ));
-                }),
-              );
-            }) ??
+                      ),
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ) ??
         false; //if showDialouge had returned null, then return false
   }
 
   Future<bool> requestSubmittedBottomSheet() async {
     return await showModalBottomSheet(
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(25.0),
-              ),
-            ),
-            backgroundColor: Colors.transparent,
-            context: context,
-            isScrollControlled: true,
-            isDismissible: false,
-            useRootNavigator: true,
-            builder: (context) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                child: StatefulBuilder(
-                    builder: (BuildContext context, StateSetter setState) {
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+          ),
+          backgroundColor: Colors.transparent,
+          context: context,
+          isScrollControlled: true,
+          isDismissible: false,
+          useRootNavigator: true,
+          builder: (context) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+              child: StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
                   return Container(
-                      height: SizeConfig.screenHeight * 0.85,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        shadows: const [
-                          BoxShadow(
-                            color: Color(0x3F000000),
-                            blurRadius: 100,
-                            offset: Offset(0, 4),
-                            spreadRadius: 5,
-                          )
-                        ],
+                    height: SizeConfig.screenHeight * 0.85,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            right: 47, left: 47, top: 15, bottom: 15),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 90,
-                                height: 2,
-                                color: CommonColor.greyColor18,
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x3F000000),
+                          blurRadius: 100,
+                          offset: Offset(0, 4),
+                          spreadRadius: 5,
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        right: 47,
+                        left: 47,
+                        top: 15,
+                        bottom: 15,
+                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 90,
+                              height: 2,
+                              color: CommonColor.greyColor18,
+                            ),
+                            SizedBox(height: SizeConfig.screenWidth! * 0.25),
+                            Image.asset(
+                              ImageConstant.requestSubmitted,
+                              height: 117,
+                              width: SizeConfig.screenWidth,
+                              fit: BoxFit.fill,
+                            ),
+                            const SizedBox(height: 40),
+                            const TextWidget(
+                              text: AppStrings.requestSubmitted,
+                              color: CommonColor.blackColor1,
+                              maxLine: 1,
+                              fontFamily: AppStrings.aeonikTRIAL,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 24,
+                            ),
+                            const SizedBox(height: 40),
+                            const Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '26th May 2023',
+                                    style: TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 18,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: ' at ',
+                                    style: TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 18,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: '9:00 AM ',
+                                    style: TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 18,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: 'or',
+                                    style: TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 18,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: ' 10:00 AM',
+                                    style: TextStyle(
+                                      color: CommonColor.blackColor1,
+                                      fontSize: 18,
+                                      fontFamily: AppStrings.sfProDisplay,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                height: SizeConfig.screenWidth! * 0.25,
-                              ),
-                              Image.asset(
-                                ImageConstant.requestSubmitted,
-                                height: 117,
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 18),
+                            const TextWidget(
+                              text: AppStrings.wishYouAllTheBest,
+                              color: CommonColor.blackColor2,
+                              maxLine: 1,
+                              fontFamily: AppStrings.aeonikTRIAL,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 18,
+                            ),
+                            const SizedBox(height: 70),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
                                 width: SizeConfig.screenWidth,
-                                fit: BoxFit.fill,
-                              ),
-                              const SizedBox(
-                                height: 40,
-                              ),
-                              const TextWidget(
-                                  text: AppStrings.requestSubmitted,
-                                  color: CommonColor.blackColor1,
-                                  maxLine: 1,
-                                  fontFamily: AppStrings.aeonikTRIAL,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 24),
-                              const SizedBox(
-                                height: 40,
-                              ),
-                              const Text.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: '26th May 2023',
-                                      style: TextStyle(
-                                        color: CommonColor.blackColor1,
-                                        fontSize: 18,
-                                        fontFamily: AppStrings.sfProDisplay,
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                                height: 60,
+                                alignment: Alignment.center,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: ShapeDecoration(
+                                  color: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                      width: 0.50,
+                                      color: CommonColor.greyColor5,
                                     ),
-                                    TextSpan(
-                                      text: ' at ',
-                                      style: TextStyle(
-                                        color: CommonColor.blackColor1,
-                                        fontSize: 18,
-                                        fontFamily: AppStrings.sfProDisplay,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: '9:00 AM ',
-                                      style: TextStyle(
-                                        color: CommonColor.blackColor1,
-                                        fontSize: 18,
-                                        fontFamily: AppStrings.sfProDisplay,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: 'or',
-                                      style: TextStyle(
-                                        color: CommonColor.blackColor1,
-                                        fontSize: 18,
-                                        fontFamily: AppStrings.sfProDisplay,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: ' 10:00 AM',
-                                      style: TextStyle(
-                                        color: CommonColor.blackColor1,
-                                        fontSize: 18,
-                                        fontFamily: AppStrings.sfProDisplay,
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  shadows: const [
+                                    BoxShadow(
+                                      color: CommonColor.blackColor3,
+                                      blurRadius: 2,
+                                      offset: Offset(0, 1),
+                                      spreadRadius: 0,
                                     ),
                                   ],
                                 ),
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(
-                                height: 18,
-                              ),
-                              const TextWidget(
-                                  text: AppStrings.wishYouAllTheBest,
-                                  color: CommonColor.blackColor2,
-                                  maxLine: 1,
-                                  fontFamily: AppStrings.aeonikTRIAL,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 18),
-                              const SizedBox(
-                                height: 70,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  width: SizeConfig.screenWidth,
-                                  height: 60,
-                                  alignment: Alignment.center,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: ShapeDecoration(
-                                    color: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      side: const BorderSide(
-                                          width: 0.50,
-                                          color: CommonColor.greyColor5),
-                                      borderRadius: BorderRadius.circular(8),
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.check),
+                                    SizedBox(width: 8),
+                                    TextWidget(
+                                      text: AppStrings.okGotIt,
+                                      color: CommonColor.blackColor4,
+                                      maxLine: 1,
+                                      fontFamily: AppStrings.inter,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18,
                                     ),
-                                    shadows: const [
-                                      BoxShadow(
-                                        color: CommonColor.blackColor3,
-                                        blurRadius: 2,
-                                        offset: Offset(0, 1),
-                                        spreadRadius: 0,
-                                      )
-                                    ],
-                                  ),
-                                  child: const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(Icons.check),
-                                      SizedBox(
-                                        width: 8,
-                                      ),
-                                      TextWidget(
-                                          text: AppStrings.okGotIt,
-                                          color: CommonColor.blackColor4,
-                                          maxLine: 1,
-                                          fontFamily: AppStrings.inter,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 18),
-                                    ],
-                                  ),
+                                  ],
                                 ),
                               ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(height: 15),
+                          ],
                         ),
-                      ));
-                }),
-              );
-            }) ??
+                      ),
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ) ??
         false; //if showDialouge had returned null, then return false
   }
 }

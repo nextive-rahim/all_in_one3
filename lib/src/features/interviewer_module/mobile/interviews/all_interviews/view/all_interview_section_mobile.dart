@@ -2,6 +2,8 @@ import 'package:all_in_one3/src/core/extension/string_extension.dart';
 import 'package:all_in_one3/src/core/gobal_function.dart';
 import 'package:all_in_one3/src/core/page_state/state.dart';
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_keys.dart';
+import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/image_constant.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
@@ -15,6 +17,7 @@ import 'package:all_in_one3/src/features/interviewer_module/mobile/interviews/al
 import 'package:all_in_one3/src/features/interviewer_module/mobile/interviews/all_interviews/widgets/interview_card_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 part '../widgets/all_interviews_builder.dart';
 part '../widgets/completed_interview_builder.dart';
 part '../widgets/confirmed_interview_builder.dart';
@@ -38,21 +41,19 @@ class AllInterviewsSection extends GetView<AllInterviewsViewController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Obx(
-                () {
-                  if (controller.pageState == PageState.loading) {
-                    return const InterviewCardLoading();
-                  }
-                  return const CommonTabSection(
-                    firstTabViewItems: [AllInterviewsBuilder()],
-                    secondTabViewItems: [ConfirmInterviewsBuilder()],
-                    thirdTabViewItems: [CompletedInterviewsBuilder()],
-                    title1: 'Interviews Request',
-                    title2: 'Confirmed Interviews',
-                    title3: 'Completed Interviews',
-                  );
-                },
-              ),
+              Obx(() {
+                if (controller.pageState == PageState.loading) {
+                  return const InterviewCardLoading();
+                }
+                return const CommonTabSection(
+                  firstTabViewItems: [AllInterviewsBuilder()],
+                  secondTabViewItems: [ConfirmInterviewsBuilder()],
+                  thirdTabViewItems: [CompletedInterviewsBuilder()],
+                  title1: 'Interviews Request',
+                  title2: 'Confirmed Interviews',
+                  title3: 'Completed Interviews',
+                );
+              }),
             ],
           ),
         ),

@@ -12,10 +12,7 @@ class SubmittedInterviewFeedbackViewController extends GetxController {
   final Rx<PageState> _pageStateController = Rx(PageState.initial);
 
   get pageState => _pageStateController.value;
-  Future<void> submittedInterviewFeedBack(
-    int id,
-    String feedbackMsg,
-  ) async {
+  Future<void> submittedInterviewFeedBack(int id, String feedbackMsg) async {
     _pageStateController(PageState.loading);
     Map<String, dynamic> body = {
       "schedule_interview_id": id,
@@ -34,15 +31,9 @@ class SubmittedInterviewFeedbackViewController extends GetxController {
     }
   }
 
-  Future<void> editFeedback(
-    int id,
-    String feedbackMsg,
-  ) async {
+  Future<void> editFeedback(int id, String feedbackMsg) async {
     _pageStateController(PageState.loading);
-    Map<String, dynamic> body = {
-      "id": id,
-      "feedback_content": feedbackMsg,
-    };
+    Map<String, dynamic> body = {"id": id, "feedback_content": feedbackMsg};
 
     try {
       await repository.editFeedback(body);

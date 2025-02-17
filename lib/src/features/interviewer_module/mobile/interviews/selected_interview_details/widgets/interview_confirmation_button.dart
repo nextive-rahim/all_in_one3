@@ -35,21 +35,23 @@ class _InterviewConfarmationButtonState
     final controller3 = Get.put(AllInterviewsViewController());
     return GestureDetector(
       onTap: () {
-        controller.confirmInterviewRequest(widget.interview.id!).then((value) {
-          controller3.getAllInterviews();
-          Get.put(SendNotificationViewController()).sendNotification(
+        controller.confirmInterviewRequest(widget.interview.id!).then(
+          (value) {
+            controller3.getAllInterviews();
+            Get.put(SendNotificationViewController()).sendNotification(
               userId: widget.interview.userId,
-              text: controller.interviewLInk.text);
-          interviewConfirmedBottomSheet(
-            date: widget.selectedDate,
-            time: widget.selectedTime,
-            interview: widget.interview,
-          );
-
-          controller.interviewLInk.clear();
-        }
-            // },
+              text: controller.interviewLInk.text,
             );
+            interviewConfirmedBottomSheet(
+              date: widget.selectedDate,
+              time: widget.selectedTime,
+              interview: widget.interview,
+            );
+
+            controller.interviewLInk.clear();
+          },
+          // },
+        );
       },
       child: Container(
         width: SizeConfig.screenWidth,
@@ -68,7 +70,7 @@ class _InterviewConfarmationButtonState
               blurRadius: 2,
               offset: Offset(0, 1),
               spreadRadius: 0,
-            )
+            ),
           ],
         ),
         child: const TextWidget(
@@ -90,9 +92,7 @@ class _InterviewConfarmationButtonState
   }) async {
     return await showModalBottomSheet(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(25.0),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
           ),
           backgroundColor: Colors.transparent,
           context: context,
@@ -101,11 +101,7 @@ class _InterviewConfarmationButtonState
           useRootNavigator: true,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.only(
-                left: 0,
-                right: 0,
-                bottom: 20,
-              ),
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 20),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
                   return Container(
@@ -122,7 +118,7 @@ class _InterviewConfarmationButtonState
                           blurRadius: 100,
                           offset: Offset(0, 4),
                           spreadRadius: 5,
-                        )
+                        ),
                       ],
                     ),
                     child: Padding(
@@ -148,7 +144,8 @@ class _InterviewConfarmationButtonState
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage(
-                                      ImageConstant.requestSubmitted),
+                                    ImageConstant.requestSubmitted,
+                                  ),
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -223,8 +220,9 @@ class _InterviewConfarmationButtonState
                                   color: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
-                                        width: 0.50,
-                                        color: CommonColor.greyColor5),
+                                      width: 0.50,
+                                      color: CommonColor.greyColor5,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -233,16 +231,14 @@ class _InterviewConfarmationButtonState
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(Icons.check),
-                                    SizedBox(
-                                      width: 8,
-                                    ),
+                                    SizedBox(width: 8),
                                     TextWidget(
                                       text: AppStrings.okGotIt,
                                       color: CommonColor.blackColor4,

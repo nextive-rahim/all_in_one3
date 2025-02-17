@@ -11,9 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DashboardRegFirstTimeWebLarge extends StatefulWidget {
-  const DashboardRegFirstTimeWebLarge({
-    super.key,
-  });
+  const DashboardRegFirstTimeWebLarge({super.key});
 
   @override
   State<DashboardRegFirstTimeWebLarge> createState() =>
@@ -103,7 +101,7 @@ class _DashboardRegFirstTimeWebLargeState
                                   blurRadius: 50,
                                   offset: Offset(0, 4),
                                   spreadRadius: 0,
-                                )
+                                ),
                               ],
                             ),
                             child: TextFormFieldSearchWidget(
@@ -119,8 +117,9 @@ class _DashboardRegFirstTimeWebLargeState
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
                               onChanged: (value) {
-                                studentDashboardController
-                                    .searchHomeCourse(value);
+                                studentDashboardController.searchHomeCourse(
+                                  value,
+                                );
                               },
                               suffixIcon: const Icon(
                                 Icons.close,
@@ -182,10 +181,10 @@ class _DashboardRegFirstTimeWebLargeState
                                       ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -204,13 +203,14 @@ class _DashboardRegFirstTimeWebLargeState
                             Row(
                               children: [
                                 const TextWidget(
-                                    textAlign: TextAlign.center,
-                                    text: AppStrings.latestCourses,
-                                    color: CommonColor.headingTextColor1,
-                                    maxLine: 1,
-                                    fontFamily: AppStrings.aeonikTRIAL,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 30),
+                                  textAlign: TextAlign.center,
+                                  text: AppStrings.latestCourses,
+                                  color: CommonColor.headingTextColor1,
+                                  maxLine: 1,
+                                  fontFamily: AppStrings.aeonikTRIAL,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 30,
+                                ),
                                 SizedBox(width: _sizeConfig.getSize(8)),
                                 const TextWidget(
                                   textAlign: TextAlign.center,
@@ -223,9 +223,7 @@ class _DashboardRegFirstTimeWebLargeState
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              height: _sizeConfig.getSize(31),
-                            ),
+                            SizedBox(height: _sizeConfig.getSize(31)),
                             // Obx(
                             //   () {
                             //     if (studentDashboardController.pageState ==
@@ -349,7 +347,7 @@ class _DashboardRegFirstTimeWebLargeState
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

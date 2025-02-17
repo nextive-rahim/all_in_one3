@@ -14,12 +14,11 @@ class LogoutButton extends StatelessWidget {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: const Center(
-                child: Text('Are you sure?'),
-              ),
+              title: const Center(child: Text('Are you sure?')),
               content: const SingleChildScrollView(
                 child: SelectableText(
-                    'Once logged out, you will need to login again to access this app.'),
+                  'Once logged out, you will need to login again to access this app.',
+                ),
               ),
               actions: [
                 TextButton(
@@ -36,16 +35,13 @@ class LogoutButton extends StatelessWidget {
                     'OK',
                     style: TextStyle(color: CommonColor.redColors),
                   ),
-                )
+                ),
               ],
             );
           },
         );
       },
-      child: const Icon(
-        Icons.logout_outlined,
-        color: AppColors.red,
-      ),
+      child: const Icon(Icons.logout_outlined, color: AppColors.red),
     );
   }
 }

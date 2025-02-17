@@ -26,16 +26,18 @@ class InterviewDetailsHeader extends StatelessWidget {
         Row(
           children: [
             Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(50)),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+              ),
               height: 80,
               width: 80,
               child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.network(
-                    user?.image ?? noImageFound,
-                    fit: BoxFit.fill,
-                  )),
+                borderRadius: BorderRadius.circular(50),
+                child: Image.network(
+                  user?.image ?? noImageFound,
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
             const SizedBox(width: 20),
             Column(
@@ -117,7 +119,7 @@ class InterviewDetailsHeader extends StatelessWidget {
                     color: CommonColor.blueColor1,
                     height: 15,
                     width: 15,
-                  )
+                  ),
                 ],
               ),
             ),

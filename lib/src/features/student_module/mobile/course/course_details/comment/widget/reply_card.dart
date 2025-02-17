@@ -11,10 +11,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ReplyCard extends StatefulWidget {
-  const ReplyCard({
-    super.key,
-    required this.comment,
-  });
+  const ReplyCard({super.key, required this.comment});
   final ViewCommentResponseData comment;
   @override
   State<ReplyCard> createState() => _ReplyCardState();
@@ -36,15 +33,15 @@ class _ReplyCardState extends State<ReplyCard> {
             width: 50,
             height: 50,
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.network(profileController.userModel?.image ?? '')
+              borderRadius: BorderRadius.circular(50),
+              child: Image.network(profileController.userModel?.image ?? ''),
 
-                //  AppCachedNetworkImage(
-                //   imageUrl: profileController.userModel?.image,
-                //   cachedHeight: 131,
-                //   cachedWidth: 131,
-                // ),
-                ),
+              //  AppCachedNetworkImage(
+              //   imageUrl: profileController.userModel?.image,
+              //   cachedHeight: 131,
+              //   cachedWidth: 131,
+              // ),
+            ),
           ),
           const SizedBox(width: 15),
           Column(

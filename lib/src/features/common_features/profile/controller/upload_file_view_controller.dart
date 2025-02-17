@@ -25,9 +25,7 @@ class UploadFileViewController extends GetxController {
   Future<void> uploadFile(String fileLink) async {
     _pageStateController(PageState.loading);
 
-    Map<String, dynamic> requestBody = {
-      'avatar': fileLink,
-    };
+    Map<String, dynamic> requestBody = {'avatar': fileLink};
 
     Log.debug(requestBody.toString());
 

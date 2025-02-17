@@ -29,16 +29,19 @@ class SkillBuilderState extends State<SkillBuilder> {
         itemCount: controller.skillsList.length,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          final bool alreadyAssinged = widget.selectedSkillIdList
-              .any((v) => v == controller.skillsList[index].id);
+          final bool alreadyAssinged = widget.selectedSkillIdList.any(
+            (v) => v == controller.skillsList[index].id,
+          );
           return SkillCard(
             onTap: () {
               selectedsID(controller.skillsList[index]);
             },
             course: controller.skillsList[index],
-            isSelectItem: alreadyAssinged ||
-                widget.selectedSkillIdList
-                    .contains(controller.skillsList[index].id),
+            isSelectItem:
+                alreadyAssinged ||
+                widget.selectedSkillIdList.contains(
+                  controller.skillsList[index].id,
+                ),
           );
         },
       ),

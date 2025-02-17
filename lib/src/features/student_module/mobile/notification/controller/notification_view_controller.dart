@@ -45,9 +45,7 @@ class NotificationViewController extends GetxController {
   Future<RegistrationResponseModel> sendNotification(int id) async {
     _pageStateController(PageState.loading);
 
-    Map<String, dynamic> body = {
-      "company_job_id": id,
-    };
+    Map<String, dynamic> body = {"company_job_id": id};
 
     try {
       final res = await _repository.sendNotification(body);

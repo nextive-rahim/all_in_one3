@@ -14,11 +14,10 @@ import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/forget_password/controller/forget_password_email_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 class ForgetPasswordEmailPage extends StatefulWidget {
-  const ForgetPasswordEmailPage({
-    super.key,
-  });
+  const ForgetPasswordEmailPage({super.key});
 
   @override
   State<ForgetPasswordEmailPage> createState() =>
@@ -26,7 +25,7 @@ class ForgetPasswordEmailPage extends StatefulWidget {
 }
 
 class _ForgetPasswordEmailPageState extends State<ForgetPasswordEmailPage> {
-  final controller = Get.find<ForgetPasswordEmailViewController>();
+  final controller = Get.put(ForgetPasswordEmailViewController());
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -36,64 +35,62 @@ class _ForgetPasswordEmailPageState extends State<ForgetPasswordEmailPage> {
       //   title: const Text('Verify Mail'),
       // ),
       backgroundColor: CommonColor.whiteColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  _headerNotMounted(),
-                  const SizedBox(height: 30),
-                  Container(
-                    width: SizeConfig.screenWidth,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: CommonColor.whiteColor,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: CommonColor.greyColor,
-                          blurRadius: 0.5,
-                          spreadRadius: 0.1,
-                          offset: Offset(
-                            0.0, // Move to right 7.0 horizontally
-                            0.0, // Move to bottom 8.0 Vertically
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                _headerNotMounted(),
+                const SizedBox(height: 30),
+                Container(
+                  width: SizeConfig.screenWidth,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: CommonColor.whiteColor,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: CommonColor.greyColor,
+                        blurRadius: 0.5,
+                        spreadRadius: 0.1,
+                        offset: Offset(
+                          0.0, // Move to right 7.0 horizontally
+                          0.0, // Move to bottom 8.0 Vertically
+                        ),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(21.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        OutlinedInputField(
+                          autofocus: true,
+                          labelText: AppStrings.username,
+                          controller: controller.userNameController,
+                          hintText: AppStrings.hitTextUsername,
+                          validator: InputFieldValidator.email(),
+                        ),
+                        const SizedBox(height: 30),
+                        Obx(
+                          () => PrimaryButton(
+                            isLoading:
+                                controller.pageState == PageState.loading,
+                            onTap: onTap,
+                            widget: const Text('Submit')
+                                .fontSize(16)
+                                .bold(FontWeight.w600)
+                                .color(AppColors.white),
                           ),
-                        )
+                        ),
+                        const SizedBox(height: 30),
                       ],
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(21.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          OutlinedInputField(
-                            autofocus: true,
-                            labelText: AppStrings.username,
-                            controller: controller.userNameController,
-                            hintText: AppStrings.hitTextUsername,
-                            validator: InputFieldValidator.email(),
-                          ),
-                          const SizedBox(height: 30),
-                          Obx(
-                            () => PrimaryButton(
-                              isLoading:
-                                  controller.pageState == PageState.loading,
-                              onTap: onTap,
-                              widget: const Text('Submit')
-                                  .fontSize(16)
-                                  .bold(FontWeight.w600)
-                                  .color(AppColors.white),
-                            ),
-                          ),
-                          const SizedBox(height: 30),
-                        ],
-                      ),
-                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -114,9 +111,7 @@ class _ForgetPasswordEmailPageState extends State<ForgetPasswordEmailPage> {
             fit: BoxFit.fill,
           ),
         ),
-        const SizedBox(
-          height: 7,
-        ),
+        const SizedBox(height: 7),
         const TextWidget(
           text: 'Enter Your Email',
           color: CommonColor.headingTextColor1,
@@ -150,9 +145,10 @@ class _ForgetPasswordEmailPageState extends State<ForgetPasswordEmailPage> {
         );
       } else {
         SnackBarService.showInfoSnackBar(
-            controller.loginModel.message.toString());
-
-        Get.toNamed(Routes.otpVerification);
+          controller.loginModel.message.toString(),
+        );
+        context.pushNamed(Routes.otpVerification);
+        // Get.toNamed(Routes.otpVerification);
       }
     });
   }

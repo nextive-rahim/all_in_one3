@@ -50,10 +50,13 @@ class StudentHomeViewController extends GetxController {
     Util.log(searchText);
     String searchLowerCase = searchText.toLowerCase();
     if (searchText.isNotEmpty) {
-      searchCourse.value = categoryWiseCourse
-          .where((element) =>
-              ((element.title!).toLowerCase().contains(searchLowerCase)))
-          .toList();
+      searchCourse.value =
+          categoryWiseCourse
+              .where(
+                (element) =>
+                    ((element.title!).toLowerCase().contains(searchLowerCase)),
+              )
+              .toList();
 
       update();
     } else {

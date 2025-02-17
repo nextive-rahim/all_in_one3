@@ -3,10 +3,7 @@ import 'package:all_in_one3/src/core/network/rest_client.dart';
 
 class StudentHomeRepository {
   Future<dynamic> fetchStudentDashboard() async {
-    final res = await RestClient.dev().get(
-      APIType.PROTECTED,
-      API.dashboardUrl,
-    );
+    final res = await RestClient.dev().get(APIType.PROTECTED, API.dashboardUrl);
     return res.data;
   }
 

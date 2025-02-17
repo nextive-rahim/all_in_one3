@@ -30,7 +30,9 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 side: const BorderSide(
-                    width: 0.50, color: CommonColor.greyColor5),
+                  width: 0.50,
+                  color: CommonColor.greyColor5,
+                ),
                 borderRadius: BorderRadius.circular(8),
               ),
               shadows: const [
@@ -39,7 +41,7 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
                   blurRadius: 2,
                   offset: Offset(0, 1),
                   spreadRadius: 0,
-                )
+                ),
               ],
             ),
             child: Row(
@@ -51,9 +53,7 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
                   width: 25,
                   height: 25,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 const TextWidget(
                   text: AppStrings.call,
                   color: CommonColor.purpleColor1,
@@ -80,7 +80,9 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 side: const BorderSide(
-                    width: 0.50, color: CommonColor.greyColor5),
+                  width: 0.50,
+                  color: CommonColor.greyColor5,
+                ),
                 borderRadius: BorderRadius.circular(8),
               ),
               shadows: const [
@@ -89,7 +91,7 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
                   blurRadius: 2,
                   offset: Offset(0, 1),
                   spreadRadius: 0,
-                )
+                ),
               ],
             ),
             child: Row(
@@ -101,9 +103,7 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
                   width: 25,
                   height: 25,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 const TextWidget(
                   text: AppStrings.email,
                   color: CommonColor.purpleColor1,
