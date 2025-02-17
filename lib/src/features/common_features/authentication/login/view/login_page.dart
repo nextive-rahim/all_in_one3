@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     AuthHeader(
                       title: 'Login to your account',
-                      subtitle: 'Hey ✋ Welcome back!',
+                      subtitle: 'Hey ✋ welcome back!',
                     ),
                     const SizedBox(height: 30),
                     Container(

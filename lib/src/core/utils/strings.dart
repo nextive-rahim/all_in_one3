@@ -21,7 +21,7 @@ class AppStrings {
   static const mininumJobExperience = 'Minimun Job Experience';
   static const hintTextToHelpUser = 'This is a hint text to help user.';
   static const password = 'Password';
-  static const passwordHintext = 'Type in your password';
+  static const passwordHintext = 'Enter password';
   static const oldPassword = 'Old Password';
   static const newPassword = 'New Password';
   static const passHintText = 'Type in your password';
@@ -97,7 +97,7 @@ class AppStrings {
     'Includes up to 10 users, 20GB indiviual data and access to all features.',
     '',
     'Includes up to 20 users, 40GB indiviual data and access to all features.',
-    'Unlimited users, unlimited individual data and access to all features.'
+    'Unlimited users, unlimited individual data and access to all features.',
   ];
 
   static const dashboardFistTimeListEmp = [
@@ -116,6 +116,7 @@ class AppStrings {
   ];
 
   static const confirmPassword = 'Confirm Password';
+  static const confirmPasswordAgain = 'Enter password again';
   static const confirmYourPassword = 'Confirm your password';
   static const createMyAccount = 'Create my account';
 
@@ -148,7 +149,7 @@ class AppStrings {
   static const courseContentList = [
     'Section 01: Introduction',
     'Section 02: Theory',
-    'Section 03: Quantives'
+    'Section 03: Quantives',
   ];
   static const courseContentSubList = [
     [
@@ -162,11 +163,7 @@ class AppStrings {
       'React: Founder and History3',
       'React: Founder and History4',
     ],
-    [
-      'Tokenization History1',
-      'Tokenization History2',
-      'Tokenization History3',
-    ]
+    ['Tokenization History1', 'Tokenization History2', 'Tokenization History3'],
   ];
 
   static const appliedJobs = 'Applied Jobs';

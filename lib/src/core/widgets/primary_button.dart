@@ -6,7 +6,7 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.onTap,
     this.isLoading = false,
-     this.widget,
+    this.widget,
     this.backgroundColor,
     this.title,
   });
@@ -49,13 +49,13 @@ class PrimaryButton extends StatelessWidget {
                 )
                 : widget ??
                     Text(
-                      title??'',
+                      title ?? '',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,
-                        height: 1.56,
+                        // height: 1.56,
                       ),
                     ),
       ),

@@ -37,7 +37,7 @@ class OTPverificationPageState extends State<OTPverificationPage> {
               child: Column(
                 children: [
                   AuthHeader(
-                    title: 'Enter Your OTP',
+                    title: 'Enter your otp',
                     subtitle: 'Enter otp to verify email',
                   ),
                   const SizedBox(height: 30),

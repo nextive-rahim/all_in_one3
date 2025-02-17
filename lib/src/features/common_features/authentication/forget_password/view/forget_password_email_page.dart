@@ -40,7 +40,7 @@ class _ForgetPasswordEmailPageState extends State<ForgetPasswordEmailPage> {
               child: Column(
                 children: [
                   AuthHeader(
-                    title: 'Enter Your Email',
+                    title: 'Enter your email',
                     subtitle: 'Enter email to reset password',
                   ),
                   const SizedBox(height: 30),
