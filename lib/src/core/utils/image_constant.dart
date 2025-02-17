@@ -14,6 +14,10 @@ class ImageConstant {
   static String employees = 'assets/images/employees.png';
   static String job2 = 'assets/images/job2.png';
   static String mail = 'assets/images/mail.png';
+  static String studenIcom = 'assets/images/student_icon.png';
+  static String interviewerIcon = 'assets/images/interviewer_icon.png';
+  static String comnpanyIcon = 'assets/images/company_icon.png';
+  static String selectedCheck = 'assets/images/selected_check.png';
   static String notification = 'assets/images/notification.png';
 
   static String thumbnail1 = 'assets/images/thumbnail1.png';

@@ -87,10 +87,10 @@ class AppStrings {
   ];
 
   static const chooseEngagementContetTitles = [
-    'Student \$10/month',
+    'Student ',
     '',
-    'Company \$80/month',
-    'Interviewer \$20/month',
+    'Company ',
+    'Interviewer ',
   ];
 
   static const chooseEngagementContents = [

@@ -10,7 +10,9 @@ import 'package:all_in_one3/src/core/validators/input_form_validators.dart';
 import 'package:all_in_one3/src/core/widgets/primary_button.dart';
 import 'package:all_in_one3/src/core/widgets/text_form_field.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
+import 'package:all_in_one3/src/features/common_features/authentication/forget_password/view/forget_password_email_page.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/login/controller/login_view_controller.dart';
+import 'package:all_in_one3/src/features/common_features/authentication/registration/view/choose_engagement_page.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/root/widgets/auth_header.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +93,16 @@ class _LoginPageState extends State<LoginPage> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Get.toNamed(Routes.forgetPasswordEmailPage);
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute<
+                                        ForgetPasswordEmailPage
+                                      >(
+                                        builder:
+                                            (BuildContext context) =>
+                                                ForgetPasswordEmailPage(),
+                                      ),
+                                    );
+                                    // Get.toNamed(Routes.forgetPasswordEmailPage);
                                   },
                                   child: Text(
                                     'Forgot password?',
@@ -145,7 +156,14 @@ class _LoginPageState extends State<LoginPage> {
                                 const SizedBox(width: 10),
                                 GestureDetector(
                                   onTap: () {
-                                    Get.toNamed(Routes.engagement);
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute<ChooseEngagementPage>(
+                                        builder:
+                                            (BuildContext context) =>
+                                                ChooseEngagementPage(),
+                                      ),
+                                    );
+                                    //  Get.toNamed(Routes.engagement);
                                   },
                                   child: Text(
                                     AppStrings.registerNow,

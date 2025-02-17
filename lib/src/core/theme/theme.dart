@@ -3,6 +3,13 @@ import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 ThemeData themeData = ThemeData(
+
+ pageTransitionsTheme: PageTransitionsTheme(
+    builders: Map<TargetPlatform, PageTransitionsBuilder>.fromIterable(
+      TargetPlatform.values,
+      value: (_) => const FadeForwardsPageTransitionsBuilder(),
+    ),
+  ),
   fontFamily: 'Inter',
   scaffoldBackgroundColor: CommonColor.whiteColor,
   appBarTheme: const AppBarTheme(
