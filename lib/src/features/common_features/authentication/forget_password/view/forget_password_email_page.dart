@@ -1,24 +1,19 @@
-import 'package:all_in_one3/src/core/extension/text_extension.dart';
 import 'package:all_in_one3/src/core/page_state/state.dart';
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
-import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
 import 'package:all_in_one3/src/core/validators/input_form_validators.dart';
 import 'package:all_in_one3/src/core/widgets/primary_button.dart';
 import 'package:all_in_one3/src/core/widgets/text_form_field.dart';
-import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/common_features/authentication/forget_password/controller/forget_password_email_view_controller.dart';
+import 'package:all_in_one3/src/features/common_features/authentication/root/widgets/auth_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ForgetPasswordEmailPage extends StatefulWidget {
-  const ForgetPasswordEmailPage({
-    super.key,
-  });
+  const ForgetPasswordEmailPage({super.key});
 
   @override
   State<ForgetPasswordEmailPage> createState() =>
@@ -44,7 +39,10 @@ class _ForgetPasswordEmailPageState extends State<ForgetPasswordEmailPage> {
               key: _formKey,
               child: Column(
                 children: [
-                  _headerNotMounted(),
+                  AuthHeader(
+                    title: 'Enter Your Email',
+                    subtitle: 'Enter email to reset password',
+                  ),
                   const SizedBox(height: 30),
                   Container(
                     width: SizeConfig.screenWidth,
@@ -53,14 +51,11 @@ class _ForgetPasswordEmailPageState extends State<ForgetPasswordEmailPage> {
                       color: CommonColor.whiteColor,
                       boxShadow: const [
                         BoxShadow(
-                          color: CommonColor.greyColor,
-                          blurRadius: 0.5,
-                          spreadRadius: 0.1,
-                          offset: Offset(
-                            0.0, // Move to right 7.0 horizontally
-                            0.0, // Move to bottom 8.0 Vertically
-                          ),
-                        )
+                          color: Color(0x19000000),
+                          blurRadius: 80,
+                          offset: Offset(0, 4),
+                          spreadRadius: 0,
+                        ),
                       ],
                     ),
                     child: Padding(
@@ -75,19 +70,20 @@ class _ForgetPasswordEmailPageState extends State<ForgetPasswordEmailPage> {
                             hintText: AppStrings.hitTextUsername,
                             validator: InputFieldValidator.email(),
                           ),
-                          const SizedBox(height: 30),
+                          const SizedBox(height: 20),
                           Obx(
                             () => PrimaryButton(
                               isLoading:
                                   controller.pageState == PageState.loading,
                               onTap: onTap,
-                              widget: const Text('Submit')
-                                  .fontSize(16)
-                                  .bold(FontWeight.w600)
-                                  .color(AppColors.white),
+                              title: 'Submit',
+                              //   widget: const Text('Submit')
+                              //       .fontSize(16)
+                              //       .bold(FontWeight.w600)
+                              //       .color(AppColors.white),
                             ),
                           ),
-                          const SizedBox(height: 30),
+                          // const SizedBox(height: 30),
                         ],
                       ),
                     ),
@@ -98,43 +94,6 @@ class _ForgetPasswordEmailPageState extends State<ForgetPasswordEmailPage> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _headerNotMounted() {
-    return Column(
-      children: [
-        Container(
-          width: SizeConfig.screenWidth,
-          alignment: Alignment.center,
-          child: Image.asset(
-            ImageConstant.appLogo,
-            height: 75,
-            width: 75,
-            fit: BoxFit.fill,
-          ),
-        ),
-        const SizedBox(
-          height: 7,
-        ),
-        const TextWidget(
-          text: 'Enter Your Email',
-          color: CommonColor.headingTextColor1,
-          maxLine: 1,
-          fontFamily: AppStrings.aeonikTRIAL,
-          fontWeight: FontWeight.w700,
-          fontSize: 28,
-        ),
-        const SizedBox(height: 10),
-        const TextWidget(
-          text: AppStrings.welcomeMsgReg,
-          color: CommonColor.headingTextColor1,
-          maxLine: 1,
-          fontFamily: AppStrings.sfProDisplay,
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
-        ),
-      ],
     );
   }
 
@@ -150,7 +109,8 @@ class _ForgetPasswordEmailPageState extends State<ForgetPasswordEmailPage> {
         );
       } else {
         SnackBarService.showInfoSnackBar(
-            controller.loginModel.message.toString());
+          controller.loginModel.message.toString(),
+        );
 
         Get.toNamed(Routes.otpVerification);
       }
