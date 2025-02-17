@@ -6,52 +6,62 @@ class _CompanyJobCandidateProfileHeader
   // final UserModel userModel;
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: 76,
-            height: 76,
-            alignment: Alignment.center,
-            decoration: const ShapeDecoration(
-              color: CommonColor.greyColor15,
-              shape: CircleBorder(),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(50),
-              child: Image.network(
-                controller.userModel?.image ?? '',
-                cacheHeight: 129,
-                cacheWidth: 199,
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.network(noImageFound);
-                },
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 76,
+          height: 76,
+          alignment: Alignment.center,
+          decoration: const ShapeDecoration(
+            color: CommonColor.greyColor15,
+            shape: CircleBorder(),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: Image.network(
+              controller.userModel?.image ?? '',
+              cacheHeight: 129,
+              cacheWidth: 199,
+              errorBuilder: (context, error, stackTrace) {
+                return Image.network(noImageFound);
+              },
             ),
           ),
-          const SizedBox(height: 15),
-          TextWidget(
-            textAlign: TextAlign.center,
-            text: controller.userModel?.name ?? '',
-            color: CommonColor.blackColor1,
-            maxLine: 1,
-            fontFamily: AppStrings.aeonikTRIAL,
-            fontWeight: FontWeight.w400,
+        ),
+        const SizedBox(height: 15),
+        Text(
+          textAlign: TextAlign.center,
+          controller.userModel?.name ?? '',
+          style: TextStyle(
+            color: Color(0xFF262626),
             fontSize: 22,
+
+            fontWeight: FontWeight.w400,
           ),
-          const SizedBox(height: 8),
-          TextWidget(
-            text: controller.userModel?.phone ?? '',
-            color: CommonColor.blackColor1,
-            maxLine: 1,
-            fontFamily: AppStrings.sfProDisplay,
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          controller.userModel?.phone ?? '',
+          style: TextStyle(
+            color: Color(0xFF262626),
+            fontSize: 15,
+
+            fontWeight: FontWeight.w500,
           ),
-          const SizedBox(height: 10),
-        ],
-      ),
+        ),
+        //const SizedBox(height: 8),
+        Text(
+          controller.userModel?.address ?? '',
+          style: TextStyle(
+            color: Color(0xFF262626),
+            fontSize: 15,
+
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 10),
+      ],
     );
   }
 }

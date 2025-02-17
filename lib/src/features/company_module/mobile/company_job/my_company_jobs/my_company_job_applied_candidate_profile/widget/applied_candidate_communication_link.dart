@@ -14,7 +14,8 @@ class AppliedCandidateCommunicationLink
         InkWell(
           onTap: () {
             SupportLink.hotlineSupport(
-                controller.userDetailsModel?.data!.phone ?? '');
+              controller.userDetailsModel?.data!.phone ?? '',
+            );
           },
           child: Container(
             width: SizeConfig.screenWidth,
@@ -25,7 +26,9 @@ class AppliedCandidateCommunicationLink
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 side: const BorderSide(
-                    width: 0.50, color: CommonColor.greyColor5),
+                  width: 0.50,
+                  color: CommonColor.greyColor5,
+                ),
                 borderRadius: BorderRadius.circular(8),
               ),
               shadows: const [
@@ -34,7 +37,7 @@ class AppliedCandidateCommunicationLink
                   blurRadius: 2,
                   offset: Offset(0, 1),
                   spreadRadius: 0,
-                )
+                ),
               ],
             ),
             child: Row(
@@ -43,7 +46,7 @@ class AppliedCandidateCommunicationLink
                 Image.asset(
                   ImageConstant.send1,
                   height: 20,
-                  color: CommonColor.purpleColor1,
+
                   width: 20,
                   fit: BoxFit.fill,
                 ),
@@ -64,7 +67,8 @@ class AppliedCandidateCommunicationLink
         InkWell(
           onTap: () {
             SupportLink.emailSupport(
-                controller.userDetailsModel?.userName ?? '');
+              controller.userDetailsModel?.userName ?? '',
+            );
           },
           child: Container(
             width: SizeConfig.screenWidth,
@@ -75,7 +79,9 @@ class AppliedCandidateCommunicationLink
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 side: const BorderSide(
-                    width: 0.50, color: CommonColor.greyColor5),
+                  width: 0.50,
+                  color: CommonColor.greyColor5,
+                ),
                 borderRadius: BorderRadius.circular(8),
               ),
               shadows: const [
@@ -84,7 +90,7 @@ class AppliedCandidateCommunicationLink
                   blurRadius: 2,
                   offset: Offset(0, 1),
                   spreadRadius: 0,
-                )
+                ),
               ],
             ),
             child: Row(
@@ -92,7 +98,7 @@ class AppliedCandidateCommunicationLink
               children: [
                 Image.asset(
                   ImageConstant.mail,
-                  color: CommonColor.purpleColor1,
+
                   height: 20,
                   width: 20,
                   fit: BoxFit.fill,
@@ -117,22 +123,12 @@ class AppliedCandidateCommunicationLink
 
 class SupportLink {
   static Future<void> hotlineSupport(String path) async {
-    final Uri launchUri = Uri(
-      scheme: 'tel',
-      path: path,
-    );
-    await urlLauncher(
-      launchUri.toString(),
-    );
+    final Uri launchUri = Uri(scheme: 'tel', path: path);
+    await urlLauncher(launchUri.toString());
   }
 
   static Future<void> emailSupport(String path) async {
-    final Uri launchUri = Uri(
-      scheme: 'mailto',
-      path: path,
-    );
-    await urlLauncher(
-      launchUri.toString(),
-    );
+    final Uri launchUri = Uri(scheme: 'mailto', path: path);
+    await urlLauncher(launchUri.toString());
   }
 }

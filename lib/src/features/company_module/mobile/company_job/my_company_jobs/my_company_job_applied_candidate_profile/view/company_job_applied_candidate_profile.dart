@@ -29,48 +29,79 @@ class CompanyJobAppliedCandidateProfile
     controller.isFrom = Get.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Candidate Profile'),
+        leadingWidth: 100,
+        // centerTitle: false,
+        leading: Row(
+          children: [
+            SizedBox(width: 20),
+            GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFF8A8A8A),
+                size: 16,
+              ),
+            ),
+            Text(
+              'Back',
+              style: TextStyle(
+                color: Color(0xFF8A8A8A),
+                fontSize: 16,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                height: 1.50,
+              ),
+            ),
+          ],
+        ),
+        title: Text(
+          'Candidate Profile',
+          style: TextStyle(
+            color: Color(0xFF262626),
+            fontSize: 20,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w400,
+          ),
+        ),
       ),
-      body: Obx(
-        () {
-          if (controller.pageState == PageState.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return const Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 18,
-                          right: 18,
-                          top: 7,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _CompanyJobCandidateProfileHeader(),
-                            SizedBox(height: 10),
-                            AppliedCandidateCommunicationLink(),
-                            SizedBox(height: 10),
-                            CompanySelecteCandidateForInterview(),
-                            SizedBox(height: 30),
-                            CompanyJobCandidateProfileDetails(),
-                            SizedBox(height: 30),
-                          ],
-                        ),
+
+      body: Obx(() {
+        if (controller.pageState == PageState.loading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 16, right: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _CompanyJobCandidateProfileHeader(),
+                          SizedBox(height: 10),
+                          AppliedCandidateCommunicationLink(),
+                          SizedBox(height: 10),
+                          CompanySelecteCandidateForInterview(),
+                          SizedBox(height: 30),
+                          CompanyJobCandidateProfileDetails(),
+                          SizedBox(height: 30),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              )
-            ],
-          );
-        },
-      ),
+              ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }

@@ -14,7 +14,7 @@ class CompanyJobCandidateProfileDetails
       children: [
         const TextWidget(
           text: AppStrings.employeeDescription,
-          color: CommonColor.blackColor1,
+          color: CommonColor.blackColor2,
           maxLine: 1,
           fontFamily: AppStrings.sfProDisplay,
           fontWeight: FontWeight.w600,
@@ -22,7 +22,7 @@ class CompanyJobCandidateProfileDetails
         ),
         const SizedBox(height: 8),
         TextWidget(
-          text: controller.userDetailsModel!.data?.description ?? '',
+          text: controller.userDetailsModel?.data?.description ?? '',
           color: CommonColor.greyColor6,
           maxLine: 100,
           fontFamily: AppStrings.sfProDisplay,
@@ -32,61 +32,66 @@ class CompanyJobCandidateProfileDetails
         const SizedBox(height: 30),
         const TextWidget(
           text: AppStrings.topSkills,
-          color: CommonColor.blackColor1,
+          color: CommonColor.blackColor2,
           maxLine: 1,
           fontFamily: AppStrings.sfProDisplay,
           fontWeight: FontWeight.w600,
           fontSize: 18,
         ),
         const SizedBox(height: 15),
-        controller.userDetailsModel!.userSkill == null
+        controller.userDetailsModel?.userSkill == null
             ? const Offstage()
             : Wrap(
-                direction: Axis.horizontal,
-                spacing: 3.0,
-                runSpacing: 8.0,
-                children: [
-                  for (int i = 0;
-                      i < controller.userDetailsModel!.userSkill!.length;
-                      i++)
-                    Container(
-                      height: 40,
-                      padding: const EdgeInsets.only(
-                        left: 16,
-                        right: 16,
-                        top: 10,
-                      ),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                              width: 0.50, color: CommonColor.greyColor5),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        shadows: const [
-                          BoxShadow(
-                            color: CommonColor.blackColor3,
-                            blurRadius: 2,
-                            offset: Offset(0, 1),
-                            spreadRadius: 0,
-                          )
-                        ],
-                      ),
-                      child: TextWidget(
-                        textAlign: TextAlign.center,
-                        text:
-                            controller.userDetailsModel!.userSkill![i].skill ??
-                                '',
-                        color: CommonColor.greyColor11,
-                        maxLine: 1,
-                        fontFamily: AppStrings.inter,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
+              direction: Axis.horizontal,
+              spacing: 20.0,
+              runSpacing: 20.0,
+              children: [
+                for (
+                  int i = 0;
+                  i < controller.userDetailsModel!.userSkill!.length;
+                  i++
+                )
+                  Container(
+                    height: 40,
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                      top: 10,
                     ),
-                ],
-              ),
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                          width: 0.50,
+                          color: CommonColor.greyColor5,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      shadows: const [
+                        BoxShadow(
+                          color: CommonColor.blackColor3,
+                          blurRadius: 2,
+                          offset: Offset(0, 1),
+                          spreadRadius: 0,
+                        ),
+                      ],
+                    ),
+                    child: TextWidget(
+                      textAlign: TextAlign.center,
+                      text:
+                          controller.userDetailsModel!.userSkill![i].skill ??
+                          '',
+                      color: CommonColor.blackColor2,
+                      maxLine: 1,
+                      fontFamily: AppStrings.inter,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
+                  ),
+              ],
+            ),
         const SizedBox(height: 30),
+
         // const TextWidget(
         //     text: AppStrings.completedCourses,
         //     color: CommonColor.blackColor1,
@@ -98,10 +103,9 @@ class CompanyJobCandidateProfileDetails
         //   height: 15,
         // ),
         //  CompletedCourseVideoListBuilder()
-
         const TextWidget(
           text: AppStrings.evaluations,
-          color: CommonColor.blackColor1,
+          color: CommonColor.blackColor2,
           maxLine: 1,
           fontFamily: AppStrings.sfProDisplay,
           fontWeight: FontWeight.w600,
@@ -131,7 +135,7 @@ class CompanyJobCandidateProfileDetails
                     color: CommonColor.blueColor1,
                     height: 15,
                     width: 15,
-                  )
+                  ),
                 ],
               ),
             ),
@@ -167,7 +171,7 @@ class CompanyJobCandidateProfileDetails
         ),
         const SizedBox(height: 8),
         TextWidget(
-          text: 'Resume of ${controller.userDetailsModel!.data?.name}',
+          text: 'Resume of ${controller.userDetailsModel?.data?.name}',
           color: CommonColor.greyColor11,
           maxLine: 2,
           fontFamily: AppStrings.sfProDisplay,

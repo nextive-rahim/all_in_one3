@@ -14,13 +14,7 @@ import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/model/vi
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-enum JobIsFrom {
-  all,
-  applied,
-  saved,
-  company,
-  other,
-}
+enum JobIsFrom { all, applied, saved, company, other }
 
 class JobDetailsPageMobile extends StatefulWidget {
   const JobDetailsPageMobile({super.key});
@@ -31,6 +25,7 @@ class JobDetailsPageMobile extends StatefulWidget {
 
 class _JobDetailsPageMobileState extends State<JobDetailsPageMobile> {
   final companyjobController = Get.put(CompanyJobViewController());
+  final profileController = Get.put(UserDetailsViewController());
   final JobModel viewJobResponseData = Get.arguments[0];
   final isFromCompanyJob = Get.arguments[1] == JobIsFrom.company ? true : false;
 
@@ -38,7 +33,6 @@ class _JobDetailsPageMobileState extends State<JobDetailsPageMobile> {
       Get.arguments[1] == JobIsFrom.other ? true : false;
   @override
   void initState() {
-    Get.put(UserDetailsViewController());
     super.initState();
   }
 
@@ -47,59 +41,95 @@ class _JobDetailsPageMobileState extends State<JobDetailsPageMobile> {
     companyjobController.appliedCandidateList?.value =
         viewJobResponseData.user ?? [];
     return Scaffold(
-      backgroundColor: CommonColor.greyColor1,
       appBar: AppBar(
-        title: const Text('Job Details'),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 18,
-                  right: 18,
-                  top: 7,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    JobDetailsHeader(job: viewJobResponseData),
-                    JobSummaryCard(job: viewJobResponseData),
-
-                    isFromOtherJob
-                        ? Column(
-                            children: [
-                              CompanySaveJobButtonFromJobDetails(
-                                  job: viewJobResponseData),
-                              10.sh,
-                              CompanyJobApplyButton(job: viewJobResponseData),
-                            ],
-                          )
-                        : isFromCompanyJob
-                            ? const Offstage()
-                            : Column(
-                                children: [
-                                  SaveJobButtonFromJobDetails(
-                                      job: viewJobResponseData),
-                                  10.sh,
-                                  ApplyJobButton(job: viewJobResponseData),
-                                ],
-                              ),
-                    20.sh,
-                    JobDescription(job: viewJobResponseData),
-                    //  const JobShareButton(),
-                    isFromCompanyJob
-                        ? const CompanyJobInterviewCandidateList(
-                            // userDetails: viewJobResponseData.user
-                            )
-                        : const Offstage()
-                  ],
-                ),
+        leadingWidth: 100,
+        // centerTitle: false,
+        leading: Row(
+          children: [
+            SizedBox(width: 20),
+            GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFF8A8A8A),
+                size: 16,
               ),
             ),
-          )
-        ],
+            Text(
+              'Back',
+              style: TextStyle(
+                color: Color(0xFF8A8A8A),
+                fontSize: 16,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                height: 1.50,
+              ),
+            ),
+          ],
+        ),
+        title: Text(
+          'Job details',
+          style: TextStyle(
+            color: Color(0xFF262626),
+            fontSize: 20,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: JobDetailsHeader(job: viewJobResponseData),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: JobSummaryCard(job: viewJobResponseData),
+            ),
+
+            isFromOtherJob
+                ? Padding(
+                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  child: Column(
+                    children: [
+                      CompanySaveJobButtonFromJobDetails(
+                        job: viewJobResponseData,
+                      ),
+                      10.sh,
+                      CompanyJobApplyButton(job: viewJobResponseData),
+                    ],
+                  ),
+                )
+                : isFromCompanyJob
+                ? const Offstage()
+                : Padding(
+                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  child: Column(
+                    children: [
+                      SaveJobButtonFromJobDetails(job: viewJobResponseData),
+                      10.sh,
+                      ApplyJobButton(job: viewJobResponseData),
+                    ],
+                  ),
+                ),
+            20.sh,
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: JobDescription(job: viewJobResponseData),
+            ),
+            //  const JobShareButton(),
+            isFromCompanyJob
+                ? const CompanyJobInterviewCandidateList(
+                  // userDetails: viewJobResponseData.user
+                )
+                : const Offstage(),
+          ],
+        ),
       ),
     );
   }

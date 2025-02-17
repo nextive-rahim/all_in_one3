@@ -14,12 +14,7 @@ class UserDetailsResponseModel {
   String? message;
   UserDetailsResponseModelData? data;
 
-  UserDetailsResponseModel({
-    this.success,
-    this.error,
-    this.message,
-    this.data,
-  });
+  UserDetailsResponseModel({this.success, this.error, this.message, this.data});
 
   factory UserDetailsResponseModel.fromJson(Map<String, dynamic> json) =>
       UserDetailsResponseModel(
@@ -30,11 +25,11 @@ class UserDetailsResponseModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "success": success,
-        "error": error,
-        "message": message,
-        "data": data!.toJson(),
-      };
+    "success": success,
+    "error": error,
+    "message": message,
+    "data": data!.toJson(),
+  };
 }
 
 class UserDetailsResponseModelData {
@@ -58,23 +53,26 @@ class UserDetailsResponseModelData {
       UserDetailsResponseModelData(
         userName: json['user_name'],
         userType: json["user_type"],
-        data: UserModel.fromJson(json["data"]),
-        examData: json["exam_data"] == null
-            ? null
-            : ExamData.fromJson(json["exam_data"]),
-        userSkill: json["user_skill"] == null
-            ? null
-            : List<UserSkill>.from(
-                json["user_skill"].map((x) => UserSkill.fromJson(x))),
+        data: json["data"] == null ? null : UserModel.fromJson(json["data"]),
+        examData:
+            json["exam_data"] == null
+                ? null
+                : ExamData.fromJson(json["exam_data"]),
+        userSkill:
+            json["user_skill"] == null
+                ? null
+                : List<UserSkill>.from(
+                  json["user_skill"].map((x) => UserSkill.fromJson(x)),
+                ),
         // isSubscribed: json["is_subscribed"],
       );
 
   Map<String, dynamic> toJson() => {
-        "user_name": userName,
-        "user_type": userType,
-        "data": data!.toJson(),
-        "exam_data": examData!.toJson(),
-        "user_skill": List<dynamic>.from(userSkill!.map((x) => x.toJson())),
-        // "is_subscribed": isSubscribed,
-      };
+    "user_name": userName,
+    "user_type": userType,
+    "data": data?.toJson(),
+    "exam_data": examData?.toJson(),
+    "user_skill": List<dynamic>.from(userSkill!.map((x) => x.toJson())),
+    // "is_subscribed": isSubscribed,
+  };
 }

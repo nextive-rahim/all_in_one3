@@ -19,55 +19,61 @@ class CompanyJobInterviewCandidateList
     return Column(
       children: [
         Container(
-          color: CommonColor.greyColor15,
+          decoration: BoxDecoration(
+            color: CommonColor.greyColor15,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
           child: Padding(
             padding: const EdgeInsets.only(
               left: 15,
               right: 15,
               bottom: 60,
+              top: 30,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 30),
                 TextWidget(
                   textAlign: TextAlign.center,
                   text:
                       'Total Applied : ${controller.appliedCandidateList?.length}',
-                  color: CommonColor.greyColor4,
-                  maxLine: 1,
-                  fontFamily: AppStrings.sfProDisplay,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                ),
-                const SizedBox(height: 30),
-                const TextWidget(
-                  textAlign: TextAlign.center,
-                  text: AppStrings.appliedProfiles,
                   color: CommonColor.blackColor1,
                   maxLine: 1,
                   fontFamily: AppStrings.sfProDisplay,
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                 ),
+                const SizedBox(height: 20),
+                const TextWidget(
+                  textAlign: TextAlign.center,
+                  text: AppStrings.appliedProfiles,
+                  color: CommonColor.blackColor2,
+                  maxLine: 1,
+                  fontFamily: AppStrings.sfProDisplay,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 17,
+                ),
                 const SizedBox(height: 15),
                 const AppliedCandidateListBuilder(),
                 const SizedBox(height: 40),
                 const TextWidget(
-                    textAlign: TextAlign.center,
-                    text: AppStrings.selectedProfiles,
-                    color: CommonColor.greyColor4,
-                    maxLine: 1,
-                    fontFamily: AppStrings.sfProDisplay,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18),
+                  textAlign: TextAlign.center,
+                  text: AppStrings.selectedProfiles,
+                  color: CommonColor.blackColor2,
+                  maxLine: 1,
+                  fontFamily: AppStrings.sfProDisplay,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 17,
+                ),
                 const SizedBox(height: 15),
-                const SelectedCandidateListBuilder()
+                const SelectedCandidateListBuilder(),
               ],
             ),
           ),
         ),
-        const SizedBox(height: 60),
       ],
     );
   }

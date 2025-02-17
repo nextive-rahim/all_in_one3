@@ -8,15 +8,12 @@ import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/model/vi
 import 'package:flutter/material.dart';
 
 class JobSummaryCard extends StatelessWidget {
-  const JobSummaryCard({
-    super.key,
-    required this.job,
-  });
+  const JobSummaryCard({super.key, required this.job});
   final JobModel job;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.only(bottom: 0),
       child: Container(
         width: SizeConfig.screenWidth,
         height: 165,
@@ -24,10 +21,7 @@ class JobSummaryCard extends StatelessWidget {
         decoration: ShapeDecoration(
           //color: Colors.white,
           shape: RoundedRectangleBorder(
-            side: const BorderSide(
-              width: 1.0,
-              color: CommonColor.greyColor16,
-            ),
+            side: const BorderSide(width: 1.0, color: CommonColor.greyColor16),
             borderRadius: BorderRadius.circular(5),
           ),
         ),
@@ -40,7 +34,10 @@ class JobSummaryCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             _JobSummaryItem(
-              name: job.paysalary ?? '' "/yr.",
+              name:
+                  job.paysalary ??
+                  ''
+                      "/yr.",
               icon: ImageConstant.payment,
             ),
             const SizedBox(height: 12),
@@ -63,7 +60,8 @@ class JobSummaryCard extends StatelessWidget {
                   ),
                   TextSpan(
                     text: FormatedDateTime.readTimestamp(
-                        int.parse(job.time ?? '0')), //'3 days ago',
+                      int.parse(job.time ?? '0'),
+                    ), //'3 days ago',
                     style: const TextStyle(
                       color: CommonColor.greyColor6,
                       fontSize: 14,
@@ -73,7 +71,7 @@ class JobSummaryCard extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -82,23 +80,14 @@ class JobSummaryCard extends StatelessWidget {
 }
 
 class _JobSummaryItem extends StatelessWidget {
-  const _JobSummaryItem({
-    required this.name,
-    required this.icon,
-  });
+  const _JobSummaryItem({required this.name, required this.icon});
   final String name;
   final String icon;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset(
-          icon,
-          color: CommonColor.purpleColor1,
-          height: 20,
-          width: 20,
-          fit: BoxFit.fill,
-        ),
+        Image.asset(icon, height: 20, width: 20, fit: BoxFit.fill),
         const SizedBox(width: 8),
         TextWidget(
           textAlign: TextAlign.start,
