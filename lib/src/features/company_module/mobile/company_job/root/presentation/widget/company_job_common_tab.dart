@@ -48,16 +48,15 @@ class _CompanyJobCommonTabSectionState extends State<CompanyJobCommonTabSection>
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            bottom: 15,
-          ),
+          padding: const EdgeInsets.only(bottom: 15),
           child: Container(
-            height: 60,
+            height: 48,
             decoration: BoxDecoration(
               color: AppColors.transparent,
               borderRadius: BorderRadius.circular(4),
             ),
             child: TabBar(
+              dividerColor: AppColors.white,
               onTap: (index) {
                 setState(() {
                   selectedIndex = index;
@@ -73,10 +72,12 @@ class _CompanyJobCommonTabSectionState extends State<CompanyJobCommonTabSection>
                   tabController?.animateTo(index);
                 });
               },
-              controller: tabController, tabAlignment: TabAlignment.start,
+              controller: tabController,
+              tabAlignment: TabAlignment.start,
               isScrollable: true,
               // indicatorWeight: 100,
-              indicatorSize: TabBarIndicatorSize.tab, padding: EdgeInsets.zero,
+              indicatorSize: TabBarIndicatorSize.tab,
+              padding: EdgeInsets.zero,
               indicatorPadding: const EdgeInsets.only(
                 top: 45,
                 left: 0,
@@ -85,10 +86,7 @@ class _CompanyJobCommonTabSectionState extends State<CompanyJobCommonTabSection>
 
               labelColor: CommonColor.purpleColor1,
               unselectedLabelColor: Colors.black,
-              labelPadding: const EdgeInsets.only(
-                left: 0,
-                right: 35,
-              ),
+              labelPadding: const EdgeInsets.only(left: 0, right: 35),
               unselectedLabelStyle: const TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 16,
@@ -108,28 +106,45 @@ class _CompanyJobCommonTabSectionState extends State<CompanyJobCommonTabSection>
                 Tab(
                   child: Text(
                     widget.title1 ?? '',
-                    style: const TextStyle(fontSize: 14),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      height: 1.67,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Tab(
                   child: Text(
                     widget.title2 ?? '',
-                    style: const TextStyle(fontSize: 14),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Tab(
                   child: Text(
                     widget.title3 ?? '',
-                    style: const TextStyle(fontSize: 14),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Tab(
                   child: Text(
                     widget.title4 ?? '',
-                    style: const TextStyle(fontSize: 14),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),

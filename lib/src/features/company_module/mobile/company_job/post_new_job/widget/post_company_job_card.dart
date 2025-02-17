@@ -1,7 +1,6 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
-import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/post_new_job/controller/post_company_new_job_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,7 +20,7 @@ class PostCompanyJob extends GetView<PostCompanyNewJobViewController> {
       child: Padding(
         padding: const EdgeInsets.only(bottom: 20),
         child: Container(
-          width: 149,
+          //  width: 149,
           height: 36,
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
@@ -39,7 +38,7 @@ class PostCompanyJob extends GetView<PostCompanyNewJobViewController> {
                 blurRadius: 2,
                 offset: Offset(0, 1),
                 spreadRadius: 0,
-              )
+              ),
             ],
           ),
           child: const Row(
@@ -47,13 +46,15 @@ class PostCompanyJob extends GetView<PostCompanyNewJobViewController> {
             children: [
               Icon(Icons.add),
               SizedBox(width: 8),
-              TextWidget(
-                text: AppStrings.postNewJob,
-                color: CommonColor.blackColor1,
-                maxLine: 1,
-                fontFamily: AppStrings.inter,
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
+              Text(
+                AppStrings.postNewJob,
+                style: TextStyle(
+                  color: Color(0xFF262626),
+                  fontSize: 14,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w500,
+                  height: 1.43,
+                ),
               ),
             ],
           ),

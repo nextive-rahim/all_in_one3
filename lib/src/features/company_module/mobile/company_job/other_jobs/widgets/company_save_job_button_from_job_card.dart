@@ -1,7 +1,5 @@
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
-import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/other_jobs/controller/other_company_job_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/model/view_job_model.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +7,7 @@ import 'package:get/get.dart';
 
 class CompanySaveJobButtonFromJobCard
     extends GetView<OtherCompanyJobsViewController> {
-  CompanySaveJobButtonFromJobCard({
-    super.key,
-    required this.job,
-  });
+  CompanySaveJobButtonFromJobCard({super.key, required this.job});
   final JobModel job;
   final ValueNotifier<bool> isSavedJob = ValueNotifier<bool>(false);
   @override
@@ -46,20 +41,22 @@ class CompanySaveJobButtonFromJobCard
                 value || job.isSaved != 0
                     ? Icons.bookmark
                     : Icons.bookmark_add_outlined,
-                size: 20,
-                color: value || job.isSaved != 0
-                    ? CommonColor.blueColor1
-                    : CommonColor.blackColor1,
+                size: 16,
+                color:
+                    value || job.isSaved != 0
+                        ? CommonColor.blueColor1
+                        : CommonColor.blackColor1,
               ),
               const SizedBox(width: 5),
-              const TextWidget(
+              const Text(
                 textAlign: TextAlign.start,
-                text: "Save",
-                color: CommonColor.greyColor4,
-                maxLine: 1,
-                fontFamily: AppStrings.sfProDisplay,
-                fontWeight: FontWeight.w400,
-                fontSize: 16,
+                "Save",
+                style: TextStyle(
+                  color: Color(0xFF363636),
+                  fontSize: 12,
+
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ],
           );

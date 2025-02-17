@@ -26,16 +26,14 @@ class OtherCompanyJobCard extends StatelessWidget {
     return Container(
       decoration: ShapeDecoration(
         color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
       child: Padding(
         padding: const EdgeInsets.only(
-          left: 26,
-          top: 29,
-          right: 26,
-          bottom: 20,
+          left: 20,
+          top: 25,
+          right: 20,
+          bottom: 25,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,14 +43,15 @@ class OtherCompanyJobCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextWidget(
+                  Text(
                     textAlign: TextAlign.center,
-                    text: job.jobRole ?? '',
-                    color: CommonColor.greyColor4,
-                    maxLine: 1,
-                    fontFamily: AppStrings.sfProDisplay,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
+                    job.jobRole ?? '',
+                    style: TextStyle(
+                      color: Color(0xFF363636),
+                      fontSize: 18,
+
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   const SizedBox(height: 7),
                   TextWidget(
@@ -72,19 +71,17 @@ class OtherCompanyJobCard extends StatelessWidget {
                         height: 20,
                         width: 20,
                         fit: BoxFit.fill,
-                        color: CommonColor.purpleColor1,
                       ),
-                      const SizedBox(
-                        width: 15,
-                      ),
+                      const SizedBox(width: 15),
                       TextWidget(
-                          textAlign: TextAlign.center,
-                          text: "${job.paysalary ?? ''}/yr.",
-                          color: CommonColor.greyColor4,
-                          maxLine: 1,
-                          fontFamily: AppStrings.sfProDisplay,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12),
+                        textAlign: TextAlign.center,
+                        text: "${job.paysalary ?? ''}/yr.",
+                        color: CommonColor.greyColor4,
+                        maxLine: 1,
+                        fontFamily: AppStrings.sfProDisplay,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 6),
@@ -118,10 +115,10 @@ class OtherCompanyJobCard extends StatelessWidget {
                 isFromSaveJob
                     ? DeleteOtherCompanySavedJobCard(job: job)
                     : isFromAppliedJob
-                        ? const Offstage()
-                        : CompanySaveJobButtonFromJobCard(job: job)
+                    ? const Offstage()
+                    : CompanySaveJobButtonFromJobCard(job: job),
               ],
-            )
+            ),
           ],
         ),
       ),

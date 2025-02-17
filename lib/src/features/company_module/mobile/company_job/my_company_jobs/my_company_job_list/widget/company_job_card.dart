@@ -24,16 +24,14 @@ class CompanyJobCard extends StatelessWidget {
       width: SizeConfig.screenWidth,
       decoration: ShapeDecoration(
         color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       ),
       child: Padding(
         padding: const EdgeInsets.only(
-          left: 26,
-          top: 29,
-          right: 26,
-          bottom: 20,
+          left: 20,
+          top: 25,
+          right: 20,
+          bottom: 25,
         ),
         child: Column(
           children: [
@@ -45,139 +43,150 @@ class CompanyJobCard extends StatelessWidget {
                   arguments: [job, JobIsFrom.company],
                 );
               },
-              child: SizedBox(
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextWidget(
-                      textAlign: TextAlign.center,
-                      text: job.jobRole ?? '',
-                      color: CommonColor.greyColor4,
-                      maxLine: 1,
-                      fontFamily: AppStrings.sfProDisplay,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ),
-                    const SizedBox(height: 7),
-                    TextWidget(
-                      textAlign: TextAlign.center,
-                      text: Get.find<ProfileViewController>().userModel?.name ??
-                          '',
-                      color: CommonColor.greyColor12,
-                      maxLine: 1,
-                      fontFamily: AppStrings.sfProDisplay,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                    ),
-                    const SizedBox(height: 18),
-                    Row(
-                      children: [
-                        Image.asset(
-                          ImageConstant.jobLogo,
-                          color: CommonColor.purpleColor1,
-                          height: 20,
-                          width: 20,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(width: 15),
-                        TextWidget(
-                          textAlign: TextAlign.center,
-                          text: '${job.workExpMin}-${job.workExpMax}',
-                          color: CommonColor.greyColor4,
-                          maxLine: 1,
-                          fontFamily: AppStrings.sfProDisplay,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Image.asset(
-                          ImageConstant.payment,
-                          color: CommonColor.purpleColor1,
-                          height: 20,
-                          width: 20,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(width: 15),
-                        TextWidget(
-                          textAlign: TextAlign.center,
-                          text: '${job.paysalary}/ yr',
-                          color: CommonColor.greyColor4,
-                          maxLine: 1,
-                          fontFamily: AppStrings.sfProDisplay,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Image.asset(
-                          ImageConstant.send2,
-                          color: CommonColor.purpleColor1,
-                          height: 20,
-                          width: 20,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(width: 15),
-                        TextWidget(
-                          textAlign: TextAlign.center,
-                          text: job.workLocation ?? '',
-                          color: CommonColor.greyColor4,
-                          maxLine: 1,
-                          fontFamily: AppStrings.sfProDisplay,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 15),
-                    Row(
+              child: Column(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image.asset(
-                          ImageConstant.file,
-                          color: CommonColor.purpleColor1,
-                          height: 20,
-                          width: 20,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(width: 15),
-                        Expanded(
-                          child: TextWidget(
-                            text: job.jobDescription ?? '',
-                            color: CommonColor.greyColor12,
-                            maxLine: 2,
-                            fontFamily: AppStrings.sfProDisplay,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12,
+                        Text(
+                          textAlign: TextAlign.center,
+                          job.jobRole ?? '',
+                          style: TextStyle(
+                            color: Color(0xFF363636),
+                            fontSize: 18,
+
+                            fontWeight: FontWeight.w600,
                           ),
+                        ),
+                        const SizedBox(height: 7),
+                        Text(
+                          textAlign: TextAlign.center,
+
+                          Get.find<ProfileViewController>().userModel?.name ??
+                              '',
+                          style: TextStyle(
+                            color: Color(0xFF8A8A8A),
+                            fontSize: 14,
+
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        const SizedBox(height: 18),
+                        Row(
+                          children: [
+                            Image.asset(
+                              ImageConstant.jobLogo,
+                              // color: CommonColor.purpleColor1,
+                              height: 18,
+                              width: 18,
+                              fit: BoxFit.fill,
+                            ),
+                            const SizedBox(width: 15),
+                            Text(
+                              textAlign: TextAlign.center,
+                              '${job.workExpMin}-${job.workExpMax}',
+                              style: TextStyle(
+                                color: Color(0xFF5A5959),
+                                fontSize: 13.50,
+
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          children: [
+                            Image.asset(
+                              ImageConstant.payment,
+
+                              height: 18,
+                              width: 18,
+                              fit: BoxFit.fill,
+                            ),
+                            const SizedBox(width: 15),
+                            Text(
+                              textAlign: TextAlign.center,
+                              '${job.paysalary}/ yr',
+                              style: TextStyle(
+                                color: Color(0xFF5A5959),
+                                fontSize: 13.50,
+
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          children: [
+                            Image.asset(
+                              ImageConstant.send2,
+
+                              height: 18,
+                              width: 18,
+                              fit: BoxFit.fill,
+                            ),
+                            const SizedBox(width: 15),
+                            Text(
+                              textAlign: TextAlign.center,
+                              job.workLocation ?? '',
+                              style: TextStyle(
+                                color: Color(0xFF5A5959),
+                                fontSize: 13.50,
+
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              ImageConstant.file,
+
+                              height: 18,
+                              width: 18,
+                              fit: BoxFit.fill,
+                            ),
+                            const SizedBox(width: 15),
+                            Expanded(
+                              child: Text(
+                                job.jobDescription ?? '',
+                                style: TextStyle(
+                                  color: Color(0xFF5A5959),
+                                  fontSize: 13.50,
+
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextWidget(
+                              textAlign: TextAlign.start,
+                              text:
+                                  "Posted ${FormatedDateTime.readTimestamp(int.parse(job.time ?? "0"))}",
+                              color: CommonColor.greyColor12,
+                              maxLine: 1,
+                              fontFamily: AppStrings.sfProDisplay,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextWidget(
-                          textAlign: TextAlign.start,
-                          text:
-                              "Posted ${FormatedDateTime.readTimestamp(int.parse(job.time ?? "0"))}",
-                          color: CommonColor.greyColor12,
-                          maxLine: 1,
-                          fontFamily: AppStrings.sfProDisplay,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Row(
@@ -187,7 +196,7 @@ class CompanyJobCard extends StatelessWidget {
                 const SizedBox(width: 20),
                 DeletedCompanyJob(job: job),
               ],
-            )
+            ),
           ],
         ),
       ),

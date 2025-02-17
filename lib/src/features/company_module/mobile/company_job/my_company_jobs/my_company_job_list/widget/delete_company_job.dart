@@ -2,17 +2,13 @@ import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/image_constant.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
-import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/my_company_jobs/my_company_job_list/controller/company_job_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/model/view_job_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeletedCompanyJob extends GetView<CompanyJobViewController> {
-  const DeletedCompanyJob({
-    super.key,
-    required this.job,
-  });
+  const DeletedCompanyJob({super.key, required this.job});
   final JobModel job;
   @override
   Widget build(BuildContext context) {
@@ -22,21 +18,17 @@ class DeletedCompanyJob extends GetView<CompanyJobViewController> {
       },
       child: Row(
         children: [
-          Image.asset(
-            height: 20,
-            width: 15,
-            ImageConstant.trash,
-            color: CommonColor.redColors,
-          ),
+          Image.asset(height: 16, width: 16, ImageConstant.trash),
           const SizedBox(width: 5),
-          const TextWidget(
+          const Text(
             textAlign: TextAlign.start,
-            text: AppStrings.delete,
-            color: CommonColor.redColors,
-            maxLine: 1,
-            fontFamily: AppStrings.sfProDisplay,
-            fontWeight: FontWeight.w400,
-            fontSize: 12,
+            AppStrings.delete,
+            style: TextStyle(
+              color: Color(0xFF363636),
+              fontSize: 12,
+
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ],
       ),
@@ -63,9 +55,7 @@ class DeletedCompanyJob extends GetView<CompanyJobViewController> {
               onPressed: () {
                 controller.deleteCompanyJob(job.id!).then((v) {
                   controller.companyJobList.removeWhere((v) => v.id == job.id);
-                  SnackBarService.showInfoSnackBar(
-                    'Successfully delete job.',
-                  );
+                  SnackBarService.showInfoSnackBar('Successfully delete job.');
                 });
 
                 Navigator.of(context).pop();
@@ -74,7 +64,7 @@ class DeletedCompanyJob extends GetView<CompanyJobViewController> {
                 'OK',
                 style: TextStyle(color: CommonColor.redColors),
               ),
-            )
+            ),
           ],
         );
       },

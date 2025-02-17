@@ -28,7 +28,7 @@ class _BottomNavBarCompanyState extends State<BottomNavBarCompany> {
     const CompanyEmployeeListPageMobile(),
     const CompanyPaymentPageMobile(),
     const GenerateCompanyInvoice(),
-    const CompanyProfilePage()
+    const CompanyProfilePage(),
   ];
 
   static const double _borderRadius = 0;
@@ -39,76 +39,73 @@ class _BottomNavBarCompanyState extends State<BottomNavBarCompany> {
     //bool value;
     return Scaffold(
       appBar: CompanyHomeAppBar(),
-      body: Obx(
-        () {
-          return WillPopScope(
-            onWillPop: _onWillPop,
-            child: Scaffold(
-              body: IndexedStack(
-                index: controller.currentIndex,
-                children: _children,
-              ),
-              bottomNavigationBar: Obx(
-                () {
-                  return Visibility(
-                    visible: controller.navBarVisibility,
-                    child: Container(
-                      //  height: Platform.isAndroid ? 80 : null,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(_borderRadius),
-                          topLeft: Radius.circular(_borderRadius),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                              color: AppColors.lightBlack10,
-                              spreadRadius: 0,
-                              blurRadius: 0,
-                              offset: Offset(0, -1)),
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(_borderRadius),
-                          topRight: Radius.circular(_borderRadius),
-                        ),
-                        child: BottomNavigationBar(
-                          type: BottomNavigationBarType.fixed,
-                          items: <BottomNavigationBarItem>[
-                            BottomNavigationBarItem(
-                              icon: _buildIcon(ImageConstant.home, 0),
-                              label: 'Home',
-                            ),
-                            BottomNavigationBarItem(
-                              icon: _buildIcon(ImageConstant.employees, 1),
-                              label: 'Employee',
-                            ),
-                            BottomNavigationBarItem(
-                              icon: _buildIcon(ImageConstant.payment, 2),
-                              label: 'Payment',
-                            ),
-                            BottomNavigationBarItem(
-                              icon: _buildIcon(ImageConstant.file, 3),
-                              label: 'Invoice',
-                            ),
-                            BottomNavigationBarItem(
-                              icon: _buildIcon(ImageConstant.users, 4),
-                              label: 'Profile',
-                            ),
-                          ],
-                          currentIndex: controller.currentIndex,
-                          selectedItemColor: AppColors.selectedNavItem,
-                          onTap: controller.updateIndex,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+      body: Obx(() {
+        return WillPopScope(
+          onWillPop: _onWillPop,
+          child: Scaffold(
+            body: IndexedStack(
+              index: controller.currentIndex,
+              children: _children,
             ),
-          );
-        },
-      ),
+            bottomNavigationBar: Obx(() {
+              return Visibility(
+                visible: controller.navBarVisibility,
+                child: Container(
+                  //  height: Platform.isAndroid ? 80 : null,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(_borderRadius),
+                      topLeft: Radius.circular(_borderRadius),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.lightBlack10,
+                        spreadRadius: 0,
+                        blurRadius: 0,
+                        offset: Offset(0, -1),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(_borderRadius),
+                      topRight: Radius.circular(_borderRadius),
+                    ),
+                    child: BottomNavigationBar(
+                      type: BottomNavigationBarType.fixed,
+                      items: <BottomNavigationBarItem>[
+                        BottomNavigationBarItem(
+                          icon: _buildIcon(ImageConstant.home, 0),
+                          label: 'Home',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: _buildIcon(ImageConstant.employees, 1),
+                          label: 'Employee',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: _buildIcon(ImageConstant.payment, 2),
+                          label: 'Payment',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: _buildIcon(ImageConstant.file, 3),
+                          label: 'Invoice',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: _buildIcon(ImageConstant.users, 4),
+                          label: 'Profile',
+                        ),
+                      ],
+                      currentIndex: controller.currentIndex,
+                      selectedItemColor: AppColors.selectedNavItem,
+                      onTap: controller.updateIndex,
+                    ),
+                  ),
+                ),
+              );
+            }),
+          ),
+        );
+      }),
     );
   }
 
@@ -124,9 +121,10 @@ class _BottomNavBarCompanyState extends State<BottomNavBarCompany> {
   Image _buildIcon(String asset, int index) {
     return Image.asset(
       asset,
-      color: controller.currentIndex == index
-          ? AppColors.selectedNavItem
-          : AppColors.unselectedNavItem,
+      color:
+          controller.currentIndex == index
+              ? AppColors.selectedNavItem
+              : AppColors.unselectedNavItem,
       height: 23,
       width: 23,
       fit: BoxFit.fill,
@@ -138,63 +136,55 @@ class _BottomNavBarCompanyState extends State<BottomNavBarCompany> {
 
 class CompanyHomeAppBar extends AppBar {
   CompanyHomeAppBar({super.key})
-      : super(
-          leadingWidth: 0,
-          automaticallyImplyLeading: false,
-          backgroundColor: CommonColor.whiteColor,
-          elevation: 0,
-          // shadowColor: AppColors.lightBlack10.withOpacity(0.4),
-          toolbarHeight: 65,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 40,
-                margin: const EdgeInsets.only(left: 10),
-                child: Image.asset(
-                  ImageConstant.aioLogo,
-                  fit: BoxFit.contain,
-                  cacheHeight: 105,
-                  cacheWidth: 388,
-                ),
-              ),
-              const Text(
-                'All In One',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const LogoutButton()
-              //     Row(
-              //       mainAxisAlignment: MainAxisAlignment.end,
-              //       mainAxisSize: MainAxisSize.min,
-              //       children: [
-              //         GestureDetector(
-              //           onTap: () => Get.toNamed(Routes.notification),
-              //           child: Container(
-              //             height: 40,
-              //             width: 40,
-              //             decoration: BoxDecoration(
-              //               color: AppColors.grey100,
-              //               borderRadius: BorderRadius.circular(8),
-              //               border: Border.all(
-              //                 color: AppColors.lightBlack10,
-              //                 width: 1,
-              //               ),
-              //             ),
-              //             padding: const EdgeInsets.all(8),
-              //             child: const Icon(
-              //               Icons.notifications_none_outlined,
-              //               color: CommonColor.headingTextColor1,
-              //             ),
-              //           ),
-              //         ),
-              //         const SizedBox(width: 10),
-              //       ],
-              //     ),
-            ],
-          ),
-        );
+    : super(
+        leadingWidth: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: CommonColor.whiteColor,
+        elevation: 0,
+        // shadowColor: AppColors.lightBlack10.withOpacity(0.4),
+        // toolbarHeight: 65,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 40,
+              // margin: const EdgeInsets.only(left: 10),
+              child: Image.asset(ImageConstant.aioLogo),
+            ),
+            const Text(
+              'All IN ONE',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            ),
+            const LogoutButton(),
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.end,
+            //       mainAxisSize: MainAxisSize.min,
+            //       children: [
+            //         GestureDetector(
+            //           onTap: () => Get.toNamed(Routes.notification),
+            //           child: Container(
+            //             height: 40,
+            //             width: 40,
+            //             decoration: BoxDecoration(
+            //               color: AppColors.grey100,
+            //               borderRadius: BorderRadius.circular(8),
+            //               border: Border.all(
+            //                 color: AppColors.lightBlack10,
+            //                 width: 1,
+            //               ),
+            //             ),
+            //             padding: const EdgeInsets.all(8),
+            //             child: const Icon(
+            //               Icons.notifications_none_outlined,
+            //               color: CommonColor.headingTextColor1,
+            //             ),
+            //           ),
+            //         ),
+            //         const SizedBox(width: 10),
+            //       ],
+            //     ),
+          ],
+        ),
+      );
 }
