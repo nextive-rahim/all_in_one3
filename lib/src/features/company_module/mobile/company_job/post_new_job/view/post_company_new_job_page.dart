@@ -1,4 +1,3 @@
-import 'package:all_in_one3/src/core/theme/text_style.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/post_new_job/controller/post_company_new_job_view_controller.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/post_new_job/widget/company_new_job_post_form_field.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/post_new_job/widget/post_new_job_button.dart';
@@ -13,36 +12,73 @@ class PostCompanyNewJobPage extends GetView<PostCompanyNewJobViewController> {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
+        leadingWidth: 100,
+        // centerTitle: false,
+        leading: Row(
+          children: [
+            SizedBox(width: 20),
+            GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFF8A8A8A),
+                size: 16,
+              ),
+            ),
+            Text(
+              'Back',
+              style: TextStyle(
+                color: Color(0xFF8A8A8A),
+                fontSize: 16,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                height: 1.50,
+              ),
+            ),
+          ],
+        ),
         title: Obx(
           () => Text(
-              controller.isFromPostEdit.value ? 'Edit Job' : 'Post new job'),
+            controller.isFromPostEdit.value ? 'Edit Job' : 'Post new job',
+            style: TextStyle(
+              color: Color(0xFF262626),
+              fontSize: 20,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w400,
+            ),
+          ),
         ),
       ),
       body: RefreshIndicator(
         onRefresh: () async {},
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text('Post a job', style: AppTextStyle.bold20),
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                      padding: EdgeInsets.only(
-                        right: 20,
-                        left: 20,
-                        bottom: 70,
-                      ),
-                      child: CompanyNewJobPostFormField()),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                controller.isFromPostEdit.value
+                    ? 'Edit this job'
+                    : 'Post a job',
+                style: TextStyle(
+                  color: Color(0xFF262626),
+                  fontSize: 24,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
                 ),
               ),
-            ],
-          ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.only(right: 20, left: 20, bottom: 70),
+                  child: CompanyNewJobPostFormField(),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: const PostNewJobButton(),
