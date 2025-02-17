@@ -4,6 +4,7 @@ import 'package:all_in_one3/src/core/utils/image_constant.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
+import 'package:all_in_one3/src/features/common_features/authentication/root/widgets/registration_header.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,25 +21,20 @@ class _RegistrationCompletedPageState extends State<RegistrationCompletedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CommonColor.whiteColor,
-      appBar: AppBar(
-        title: const Text('Complete Registration'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 46,
-                  right: 46,
-                ),
-                child: Column(
+      // appBar: AppBar(
+      //   title: const Text('Complete Registration'),
+      // ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Column(
                   children: [
-                    const SizedBox(height: 92),
+                    RegistrationHeader(
+                      title: 'You completed registration successfully',
+                    ),
                     Image.asset(
                       ImageConstant.regComplete,
                       width: 252,
@@ -71,8 +67,9 @@ class _RegistrationCompletedPageState extends State<RegistrationCompletedPage> {
                       child: Container(
                         height: 60,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: CommonColor.headingTextColor1),
+                          borderRadius: BorderRadius.circular(10),
+                          color: CommonColor.purpleColor1,
+                        ),
                         alignment: Alignment.center,
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -97,92 +94,92 @@ class _RegistrationCompletedPageState extends State<RegistrationCompletedPage> {
                     const SizedBox(height: 95),
                   ],
                 ),
-              ),
-              Container(
-                width: SizeConfig.screenWidth,
-                height: 1,
-                color: CommonColor.backgroundColor2,
-              ),
-              const SizedBox(height: 21),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 3,
-                        height: 3,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: CommonColor.headingTextColor1,
+                Container(
+                  width: SizeConfig.screenWidth,
+                  height: 1,
+                  color: CommonColor.backgroundColor2,
+                ),
+                const SizedBox(height: 21),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 3,
+                          height: 3,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: CommonColor.headingTextColor1,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      const TextWidget(
-                        text: AppStrings.termsOfUse,
-                        color: CommonColor.headingTextColor1,
-                        maxLine: 1,
-                        fontFamily: AppStrings.aeonikTRIAL,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 10,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 3,
-                        height: 3,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
+                        const SizedBox(width: 8),
+                        const TextWidget(
+                          text: AppStrings.termsOfUse,
                           color: CommonColor.headingTextColor1,
+                          maxLine: 1,
+                          fontFamily: AppStrings.aeonikTRIAL,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 10,
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      const TextWidget(
-                        text: AppStrings.dataCollectionRights,
-                        color: CommonColor.headingTextColor1,
-                        maxLine: 1,
-                        fontFamily: AppStrings.aeonikTRIAL,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 10,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 3,
-                        height: 3,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 3,
+                          height: 3,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: CommonColor.headingTextColor1,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        const TextWidget(
+                          text: AppStrings.dataCollectionRights,
                           color: CommonColor.headingTextColor1,
+                          maxLine: 1,
+                          fontFamily: AppStrings.aeonikTRIAL,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 10,
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      const TextWidget(
-                        text: AppStrings.privacyAndPolicy,
-                        color: CommonColor.headingTextColor1,
-                        maxLine: 1,
-                        fontFamily: AppStrings.aeonikTRIAL,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 10,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              const TextWidget(
-                text: AppStrings.appVersion,
-                color: CommonColor.lightGreyForText1,
-                maxLine: 1,
-                fontFamily: AppStrings.aeonikTRIAL,
-                fontWeight: FontWeight.w400,
-                fontSize: 10,
-              ),
-              const SizedBox(height: 22),
-            ],
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: 3,
+                          height: 3,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: CommonColor.headingTextColor1,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        const TextWidget(
+                          text: AppStrings.privacyAndPolicy,
+                          color: CommonColor.headingTextColor1,
+                          maxLine: 1,
+                          fontFamily: AppStrings.aeonikTRIAL,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 10,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                const TextWidget(
+                  text: AppStrings.appVersion,
+                  color: CommonColor.lightGreyForText1,
+                  maxLine: 1,
+                  fontFamily: AppStrings.aeonikTRIAL,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 10,
+                ),
+                const SizedBox(height: 22),
+              ],
+            ),
           ),
         ),
       ),
