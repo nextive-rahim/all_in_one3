@@ -6,18 +6,20 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.onTap,
     this.isLoading = false,
-    required this.widget,
+     this.widget,
     this.backgroundColor,
+    this.title,
   });
 
   final Function onTap;
   final bool isLoading;
-  final Widget widget;
+  final Widget? widget;
   final Color? backgroundColor;
-
+  final String? title;
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: backgroundColor ?? CommonColor.purpleColor1,
@@ -31,22 +33,31 @@ class PrimaryButton extends StatelessWidget {
         // ),
       ),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor,
-        ),
+        style: ElevatedButton.styleFrom(backgroundColor: backgroundColor),
         onPressed: isLoading ? null : () => onTap(),
-        child: isLoading
-            ? const Center(
-                child: SizedBox(
-                  height: 25,
-                  width: 25,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    backgroundColor: Colors.white,
+        child:
+            isLoading
+                ? Center(
+                  child: SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      backgroundColor: Colors.white,
+                    ),
                   ),
-                ),
-              )
-            : widget,
+                )
+                : widget ??
+                    Text(
+                      title??'',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        height: 1.56,
+                      ),
+                    ),
       ),
     );
   }

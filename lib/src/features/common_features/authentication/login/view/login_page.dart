@@ -1,10 +1,8 @@
 import 'package:all_in_one3/src/core/extension/sizebox_extension.dart';
-import 'package:all_in_one3/src/core/extension/text_extension.dart';
 import 'package:all_in_one3/src/core/page_state/state.dart';
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
@@ -66,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                             blurRadius: 80,
                             offset: Offset(0, 4),
                             spreadRadius: 0,
-                          )
+                          ),
                         ],
                       ),
                       child: Padding(
@@ -98,14 +96,24 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Text(
                                     'Forgot password?',
                                     style: TextStyle(
-                                      color: Color(0xFF0065FF),
+                                      shadows: [
+                                        Shadow(
+                                          color: AppColors.primary,
+                                          offset: Offset(0, -3),
+                                        ),
+                                      ],
+                                      color: Colors.transparent,
                                       fontSize: 12,
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
                                       decoration: TextDecoration.underline,
+                                      decorationColor: AppColors.primary,
+                                      decorationThickness: 1,
+                                      decorationStyle:
+                                          TextDecorationStyle.solid,
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                             const SizedBox(height: 30),
@@ -114,10 +122,8 @@ class _LoginPageState extends State<LoginPage> {
                                 isLoading:
                                     controller.pageState == PageState.loading,
                                 onTap: onTap,
-                                widget: const Text(AppStrings.loginToMyAccount)
-                                    .fontSize(16)
-                                    .bold(FontWeight.w600)
-                                    .color(AppColors.white),
+                                //widget: const Text(AppStrings.loginToMyAccount)
+                                title: AppStrings.loginToMyAccount,
                               ),
                             ),
                             const SizedBox(height: 30),
@@ -125,26 +131,42 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                const TextWidget(
-                                    text: AppStrings.dontHaveAnyAccount,
-                                    color: CommonColor.headingTextColor1,
-                                    maxLine: 2,
-                                    fontFamily: AppStrings.inter,
+                                Text(
+                                  'Don’t have any account?',
+
+                                  style: TextStyle(
+                                    color: Color(0xFF5A5959),
+                                    fontSize: 14,
+                                    fontFamily: 'Inter',
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 14),
+                                  ),
+                                ),
+
                                 const SizedBox(width: 10),
                                 GestureDetector(
                                   onTap: () {
                                     Get.toNamed(Routes.engagement);
                                   },
-                                  child: const TextWidget(
-                                    text: AppStrings.registerNow,
-                                    underline: TextDecoration.underline,
-                                    color: CommonColor.headingTextColor1,
-                                    maxLine: 2,
-                                    fontFamily: AppStrings.inter,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 18,
+                                  child: Text(
+                                    AppStrings.registerNow,
+
+                                    style: TextStyle(
+                                      shadows: [
+                                        Shadow(
+                                          color: AppColors.primary,
+                                          offset: Offset(0, -1),
+                                        ),
+                                      ],
+                                      color: Colors.transparent,
+                                      fontSize: 14,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w700,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: AppColors.primary,
+                                      decorationThickness: 1,
+                                      decorationStyle:
+                                          TextDecorationStyle.solid,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -249,92 +271,56 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _headerNotMounted() {
-    return Column(
-      children: [
-        Container(
-          width: SizeConfig.screenWidth,
-          alignment: Alignment.center,
-          child: Image.asset(
-            ImageConstant.appLogo,
-            height: 75,
-            width: 75,
-            fit: BoxFit.fill,
-          ),
-        ),
-        const SizedBox(height: 7),
-        const TextWidget(
-          text: AppStrings.loginToYourAccount,
-          color: CommonColor.headingTextColor1,
-          maxLine: 1,
-          fontFamily: AppStrings.aeonikTRIAL,
-          fontWeight: FontWeight.w700,
-          fontSize: 28,
-        ),
-        const SizedBox(height: 10),
-        const TextWidget(
-          text: AppStrings.heyWelcomeback,
-          color: CommonColor.headingTextColor1,
-          maxLine: 1,
-          fontFamily: AppStrings.sfProDisplay,
-          fontWeight: FontWeight.w400,
-          fontSize: 18,
-        ),
-      ],
-    );
-  }
-
   void onTap() {
     if (!_formKey.currentState!.validate()) {
       return;
     }
-    controller.login(_formKey).then(
-      (response) {
-        if (controller.loginModel.success == false &&
-            controller.loginModel.message ==
-                'User is not active. Please check your email to verify your account.') {
-          _showDailogBox(
-            'please check your email and verify your account',
-            title: 'Do you want to verify account?',
-          );
+    controller.login(_formKey).then((response) {
+      if (controller.loginModel.success == false &&
+          controller.loginModel.message ==
+              'User is not active. Please check your email to verify your account.') {
+        _showDailogBox(
+          'please check your email and verify your account',
+          title: 'Do you want to verify account?',
+        );
 
-          return;
-        }
-        if (controller.loginModel.success == false) {
-          SnackBarService.showErrorSnackBar(
-              controller.loginModel.message.toString());
+        return;
+      }
+      if (controller.loginModel.success == false) {
+        SnackBarService.showErrorSnackBar(
+          controller.loginModel.message.toString(),
+        );
 
-          return;
+        return;
+      }
+      if (controller.loginModel.data?.userType == 1) {
+        if (kIsWeb) {
+          Get.rootDelegate.toNamed(Routes.bottomNavBarStudent);
+          // Get.offNamed(Routes.bottomNavBarStudent);
+        } else {
+          Get.offNamed(Routes.bottomNavBarStudent);
         }
-        if (controller.loginModel.data?.userType == 1) {
-          if (kIsWeb) {
-            Get.rootDelegate.toNamed(Routes.bottomNavBarStudent);
-            // Get.offNamed(Routes.bottomNavBarStudent);
-          } else {
-            Get.offNamed(Routes.bottomNavBarStudent);
-          }
-        } else if (controller.loginModel.data?.userType == 2) {
-          if (kIsWeb) {
-            Get.offNamed(Routes.bottomNavBarEmployee);
-          } else {
-            Get.offNamed(Routes.bottomNavBarEmployee);
-          }
-        } else if (controller.loginModel.data?.userType == 3) {
-          if (kIsWeb) {
-            Get.offNamed(Routes.bottomNavBarCompany);
-          } else {
-            //
-            Get.offNamed(Routes.bottomNavBarCompany);
-          }
-        } else if (controller.loginModel.data?.userType == 4) {
-          if (kIsWeb) {
-            Get.offNamed(Routes.bottomNavBarInterview);
-          } else {
-            Get.offNamed(Routes.bottomNavBarInterview);
-          }
+      } else if (controller.loginModel.data?.userType == 2) {
+        if (kIsWeb) {
+          Get.offNamed(Routes.bottomNavBarEmployee);
+        } else {
+          Get.offNamed(Routes.bottomNavBarEmployee);
         }
-      },
-    );
+      } else if (controller.loginModel.data?.userType == 3) {
+        if (kIsWeb) {
+          Get.offNamed(Routes.bottomNavBarCompany);
+        } else {
+          //
+          Get.offNamed(Routes.bottomNavBarCompany);
+        }
+      } else if (controller.loginModel.data?.userType == 4) {
+        if (kIsWeb) {
+          Get.offNamed(Routes.bottomNavBarInterview);
+        } else {
+          Get.offNamed(Routes.bottomNavBarInterview);
+        }
+      }
+    });
   }
 
   void _showDailogBox(String message, {String? title}) {
@@ -343,9 +329,7 @@ class _LoginPageState extends State<LoginPage> {
       builder: (context) {
         return AlertDialog(
           title: Text(title ?? 'Something went wrong'),
-          content: SingleChildScrollView(
-            child: SelectableText(message),
-          ),
+          content: SingleChildScrollView(child: SelectableText(message)),
           actions: [
             TextButton(
               onPressed: () {
@@ -355,16 +339,15 @@ class _LoginPageState extends State<LoginPage> {
             ),
             TextButton(
               onPressed: () {
-                controller.resentOtpForVerifyMail().then(
-                  (value) {
-                    SnackBarService.showInfoSnackBar(
-                        controller.loginModel.message.toString());
-                  },
-                );
+                controller.resentOtpForVerifyMail().then((value) {
+                  SnackBarService.showInfoSnackBar(
+                    controller.loginModel.message.toString(),
+                  );
+                });
                 Navigator.of(context).pop();
               },
               child: const Text('OK'),
-            )
+            ),
           ],
         );
       },
