@@ -33,7 +33,7 @@ class _CompanyPaymentPageMobileState extends State<CompanyPaymentPageMobile> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 15,
-                    vertical: 10,
+                    vertical: 15,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

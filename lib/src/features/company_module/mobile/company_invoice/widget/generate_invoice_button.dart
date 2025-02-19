@@ -18,22 +18,25 @@ class _GenerateInvoiceButton extends GetView<CompanyInvoiceViewController> {
             return;
           }
           FocusManager.instance.primaryFocus!.unfocus();
-          controller.generateInvoice().then(
-            (value) {
-              if (value.success == false) {
-                return;
-              }
-              controller.clearTextFields();
+          controller.generateInvoice().then((value) {
+            if (value.success == false) {
+              return;
+            }
+            controller.clearTextFields();
 
-              controller.fetchInvoices();
-              SnackBarService.showInfoSnackBar('Generate Invoice successfully');
-            },
-          );
+            controller.fetchInvoices();
+            SnackBarService.showInfoSnackBar('Generate Invoice successfully');
+          });
         },
-        widget: const Text('Generate Invoice')
-            .fontSize(16)
-            .bold(FontWeight.w600)
-            .color(AppColors.white),
+        widget: const Text(
+          'Generate Invoice',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
     );
   }

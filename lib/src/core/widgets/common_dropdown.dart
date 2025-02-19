@@ -16,10 +16,9 @@ class CommonPopupMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
-      color: AppColors.primary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      color: AppColors.white,
+      shadowColor: AppColors.black,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       onSelected: onSelected,
       itemBuilder: (context) {
         return [
@@ -28,11 +27,14 @@ class CommonPopupMenu extends StatelessWidget {
               value: value,
               child: Text(
                 value,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: Color(0xFF667084),
+                  fontSize: 14,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-            )
+            ),
         ];
       },
       child: Container(
@@ -47,12 +49,18 @@ class CommonPopupMenu extends StatelessWidget {
             children: [
               Text(
                 selectedValue!,
-                style: const TextStyle(color: CommonColor.blackColor),
+                style: const TextStyle(
+                  color: Color(0xFF667084),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  height: 1.50,
+                ),
               ),
               const Icon(
                 Icons.keyboard_arrow_down_rounded,
                 size: 25,
-              )
+                color: Color(0xFF667084),
+              ),
             ],
           ),
         ),
@@ -76,22 +84,15 @@ class SkillCommonPopupMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
       color: AppColors.primary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       onSelected: onSelected,
       itemBuilder: (context) {
         return [
           for (var value in data)
             PopupMenuItem(
               value: value,
-              child: Text(
-                value,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            )
+              child: Text(value, style: const TextStyle(color: Colors.white)),
+            ),
         ];
       },
       child: Container(
@@ -105,14 +106,13 @@ class SkillCommonPopupMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                List.generate(selectedValue!.length,
-                    (int index) => selectedValue?[index]).toString(),
+                List.generate(
+                  selectedValue!.length,
+                  (int index) => selectedValue?[index],
+                ).toString(),
                 style: const TextStyle(color: CommonColor.blackColor),
               ),
-              const Icon(
-                Icons.keyboard_arrow_down_rounded,
-                size: 25,
-              )
+              const Icon(Icons.keyboard_arrow_down_rounded, size: 25),
             ],
           ),
         ),

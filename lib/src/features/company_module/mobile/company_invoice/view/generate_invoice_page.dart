@@ -1,6 +1,5 @@
 import 'package:all_in_one3/src/core/extension/sizebox_extension.dart';
 import 'package:all_in_one3/src/core/extension/string_extension.dart';
-import 'package:all_in_one3/src/core/extension/text_extension.dart';
 import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/theme/text_style.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
@@ -33,14 +32,6 @@ class GenerateCompanyInvoice extends GetView<CompanyInvoiceViewController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // const StudentAppBarMobile(
-              //   titel1: AppStrings.companyName,
-              //   title2: "manage your invoice",
-              //   isBack: false,
-              //   searchHintText: "",
-              //   isShowNotificationIcon: false,
-              // ),
-              15.sh,
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                 child: Column(
@@ -54,7 +45,7 @@ class GenerateCompanyInvoice extends GetView<CompanyInvoiceViewController> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

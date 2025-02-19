@@ -9,13 +9,39 @@ class GenerateInvoice extends GetView<CompanyInvoiceViewController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(getFormattedDate(DateTime.now())!)
-            .fontSize(20)
-            .bold(FontWeight.w600),
-        25.sh,
-        const Text('Generated Monthly Invoice')
-            .fontSize(17)
-            .bold(FontWeight.w600),
+        Text(
+          getFormattedDate(DateTime.now())!,
+          style: TextStyle(
+            color: Color(0xFF262626),
+            fontSize: 24,
+
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+
+        15.sh,
+        Container(
+          width: 326,
+          decoration: ShapeDecoration(
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                width: 1,
+                strokeAlign: BorderSide.strokeAlignCenter,
+                color: Color(0xFFE9F2F3),
+              ),
+            ),
+          ),
+        ),
+        15.sh,
+        const Text(
+          'Generated Monthly Invoice',
+          style: TextStyle(
+            color: Color(0xFF262626),
+            fontSize: 16,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         20.sh,
         Text(
           'Name of the Employee',
@@ -61,7 +87,7 @@ class GenerateInvoice extends GetView<CompanyInvoiceViewController> {
                 keyboardType: TextInputType.number,
               ),
               const SizedBox(height: 15),
-              const _GenerateInvoiceButton()
+              const _GenerateInvoiceButton(),
             ],
           ),
         ),
