@@ -94,7 +94,7 @@ class _JobDetailsPageMobileState extends State<JobDetailsPageMobile> {
 
             isFromOtherJob
                 ? Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
                   child: Column(
                     children: [
                       CompanySaveJobButtonFromJobDetails(
@@ -108,7 +108,7 @@ class _JobDetailsPageMobileState extends State<JobDetailsPageMobile> {
                 : isFromCompanyJob
                 ? const Offstage()
                 : Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16,),
                   child: Column(
                     children: [
                       SaveJobButtonFromJobDetails(job: viewJobResponseData),

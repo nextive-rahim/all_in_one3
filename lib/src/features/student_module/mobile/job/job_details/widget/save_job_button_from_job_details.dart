@@ -10,10 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SaveJobButtonFromJobDetails extends GetView<JobsViewController> {
-  SaveJobButtonFromJobDetails({
-    super.key,
-    required this.job,
-  });
+  SaveJobButtonFromJobDetails({super.key, required this.job});
   final JobModel job;
   final ValueNotifier<bool> isSavedJob = ValueNotifier<bool>(false);
   @override
@@ -23,9 +20,10 @@ class SaveJobButtonFromJobDetails extends GetView<JobsViewController> {
       builder: (BuildContext context, bool value, child) {
         return Obx(
           () => PrimaryButton(
-            backgroundColor: job.isSaved != 0 || value
-                ? AppColors.grey
-                : CommonColor.purpleColor1,
+            backgroundColor:
+                job.isSaved != 0 || value
+                    ? AppColors.grey.withValues(alpha: .2)
+                    : CommonColor.purpleColor1,
             isLoading: controller.isLoadingSavedJob.value == true,
             onTap: () {
               if (job.isSaved != 0 || isSavedJob.value) {

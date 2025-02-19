@@ -12,10 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CompanyJobApplyButton extends GetView<OtherCompanyJobsViewController> {
-  CompanyJobApplyButton({
-    super.key,
-    required this.job,
-  });
+  CompanyJobApplyButton({super.key, required this.job});
   final JobModel job;
   final ValueNotifier<bool> isAppliedJob = ValueNotifier<bool>(false);
   @override
@@ -27,9 +24,10 @@ class CompanyJobApplyButton extends GetView<OtherCompanyJobsViewController> {
         builder: (BuildContext context, bool value, child) {
           return Obx(
             () => PrimaryButton(
-              backgroundColor: job.isApplied != 0 || value
-                  ? AppColors.grey
-                  : CommonColor.purpleColor1,
+              backgroundColor:
+                  job.isApplied != 0 || value
+                      ? AppColors.grey.withValues(alpha: .2)
+                      : CommonColor.purpleColor1,
               isLoading: controller.isLoadingAppliedJob.value == true,
               onTap: () {
                 if (job.isApplied != 0 || isAppliedJob.value) {
@@ -50,6 +48,7 @@ class CompanyJobApplyButton extends GetView<OtherCompanyJobsViewController> {
                     width: 20,
                     height: 20,
                     fit: BoxFit.fill,
+                    color: AppColors.white,
                   ),
                   const SizedBox(width: 8),
                   const TextWidget(
