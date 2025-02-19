@@ -1,9 +1,7 @@
 import 'package:all_in_one3/src/core/gobal_function.dart';
-import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/assets.dart';
-import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
-import 'package:all_in_one3/src/core/widgets/text_widget.dart';
+import 'package:all_in_one3/src/core/widgets/add_container.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/model/employee_model.dart';
 import 'package:flutter/material.dart';
 
@@ -17,104 +15,21 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        GestureDetector(
+        AddContainer(
+          height: 44,
+          icon: Assets.send1,
           onTap: () {
             hotlineSupport(employee.phone ?? '');
           },
-          child: Container(
-            width: SizeConfig.screenWidth,
-            height: 44,
-            alignment: Alignment.center,
-            clipBehavior: Clip.antiAlias,
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                  width: 0.50,
-                  color: CommonColor.greyColor5,
-                ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              shadows: const [
-                BoxShadow(
-                  color: CommonColor.blackColor3,
-                  blurRadius: 2,
-                  offset: Offset(0, 1),
-                  spreadRadius: 0,
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  Assets.send1,
-                  color: CommonColor.purpleColor1,
-                  width: 25,
-                  height: 25,
-                ),
-                const SizedBox(width: 10),
-                const TextWidget(
-                  text: AppStrings.call,
-                  color: CommonColor.purpleColor1,
-                  maxLine: 1,
-                  fontFamily: AppStrings.inter,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ],
-            ),
-          ),
+          title: AppStrings.call,
         ),
-        const SizedBox(height: 12),
-        GestureDetector(
+        AddContainer(
+          height: 44,
+          icon: Assets.send2,
           onTap: () {
             emailSupport(employee.username ?? '');
           },
-          child: Container(
-            width: SizeConfig.screenWidth,
-            height: 44,
-            alignment: Alignment.center,
-            clipBehavior: Clip.antiAlias,
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                  width: 0.50,
-                  color: CommonColor.greyColor5,
-                ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              shadows: const [
-                BoxShadow(
-                  color: CommonColor.blackColor3,
-                  blurRadius: 2,
-                  offset: Offset(0, 1),
-                  spreadRadius: 0,
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  Assets.mail,
-                  color: CommonColor.purpleColor1,
-                  width: 25,
-                  height: 25,
-                ),
-                const SizedBox(width: 10),
-                const TextWidget(
-                  text: AppStrings.email,
-                  color: CommonColor.purpleColor1,
-                  maxLine: 1,
-                  fontFamily: AppStrings.inter,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ],
-            ),
-          ),
+          title: AppStrings.call,
         ),
       ],
     );

@@ -1,4 +1,3 @@
-import 'package:all_in_one3/src/core/extension/sizebox_extension.dart';
 import 'package:all_in_one3/src/core/service/file/file_service.dart';
 import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
@@ -22,6 +21,7 @@ class AddedNewEmployeeFormField
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 20),
           OutlinedInputField(
             labelText: 'Employee Id*',
             controller: controller.employeeController,

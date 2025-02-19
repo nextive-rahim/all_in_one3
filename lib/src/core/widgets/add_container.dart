@@ -2,11 +2,13 @@ import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 
 class AddContainer extends StatelessWidget {
-  const AddContainer({super.key,required this.onTap,this.width,required this.title,this.bottom});
+  const AddContainer({super.key,required this.onTap,this.width,required this.title,this.bottom,this.height,this.icon,});
 final void Function()? onTap;
 final double? width;
 final double? bottom;
 final String title;
+final double? height;
+final String ?icon;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,7 +19,7 @@ final String title;
         padding:  EdgeInsets.only(bottom:bottom?? 20),
         child: Container(
           width:width?? double.infinity,
-          height: 36,
+          height:height?? 36,
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
@@ -45,7 +47,7 @@ final String title;
                 height: 20,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(),
-                child: Image.asset(Assets.add),
+                child: Image.asset(icon??Assets.add),
               ),
               SizedBox(width: 8),
               Text(

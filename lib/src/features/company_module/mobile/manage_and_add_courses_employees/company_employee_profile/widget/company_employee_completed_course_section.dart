@@ -19,31 +19,32 @@ class CompanyEmployeeCompletedCourseSection
       if (controller.assignedCouseList.isEmpty) {
         return const Column(
           children: [
-            TextWidget(
-                text: 'Assigned Courses :',
-                color: CommonColor.blackColor1,
-                maxLine: 1,
-                fontFamily: AppStrings.sfProDisplay,
-                fontWeight: FontWeight.w600,
-                fontSize: 18),
-            SizedBox(height: 15),
             Text(
-              'No Course Assigned',
-              style: TextStyle(color: AppColors.red),
+              'Assigned Courses :',
+              style: TextStyle(
+                color: Color(0xFF262626),
+                fontSize: 18,
+
+                fontWeight: FontWeight.w600,
+              ),
             ),
+            SizedBox(height: 15),
+            Text('No Course Assigned', style: TextStyle(color: AppColors.red)),
           ],
         );
       }
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TextWidget(
-              text: 'Assigned Courses :',
-              color: CommonColor.blackColor1,
-              maxLine: 1,
-              fontFamily: AppStrings.sfProDisplay,
+          const Text(
+            'Assigned Courses :',
+            style: TextStyle(
+              color: Color(0xFF262626),
+              fontSize: 18,
+
               fontWeight: FontWeight.w600,
-              fontSize: 18),
+            ),
+          ),
           const SizedBox(height: 15),
           ListView.separated(
             shrinkWrap: true,
@@ -65,9 +66,7 @@ class CompanyEmployeeCompletedCourseSection
 }
 
 class _AssignedCourseCard extends StatelessWidget {
-  const _AssignedCourseCard({
-    required this.assignCourse,
-  });
+  const _AssignedCourseCard({required this.assignCourse});
   final CourseModel? assignCourse;
   @override
   Widget build(BuildContext context) {
@@ -77,27 +76,16 @@ class _AssignedCourseCard extends StatelessWidget {
         width: SizeConfig.screenWidth,
         height: 85,
         decoration: ShapeDecoration(
-          color: CommonColor.greyColor9,
+          color: CommonColor.whiteColor,
+
           shape: RoundedRectangleBorder(
             side: const BorderSide(width: 0.50, color: CommonColor.greyColor18),
             borderRadius: BorderRadius.circular(10),
           ),
-          shadows: const [
-            BoxShadow(
-              color: Color(0x0C000000),
-              blurRadius: 20,
-              offset: Offset(0, 4),
-              spreadRadius: 0,
-            )
-          ],
+          shadows: CommonColor.boxShadow,
         ),
         child: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 10,
-            bottom: 10,
-          ),
+          padding: const EdgeInsets.all(16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -112,7 +100,9 @@ class _AssignedCourseCard extends StatelessWidget {
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
                         side: const BorderSide(
-                            width: 0.50, color: CommonColor.greyColor5),
+                          width: 0.50,
+                          color: CommonColor.greyColor5,
+                        ),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       shadows: const [
@@ -121,43 +111,41 @@ class _AssignedCourseCard extends StatelessWidget {
                           blurRadius: 2,
                           offset: Offset(0, 1),
                           spreadRadius: 0,
-                        )
+                        ),
                       ],
                     ),
                     child: const Icon(
                       Icons.play_arrow_outlined,
-                      color: CommonColor.purpleColor1,
+                      color: CommonColor.greyColor,
                     ),
                   ),
-                  const SizedBox(width: 20),
+                  const SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextWidget(
-                          text: assignCourse!.title ?? '',
-                          color: CommonColor.greyColor11,
-                          maxLine: 1,
-                          fontFamily: AppStrings.sfProDisplay,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14),
-                      const SizedBox(
-                        height: 8,
+                        text: assignCourse!.title ?? '',
+                        color: CommonColor.greyColor11,
+                        maxLine: 1,
+                        fontFamily: AppStrings.sfProDisplay,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
                       ),
+                      const SizedBox(height: 8),
                       TextWidget(
-                          text: assignCourse!.totalTime ?? '',
-                          color: CommonColor.greyColor11,
-                          maxLine: 1,
-                          fontFamily: AppStrings.sfProDisplay,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12),
+                        text: assignCourse!.totalTime ?? '',
+                        color: CommonColor.greyColor11,
+                        maxLine: 1,
+                        fontFamily: AppStrings.sfProDisplay,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                      ),
                     ],
                   ),
                 ],
               ),
-              DeletedAssignCourse(
-                course: assignCourse!,
-              )
+              DeletedAssignCourse(course: assignCourse!),
               // const Icon(
               //   Icons.more_vert,
               //   color: CommonColor.purpleColor1,
