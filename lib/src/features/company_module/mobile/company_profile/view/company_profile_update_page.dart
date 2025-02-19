@@ -1,3 +1,4 @@
+import 'package:all_in_one3/src/core/widgets/custom_app_bar.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_profile/controller/company_profile_update_view_controller.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_profile/widget/company_logo_update_section.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_profile/widget/company_profile_update_button.dart';
@@ -12,21 +13,18 @@ class CompanyProfileUpdatePage
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Update Profile'),
-        actions: const [],
-      ),
+      appBar: CustomAppBar(title: ''),
       body: const SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.symmetric(horizontal: 16),
             child: Center(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CompanyLogoUpdateSection(),
-                  CompanyProfileUpdateFormField()
+                  CompanyProfileUpdateFormField(),
                 ],
               ),
             ),
@@ -34,7 +32,7 @@ class CompanyProfileUpdatePage
         ),
       ),
       bottomNavigationBar: const Padding(
-        padding: EdgeInsets.all(0.0),
+        padding: EdgeInsets.all(10.0),
         child: CompanyProfileUpdateButton(),
       ),
     );
