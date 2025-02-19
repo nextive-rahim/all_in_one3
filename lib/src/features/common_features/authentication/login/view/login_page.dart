@@ -7,6 +7,7 @@ import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
 import 'package:all_in_one3/src/core/validators/input_form_validators.dart';
+import 'package:all_in_one3/src/core/widgets/delete_dailog.dart';
 import 'package:all_in_one3/src/core/widgets/primary_button.dart';
 import 'package:all_in_one3/src/core/widgets/text_form_field.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -297,9 +298,18 @@ class _LoginPageState extends State<LoginPage> {
       if (controller.loginModel.success == false &&
           controller.loginModel.message ==
               'User is not active. Please check your email to verify your account.') {
-        _showDailogBox(
-          'please check your email and verify your account',
+        deleteDailog(
+          context: context,
+          message: 'please check your email and verify your account',
           title: 'Do you want to verify account?',
+          onTap: () {
+            controller.resentOtpForVerifyMail().then((value) {
+              SnackBarService.showInfoSnackBar(
+                controller.loginModel.message.toString(),
+              );
+            });
+            Navigator.of(context).pop();
+          },
         );
 
         return;
@@ -339,36 +349,5 @@ class _LoginPageState extends State<LoginPage> {
         }
       }
     });
-  }
-
-  void _showDailogBox(String message, {String? title}) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(title ?? 'Something went wrong'),
-          content: SingleChildScrollView(child: SelectableText(message)),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                controller.resentOtpForVerifyMail().then((value) {
-                  SnackBarService.showInfoSnackBar(
-                    controller.loginModel.message.toString(),
-                  );
-                });
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
   }
 }
