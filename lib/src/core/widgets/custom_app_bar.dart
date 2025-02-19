@@ -3,12 +3,14 @@ import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  const CustomAppBar({super.key, required this.title});
+  final double? toolbarHeight;
+  const CustomAppBar({super.key, required this.title,this.toolbarHeight});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
        leadingWidth: 100,
+       toolbarHeight: toolbarHeight,
       // centerTitle: false,
       leading: Row(
         children: [

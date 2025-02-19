@@ -2,6 +2,7 @@ import 'package:all_in_one3/src/core/extension/sizebox_extension.dart';
 import 'package:all_in_one3/src/core/service/file/file_service.dart';
 import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
+import 'package:all_in_one3/src/core/validators/input_form_validators.dart';
 import 'package:all_in_one3/src/core/widgets/text_form_field.dart';
 import 'package:all_in_one3/src/features/common_features/profile/controller/profile_update_view_controller.dart';
 import 'package:all_in_one3/src/features/common_features/profile/widgets/skill_update_section.dart';
@@ -21,87 +22,40 @@ class AddedNewEmployeeFormField
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          labelText('Employee Id*'),
-          TextFormFieldWidget(
-            isEmailField: true,
+          OutlinedInputField(
+            labelText: 'Employee Id*',
             controller: controller.employeeController,
-            valtext: AppStrings.commonTextVal,
-            height: 45,
             hintText: '123456',
-            readOnly: false,
-            maxLine: 1,
-            keyType: TextInputType.number,
-            wordLimit: 100,
-            fontFamily: AppStrings.inter,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            onChanged: (value) {},
+            validator: InputFieldValidator.name(),
+            keyboardType: TextInputType.number,
           ),
-          labelText('Name*'),
-          TextFormFieldWidget(
-            isEmailField: true,
+          OutlinedInputField(
+            labelText: 'Name*',
             controller: controller.nameController,
-            valtext: AppStrings.commonTextVal,
-            height: 45,
-            hintText: AppStrings.name,
-            readOnly: false,
-            maxLine: 1,
-            keyType: TextInputType.text,
-            wordLimit: 100,
-            fontFamily: AppStrings.inter,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            onChanged: (value) {},
+            hintText: AppStrings.nameHint,
+            validator: InputFieldValidator.name(),
           ),
-          labelText('On site email address'),
-          TextFormFieldWidget(
-            isEmailField: true,
+          OutlinedInputField(
+            labelText: 'On site email address',
             controller: controller.emailController,
-            valtext: AppStrings.commonTextVal,
-            height: 45,
             hintText: 'example@gmail.com',
-            readOnly: false,
-            maxLine: 1,
-            keyType: TextInputType.text,
-            wordLimit: 100,
-            fontFamily: AppStrings.inter,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            onChanged: (value) {},
+            validator: InputFieldValidator.email(),
           ),
-          labelText('Contact no.'),
-          TextFormFieldWidget(
-            isEmailField: true,
+          OutlinedInputField(
+            labelText: 'Contact no.',
             controller: controller.contactsNumberController,
-            valtext: AppStrings.commonTextVal,
-            height: 45,
-            hintText: 'Contact number',
-            readOnly: false,
-            maxLine: 1,
-            keyType: TextInputType.number,
-            wordLimit: 100,
-            fontFamily: AppStrings.inter,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            onChanged: (value) {},
+            hintText: 'Enter your contact number',
+            validator: InputFieldValidator.name(),
+            keyboardType: TextInputType.number,
           ),
-          labelText('Degination'),
-          TextFormFieldWidget(
-            isEmailField: true,
-            controller: controller.deginationController,
-            valtext: AppStrings.commonTextVal,
-            height: 45,
-            hintText: 'Address',
-            readOnly: false,
-            maxLine: 1,
-            keyType: TextInputType.text,
-            wordLimit: 100,
-            fontFamily: AppStrings.inter,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            onChanged: (value) {},
+          OutlinedInputField(
+            labelText: 'Degination',
+            controller: controller.contactsNumberController,
+            hintText: 'Enter your degination',
+            validator: InputFieldValidator.name(),
+            keyboardType: TextInputType.number,
           ),
-          20.sh,
+
           SkillUpdateSection(),
           labelText('Upload Resume'),
           TextFormFieldWidget(
@@ -132,9 +86,9 @@ class AddedNewEmployeeFormField
                       controller.isUploadFile.value = true;
                     }
 
-                    Get.put(UpdateProfileiewController())
-                        .uploadFile(value.file)
-                        .then((value2) {
+                    Get.put(
+                      UpdateProfileiewController(),
+                    ).uploadFile(value.file).then((value2) {
                       controller.resumeLink.value = value2;
                       controller.uploadResumeController.text =
                           controller.resumeLink.value;
@@ -144,12 +98,14 @@ class AddedNewEmployeeFormField
                     return;
                   });
                 },
-                icon: controller.isUploadFile.value
-                    ? const SizedBox(
-                        height: 13,
-                        width: 13,
-                        child: CircularProgressIndicator())
-                    : const Icon(Icons.upload),
+                icon:
+                    controller.isUploadFile.value
+                        ? const SizedBox(
+                          height: 13,
+                          width: 13,
+                          child: CircularProgressIndicator(),
+                        )
+                        : const Icon(Icons.upload, color: Color(0xFF667084)),
               ),
             ),
           ),
@@ -176,14 +132,8 @@ class AddedNewEmployeeFormField
 
   Widget labelText(String title) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 10,
-        top: 20,
-      ),
-      child: Title(
-        color: AppColors.black,
-        child: Text(title),
-      ),
+      padding: const EdgeInsets.only(bottom: 10, top: 20),
+      child: Title(color: AppColors.black, child: Text(title)),
     );
   }
 }
