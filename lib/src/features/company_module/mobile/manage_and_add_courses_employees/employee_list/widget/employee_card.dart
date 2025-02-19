@@ -28,7 +28,7 @@ class EmployeeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
               GestureDetector(
@@ -144,14 +144,24 @@ class EmployeeCard extends StatelessWidget {
                         onTap: () {
                           hotlineSupport(employee.phone ?? '');
                         },
-                        child: Image.asset(Assets.send1, height: 24, width: 24),
+                        child: Image.asset(
+                          Assets.send1,
+                          height: 24,
+                          width: 24,
+                          color: CommonColor.blackColor1.withValues(alpha: .6),
+                        ),
                       ),
                       const SizedBox(width: 20),
                       InkWell(
                         onTap: () {
                           emailSupport(employee.username ?? '');
                         },
-                        child: Image.asset(Assets.mail, height: 24, width: 24),
+                        child: Image.asset(
+                          Assets.mail,
+                          height: 24,
+                          width: 24,
+                          color: CommonColor.blackColor1.withValues(alpha: .6),
+                        ),
                       ),
                     ],
                   ),

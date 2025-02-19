@@ -1,5 +1,4 @@
 import 'package:all_in_one3/src/core/extension/sizebox_extension.dart';
-import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/features/common_features/user_details/controller/user_details_view_controller.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/my_company_jobs/my_company_job_list/controller/company_job_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/job/job_details/widget/company_job_apply_button.dart';

@@ -1,5 +1,5 @@
-import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/assets.dart';
+import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
 import 'package:all_in_one3/src/core/widgets/delete_dailog.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/controller/employee_view_controller.dart';
@@ -31,7 +31,12 @@ class DeleteEmployeeButton extends GetView<CompanyEmployeeListViewController> {
           },
         );
       },
-      child: Image.asset(Assets.trash, height: 24, width: 24),
+      child: Image.asset(
+        Assets.trash,
+        height: 24,
+        width: 24,
+        color: CommonColor.blackColor1,
+      ),
     );
   }
 }

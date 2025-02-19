@@ -1,6 +1,4 @@
 import 'package:all_in_one3/src/core/page_state/state.dart';
-import 'package:all_in_one3/src/core/theme/colors.dart';
-import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/my_company_jobs/my_company_job_list/controller/company_job_view_controller.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/my_company_jobs/my_company_job_list/view/my_company_job_mobile.dart';

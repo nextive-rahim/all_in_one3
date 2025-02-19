@@ -1,6 +1,4 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
-import 'package:all_in_one3/src/core/utils/assets.dart';
-import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/widgets/add_container.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/controller/employee_view_controller.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/widget/employee_list_builder.dart';

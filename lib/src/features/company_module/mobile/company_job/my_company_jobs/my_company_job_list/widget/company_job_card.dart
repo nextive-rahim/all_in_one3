@@ -2,7 +2,6 @@ import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/formated_date_time.dart';
 import 'package:all_in_one3/src/core/utils/assets.dart';
-import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/common_features/profile/controller/profile_view_controller.dart';
@@ -33,12 +32,7 @@ class CompanyJobCard extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.only(
-          left: 20,
-          top: 25,
-          right: 20,
-          bottom: 25,
-        ),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             GestureDetector(
