@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
   required String message,
   required Function onTap,
   String? title,
+  String?yesText,
 }) {
   showDialog(
     context: context,
@@ -36,7 +37,7 @@ import 'package:flutter/material.dart';
               ),
             ),
             SizedBox(height: 25),
-            PrimaryButton(onTap: onTap, title: 'Yes, Delete'),
+            PrimaryButton(onTap: onTap, title:yesText?? 'Yes, Delete'),
             SizedBox(height: 12),
             PrimaryButton(
               onTap: () {

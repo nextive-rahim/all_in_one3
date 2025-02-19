@@ -1,7 +1,5 @@
 import 'package:all_in_one3/src/core/extension/sizebox_extension.dart';
-import 'package:all_in_one3/src/core/extension/text_extension.dart';
 import 'package:all_in_one3/src/core/page_state/state.dart';
-import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
