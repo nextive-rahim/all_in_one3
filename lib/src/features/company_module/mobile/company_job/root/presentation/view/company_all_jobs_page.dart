@@ -1,4 +1,5 @@
 import 'package:all_in_one3/src/core/page_state/state.dart';
+import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/my_company_jobs/my_company_job_list/controller/company_job_view_controller.dart';
@@ -22,7 +23,6 @@ class CompanyAllJobsMobilePage extends StatelessWidget {
     Get.put(PostCompanyNewJobViewController());
     return SafeArea(
       child: Scaffold(
-        backgroundColor: CommonColor.greyColor1,
         body: RefreshIndicator(
           onRefresh: () async {
             jobViwecontroller.getCompanyjobList();
@@ -35,29 +35,26 @@ class CompanyAllJobsMobilePage extends StatelessWidget {
               Expanded(
                 child: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
-                  child: Container(
-                    color: CommonColor.greyColor15,
-                    child: const Padding(
-                      padding: EdgeInsets.only(
-                        left: 10,
-                        right: 10,
-                        top: 10,
-                        bottom: 60,
-                      ),
-                      child: CompanyJobCommonTabSection(
-                        title3: AppStrings.savedJobs,
-                        title1: AppStrings.ourJobs,
-                        title2: AppStrings.otherJobs,
-                        title4: AppStrings.appliedJobs,
-                        firstTabViewItems: [MyCompanyJobListPageMobile()],
-                        secondTabViewItems: [OtherCompanyJobsTab()],
-                        thirdTabViewItems: [CompanySavedJobsTab()],
-                        fourthTabViewItems: [CompanyAppliedJobTab()],
-                      ),
+                  child: const Padding(
+                    padding: EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                      // top: 10,
+                      bottom: 60,
+                    ),
+                    child: CompanyJobCommonTabSection(
+                      title3: AppStrings.savedJobs,
+                      title1: AppStrings.ourJobs,
+                      title2: AppStrings.otherJobs,
+                      title4: AppStrings.appliedJobs,
+                      firstTabViewItems: [MyCompanyJobListPageMobile()],
+                      secondTabViewItems: [OtherCompanyJobsTab()],
+                      thirdTabViewItems: [CompanySavedJobsTab()],
+                      fourthTabViewItems: [CompanyAppliedJobTab()],
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

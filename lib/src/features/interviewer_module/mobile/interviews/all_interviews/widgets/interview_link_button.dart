@@ -1,10 +1,7 @@
 part of '../view/all_interview_section_mobile.dart';
 
 class InterviewLinkButton extends GetView<AllInterviewsViewController> {
-  const InterviewLinkButton({
-    super.key,
-    required this.interview,
-  });
+  const InterviewLinkButton({super.key, required this.interview});
   final ViewInterviewResponseData interview;
 
   @override
@@ -12,17 +9,11 @@ class InterviewLinkButton extends GetView<AllInterviewsViewController> {
     return GestureDetector(
       onTap: () async {
         if (interview.remainingDayForFormFillUp != 'Available Now') {
-          Util.displayErrorToast(
-            context,
-            'Interview is not avaiable yet',
-          );
+          Util.displayErrorToast(context, 'Interview is not avaiable yet');
           return;
         }
         if (!interview.interviewLink!.contains('https://')) {
-          Util.displayErrorToast(
-            context,
-            'Please enter a vaild meeting link',
-          );
+          Util.displayErrorToast(context, 'Please enter a vaild meeting link');
           return;
         }
         await urlLauncher(interview.interviewLink ?? '').then((v) {
@@ -36,7 +27,7 @@ class InterviewLinkButton extends GetView<AllInterviewsViewController> {
         child: Row(
           children: [
             Image.asset(
-              ImageConstant.link2,
+              Assets.link2,
               color: CommonColor.blueColor1,
               height: 12,
               width: 12,

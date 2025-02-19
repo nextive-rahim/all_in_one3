@@ -3,7 +3,7 @@ import 'package:all_in_one3/src/features/company_module/web/manage_and_add_cours
 import 'package:all_in_one3/src/features/company_module/web/my_company_jobs/my_company_job_web.dart';
 import 'package:all_in_one3/src/features/company_module/web/payment_and_invoice/company_payment_and_invoice_web.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/mobile/student_app_bar.dart';
@@ -12,9 +12,7 @@ import 'package:all_in_one3/src/core/widgets/web/side_nav_bar_company.dart';
 import 'package:flutter/material.dart';
 
 class SavedJobsCompanyListPageWeb extends StatefulWidget {
-  const SavedJobsCompanyListPageWeb({
-    super.key,
-  });
+  const SavedJobsCompanyListPageWeb({super.key});
 
   @override
   State<SavedJobsCompanyListPageWeb> createState() =>
@@ -22,14 +20,15 @@ class SavedJobsCompanyListPageWeb extends StatefulWidget {
 }
 
 class _SavedJobsCompanyListPageWebState
-    extends State<SavedJobsCompanyListPageWeb> with TickerProviderStateMixin {
+    extends State<SavedJobsCompanyListPageWeb>
+    with TickerProviderStateMixin {
   late final TabController _tabController;
   int selectedIndex = 0;
   List<String> jobListItem = [
     AppStrings.savedJobs,
     AppStrings.ourJobs,
     AppStrings.otherJobs,
-    AppStrings.appliedJobs
+    AppStrings.appliedJobs,
   ];
   List<String> listTitles = [
     "Bootstrap designer (TCS)",
@@ -87,433 +86,409 @@ class _SavedJobsCompanyListPageWebState
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SafeArea(
-        child: Scaffold(
-            // appBar: AppBar(
-            //   backgroundColor: CommonColor.whiteColor,
-            //   title: const TextWidget(
-            //       text: "Welcome Back",
-            //       color: CommonColor.headingTextColor1,
-            //       maxLine: 1,
-            //       fontFamily: AppStrings.inter,
-            //       fontWeight: FontWeight.w500,
-            //       fontSize: 14),
-            // ),
-
-            backgroundColor: CommonColor.greyColor1,
-            body: Row(
-              children: [
-                SideNavBarCompany(
-                  jobDropdownOpen: true,
-                  screenLarge: SizeConfig.screenWidth! > 700 ? true : false,
-                  onChangedjobDropdown: (val) {
-                    setState(() {
-                      //  jobDropdownOpen = !jobDropdownOpen;
-                    });
-                  },
-                  onChangedNavigation: (val) {
-                    // 555
-                    if (val == AppStrings.savedJobs) {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) =>
-                      //           const SavedJobsCompanyListPageWeb()),
-                      // );
-                    } else if (val == AppStrings.otherJobs ||
-                        val == AppStrings.ourJobs ||
-                        val == AppStrings.appliedJobs) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const MyCompanyJobListPageWeb()),
-                      );
-                    } else if (val == AppStrings.employees) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const CompanyEmployeeListPageWeb()),
-                      );
-                    } else if (val == AppStrings.payments) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const CompanyPaymentAndInvoicePageWeb()),
-                      );
-                    }
-                  },
-                ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      StudentAppBarMobile(
-                        titel1: AppStrings.companyName,
-                        title2: AppStrings.companyTaglineHere,
-                        isBack: false,
-                        searchHintText: AppStrings.searchForJobs,
-                        onSearchListener: (value) {},
-                      ),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Container(
-                            color: CommonColor.greyColor15,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 18,
-                                right: 18,
-                                top: 30,
-                                bottom: 60,
-                              ),
-                              child: DefaultTabController(
-                                initialIndex: _tabController.index,
-                                length: 3,
-                                child: Column(
+      child: Scaffold(
+        // appBar: AppBar(
+        //   backgroundColor: CommonColor.whiteColor,
+        //   title: const TextWidget(
+        //       text: "Welcome Back",
+        //       color: CommonColor.headingTextColor1,
+        //       maxLine: 1,
+        //       fontFamily: AppStrings.inter,
+        //       fontWeight: FontWeight.w500,
+        //       fontSize: 14),
+        // ),
+        backgroundColor: CommonColor.greyColor1,
+        body: Row(
+          children: [
+            SideNavBarCompany(
+              jobDropdownOpen: true,
+              screenLarge: SizeConfig.screenWidth! > 700 ? true : false,
+              onChangedjobDropdown: (val) {
+                setState(() {
+                  //  jobDropdownOpen = !jobDropdownOpen;
+                });
+              },
+              onChangedNavigation: (val) {
+                // 555
+                if (val == AppStrings.savedJobs) {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) =>
+                  //           const SavedJobsCompanyListPageWeb()),
+                  // );
+                } else if (val == AppStrings.otherJobs ||
+                    val == AppStrings.ourJobs ||
+                    val == AppStrings.appliedJobs) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyCompanyJobListPageWeb(),
+                    ),
+                  );
+                } else if (val == AppStrings.employees) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CompanyEmployeeListPageWeb(),
+                    ),
+                  );
+                } else if (val == AppStrings.payments) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) => const CompanyPaymentAndInvoicePageWeb(),
+                    ),
+                  );
+                }
+              },
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  StudentAppBarMobile(
+                    titel1: AppStrings.companyName,
+                    title2: AppStrings.companyTaglineHere,
+                    isBack: false,
+                    searchHintText: AppStrings.searchForJobs,
+                    onSearchListener: (value) {},
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        color: CommonColor.greyColor15,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 18,
+                            right: 18,
+                            top: 30,
+                            bottom: 60,
+                          ),
+                          child: DefaultTabController(
+                            initialIndex: _tabController.index,
+                            length: 3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 40,
+                                  child: TabBar(
+                                    controller: _tabController,
+                                    indicatorColor: CommonColor.blueColor1,
+                                    isScrollable: true,
+                                    onTap: (index) {
+                                      setState(() {
+                                        _tabController.index = index;
+                                      });
+                                    },
+                                    tabs: <Widget>[
+                                      Tab(
+                                        child: TextWidget(
+                                          textAlign: TextAlign.center,
+                                          text: AppStrings.myCompanyJobs,
+                                          color:
+                                              _tabController.index == 0
+                                                  ? CommonColor.blueColor1
+                                                  : CommonColor.blackColor2,
+                                          maxLine: 1,
+                                          fontFamily: AppStrings.inter,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                      // Tab(
+                                      //   child: TextWidget(
+                                      //       textAlign: TextAlign.center,
+                                      //       text: AppStrings.savedJobs,
+                                      //       color: _tabController.index == 1
+                                      //           ? CommonColor.blueColor1
+                                      //           : CommonColor.blackColor2,
+                                      //       maxLine: 1,
+                                      //       fontFamily: AppStrings.inter,
+                                      //       fontWeight: FontWeight.w500,
+                                      //       fontSize: 14),
+                                      // ),
+                                      // Tab(
+                                      //   child: TextWidget(
+                                      //       textAlign: TextAlign.center,
+                                      //       text: AppStrings.appliedJobs,
+                                      //       color: _tabController.index == 2
+                                      //           ? CommonColor.blueColor1
+                                      //           : CommonColor.blackColor2,
+                                      //       maxLine: 1,
+                                      //       fontFamily: AppStrings.inter,
+                                      //       fontWeight: FontWeight.w500,
+                                      //       fontSize: 14),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                if (_tabController.index == 0)
+                                  Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      SizedBox(
-                                        height: 40,
-                                        child: TabBar(
-                                          controller: _tabController,
-                                          indicatorColor:
-                                              CommonColor.blueColor1,
-                                          isScrollable: true,
-                                          onTap: (index) {
-                                            setState(() {
-                                              _tabController.index = index;
-                                            });
-                                          },
-                                          tabs: <Widget>[
-                                            Tab(
-                                              child: TextWidget(
-                                                  textAlign: TextAlign.center,
-                                                  text:
-                                                      AppStrings.myCompanyJobs,
-                                                  color: _tabController.index ==
-                                                          0
-                                                      ? CommonColor.blueColor1
-                                                      : CommonColor.blackColor2,
-                                                  maxLine: 1,
-                                                  fontFamily: AppStrings.inter,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 14),
-                                            ),
-                                            // Tab(
-                                            //   child: TextWidget(
-                                            //       textAlign: TextAlign.center,
-                                            //       text: AppStrings.savedJobs,
-                                            //       color: _tabController.index == 1
-                                            //           ? CommonColor.blueColor1
-                                            //           : CommonColor.blackColor2,
-                                            //       maxLine: 1,
-                                            //       fontFamily: AppStrings.inter,
-                                            //       fontWeight: FontWeight.w500,
-                                            //       fontSize: 14),
-                                            // ),
-                                            // Tab(
-                                            //   child: TextWidget(
-                                            //       textAlign: TextAlign.center,
-                                            //       text: AppStrings.appliedJobs,
-                                            //       color: _tabController.index == 2
-                                            //           ? CommonColor.blueColor1
-                                            //           : CommonColor.blackColor2,
-                                            //       maxLine: 1,
-                                            //       fontFamily: AppStrings.inter,
-                                            //       fontWeight: FontWeight.w500,
-                                            //       fontSize: 14),
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      if (_tabController.index == 0)
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            ListView.separated(
-                                              itemCount: listTitles.length,
-                                              shrinkWrap: true,
-                                              physics:
-                                                  const NeverScrollableScrollPhysics(),
-                                              itemBuilder: (context, index) {
-                                                return GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              const SaveJobDetailCompanyMobilePage()),
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    //height: 262,
-                                                    width:
-                                                        SizeConfig.screenWidth,
-                                                    decoration: ShapeDecoration(
-                                                      color: Colors.white,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20),
-                                                      ),
+                                      ListView.separated(
+                                        itemCount: listTitles.length,
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:
+                                                      (context) =>
+                                                          const SaveJobDetailCompanyMobilePage(),
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              //height: 262,
+                                              width: SizeConfig.screenWidth,
+                                              decoration: ShapeDecoration(
+                                                color: Colors.white,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                  left: 26,
+                                                  top: 29,
+                                                  right: 26,
+                                                  bottom: 20,
+                                                ),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    TextWidget(
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      text: listTitles[index],
+                                                      color:
+                                                          CommonColor
+                                                              .greyColor4,
+                                                      maxLine: 1,
+                                                      fontFamily:
+                                                          AppStrings
+                                                              .sfProDisplay,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 18,
                                                     ),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 26,
-                                                              top: 29,
-                                                              right: 26,
-                                                              bottom: 20),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          TextWidget(
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              text: listTitles[
-                                                                  index],
-                                                              color: CommonColor
+                                                    const SizedBox(height: 7),
+                                                    TextWidget(
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      text:
+                                                          listSubTitles[index],
+                                                      color:
+                                                          CommonColor
+                                                              .greyColor12,
+                                                      maxLine: 1,
+                                                      fontFamily:
+                                                          AppStrings
+                                                              .sfProDisplay,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 14,
+                                                    ),
+                                                    const SizedBox(height: 18),
+                                                    Row(
+                                                      children: [
+                                                        Image.asset(
+                                                          Assets.jobLogo,
+                                                          color:
+                                                              CommonColor
+                                                                  .blackColor1,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 15,
+                                                        ),
+                                                        const TextWidget(
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          text: "2-6 Yrs",
+                                                          color:
+                                                              CommonColor
                                                                   .greyColor4,
-                                                              maxLine: 1,
-                                                              fontFamily: AppStrings
+                                                          maxLine: 1,
+                                                          fontFamily:
+                                                              AppStrings
                                                                   .sfProDisplay,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 18),
-                                                          const SizedBox(
-                                                            height: 7,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize: 12,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 15),
+                                                    Row(
+                                                      children: [
+                                                        Image.asset(
+                                                          Assets.dollarCircle,
+                                                          color:
+                                                              CommonColor
+                                                                  .blackColor1,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 15,
+                                                        ),
+                                                        const TextWidget(
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          text: "75,000/yr.",
+                                                          color:
+                                                              CommonColor
+                                                                  .greyColor4,
+                                                          maxLine: 1,
+                                                          fontFamily:
+                                                              AppStrings
+                                                                  .sfProDisplay,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize: 12,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 15),
+                                                    Row(
+                                                      children: [
+                                                        Image.asset(
+                                                          Assets.send2,
+                                                          color:
+                                                              CommonColor
+                                                                  .blackColor1,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 15,
+                                                        ),
+                                                        const TextWidget(
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          text:
+                                                              "Bay area, Texas",
+                                                          color:
+                                                              CommonColor
+                                                                  .greyColor4,
+                                                          maxLine: 1,
+                                                          fontFamily:
+                                                              AppStrings
+                                                                  .sfProDisplay,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize: 12,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 15),
+                                                    const Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .insert_drive_file_outlined,
+                                                          color:
+                                                              CommonColor
+                                                                  .blackColor1,
+                                                          size: 18,
+                                                        ),
+                                                        SizedBox(width: 15),
+                                                        Expanded(
+                                                          child: TextWidget(
+                                                            text:
+                                                                "Excellent responsive designing & development skills, creating UI/UX for Mobile & Web-Based applications. Working knowledge of the following technologies: HTML, CSS, iOS, Android, JavaScript and jQuery",
+                                                            color:
+                                                                CommonColor
+                                                                    .greyColor12,
+                                                            maxLine: 2,
+                                                            fontFamily:
+                                                                AppStrings
+                                                                    .sfProDisplay,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontSize: 12,
                                                           ),
-                                                          TextWidget(
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 20),
+                                                    const Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        TextWidget(
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          text:
+                                                              "Posted 3 days ago",
+                                                          color:
+                                                              CommonColor
+                                                                  .greyColor12,
+                                                          maxLine: 1,
+                                                          fontFamily:
+                                                              AppStrings
+                                                                  .sfProDisplay,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontSize: 12,
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Icon(
+                                                              Icons
+                                                                  .bookmark_border_outlined,
+                                                              color:
+                                                                  CommonColor
+                                                                      .blackColor1,
+                                                            ),
+                                                            SizedBox(width: 5),
+                                                            TextWidget(
                                                               textAlign:
                                                                   TextAlign
-                                                                      .center,
+                                                                      .start,
                                                               text:
-                                                                  listSubTitles[
-                                                                      index],
-                                                              color: CommonColor
-                                                                  .greyColor12,
+                                                                  AppStrings
+                                                                      .save,
+                                                              color:
+                                                                  CommonColor
+                                                                      .greyColor4,
                                                               maxLine: 1,
-                                                              fontFamily: AppStrings
-                                                                  .sfProDisplay,
+                                                              fontFamily:
+                                                                  AppStrings
+                                                                      .sfProDisplay,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400,
-                                                              fontSize: 14),
-                                                          const SizedBox(
-                                                            height: 18,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Image.asset(
-                                                                ImageConstant
-                                                                    .jobLogo,
-                                                                color: CommonColor
-                                                                    .blackColor1,
-                                                              ),
-                                                              const SizedBox(
-                                                                width: 15,
-                                                              ),
-                                                              const TextWidget(
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  text:
-                                                                      "2-6 Yrs",
-                                                                  color: CommonColor
-                                                                      .greyColor4,
-                                                                  maxLine: 1,
-                                                                  fontFamily:
-                                                                      AppStrings
-                                                                          .sfProDisplay,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  fontSize: 12),
-                                                            ],
-                                                          ),
-                                                          const SizedBox(
-                                                            height: 15,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Image.asset(
-                                                                ImageConstant
-                                                                    .dollarCircle,
-                                                                color: CommonColor
-                                                                    .blackColor1,
-                                                              ),
-                                                              const SizedBox(
-                                                                width: 15,
-                                                              ),
-                                                              const TextWidget(
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  text:
-                                                                      "75,000/yr.",
-                                                                  color: CommonColor
-                                                                      .greyColor4,
-                                                                  maxLine: 1,
-                                                                  fontFamily:
-                                                                      AppStrings
-                                                                          .sfProDisplay,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  fontSize: 12),
-                                                            ],
-                                                          ),
-                                                          const SizedBox(
-                                                            height: 15,
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Image.asset(
-                                                                ImageConstant
-                                                                    .send2,
-                                                                color: CommonColor
-                                                                    .blackColor1,
-                                                              ),
-                                                              const SizedBox(
-                                                                width: 15,
-                                                              ),
-                                                              const TextWidget(
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  text:
-                                                                      "Bay area, Texas",
-                                                                  color: CommonColor
-                                                                      .greyColor4,
-                                                                  maxLine: 1,
-                                                                  fontFamily:
-                                                                      AppStrings
-                                                                          .sfProDisplay,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  fontSize: 12),
-                                                            ],
-                                                          ),
-                                                          const SizedBox(
-                                                            height: 15,
-                                                          ),
-                                                          const Row(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .insert_drive_file_outlined,
-                                                                color: CommonColor
-                                                                    .blackColor1,
-                                                                size: 18,
-                                                              ),
-                                                              SizedBox(
-                                                                width: 15,
-                                                              ),
-                                                              Expanded(
-                                                                child: TextWidget(
-                                                                    text:
-                                                                        "Excellent responsive designing & development skills, creating UI/UX for Mobile & Web-Based applications. Working knowledge of the following technologies: HTML, CSS, iOS, Android, JavaScript and jQuery",
-                                                                    color: CommonColor
-                                                                        .greyColor12,
-                                                                    maxLine: 2,
-                                                                    fontFamily:
-                                                                        AppStrings
-                                                                            .sfProDisplay,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
-                                                                    fontSize:
-                                                                        12),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                          const SizedBox(
-                                                            height: 20,
-                                                          ),
-                                                          const Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              TextWidget(
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .start,
-                                                                  text:
-                                                                      "Posted 3 days ago",
-                                                                  color: CommonColor
-                                                                      .greyColor12,
-                                                                  maxLine: 1,
-                                                                  fontFamily:
-                                                                      AppStrings
-                                                                          .sfProDisplay,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize: 12),
-                                                              Row(
-                                                                children: [
-                                                                  Icon(
-                                                                    Icons
-                                                                        .bookmark_border_outlined,
-                                                                    color: CommonColor
-                                                                        .blackColor1,
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width: 5,
-                                                                  ),
-                                                                  TextWidget(
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .start,
-                                                                      text: AppStrings
-                                                                          .save,
-                                                                      color: CommonColor
-                                                                          .greyColor4,
-                                                                      maxLine:
-                                                                          1,
-                                                                      fontFamily:
-                                                                          AppStrings
-                                                                              .sfProDisplay,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                      fontSize:
-                                                                          12),
-                                                                ],
-                                                              )
-                                                            ],
-                                                          )
-                                                        ],
-                                                      ),
+                                                              fontSize: 12,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ),
-                                                );
-                                              },
-                                              separatorBuilder:
-                                                  (context, index) {
-                                                return const SizedBox(
-                                                  height: 10,
-                                                );
-                                              },
+                                                  ],
+                                                ),
+                                              ),
                                             ),
-                                          ],
-                                        ),
-                                      /* if (_tabController.index == 1)
+                                          );
+                                        },
+                                        separatorBuilder: (context, index) {
+                                          return const SizedBox(height: 10);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                /* if (_tabController.index == 1)
                                         ListView.separated(
                                           itemCount: 2,
                                           shrinkWrap: true,
@@ -948,7 +923,7 @@ class _SavedJobsCompanyListPageWebState
                                           },
                                         ),
                                      */
-                                      /*   const SizedBox(
+                                /*   const SizedBox(
                                         height: 21,
                                       ),
                                       Stack(
@@ -1076,132 +1051,137 @@ class _SavedJobsCompanyListPageWebState
                                           fontWeight: FontWeight.w400,
                                           fontSize: 16),
                                           */
-                                    ]),
-                              ),
+                              ],
                             ),
                           ),
                         ),
-                      )
-                    ],
+                      ),
+                    ),
                   ),
-                ),
-              ],
-            )));
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Future<bool> jobsBottomSheet() async {
     return await showModalBottomSheet(
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(25.0),
-              ),
-            ),
-            backgroundColor: Colors.transparent,
-            context: context,
-            isScrollControlled: true,
-            isDismissible: true,
-            useRootNavigator: false,
-            builder: (context) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
-                child: StatefulBuilder(
-                    builder: (BuildContext context, StateSetter setState) {
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+          ),
+          backgroundColor: Colors.transparent,
+          context: context,
+          isScrollControlled: true,
+          isDismissible: true,
+          useRootNavigator: false,
+          builder: (context) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+              child: StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
                   return Container(
-                      height: SizeConfig.screenHeight * 0.5,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        shadows: const [
-                          BoxShadow(
-                            color: Color(0x3F000000),
-                            blurRadius: 100,
-                            offset: Offset(0, 4),
-                            spreadRadius: 5,
-                          )
-                        ],
+                    height: SizeConfig.screenHeight * 0.5,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Padding(
-                          padding: const EdgeInsets.only(
-                              right: 20, left: 20, top: 15, bottom: 15),
-                          child: SingleChildScrollView(
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 90,
-                                    height: 2,
-                                    color: CommonColor.greyColor18,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(
-                                        height: 30,
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x3F000000),
+                          blurRadius: 100,
+                          offset: Offset(0, 4),
+                          spreadRadius: 5,
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        right: 20,
+                        left: 20,
+                        top: 15,
+                        bottom: 15,
+                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 90,
+                              height: 2,
+                              color: CommonColor.greyColor18,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 30),
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: jobListItem.length,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          selectedIndex = index;
+                                        });
+                                      },
+                                      child: Container(
+                                        width: SizeConfig.screenWidth,
+                                        height: 59,
+                                        padding: const EdgeInsets.only(
+                                          top: 20,
+                                          left: 10,
+                                          right: 20,
+                                          bottom: 20,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color:
+                                              selectedIndex == index
+                                                  ? CommonColor.blueColor1
+                                                  : Colors.white,
+                                          borderRadius: BorderRadius.circular(
+                                            5,
+                                          ),
+                                          border: Border.all(
+                                            color:
+                                                selectedIndex == index
+                                                    ? CommonColor.blueColor1
+                                                    : CommonColor.greyColor17,
+                                          ),
+                                        ),
+                                        child: TextWidget(
+                                          text: jobListItem[index],
+                                          color:
+                                              selectedIndex == index
+                                                  ? CommonColor.whiteColor
+                                                  : CommonColor.greyColor11,
+                                          maxLine: 1,
+                                          fontFamily: AppStrings.sfProDisplay,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16,
+                                        ),
                                       ),
-                                      ListView.builder(
-                                          shrinkWrap: true,
-                                          itemCount: jobListItem.length,
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          itemBuilder: (context, index) {
-                                            return GestureDetector(
-                                              onTap: () {
-                                                setState(() {
-                                                  selectedIndex = index;
-                                                });
-                                              },
-                                              child: Container(
-                                                width: SizeConfig.screenWidth,
-                                                height: 59,
-                                                padding: const EdgeInsets.only(
-                                                  top: 20,
-                                                  left: 10,
-                                                  right: 20,
-                                                  bottom: 20,
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  color: selectedIndex == index
-                                                      ? CommonColor.blueColor1
-                                                      : Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  border: Border.all(
-                                                      color:
-                                                          selectedIndex == index
-                                                              ? CommonColor
-                                                                  .blueColor1
-                                                              : CommonColor
-                                                                  .greyColor17),
-                                                ),
-                                                child: TextWidget(
-                                                    text: jobListItem[index],
-                                                    color: selectedIndex ==
-                                                            index
-                                                        ? CommonColor.whiteColor
-                                                        : CommonColor
-                                                            .greyColor11,
-                                                    maxLine: 1,
-                                                    fontFamily:
-                                                        AppStrings.sfProDisplay,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16),
-                                              ),
-                                            );
-                                          }),
-                                      const SizedBox(
-                                        height: 25,
-                                      ),
-                                    ],
-                                  ),
-                                ]),
-                          )));
-                }),
-              );
-            }) ??
+                                    );
+                                  },
+                                ),
+                                const SizedBox(height: 25),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ) ??
         false; //if showDialouge had returned null, then return false
   }
 }

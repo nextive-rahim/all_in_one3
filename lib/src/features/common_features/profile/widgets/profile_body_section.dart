@@ -1,6 +1,6 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -10,10 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileBodySection extends StatelessWidget {
-  const ProfileBodySection({
-    super.key,
-    required this.userModel,
-  });
+  const ProfileBodySection({super.key, required this.userModel});
   final UserModel userModel;
   @override
   Widget build(BuildContext context) {
@@ -29,17 +26,19 @@ class ProfileBodySection extends StatelessWidget {
           fontSize: 20,
         ),
         TextWidget(
-          text: List<String>.generate(
-              Get.find<ProfileViewController>()
-                  .profileResponseModel
-                  .userSkill!
-                  .length,
-              (int index) =>
-                  Get.find<ProfileViewController>()
-                      .profileResponseModel
-                      .userSkill![index]
-                      .skill ??
-                  '').toString(),
+          text:
+              List<String>.generate(
+                Get.find<ProfileViewController>()
+                    .profileResponseModel
+                    .userSkill!
+                    .length,
+                (int index) =>
+                    Get.find<ProfileViewController>()
+                        .profileResponseModel
+                        .userSkill![index]
+                        .skill ??
+                    '',
+              ).toString(),
           color: CommonColor.greyColor4,
           maxLine: 4,
           fontFamily: AppStrings.aeonikTRIAL,
@@ -102,19 +101,12 @@ class ProfileBodySection extends StatelessWidget {
           elevation: 5,
           child: InkWell(
             onTap: () {
-              Get.toNamed(
-                Routes.resume,
-                arguments: userModel.resume ?? '',
-              );
+              Get.toNamed(Routes.resume, arguments: userModel.resume ?? '');
             },
             child: SizedBox(
               width: 142,
               height: 199,
-              child: Image.asset(
-                ImageConstant.cv,
-                cacheHeight: 522,
-                cacheWidth: 372,
-              ),
+              child: Image.asset(Assets.cv, cacheHeight: 522, cacheWidth: 372),
             ),
           ),
         ),

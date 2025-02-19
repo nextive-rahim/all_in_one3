@@ -1,5 +1,5 @@
 import 'package:all_in_one3/src/core/theme/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/widgets/logout_button.dart';
 import 'package:all_in_one3/src/core/widgets/mobile/bottom_nav_bar_view_controller.dart';
@@ -75,23 +75,23 @@ class _BottomNavBarCompanyState extends State<BottomNavBarCompany> {
                       type: BottomNavigationBarType.fixed,
                       items: <BottomNavigationBarItem>[
                         BottomNavigationBarItem(
-                          icon: _buildIcon(ImageConstant.home, 0),
+                          icon: _buildIcon(Assets.home, 0),
                           label: 'Home',
                         ),
                         BottomNavigationBarItem(
-                          icon: _buildIcon(ImageConstant.employees, 1),
+                          icon: _buildIcon(Assets.employees, 1),
                           label: 'Employee',
                         ),
                         BottomNavigationBarItem(
-                          icon: _buildIcon(ImageConstant.payment, 2),
+                          icon: _buildIcon(Assets.payment, 2),
                           label: 'Payment',
                         ),
                         BottomNavigationBarItem(
-                          icon: _buildIcon(ImageConstant.file, 3),
+                          icon: _buildIcon(Assets.file, 3),
                           label: 'Invoice',
                         ),
                         BottomNavigationBarItem(
-                          icon: _buildIcon(ImageConstant.users, 4),
+                          icon: _buildIcon(Assets.users, 4),
                           label: 'Profile',
                         ),
                       ],
@@ -150,7 +150,7 @@ class CompanyHomeAppBar extends AppBar {
             SizedBox(
               height: 40,
               // margin: const EdgeInsets.only(left: 10),
-              child: Image.asset(ImageConstant.aioLogo),
+              child: Image.asset(Assets.aioLogo),
             ),
             const Text(
               'All IN ONE',

@@ -44,7 +44,7 @@ class AppliedCandidateCommunicationLink
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  ImageConstant.send1,
+                  Assets.send1,
                   height: 20,
 
                   width: 20,
@@ -97,7 +97,7 @@ class AppliedCandidateCommunicationLink
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  ImageConstant.mail,
+                  Assets.mail,
 
                   height: 20,
                   width: 20,

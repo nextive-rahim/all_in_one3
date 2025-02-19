@@ -3,16 +3,14 @@ import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/service/cache/cache_keys.dart';
 import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({
-    super.key,
-  });
+  const SplashPage({super.key});
 
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -76,7 +74,7 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: CommonColor.whiteColor,
       body: Center(
         child: Image.asset(
-          ImageConstant.flashScreen,
+          Assets.flashScreen,
           height: SizeConfig.safeUsedHeight,
           width: SizeConfig.screenWidth,
           fit: BoxFit.fill,

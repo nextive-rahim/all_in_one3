@@ -1,6 +1,6 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/model/employee_model.dart';
@@ -69,17 +69,14 @@ class CompanyEmployeeProfileEvaluationSection extends StatelessWidget {
         const SizedBox(height: 20),
         GestureDetector(
           onTap: () {
-            Get.toNamed(
-              Routes.resume,
-              arguments: employee.resume,
-            );
+            Get.toNamed(Routes.resume, arguments: employee.resume);
           },
           child: Container(
             width: 199,
             height: 142,
             decoration: ShapeDecoration(
               image: DecorationImage(
-                image: AssetImage(ImageConstant.cv),
+                image: AssetImage(Assets.cv),
                 fit: BoxFit.fill,
               ),
               gradient: LinearGradient(

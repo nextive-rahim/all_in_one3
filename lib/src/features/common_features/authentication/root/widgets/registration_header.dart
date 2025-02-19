@@ -1,4 +1,4 @@
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationHeader extends StatelessWidget {
@@ -14,7 +14,7 @@ class RegistrationHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Image.asset(
-              ImageConstant.appLogo,
+              Assets.appLogo,
               height: 48,
               width: 48,
               fit: BoxFit.fill,

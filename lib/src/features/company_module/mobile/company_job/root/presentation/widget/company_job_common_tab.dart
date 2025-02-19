@@ -56,7 +56,7 @@ class _CompanyJobCommonTabSectionState extends State<CompanyJobCommonTabSection>
               borderRadius: BorderRadius.circular(4),
             ),
             child: TabBar(
-              dividerColor: AppColors.white,
+              dividerColor: CommonColor.greyColor15,
               onTap: (index) {
                 setState(() {
                   selectedIndex = index;
@@ -79,13 +79,13 @@ class _CompanyJobCommonTabSectionState extends State<CompanyJobCommonTabSection>
               indicatorSize: TabBarIndicatorSize.tab,
               padding: EdgeInsets.zero,
               indicatorPadding: const EdgeInsets.only(
-                top: 45,
+                top: 46,
                 left: 0,
-                right: 20,
+                right: 30,
               ),
 
               labelColor: CommonColor.purpleColor1,
-              unselectedLabelColor: Colors.black,
+              unselectedLabelColor: Color(0xFF585858),
               labelPadding: const EdgeInsets.only(left: 0, right: 35),
               unselectedLabelStyle: const TextStyle(
                 fontWeight: FontWeight.w600,

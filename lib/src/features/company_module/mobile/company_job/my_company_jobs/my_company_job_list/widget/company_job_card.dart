@@ -1,7 +1,7 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/formated_date_time.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -20,11 +20,17 @@ class CompanyJobCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //height: 262,
-      width: SizeConfig.screenWidth,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: CommonColor.whiteColor,
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x19000000),
+            blurRadius: 80,
+            offset: Offset(0, 4),
+            spreadRadius: 0,
+          ),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.only(
@@ -77,7 +83,7 @@ class CompanyJobCard extends StatelessWidget {
                         Row(
                           children: [
                             Image.asset(
-                              ImageConstant.jobLogo,
+                              Assets.jobLogo,
                               // color: CommonColor.purpleColor1,
                               height: 18,
                               width: 18,
@@ -100,7 +106,7 @@ class CompanyJobCard extends StatelessWidget {
                         Row(
                           children: [
                             Image.asset(
-                              ImageConstant.payment,
+                              Assets.payment,
 
                               height: 18,
                               width: 18,
@@ -123,7 +129,7 @@ class CompanyJobCard extends StatelessWidget {
                         Row(
                           children: [
                             Image.asset(
-                              ImageConstant.send2,
+                              Assets.send2,
 
                               height: 18,
                               width: 18,
@@ -147,7 +153,7 @@ class CompanyJobCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Image.asset(
-                              ImageConstant.file,
+                              Assets.file,
 
                               height: 18,
                               width: 18,

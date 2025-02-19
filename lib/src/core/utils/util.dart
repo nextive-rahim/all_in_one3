@@ -1,7 +1,7 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/service/cache/cache_service.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,19 +11,23 @@ enum UrlType { image, video, unknown }
 class SnackBarService {
   static final scaffoldKey = GlobalKey<ScaffoldMessengerState>();
   static void showErrorSnackBar(String content) {
-    scaffoldKey.currentState?.showSnackBar(SnackBar(
-      content: Text(content),
-      backgroundColor: CommonColor.redColors,
-      duration: const Duration(seconds: 2),
-    ));
+    scaffoldKey.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(content),
+        backgroundColor: CommonColor.redColors,
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 
   static void showInfoSnackBar(String content) {
-    scaffoldKey.currentState?.showSnackBar(SnackBar(
-      content: Text(content),
-      backgroundColor: CommonColor.greenColor1,
-      duration: const Duration(seconds: 2),
-    ));
+    scaffoldKey.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(content),
+        backgroundColor: CommonColor.greenColor1,
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 }
 
@@ -34,10 +38,7 @@ class Util {
     }
   }
 
-  static void displayErrorToast(
-    BuildContext context,
-    String messsage,
-  ) {
+  static void displayErrorToast(BuildContext context, String messsage) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(messsage),
@@ -47,10 +48,7 @@ class Util {
     );
   }
 
-  static void displayInfoToast(
-    BuildContext context,
-    String messsage,
-  ) {
+  static void displayInfoToast(BuildContext context, String messsage) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(messsage),
@@ -79,8 +77,9 @@ class Util {
       barrierDismissible: false,
       builder: (BuildContext ctx) {
         return Container(
-          decoration:
-              const BoxDecoration(color: Color.fromRGBO(67, 66, 66, 0.498)),
+          decoration: const BoxDecoration(
+            color: Color.fromRGBO(67, 66, 66, 0.498),
+          ),
           child: Center(
             child: Container(
               width: 80,
@@ -99,11 +98,7 @@ class Util {
                   ),
                   Positioned.fill(
                     child: Center(
-                      child: Image.asset(
-                        ImageConstant.aioLogo,
-                        width: 25,
-                        height: 25,
-                      ),
+                      child: Image.asset(Assets.aioLogo, width: 25, height: 25),
                     ),
                   ),
                 ],

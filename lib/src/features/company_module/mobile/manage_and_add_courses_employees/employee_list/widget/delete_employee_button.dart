@@ -1,4 +1,5 @@
 import 'package:all_in_one3/src/core/utils/colors.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/controller/employee_view_controller.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/manage_and_add_courses_employees/employee_list/model/employee_model.dart';
@@ -6,10 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeleteEmployeeButton extends GetView<CompanyEmployeeListViewController> {
-  const DeleteEmployeeButton({
-    super.key,
-    required this.employee,
-  });
+  const DeleteEmployeeButton({super.key, required this.employee});
   final EmployeeModel employee;
 
   @override
@@ -18,11 +16,7 @@ class DeleteEmployeeButton extends GetView<CompanyEmployeeListViewController> {
       onTap: () {
         _showDailogBox(context);
       },
-      child: const Icon(
-        Icons.delete_forever_outlined,
-        color: CommonColor.redColors,
-        size: 23,
-      ),
+      child: Image.asset(Assets.trash, height: 24, width: 24),
     );
   }
 
@@ -49,8 +43,9 @@ class DeleteEmployeeButton extends GetView<CompanyEmployeeListViewController> {
               onPressed: () {
                 controller.deleteEmployee(employee.userId ?? 0).then((v) {
                   if (v.success == true) {
-                    controller.employeeList
-                        .removeWhere((v) => v.id == employee.id);
+                    controller.employeeList.removeWhere(
+                      (v) => v.id == employee.id,
+                    );
                   } else {
                     SnackBarService.showErrorSnackBar(v.message ?? '');
                   }
@@ -61,7 +56,7 @@ class DeleteEmployeeButton extends GetView<CompanyEmployeeListViewController> {
                 'OK',
                 style: TextStyle(color: CommonColor.redColors),
               ),
-            )
+            ),
           ],
         );
       },

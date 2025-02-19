@@ -1,7 +1,7 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
 import 'package:all_in_one3/src/core/widgets/primary_button.dart';
@@ -44,7 +44,7 @@ class CompanyJobApplyButton extends GetView<OtherCompanyJobsViewController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    ImageConstant.send2,
+                    Assets.send2,
                     width: 20,
                     height: 20,
                     fit: BoxFit.fill,

@@ -1,6 +1,6 @@
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/formated_date_time.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -30,7 +30,7 @@ class JobSummaryCard extends StatelessWidget {
           children: [
             _JobSummaryItem(
               name: "${job.workExpMin ?? ''}-${job.workExpMax ?? ''} Yrs",
-              icon: ImageConstant.jobLogo,
+              icon: Assets.jobLogo,
             ),
             const SizedBox(height: 12),
             _JobSummaryItem(
@@ -38,13 +38,10 @@ class JobSummaryCard extends StatelessWidget {
                   job.paysalary ??
                   ''
                       "/yr.",
-              icon: ImageConstant.payment,
+              icon: Assets.payment,
             ),
             const SizedBox(height: 12),
-            _JobSummaryItem(
-              name: job.workLocation ?? '',
-              icon: ImageConstant.send2,
-            ),
+            _JobSummaryItem(name: job.workLocation ?? '', icon: Assets.send2),
             const SizedBox(height: 16),
             Text.rich(
               TextSpan(

@@ -1,5 +1,5 @@
 import 'package:all_in_one3/src/core/theme/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/controller/job_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/model/view_job_model.dart';
@@ -7,10 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeletedSaveJobButtonFromJobCard extends GetView<JobsViewController> {
-  DeletedSaveJobButtonFromJobCard({
-    super.key,
-    required this.job,
-  });
+  DeletedSaveJobButtonFromJobCard({super.key, required this.job});
   final JobModel job;
   final ValueNotifier<bool> isSavedJob = ValueNotifier<bool>(false);
   @override
@@ -19,8 +16,9 @@ class DeletedSaveJobButtonFromJobCard extends GetView<JobsViewController> {
       onTap: () {
         controller.deleteSaveJob(job.id!).then((value) {
           if (value.success == true) {
-            controller.savedJobList
-                .removeWhere((element) => element.id == job.id);
+            controller.savedJobList.removeWhere(
+              (element) => element.id == job.id,
+            );
             SnackBarService.showInfoSnackBar('Successfully delete Saved job');
 
             controller.getjobList();
@@ -36,7 +34,7 @@ class DeletedSaveJobButtonFromJobCard extends GetView<JobsViewController> {
           return Row(
             children: [
               Image.asset(
-                ImageConstant.trash,
+                Assets.trash,
                 width: 18,
                 height: 18,
                 color: AppColors.black,

@@ -1,5 +1,5 @@
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
@@ -53,10 +53,10 @@ class _SubmitPortfolioLinkSectionState
                         blurRadius: 3.75,
                         offset: Offset(0, 1.50),
                         spreadRadius: 0,
-                      )
+                      ),
                     ],
                   ),
-                  child: Image.asset(ImageConstant.clipboardDownload),
+                  child: Image.asset(Assets.clipboardDownload),
                 ),
                 const SizedBox(height: 8),
                 const TextWidget(
@@ -82,9 +82,7 @@ class _SubmitPortfolioLinkSectionState
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                   ),
-                  SizedBox(
-                    height: 7,
-                  ),
+                  SizedBox(height: 7),
                   TextWidget(
                     text: AppStrings.submitYourProjectPortfolioLink,
                     color: CommonColor.blackColor1,
@@ -126,13 +124,15 @@ class _SubmitPortfolioLinkSectionState
               if (!Get.find<SubmitResultLinkViewController>()
                   .isSubmittedResultLink) {
                 SnackBarService.showErrorSnackBar(
-                    'Please submit the link first');
+                  'Please submit the link first',
+                );
 
                 return;
               }
               controller.submitPortfolioLink(1).then((value) {
                 SnackBarService.showInfoSnackBar(
-                    'Successfully submitted portfolio link');
+                  'Successfully submitted portfolio link',
+                );
               });
               Get.find<StudentInterviewRequestViewController>()
                   .activeRequistForInterview
@@ -146,12 +146,15 @@ class _SubmitPortfolioLinkSectionState
             alignment: Alignment.center,
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
-              color: controller.submitExamLinkController.text.isNotEmpty
-                  ? CommonColor.blueColor1
-                  : Colors.white,
+              color:
+                  controller.submitExamLinkController.text.isNotEmpty
+                      ? CommonColor.blueColor1
+                      : Colors.white,
               shape: RoundedRectangleBorder(
                 side: const BorderSide(
-                    width: 0.50, color: CommonColor.borderColor1),
+                  width: 0.50,
+                  color: CommonColor.borderColor1,
+                ),
                 borderRadius: BorderRadius.circular(8),
               ),
               shadows: const [
@@ -160,14 +163,15 @@ class _SubmitPortfolioLinkSectionState
                   blurRadius: 2,
                   offset: Offset(0, 1),
                   spreadRadius: 0,
-                )
+                ),
               ],
             ),
             child: TextWidget(
               text: AppStrings.saveURL,
-              color: controller.submitExamLinkController.text.isNotEmpty
-                  ? CommonColor.whiteColor
-                  : CommonColor.greyColor5,
+              color:
+                  controller.submitExamLinkController.text.isNotEmpty
+                      ? CommonColor.whiteColor
+                      : CommonColor.greyColor5,
               maxLine: 1,
               fontFamily: AppStrings.inter,
               fontWeight: FontWeight.w500,

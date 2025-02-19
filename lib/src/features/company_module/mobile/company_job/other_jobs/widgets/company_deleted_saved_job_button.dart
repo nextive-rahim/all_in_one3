@@ -1,4 +1,4 @@
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/other_jobs/controller/other_company_job_view_controller.dart';
@@ -34,7 +34,7 @@ class DeleteOtherCompanySavedJobCard
         builder: (BuildContext context, bool value, child) {
           return Row(
             children: [
-              Image.asset(height: 16, width: 16, ImageConstant.trash),
+              Image.asset(height: 16, width: 16, Assets.trash),
               const SizedBox(width: 5),
               const Text(
                 textAlign: TextAlign.start,

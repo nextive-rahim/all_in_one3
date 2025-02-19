@@ -1,5 +1,5 @@
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
@@ -12,10 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class InterviewRequestSection extends StatefulWidget {
-  const InterviewRequestSection({
-    super.key,
-    required this.course,
-  });
+  const InterviewRequestSection({super.key, required this.course});
   final CourseModel course;
   @override
   State<InterviewRequestSection> createState() =>
@@ -53,10 +50,10 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                           blurRadius: 3.75,
                           offset: Offset(0, 1.50),
                           spreadRadius: 0,
-                        )
+                        ),
                       ],
                     ),
-                    child: Image.asset(ImageConstant.userPlus),
+                    child: Image.asset(Assets.userPlus),
                   ),
                   const SizedBox(height: 8),
                   const TextWidget(
@@ -75,15 +72,14 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextWidget(
-                        text: AppStrings.step03,
-                        color: CommonColor.greyColor12,
-                        maxLine: 1,
-                        fontFamily: AppStrings.sfProDisplay,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16),
-                    SizedBox(
-                      height: 7,
+                      text: AppStrings.step03,
+                      color: CommonColor.greyColor12,
+                      maxLine: 1,
+                      fontFamily: AppStrings.sfProDisplay,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
                     ),
+                    SizedBox(height: 7),
                     TextWidget(
                       text: "${AppStrings.requestForInterview}:",
                       color: CommonColor.blackColor1,
@@ -94,7 +90,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
           const SizedBox(height: 25),
@@ -103,10 +99,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
               if (controller.activeRequistForInterview.value) {
                 requestForInterviewBottomSheet();
               } else {
-                Util.displayErrorToast(
-                  context,
-                  "Please submit Project link",
-                );
+                Util.displayErrorToast(context, "Please submit Project link");
               }
             },
             child: Container(
@@ -118,7 +111,9 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
                   side: const BorderSide(
-                      width: 0.50, color: CommonColor.borderColor1),
+                    width: 0.50,
+                    color: CommonColor.borderColor1,
+                  ),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 shadows: const [
@@ -127,24 +122,26 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                     blurRadius: 2,
                     offset: Offset(0, 1),
                     spreadRadius: 0,
-                  )
+                  ),
                 ],
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    ImageConstant.userPlus,
-                    color: controller.activeRequistForInterview.value
-                        ? CommonColor.blackColor4
-                        : CommonColor.textFieldBorderColor,
+                    Assets.userPlus,
+                    color:
+                        controller.activeRequistForInterview.value
+                            ? CommonColor.blackColor4
+                            : CommonColor.textFieldBorderColor,
                   ),
                   const SizedBox(width: 12),
                   TextWidget(
                     text: AppStrings.requestForInterview,
-                    color: controller.activeRequistForInterview.value
-                        ? CommonColor.blackColor4
-                        : CommonColor.greyColor5,
+                    color:
+                        controller.activeRequistForInterview.value
+                            ? CommonColor.blackColor4
+                            : CommonColor.greyColor5,
                     maxLine: 1,
                     fontFamily: AppStrings.inter,
                     fontWeight: FontWeight.w500,
@@ -162,9 +159,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
   Future<bool> requestForInterviewBottomSheet() async {
     return await showModalBottomSheet(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(25.0),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
           ),
           backgroundColor: Colors.transparent,
           context: context,
@@ -173,11 +168,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
           useRootNavigator: true,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.only(
-                left: 0,
-                right: 0,
-                bottom: 0,
-              ),
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
                   return Container(
@@ -194,7 +185,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                           blurRadius: 100,
                           offset: Offset(0, 4),
                           spreadRadius: 5,
-                        )
+                        ),
                       ],
                     ),
                     child: Padding(
@@ -213,9 +204,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                               height: 2,
                               color: CommonColor.greyColor18,
                             ),
-                            const SizedBox(
-                              height: 25,
-                            ),
+                            const SizedBox(height: 25),
                             const TextWidget(
                               text: AppStrings.requestForInterview,
                               color: CommonColor.blackColor1,
@@ -256,12 +245,13 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                               children: [
                                 const SizedBox(height: 30),
                                 const TextWidget(
-                                    text: AppStrings.chooseDate,
-                                    color: CommonColor.blackColor4,
-                                    maxLine: 1,
-                                    fontFamily: AppStrings.inter,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14),
+                                  text: AppStrings.chooseDate,
+                                  color: CommonColor.blackColor4,
+                                  maxLine: 1,
+                                  fontFamily: AppStrings.inter,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                ),
                                 const SizedBox(height: 7),
                                 TextDateFieldWidget(
                                   controller:
@@ -287,9 +277,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                                     color: CommonColor.hintTextColor,
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 30,
-                                ),
+                                const SizedBox(height: 30),
                                 const TextWidget(
                                   text: AppStrings.preferredTimeSlotA,
                                   color: CommonColor.blackColor4,
@@ -298,9 +286,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                 ),
-                                const SizedBox(
-                                  height: 7,
-                                ),
+                                const SizedBox(height: 7),
                                 TextTimeFieldWidget(
                                   controller: controller.timeSlotAController,
                                   valtext: AppStrings.commonTextVal,
@@ -330,9 +316,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
                                 ),
-                                const SizedBox(
-                                  height: 7,
-                                ),
+                                const SizedBox(height: 7),
                                 TextTimeFieldWidget(
                                   controller: controller.timeSlotBController,
                                   valtext: AppStrings.commonTextVal,
@@ -359,24 +343,30 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                             GestureDetector(
                               onTap: () {
                                 if (controller
-                                        .dateMonthYearController.text.isEmpty ||
+                                        .dateMonthYearController
+                                        .text
+                                        .isEmpty ||
                                     controller
-                                        .timeSlotAController.text.isEmpty ||
+                                        .timeSlotAController
+                                        .text
+                                        .isEmpty ||
                                     controller
-                                        .timeSlotBController.text.isEmpty) {
+                                        .timeSlotBController
+                                        .text
+                                        .isEmpty) {
                                   SnackBarService.showErrorSnackBar(
-                                      AppStrings.plzFillAllFields);
+                                    AppStrings.plzFillAllFields,
+                                  );
                                 } else {
                                   controller
                                       .interviewRequest(widget.course.id!)
-                                      .then(
-                                    (value) {
-                                      SnackBarService.showInfoSnackBar(
-                                          'Successfully submitted interview request');
+                                      .then((value) {
+                                        SnackBarService.showInfoSnackBar(
+                                          'Successfully submitted interview request',
+                                        );
 
-                                      Navigator.pop(context, false);
-                                    },
-                                  );
+                                        Navigator.pop(context, false);
+                                      });
                                 }
                               },
                               child: Container(
@@ -388,8 +378,9 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                                   color: CommonColor.blueColor1,
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
-                                        width: 0.50,
-                                        color: CommonColor.blueColor1),
+                                      width: 0.50,
+                                      color: CommonColor.blueColor1,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -398,7 +389,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: const TextWidget(
@@ -425,8 +416,9 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                                   color: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
-                                        width: 0.50,
-                                        color: CommonColor.greyColor5),
+                                      width: 0.50,
+                                      color: CommonColor.greyColor5,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -435,7 +427,7 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: const TextWidget(

@@ -1,4 +1,4 @@
-class ImageConstant {
+class Assets {
   static String appLogo = 'assets/images/aio_logo.png';
   static String aioLogo = 'assets/images/aio_logo.png';
   static String regComplete = 'assets/images/reg_complete.png';
@@ -19,6 +19,7 @@ class ImageConstant {
   static String comnpanyIcon = 'assets/images/company_icon.png';
   static String selectedCheck = 'assets/images/selected_check.png';
   static String notification = 'assets/images/notification.png';
+  static String add = 'assets/images/plus.png';
 
   static String thumbnail1 = 'assets/images/thumbnail1.png';
   static String thumbnail2 = 'assets/images/thumbnail2.png';
@@ -34,7 +35,7 @@ class ImageConstant {
     'assets/images/thumbnail3.png',
     'assets/images/thumbnail4.png',
     'assets/images/thumbnail5.png',
-    'assets/images/thumbnail6.png'
+    'assets/images/thumbnail6.png',
   ];
 
   static List<String> listOfThumbnailsEmp = [

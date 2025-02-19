@@ -167,8 +167,8 @@ class AppStrings {
   ];
 
   static const appliedJobs = 'Applied Jobs';
-  static const savedJobs = 'Saved Jobs';
-  static const myJob = 'My Job';
+  static const savedJobs = 'Saved jobs';
+  static const myJob = 'My job';
   static const helpfulLinks = 'Helpful Links';
   static const editProfile = 'Edit Profile';
   static const myResume = 'My Resume';
@@ -259,8 +259,8 @@ class AppStrings {
   static const myCompanyJobs = 'My  Company Jobs';
   static const postNewJob = 'Post New Job';
   static const searchForJobs = 'Search for jobs';
-  static const ourJobs = 'Our Jobs';
-  static const otherJobs = 'Other Jobs';
+  static const ourJobs = 'Our jobs';
+  static const otherJobs = 'Other jobs';
   static const edit = 'Edit';
   static const delete = 'Delete';
   static const appliedProfiles = 'Unselected profiles -';

@@ -1,6 +1,6 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/common_features/user_details/controller/user_details_view_controller.dart';
@@ -9,10 +9,7 @@ import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/model/vi
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-enum IsCadidateSelect {
-  seleted,
-  notSelected,
-}
+enum IsCadidateSelect { seleted, notSelected }
 
 class CompanyInterviewCandidateCard extends GetView<UserDetailsViewController> {
   const CompanyInterviewCandidateCard({
@@ -28,10 +25,7 @@ class CompanyInterviewCandidateCard extends GetView<UserDetailsViewController> {
       onTap: () {
         Get.find<CompanyJobViewController>().user = user;
 
-        controller.userDetails(
-          userId: user.id,
-          userType: user.userType,
-        );
+        controller.userDetails(userId: user.id, userType: user.userType);
         if (user.isSelected == 0) {
           Get.toNamed(
             Routes.companyJobAppliedCandidateProfile,
@@ -45,12 +39,7 @@ class CompanyInterviewCandidateCard extends GetView<UserDetailsViewController> {
       },
       child: Row(
         children: [
-          Image.asset(
-            ImageConstant.link2,
-            height: 15,
-            width: 15,
-            color: color,
-          ),
+          Image.asset(Assets.link2, height: 15, width: 15, color: color),
           const SizedBox(width: 8),
           TextWidget(
             textAlign: TextAlign.start,

@@ -1,5 +1,5 @@
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -33,14 +33,12 @@ class InterviewerTestResultPendingCard
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              ImageConstant.verificationPending,
+              Assets.verificationPending,
               width: SizeConfig.screenWidth,
               height: SizeConfig.screenHeight * 0.5,
               fit: BoxFit.fill,
             ),
-            const SizedBox(
-              height: 50,
-            ),
+            const SizedBox(height: 50),
             const TextWidget(
               text: AppStrings.verificationPending,
               color: CommonColor.greyColor6,
@@ -53,10 +51,7 @@ class InterviewerTestResultPendingCard
             Container(
               width: 165,
               height: 40,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 10,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               clipBehavior: Clip.antiAlias,
               decoration: ShapeDecoration(
                 color: Colors.white,
@@ -73,7 +68,7 @@ class InterviewerTestResultPendingCard
                     blurRadius: 2,
                     offset: Offset(0, 1),
                     spreadRadius: 0,
-                  )
+                  ),
                 ],
               ),
               child: Row(
@@ -81,7 +76,7 @@ class InterviewerTestResultPendingCard
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(ImageConstant.refresh),
+                  Image.asset(Assets.refresh),
                   const SizedBox(width: 10),
                   const Text(
                     AppStrings.refresh,

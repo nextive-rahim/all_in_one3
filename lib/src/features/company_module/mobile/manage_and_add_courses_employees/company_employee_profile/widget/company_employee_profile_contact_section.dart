@@ -1,6 +1,6 @@
 import 'package:all_in_one3/src/core/gobal_function.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -30,7 +30,9 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 side: const BorderSide(
-                    width: 0.50, color: CommonColor.greyColor5),
+                  width: 0.50,
+                  color: CommonColor.greyColor5,
+                ),
                 borderRadius: BorderRadius.circular(8),
               ),
               shadows: const [
@@ -39,21 +41,19 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
                   blurRadius: 2,
                   offset: Offset(0, 1),
                   spreadRadius: 0,
-                )
+                ),
               ],
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  ImageConstant.send1,
+                  Assets.send1,
                   color: CommonColor.purpleColor1,
                   width: 25,
                   height: 25,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 const TextWidget(
                   text: AppStrings.call,
                   color: CommonColor.purpleColor1,
@@ -80,7 +80,9 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 side: const BorderSide(
-                    width: 0.50, color: CommonColor.greyColor5),
+                  width: 0.50,
+                  color: CommonColor.greyColor5,
+                ),
                 borderRadius: BorderRadius.circular(8),
               ),
               shadows: const [
@@ -89,21 +91,19 @@ class CompanyEmployeeProfileContactSection extends StatelessWidget {
                   blurRadius: 2,
                   offset: Offset(0, 1),
                   spreadRadius: 0,
-                )
+                ),
               ],
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  ImageConstant.mail,
+                  Assets.mail,
                   color: CommonColor.purpleColor1,
                   width: 25,
                   height: 25,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
+                const SizedBox(width: 10),
                 const TextWidget(
                   text: AppStrings.email,
                   color: CommonColor.purpleColor1,

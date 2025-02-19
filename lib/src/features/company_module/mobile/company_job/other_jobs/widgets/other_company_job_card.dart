@@ -1,6 +1,6 @@
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/formated_date_time.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/other_jobs/widgets/company_deleted_saved_job_button.dart';
@@ -67,7 +67,7 @@ class OtherCompanyJobCard extends StatelessWidget {
                   Row(
                     children: [
                       Image.asset(
-                        ImageConstant.payment,
+                        Assets.payment,
                         height: 20,
                         width: 20,
                         fit: BoxFit.fill,

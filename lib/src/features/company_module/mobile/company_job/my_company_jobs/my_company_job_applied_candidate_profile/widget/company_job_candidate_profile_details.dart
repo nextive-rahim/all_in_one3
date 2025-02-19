@@ -131,7 +131,7 @@ class CompanyJobCandidateProfileDetails
                   ),
                   const SizedBox(width: 8),
                   Image.asset(
-                    ImageConstant.link2,
+                    Assets.link2,
                     color: CommonColor.blueColor1,
                     height: 15,
                     width: 15,
@@ -153,7 +153,7 @@ class CompanyJobCandidateProfileDetails
                 height: 142,
                 decoration: ShapeDecoration(
                   image: DecorationImage(
-                    image: AssetImage(ImageConstant.cv),
+                    image: AssetImage(Assets.cv),
                     fit: BoxFit.fill,
                   ),
                   gradient: LinearGradient(

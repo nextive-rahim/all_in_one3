@@ -1,5 +1,5 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/features/company_module/mobile/company_job/post_new_job/controller/post_company_new_job_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/model/view_job_model.dart';
@@ -22,7 +22,7 @@ class EditJobIcon extends GetView<PostCompanyNewJobViewController> {
       },
       child: Row(
         children: [
-          Image.asset(ImageConstant.edit, height: 16, width: 16),
+          Image.asset(Assets.edit, height: 16, width: 16),
           const SizedBox(width: 5),
           const Text(
             textAlign: TextAlign.start,

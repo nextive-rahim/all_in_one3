@@ -1,5 +1,5 @@
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/string.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -26,16 +26,18 @@ class InterviewDetailsHeader extends StatelessWidget {
         Row(
           children: [
             Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(50)),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+              ),
               height: 80,
               width: 80,
               child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.network(
-                    user?.image ?? noImageFound,
-                    fit: BoxFit.fill,
-                  )),
+                borderRadius: BorderRadius.circular(50),
+                child: Image.network(
+                  user?.image ?? noImageFound,
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
             const SizedBox(width: 20),
             Column(
@@ -113,11 +115,11 @@ class InterviewDetailsHeader extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Image.asset(
-                    ImageConstant.link2,
+                    Assets.link2,
                     color: CommonColor.blueColor1,
                     height: 15,
                     width: 15,
-                  )
+                  ),
                 ],
               ),
             ),

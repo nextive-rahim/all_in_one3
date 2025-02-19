@@ -1,6 +1,6 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
@@ -197,11 +197,11 @@ class _ChooseEngagementPageState extends State<ChooseEngagementPage> {
                 width: 32,
                 child: Image.asset(
                   index == 0
-                      ? ImageConstant.studenIcom
+                      ? Assets.studenIcom
                       : index == 2
-                      ? ImageConstant.comnpanyIcon
+                      ? Assets.comnpanyIcon
                       : index == 3
-                      ? ImageConstant.interviewerIcon
+                      ? Assets.interviewerIcon
                       : '',
                 ),
               ),
@@ -231,7 +231,7 @@ class _ChooseEngagementPageState extends State<ChooseEngagementPage> {
                             ? SizedBox(
                               height: 16,
                               width: 16,
-                              child: Image.asset(ImageConstant.selectedCheck),
+                              child: Image.asset(Assets.selectedCheck),
                             )
                             : Container(
                               height: 16,

@@ -1,6 +1,6 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -9,10 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CandidateProfileSection extends StatefulWidget {
-  const CandidateProfileSection({
-    super.key,
-    required this.user,
-  });
+  const CandidateProfileSection({super.key, required this.user});
   final UserDetailsResponseModelData? user;
   @override
   State<CandidateProfileSection> createState() =>
@@ -36,15 +33,17 @@ class _CandidateProfileSectionState extends State<CandidateProfileSection> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(Routes.resume,
-                          arguments: widget.user!.data!.resume ?? '');
+                      Get.toNamed(
+                        Routes.resume,
+                        arguments: widget.user!.data!.resume ?? '',
+                      );
                     },
                     child: Container(
                       width: 199,
                       height: 142,
                       decoration: ShapeDecoration(
                         image: DecorationImage(
-                          image: AssetImage(ImageConstant.cv),
+                          image: AssetImage(Assets.cv),
                           fit: BoxFit.fill,
                         ),
                         gradient: LinearGradient(

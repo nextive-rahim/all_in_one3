@@ -1,6 +1,6 @@
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -35,11 +35,7 @@ class _RegistrationCompletedPageState extends State<RegistrationCompletedPage> {
                     RegistrationHeader(
                       title: 'You completed registration successfully',
                     ),
-                    Image.asset(
-                      ImageConstant.regComplete,
-                      width: 252,
-                      height: 245,
-                    ),
+                    Image.asset(Assets.regComplete, width: 252, height: 245),
                     const SizedBox(height: 30),
                     const TextWidget(
                       text: AppStrings.registrationCompleted,

@@ -1,14 +1,10 @@
-import 'package:all_in_one3/src/core/utils/image_constant.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:flutter/material.dart';
 
 class AuthHeader extends StatelessWidget {
-  const AuthHeader({
-    super.key,
-    this.subtitle,
-    this.title,
-  });
+  const AuthHeader({super.key, this.subtitle, this.title});
   final String? title;
   final String? subtitle;
   @override
@@ -21,7 +17,7 @@ class AuthHeader extends StatelessWidget {
           width: SizeConfig.screenWidth,
           alignment: Alignment.center,
           child: Image.asset(
-            ImageConstant.appLogo,
+            Assets.appLogo,
             height: 64,
             width: 64,
             fit: BoxFit.fill,

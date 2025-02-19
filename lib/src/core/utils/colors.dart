@@ -59,4 +59,12 @@ class CommonColor {
   static const greenColor2 = Color(0xFF82B2B9);
 
   static Color blue300 = Colors.blue.shade300;
+  static List<BoxShadow>? boxShadow = [
+    BoxShadow(
+      color: Color(0x19000000),
+      blurRadius: 80,
+      offset: Offset(0, 4),
+      spreadRadius: 0,
+    ),
+  ];
 }
