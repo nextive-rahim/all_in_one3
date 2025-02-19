@@ -8,6 +8,7 @@ import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
 import 'package:all_in_one3/src/core/validators/input_form_validators.dart';
+import 'package:all_in_one3/src/core/widgets/custom_app_bar.dart';
 import 'package:all_in_one3/src/core/widgets/primary_button.dart';
 import 'package:all_in_one3/src/core/widgets/text_form_field.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -37,7 +38,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CommonColor.whiteColor,
-      appBar: AppBar(title: const Text('Change Password')),
+      appBar: CustomAppBar(title: ''),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -55,13 +56,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     color: CommonColor.whiteColor,
                     boxShadow: const [
                       BoxShadow(
-                        color: CommonColor.greyColor,
-                        blurRadius: 0.5,
-                        spreadRadius: 0.1,
-                        offset: Offset(
-                          0.0, // Move to right 7.0 horizontally
-                          0.0, // Move to bottom 8.0 Vertically
-                        ),
+                        color: Color(0x19000000),
+                        blurRadius: 80,
+                        offset: Offset(0, 4),
+                        spreadRadius: 0,
                       ),
                     ],
                   ),
@@ -74,14 +72,14 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                           isPasswordField: true,
                           labelText: AppStrings.oldPassword,
                           controller: controller.oldPasswordController,
-                          hintText: AppStrings.oldPassword,
+                          hintText: AppStrings.oldPasswordHint,
                           validator: InputFieldValidator.password(),
                         ),
                         OutlinedInputField(
                           isPasswordField: true,
                           labelText: AppStrings.newPassword,
                           controller: controller.newPasswordController,
-                          hintText: AppStrings.newPassword,
+                          hintText: AppStrings.newPasswordHint,
                           validator: InputFieldValidator.password(),
                           onChanged: (v) {
                             if (v.isEmpty || v.length >= 6) {
@@ -96,10 +94,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             isLoading:
                                 controller.pageState == PageState.loading,
                             onTap: onTap,
-                            widget: const Text('Change Password')
-                                .fontSize(16)
-                                .bold(FontWeight.w600)
-                                .color(AppColors.white),
+                            title: 'Change Password',
                           ),
                         ),
                         const SizedBox(height: 30),

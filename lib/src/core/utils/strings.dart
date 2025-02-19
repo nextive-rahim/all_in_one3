@@ -22,8 +22,10 @@ class AppStrings {
   static const hintTextToHelpUser = 'This is a hint text to help user.';
   static const password = 'Password';
   static const passwordHintext = 'Enter password';
-  static const oldPassword = 'Old Password';
-  static const newPassword = 'New Password';
+  static const oldPasswordHint = 'Enter old password';
+  static const oldPassword = 'Old password';
+  static const newPassword = 'New password';
+  static const newPasswordHint = 'Enter new password';
   static const passHintText = 'Type in your password';
   static const rememberMeAsk = 'Remember Me?';
   static const forgotPassword = 'Forgot Password?';
