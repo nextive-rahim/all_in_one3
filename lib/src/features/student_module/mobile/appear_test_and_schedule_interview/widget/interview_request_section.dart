@@ -3,6 +3,7 @@ import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
+import 'package:all_in_one3/src/core/widgets/add_container.dart';
 import 'package:all_in_one3/src/core/widgets/text_date_field.dart';
 import 'package:all_in_one3/src/core/widgets/text_time_field.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
@@ -94,61 +95,19 @@ class _InterviewRequestSectionState extends State<InterviewRequestSection> {
             ],
           ),
           const SizedBox(height: 25),
-          GestureDetector(
-            onTap: () {
-              if (controller.activeRequistForInterview.value) {
-                requestForInterviewBottomSheet();
-              } else {
-                Util.displayErrorToast(context, "Please submit Project link");
-              }
-            },
-            child: Container(
-              width: SizeConfig.screenWidth,
-              height: 60,
-              alignment: Alignment.center,
-              clipBehavior: Clip.antiAlias,
-              decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(
-                    width: 0.50,
-                    color: CommonColor.borderColor1,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                shadows: const [
-                  BoxShadow(
-                    color: CommonColor.blackColor3,
-                    blurRadius: 2,
-                    offset: Offset(0, 1),
-                    spreadRadius: 0,
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    Assets.userPlus,
-                    color:
-                        controller.activeRequistForInterview.value
-                            ? CommonColor.blackColor4
-                            : CommonColor.textFieldBorderColor,
-                  ),
-                  const SizedBox(width: 12),
-                  TextWidget(
-                    text: AppStrings.requestForInterview,
-                    color:
-                        controller.activeRequistForInterview.value
-                            ? CommonColor.blackColor4
-                            : CommonColor.greyColor5,
-                    maxLine: 1,
-                    fontFamily: AppStrings.inter,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  ),
-                ],
-              ),
+          Obx(
+            () => AddContainer(
+              onTap: () {
+                if (controller.activeRequistForInterview.value) {
+                  requestForInterviewBottomSheet();
+                } else {
+                  Util.displayErrorToast(context, "Please submit Project link");
+                }
+              },
+              height: 45,
+
+              icon: Assets.userPlus,
+              title: AppStrings.requestForInterview,
             ),
           ),
         ],

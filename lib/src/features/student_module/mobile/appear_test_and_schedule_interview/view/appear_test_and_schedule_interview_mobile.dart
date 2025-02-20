@@ -3,6 +3,7 @@ import 'package:all_in_one3/src/core/utils/formated_date_time.dart';
 import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
+import 'package:all_in_one3/src/core/widgets/custom_app_bar.dart';
 import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/controller/exam_link_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/appear_test_and_schedule_interview/widget/exam_link_section.dart';
@@ -49,18 +50,14 @@ class _AppearTestAndScheduleInterviewMobilePageState
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: CommonColor.whiteColor,
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text(AppStrings.testYourSkills),
-      ),
+      appBar: CustomAppBar(title: AppStrings.testYourSkills),
+      //  AppBar(
+      //   elevation: 0,
+      //   title: const Text(AppStrings.testYourSkills),
+      // ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(
-            top: 0,
-            right: 17,
-            left: 20,
-            bottom: 0,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

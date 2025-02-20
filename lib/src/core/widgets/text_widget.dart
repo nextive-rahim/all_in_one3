@@ -9,17 +9,20 @@ class TextWidget extends StatefulWidget {
   final double? fontSize;
   final TextDecoration? underline;
   final TextAlign? textAlign;
+  final Color? decorationColor;
 
-  const TextWidget(
-      {super.key,
-      required this.text,
-      required this.color,
-      required this.maxLine,
-      required this.fontFamily,
-      required this.fontWeight,
-      required this.fontSize,
-      this.underline = TextDecoration.none,
-      this.textAlign = TextAlign.start});
+  const TextWidget({
+    super.key,
+    required this.text,
+    required this.color,
+    required this.maxLine,
+    required this.fontFamily,
+    required this.fontWeight,
+    required this.fontSize,
+    this.underline = TextDecoration.none,
+    this.textAlign = TextAlign.start,
+    this.decorationColor,
+  });
   @override
   State<TextWidget> createState() => _TextWidgetState();
 }
@@ -32,12 +35,14 @@ class _TextWidgetState extends State<TextWidget> {
       maxLines: widget.maxLine,
       textAlign: widget.textAlign,
       style: TextStyle(
-          decoration: widget.underline!,
-          overflow: TextOverflow.ellipsis,
-          color: widget.color,
-          fontFamily: widget.fontFamily,
-          fontWeight: widget.fontWeight,
-          fontSize: widget.fontSize),
+        decoration: widget.underline!,
+        decorationColor: widget.decorationColor,
+        overflow: TextOverflow.ellipsis,
+        color: widget.color,
+        fontFamily: widget.fontFamily,
+        fontWeight: widget.fontWeight,
+        fontSize: widget.fontSize,
+      ),
     );
   }
 }

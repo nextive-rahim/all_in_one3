@@ -141,41 +141,38 @@ class _SubmitPortfolioLinkSectionState
             FocusManager.instance.primaryFocus?.unfocus();
           },
           child: Container(
-            width: 109,
-            height: 44,
-            alignment: Alignment.center,
+            width: 165,
+            height: 40,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
-              color:
-                  controller.submitExamLinkController.text.isNotEmpty
-                      ? CommonColor.blueColor1
-                      : Colors.white,
+              color: CommonColor.purpleColor1,
               shape: RoundedRectangleBorder(
-                side: const BorderSide(
-                  width: 0.50,
-                  color: CommonColor.borderColor1,
-                ),
+                side: BorderSide(width: 1, color: Color(0xFFEBEBEB)),
                 borderRadius: BorderRadius.circular(8),
               ),
-              shadows: const [
+              shadows: [
                 BoxShadow(
-                  color: CommonColor.blackColor3,
+                  color: Color(0x0C101828),
                   blurRadius: 2,
                   offset: Offset(0, 1),
                   spreadRadius: 0,
                 ),
               ],
             ),
-            child: TextWidget(
-              text: AppStrings.saveURL,
-              color:
-                  controller.submitExamLinkController.text.isNotEmpty
-                      ? CommonColor.whiteColor
-                      : CommonColor.greyColor5,
-              maxLine: 1,
-              fontFamily: AppStrings.inter,
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
+
+            child: const Center(
+              child: Text(
+                AppStrings.saveURL,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: CommonColor.whiteColor,
+                  fontSize: 14,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w500,
+                  height: 1.43,
+                ),
+              ),
             ),
           ),
         ),

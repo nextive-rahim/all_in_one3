@@ -16,7 +16,6 @@ class ExamLinkSection extends GetView<ExamLinkViewController> {
     return Obx(() {
       return Column(
         children: [
-          const SizedBox(height: 15),
           Container(
             width: SizeConfig.screenWidth,
             height: 1,
@@ -135,6 +134,7 @@ class ExamLinkSection extends GetView<ExamLinkViewController> {
                               text: controller.examLinkDataList[0].url ?? '',
                               underline: TextDecoration.underline,
                               color: CommonColor.blue300,
+                              decorationColor: CommonColor.blue300,
                               maxLine: 2,
                               fontFamily: AppStrings.sfProDisplay,
                               fontWeight: FontWeight.w400,
@@ -164,7 +164,7 @@ class ExamLinkSection extends GetView<ExamLinkViewController> {
                             ),
                             shadows: const [
                               BoxShadow(
-                                color: CommonColor.blackColor3,
+                                color: CommonColor.greyColor5,
                                 blurRadius: 2,
                                 offset: Offset(0, 1),
                                 spreadRadius: 0,

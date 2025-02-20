@@ -11,10 +11,7 @@ import 'package:get/get.dart';
 
 class SubmitExamResultLinkSection
     extends GetView<SubmitResultLinkViewController> {
-  const SubmitExamResultLinkSection({
-    super.key,
-    required this.course,
-  });
+  const SubmitExamResultLinkSection({super.key, required this.course});
   final CourseModel course;
   @override
   Widget build(BuildContext context) {
@@ -35,6 +32,7 @@ class SubmitExamResultLinkSection
           hintText: AppStrings.pasteYourLinkHere,
           validator: InputFieldValidator.name(),
           prefix: const Icon(Icons.link),
+          onChanged: (p0) {},
         ),
         const SizedBox(height: 8),
         const TextWidget(
@@ -46,51 +44,57 @@ class SubmitExamResultLinkSection
           fontSize: 14,
         ),
         const SizedBox(height: 16),
-        Container(
-          width: 109,
-          height: 44,
-          alignment: Alignment.center,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: CommonColor.blueColor1,
-            shape: RoundedRectangleBorder(
-              side: const BorderSide(
-                width: 0.50,
-                color: CommonColor.blueColor1,
+        GestureDetector(
+          onTap: () {
+            if (controller.submitExamLinkController.text.isNotEmpty) {
+              controller
+                  .submitExamLink(course.id!)
+                  .then(
+                    (value) => SnackBarService.showInfoSnackBar(
+                      'Successfully submitted result link',
+                    ),
+                  );
+              controller.isSubmittedResultLink = true;
+              controller.submitExamLinkController.clear();
+            } else {
+              SnackBarService.showErrorSnackBar(
+                'Please enter exam result link',
+              );
+            }
+          },
+          child: Container(
+            width: 165,
+            height: 40,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            clipBehavior: Clip.antiAlias,
+            decoration: ShapeDecoration(
+              color: CommonColor.purpleColor1,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(width: 1, color: Color(0xFFEBEBEB)),
+                borderRadius: BorderRadius.circular(8),
               ),
-              borderRadius: BorderRadius.circular(8),
+              shadows: [
+                BoxShadow(
+                  color: Color(0x0C101828),
+                  blurRadius: 2,
+                  offset: Offset(0, 1),
+                  spreadRadius: 0,
+                ),
+              ],
             ),
-            shadows: const [
-              BoxShadow(
-                color: CommonColor.blackColor3,
-                blurRadius: 2,
-                offset: Offset(0, 1),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: GestureDetector(
-            onTap: () {
-              if (controller.submitExamLinkController.text.isNotEmpty) {
-                controller.submitExamLink(course.id!).then(
-                      (value) => SnackBarService.showInfoSnackBar(
-                        'Successfully submitted result link',
-                      ),
-                    );
-                controller.isSubmittedResultLink = true;
-                controller.submitExamLinkController.clear();
-              } else {
-                SnackBarService.showErrorSnackBar(
-                    'Please enter exam result link');
-              }
-            },
-            child: const TextWidget(
-              text: AppStrings.submit,
-              color: CommonColor.whiteColor,
-              maxLine: 1,
-              fontFamily: AppStrings.inter,
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
+
+            child: const Center(
+              child: Text(
+                AppStrings.submit,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: CommonColor.whiteColor,
+                  fontSize: 14,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w500,
+                  height: 1.43,
+                ),
+              ),
             ),
           ),
         ),
