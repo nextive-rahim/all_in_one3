@@ -1,4 +1,5 @@
 import 'package:all_in_one3/src/core/utils/strings.dart';
+import 'package:all_in_one3/src/core/widgets/custom_app_bar.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/comment/controller/view_comment_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/comment/view/comment_section.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/course/course_details/course_content/controller/is_watch_video_view_controller.dart';
@@ -43,8 +44,8 @@ class _CourseDetailMobilePageState extends State<CourseDetailMobilePage> {
         collectinListData!.coursesLevel == 'Beginner'
             ? 1
             : collectinListData!.coursesLevel == 'Intermediate'
-                ? 2
-                : 3,
+            ? 2
+            : 3,
       );
       commentController.getComments(collectinListData!.id!.toString());
       coursePriceController.checkCoursePrice(collectinListData!.id!);
@@ -57,12 +58,13 @@ class _CourseDetailMobilePageState extends State<CourseDetailMobilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(
-          collectinListData!.title ?? "",
-        ),
-      ),
+      appBar: CustomAppBar(title: ''),
+      //  AppBar(
+      //   elevation: 0,
+      //   title: Text(
+      //     collectinListData!.title ?? "",
+      //   ),
+      // ),
       body: Column(
         children: [
           // const SizedBox(height: 3),
@@ -77,18 +79,12 @@ class _CourseDetailMobilePageState extends State<CourseDetailMobilePage> {
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 10,
-                  right: 10,
-                  left: 10,
-                  bottom: 60,
-                ),
+                padding: const EdgeInsets.only(right: 10, left: 10, bottom: 60),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // CourseShareSection(collectinListData: collectinListData!),
-
-                    const CourseContent(),
+                    CourseContent(courseModel: collectinListData!),
                     CommentSection(collectinListData: collectinListData!),
                   ],
                 ),
@@ -98,9 +94,9 @@ class _CourseDetailMobilePageState extends State<CourseDetailMobilePage> {
         ],
       ),
       bottomNavigationBar: SizedBox(
-        height: 60,
+        height: 80,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(15.0),
           child: CourseRegistrationSection(
             collectinListData: collectinListData!,
             coursePriceViewController: coursePriceController,
@@ -111,6 +107,4 @@ class _CourseDetailMobilePageState extends State<CourseDetailMobilePage> {
       ),
     );
   }
-
- 
 }

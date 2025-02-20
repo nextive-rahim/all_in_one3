@@ -77,7 +77,7 @@ class _BottomNavBarStudentState extends State<BottomNavBarStudent> {
                           label: 'Courses',
                         ),
                         BottomNavigationBarItem(
-                          icon: _buildIcon(Assets.job2, 1),
+                          icon: _buildIcon(Assets.jobLogo, 1),
                           label: 'Jobs',
                         ),
                         BottomNavigationBarItem(

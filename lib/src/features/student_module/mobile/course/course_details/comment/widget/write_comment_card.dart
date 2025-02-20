@@ -1,3 +1,4 @@
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
@@ -13,10 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class WriteComment extends GetView<WriteCommentViewController> {
-  const WriteComment({
-    super.key,
-    required this.collectinListData,
-  });
+  const WriteComment({super.key, required this.collectinListData});
   final CourseModel collectinListData;
   @override
   Widget build(BuildContext context) {
@@ -24,54 +22,65 @@ class WriteComment extends GetView<WriteCommentViewController> {
       () => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TextWidget(
-            text: AppStrings.courseDiscussionForum,
-            color: Colors.black,
-            maxLine: 1,
-            fontFamily: AppStrings.sfProDisplay,
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
+          const Text(
+            AppStrings.courseDiscussionForum,
+            style: TextStyle(
+              color: Color(0xFF5A5959),
+              fontSize: 16,
+
+              fontWeight: FontWeight.w500,
+            ),
           ),
           const SizedBox(height: 18),
           GestureDetector(
             onTap: () {
-              controller.writeComment.value = true;
+              controller.writeComment.value = !controller.writeComment.value;
             },
-            child: Card(
+            child: Container(
+              width: 322,
+              height: 58,
+              decoration: ShapeDecoration(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(width: 1, color: Color(0xFFE9E9E9)),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
               child: Container(
-                width: SizeConfig.screenWidth,
-                height: 58,
-                alignment: Alignment.center,
+                width: 163.97,
+                height: 36,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 8,
+                ),
+                clipBehavior: Clip.antiAlias,
                 decoration: ShapeDecoration(
                   shape: RoundedRectangleBorder(
-                    side: const BorderSide(
-                      width: 0.50,
-                      color: CommonColor.blueColor1,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       width: 20,
                       height: 20,
                       clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(),
-                      child: const Icon(
-                        Icons.add_box_outlined,
-                        color: CommonColor.blueColor1,
-                      ),
+                      decoration: BoxDecoration(),
+                      child: Image.asset(Assets.add, color: Color(0xFFADADAD)),
                     ),
-                    const SizedBox(width: 8),
-                    const TextWidget(
-                      text: AppStrings.writeMessage,
-                      color: Colors.black,
-                      maxLine: 1,
-                      fontFamily: AppStrings.inter,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
+                    SizedBox(width: 10),
+                    Text(
+                      'Write a message',
+                      style: TextStyle(
+                        color: Color(0xFFADADAD),
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        height: 1.43,
+                      ),
                     ),
                   ],
                 ),
@@ -82,10 +91,7 @@ class WriteComment extends GetView<WriteCommentViewController> {
           Visibility(
             visible: controller.writeComment.value,
             child: Padding(
-              padding: const EdgeInsets.only(
-                top: 20,
-                bottom: 30,
-              ),
+              padding: const EdgeInsets.only(top: 20, bottom: 30),
               child: Column(
                 children: [
                   SizedBox(
@@ -148,27 +154,38 @@ class WriteComment extends GetView<WriteCommentViewController> {
                       GestureDetector(
                         onTap: () {
                           if (controller
-                              .writeCommentTextController.text.isNotEmpty) {
+                              .writeCommentTextController
+                              .text
+                              .isNotEmpty) {
                             controller
-                                .writeComments(collectinListData.id!,
-                                    controller.writeCommentTextController.text)
+                                .writeComments(
+                                  collectinListData.id!,
+                                  controller.writeCommentTextController.text,
+                                )
                                 .then((value) {
-                              Get.find<ViewCommentViewController>()
-                                  .addNewComment((ViewCommentResponseData(
-                                      updatedAt: DateTime.now(),
-                                      username:
-                                          Get.find<ProfileViewController>()
+                                  Get.find<ViewCommentViewController>()
+                                      .addNewComment(
+                                        (ViewCommentResponseData(
+                                          updatedAt: DateTime.now(),
+                                          username:
+                                              Get.find<ProfileViewController>()
                                                   .userModel
                                                   ?.name ??
                                               '',
-                                      commentText: controller
-                                          .writeCommentTextController.text)));
+                                          commentText:
+                                              controller
+                                                  .writeCommentTextController
+                                                  .text,
+                                        )),
+                                      );
 
-                              controller.writeCommentTextController.text = '';
-                            });
+                                  controller.writeCommentTextController.text =
+                                      '';
+                                });
                           } else {
                             SnackBarService.showErrorSnackBar(
-                                "Please make a comment");
+                              "Please make a comment",
+                            );
                           }
                         },
                         child: Container(
