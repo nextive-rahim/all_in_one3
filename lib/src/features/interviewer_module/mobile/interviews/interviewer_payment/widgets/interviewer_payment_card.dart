@@ -27,49 +27,62 @@ class InterviewerPaymentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 0),
-      child: Card(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: CommonColor.whiteColor,
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x19000000),
+              blurRadius: 80,
+              offset: Offset(0, 4),
+              spreadRadius: 0,
+            ),
+          ],
+        ),
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Interview Title Need', style: AppTextStyle.bold16),
-              const SizedBox(height: 5),
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.date_range,
-                        color: CommonColor.purpleColor1,
-                      ),
-                      const SizedBox(width: 10),
-                      Text(getFormattedDate(paymentModel.createdAt)!),
-                    ],
-                  ),
-                  Text('+ £${paymentModel.amount}', style: AppTextStyle.bold16),
-                ],
+              const Text(
+                'Interview Title Need',
+                style: TextStyle(
+                  color: Color(0xFF363636),
+                  fontSize: 18,
+
+                  fontWeight: FontWeight.w600,
+                ),
               ),
+
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      const Icon(
-                        Icons.watch_later_outlined,
-                        color: CommonColor.purpleColor1,
-                      ),
+                      Image.asset(Assets.calender, width: 16, height: 16),
                       const SizedBox(width: 10),
-                      Text(getFormattedTime(paymentModel.createdAt)!),
+                      Text(
+                        getFormattedDate(paymentModel.createdAt)!,
+                        style: TextStyle(
+                          color: Color(0xFF363636),
+                          fontSize: 12,
+
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                     ],
                   ),
                   Text(
-                    '√ ${paymentModel.status == 1 ? 'Peding' : 'Completed'}',
-                    style: AppTextStyle.bold16.copyWith(color: AppColors.green),
+                    '+ £${paymentModel.amount}',
+                    style: TextStyle(
+                      color: Color(0xFF363636),
+                      fontSize: 16,
+
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ],
               ),
@@ -79,10 +92,63 @@ class InterviewerPaymentCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.person, color: CommonColor.purpleColor1),
+                      Image.asset(Assets.clock, width: 16, height: 16),
+                      const SizedBox(width: 10),
+                      Text(
+                        getFormattedTime(paymentModel.createdAt)!,
+                        style: TextStyle(
+                          color: Color(0xFF363636),
+                          fontSize: 12,
+
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Image.asset(
+                        paymentModel.status == 1 ? Assets.clock : Assets.done,
+                        width: 16,
+                        height: 16,
+                        color:
+                            paymentModel.status == 1
+                                ? Color(0xFFFF9500)
+                                : Color(0xFF009951),
+                      ),
+                      SizedBox(width: 5),
+                      Text(
+                        paymentModel.status == 1 ? 'Peding' : 'Completed',
+                        style: TextStyle(
+                          color:
+                              paymentModel.status == 1
+                                  ? Color(0xFFFF9500)
+                                  : Color(0xFF009951),
+                          fontSize: 12,
+
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(Assets.user1, width: 16, height: 16),
                       const SizedBox(width: 10),
                       Text(
                         Get.find<ProfileViewController>().userModel!.name ?? '',
+                        style: TextStyle(
+                          color: Color(0xFF363636),
+                          fontSize: 12,
+
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ],
                   ),
@@ -129,8 +195,8 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
               child: Image.asset(
                 Assets.edit,
                 color: CommonColor.purpleColor1,
-                width: 20,
-                height: 20,
+                width: 16,
+                height: 16,
                 fit: BoxFit.fill,
               ),
             ),

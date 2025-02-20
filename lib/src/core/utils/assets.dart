@@ -23,6 +23,9 @@ class Assets {
   static String logout = 'assets/images/logout.png';
   static String write = 'assets/images/write.png';
   static String done = 'assets/images/done.png';
+  static String user1 = 'assets/images/user2.png';
+  static String calender = 'assets/images/calendar.png';
+  static String clock = 'assets/images/clock.png';
 
   static String thumbnail1 = 'assets/images/thumbnail1.png';
   static String thumbnail2 = 'assets/images/thumbnail2.png';

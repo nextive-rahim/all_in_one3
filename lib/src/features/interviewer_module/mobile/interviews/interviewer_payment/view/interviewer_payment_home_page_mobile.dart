@@ -22,12 +22,7 @@ class InterviewerPaymentHomePageMobile extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(
-                  top: 10,
-                  left: 15,
-                  right: 15,
-                  bottom: 50,
-                ),
+                padding: EdgeInsets.only(left: 15, right: 15, bottom: 50),
                 child: Column(
                   children: [
                     // PaymentFilteringSection(),
@@ -35,10 +30,10 @@ class InterviewerPaymentHomePageMobile extends StatelessWidget {
                       firstTabViewItems: [InterviewerPaymentBuilder()],
                       secondTabViewItems: [InterviewerPendingPaymentBuilder()],
                       thirdTabViewItems: [InterviewerCompletedPaymentBuilder()],
-                      title1: 'All\nPayments',
-                      title2: 'Pending\nPayments',
-                      title3: 'Completed\nPayments',
-                    )
+                      title1: 'All Payments',
+                      title2: 'Pending Payments',
+                      title3: 'Completed Payments',
+                    ),
                   ],
                 ),
               ),
