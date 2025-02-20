@@ -41,7 +41,7 @@ class InterviewerPaymentViewController extends GetxController {
 
       pendingPayments.value = allPayments.where((v) => v.status == 1).toList();
       completedPayments.value =
-          allPayments.where((v) => v.status == 2).toList();
+          allPayments.where((v) => v.status == 3).toList();
       // allnterviews.value = _responseModel.data!;
       _pageStateController(PageState.success);
     } catch (e, stackTrace) {

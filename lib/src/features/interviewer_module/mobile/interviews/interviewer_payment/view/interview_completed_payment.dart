@@ -9,6 +9,8 @@ class InterviewerCompletedPaymentBuilder
 
   @override
   Widget build(BuildContext context) {
+   
+
     return Obx(() {
       return ListView.builder(
         itemCount: controller.completedPayments.length,
@@ -16,7 +18,7 @@ class InterviewerCompletedPaymentBuilder
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return InterviewerPaymentCard(
-            paymentModel: controller.allPayments[index],
+            paymentModel: controller.completedPayments[index],
             isFromCompleted: true,
           );
         },

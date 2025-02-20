@@ -9,6 +9,7 @@ class InterviewerPendingPaymentBuilder
 
   @override
   Widget build(BuildContext context) {
+
     return Obx(() {
       return ListView.builder(
         itemCount: controller.pendingPayments.length,
@@ -16,7 +17,7 @@ class InterviewerPendingPaymentBuilder
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return InterviewerPaymentCard(
-            paymentModel: controller.allPayments[index],
+            paymentModel: controller.pendingPayments[index],
           );
         },
       );
