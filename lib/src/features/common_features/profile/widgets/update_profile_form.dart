@@ -35,7 +35,7 @@ class UpdateProfileForm extends GetView<UpdateProfileiewController> {
           OutlinedInputField(
             labelText: 'Address',
             controller: controller.addressController,
-            hintText: AppStrings.hitTextUsername,
+            hintText: 'Enter your address',
             validator: InputFieldValidator.name(),
           ),
 

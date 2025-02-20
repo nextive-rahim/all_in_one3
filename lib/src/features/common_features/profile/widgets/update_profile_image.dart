@@ -17,8 +17,8 @@ class UpdateProfileImageSecton extends GetView<UpdateProfileiewController> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        height: 76,
-        width: 76,
+        height: 96,
+        width: 96,
         decoration: BoxDecoration(
           color: const Color(0xFFF3F4FA),
           borderRadius: BorderRadius.circular(500),

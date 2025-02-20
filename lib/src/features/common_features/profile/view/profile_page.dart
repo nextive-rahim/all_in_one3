@@ -22,157 +22,151 @@ class ProfilePage extends GetView<ProfileViewController> {
     return SafeArea(
       child: Scaffold(
         // backgroundColor: CommonColor.greyColor1,
-        body: Obx(
-          () {
-            if (controller.pageState == PageState.loading) {
-              return const CircularProgressIndicator();
-            }
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Obx(
-                      () {
-                        if (controller.pageState == PageState.loading) {
-                          return const CircularProgressIndicator();
-                        }
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const ProfileHeader(),
-                            const SizedBox(height: 21),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 5,
-                                right: 5,
-                              ),
-                              child: Container(
-                                width: SizeConfig.screenWidth,
-                                decoration: ShapeDecoration(
-                                  color: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  shadows: const [
-                                    BoxShadow(
-                                      color: Color(0x0C000000),
-                                      blurRadius: 80,
-                                      offset: Offset(0, 4),
-                                      spreadRadius: 5,
-                                    )
-                                  ],
+        body: Obx(() {
+          if (controller.pageState == PageState.loading) {
+            return const CircularProgressIndicator();
+          }
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Obx(() {
+                    if (controller.pageState == PageState.loading) {
+                      return const CircularProgressIndicator();
+                    }
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                        left: 15,
+                        right: 15,
+                        top: 10,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const ProfileHeader(),
+                          const SizedBox(height: 21),
+                          Container(
+                            width: SizeConfig.screenWidth,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: CommonColor.whiteColor,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x19000000),
+                                  blurRadius: 80,
+                                  offset: Offset(0, 4),
+                                  spreadRadius: 0,
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 20,
-                                    right: 20,
-                                    bottom: 44,
-                                    top: 20,
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                left: 20,
+                                right: 20,
+                                bottom: 44,
+                                top: 20,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ProfileBodySection(
+                                    userModel: controller.userModel!,
                                   ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      ProfileBodySection(
-                                          userModel: controller.userModel!),
-                                      const SizedBox(height: 22),
-                                      // PrimaryButton(
-                                      //   onTap: () {
-                                      //     Get.toNamed(
-                                      //         Routes.profileUpdatePage);
-                                      //   },
-                                      //   widget: Text(
-                                      //     AppStrings.editProfile,
-                                      //     style: AppTextStyle.bold16.copyWith(
-                                      //         color: AppColors.white),
-                                      //   ),
-                                      // ),
-                                      // const SizedBox(height: 10),
-                                      PrimaryButton(
-                                        onTap: () {
-                                          Get.toNamed(
-                                            Routes.changePassword,
-                                          );
-                                        },
-                                        widget: Text(
-                                          'Change Password',
-                                          style: AppTextStyle.bold16
-                                              .copyWith(color: AppColors.white),
-                                        ),
+                                  const SizedBox(height: 22),
+                                  // PrimaryButton(
+                                  //   onTap: () {
+                                  //     Get.toNamed(
+                                  //         Routes.profileUpdatePage);
+                                  //   },
+                                  //   widget: Text(
+                                  //     AppStrings.editProfile,
+                                  //     style: AppTextStyle.bold16.copyWith(
+                                  //         color: AppColors.white),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 10),
+                                  PrimaryButton(
+                                    onTap: () {
+                                      Get.toNamed(Routes.changePassword);
+                                    },
+                                    widget: Text(
+                                      'Change Password',
+                                      style: AppTextStyle.bold16.copyWith(
+                                        color: AppColors.white,
                                       ),
-                                      const SizedBox(height: 20),
-                                      GestureDetector(
-                                        onTap: () async {
-                                          showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: const Center(
-                                                  child: Text('Are you sure?'),
-                                                ),
-                                                content:
-                                                    const SingleChildScrollView(
-                                                  child: SelectableText(
-                                                      'Once logged out, you will need to login again to access this app.'),
-                                                ),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: const Text('Cancel'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () {
-                                                      Util.logout(context);
-                                                    },
-                                                    child: const Text(
-                                                      'OK',
-                                                      style: TextStyle(
-                                                          color: CommonColor
-                                                              .redColors),
-                                                    ),
-                                                  )
-                                                ],
-                                              );
-                                            },
-                                          );
-                                        },
-                                        child: const Row(
-                                          children: [
-                                            Icon(
-                                              Icons.logout_outlined,
-                                              color: AppColors.red,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  GestureDetector(
+                                    onTap: () async {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: const Center(
+                                              child: Text('Are you sure?'),
                                             ),
-                                            SizedBox(width: 10),
-                                            Text(
-                                              "Logout",
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColors.red,
+                                            content: const SingleChildScrollView(
+                                              child: SelectableText(
+                                                'Once logged out, you will need to login again to access this app.',
                                               ),
                                             ),
-                                          ],
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: const Text('Cancel'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () {
+                                                  Util.logout(context);
+                                                },
+                                                child: const Text(
+                                                  'OK',
+                                                  style: TextStyle(
+                                                    color:
+                                                        CommonColor.redColors,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.logout_outlined,
+                                          color: AppColors.red,
                                         ),
-                                      ),
-                                    ],
+                                        SizedBox(width: 10),
+                                        Text(
+                                          "Logout",
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.red,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
-                            )
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                )
-              ],
-            );
-          },
-        ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                ),
+              ),
+            ],
+          );
+        }),
       ),
     );
   }
