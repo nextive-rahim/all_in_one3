@@ -15,7 +15,7 @@ class CompanyAssignedCourses extends GetView<StudentHomeViewController> {
   Widget build(BuildContext context) {
     controller.employeeModel = Get.arguments;
     return Scaffold(
-      appBar: CustomAppBar(title: 'Assigned courses'),
+      appBar: CustomAppBar(title: ''),
       body: RefreshIndicator(
         onRefresh: () async {
           await controller.getStudentHomeData();
@@ -23,7 +23,6 @@ class CompanyAssignedCourses extends GetView<StudentHomeViewController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 10),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Text(

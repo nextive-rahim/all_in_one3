@@ -88,15 +88,16 @@ class _CompanyJobCommonTabSectionState extends State<CompanyJobCommonTabSection>
               unselectedLabelColor: Color(0xFF585858),
               labelPadding: const EdgeInsets.only(left: 0, right: 35),
               unselectedLabelStyle: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-                height: 18 / 16,
+                color: Color(0xFF585858),
+                fontSize: 14,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
               ),
               labelStyle: const TextStyle(
-                fontWeight: FontWeight.w800,
-                fontSize: 28,
-                // height: 21 / 16,
-                letterSpacing: 0.2,
+                color: Color(0xFF585858),
+                fontSize: 14,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
               ),
               indicator: BoxDecoration(
                 color: CommonColor.purpleColor1,
@@ -106,45 +107,28 @@ class _CompanyJobCommonTabSectionState extends State<CompanyJobCommonTabSection>
                 Tab(
                   child: Text(
                     widget.title1 ?? '',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                      height: 1.67,
-                    ),
+                    style: const TextStyle(fontSize: 14),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Tab(
                   child: Text(
                     widget.title2 ?? '',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: const TextStyle(fontSize: 14),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Tab(
                   child: Text(
                     widget.title3 ?? '',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: const TextStyle(fontSize: 14),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 Tab(
                   child: Text(
                     widget.title4 ?? '',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: const TextStyle(fontSize: 14),
                     textAlign: TextAlign.center,
                   ),
                 ),

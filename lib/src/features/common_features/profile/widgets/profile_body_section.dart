@@ -3,7 +3,6 @@ import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
-import 'package:all_in_one3/src/core/widgets/text_widget.dart';
 import 'package:all_in_one3/src/features/common_features/profile/controller/profile_view_controller.dart';
 import 'package:all_in_one3/src/features/common_features/profile/model/profile_response_model.dart';
 import 'package:flutter/material.dart';
@@ -17,50 +16,53 @@ class ProfileBodySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const TextWidget(
-          text: 'Skills:',
-          color: CommonColor.greyColor4,
-          maxLine: 1,
-          fontFamily: AppStrings.aeonikTRIAL,
-          fontWeight: FontWeight.w400,
-          fontSize: 20,
+        const Text(
+          'Skills:',
+          style: TextStyle(
+            color: Color(0xFF363636),
+            fontSize: 18,
+
+            fontWeight: FontWeight.w400,
+          ),
         ),
-        TextWidget(
-          text:
-              List<String>.generate(
+        Text(
+          List<String>.generate(
+            Get.find<ProfileViewController>()
+                .profileResponseModel
+                .userSkill!
+                .length,
+            (int index) =>
                 Get.find<ProfileViewController>()
                     .profileResponseModel
-                    .userSkill!
-                    .length,
-                (int index) =>
-                    Get.find<ProfileViewController>()
-                        .profileResponseModel
-                        .userSkill![index]
-                        .skill ??
-                    '',
-              ).toString(),
-          color: CommonColor.greyColor4,
-          maxLine: 4,
-          fontFamily: AppStrings.aeonikTRIAL,
-          fontWeight: FontWeight.w400,
-          fontSize: 14,
+                    .userSkill![index]
+                    .skill ??
+                '',
+          ).toString(),
+          style: TextStyle(
+            color: Color(0xFF363636),
+            fontSize: 14,
+
+            fontWeight: FontWeight.w400,
+          ),
         ),
         const SizedBox(height: 10),
-        const TextWidget(
-          text: 'Address:',
-          color: CommonColor.greyColor4,
-          maxLine: 1,
-          fontFamily: AppStrings.aeonikTRIAL,
-          fontWeight: FontWeight.w400,
-          fontSize: 20,
+        const Text(
+          'Address:',
+          style: TextStyle(
+            color: Color(0xFF363636),
+            fontSize: 18,
+
+            fontWeight: FontWeight.w400,
+          ),
         ),
-        TextWidget(
-          text: userModel.address ?? 'Not Found Address',
-          color: CommonColor.greyColor4,
-          maxLine: 4,
-          fontFamily: AppStrings.aeonikTRIAL,
-          fontWeight: FontWeight.w400,
-          fontSize: 14,
+        Text(
+          userModel.address ?? 'Not Found Address',
+          style: TextStyle(
+            color: Color(0xFF363636),
+            fontSize: 14,
+
+            fontWeight: FontWeight.w400,
+          ),
         ),
         const SizedBox(height: 10),
         Container(
@@ -69,31 +71,33 @@ class ProfileBodySection extends StatelessWidget {
           color: CommonColor.greyColor18,
         ),
         const SizedBox(height: 10),
-        const TextWidget(
-          text: AppStrings.description,
-          color: CommonColor.greyColor4,
-          maxLine: 1,
-          fontFamily: AppStrings.aeonikTRIAL,
-          fontWeight: FontWeight.w400,
-          fontSize: 20,
+        const Text(
+          AppStrings.description,
+          style: TextStyle(
+            color: Color(0xFF363636),
+            fontSize: 18,
+
+            fontWeight: FontWeight.w400,
+          ),
         ),
         const SizedBox(height: 5),
-        TextWidget(
-          text: userModel.description ?? 'Not Found Description',
-          color: CommonColor.greyColor4,
-          maxLine: 4,
-          fontFamily: AppStrings.aeonikTRIAL,
-          fontWeight: FontWeight.w400,
-          fontSize: 14,
+        Text(
+          userModel.description ?? 'Not Found Description',
+          style: TextStyle(
+            color: Color(0xFF363636),
+            fontSize: 14,
+
+            fontWeight: FontWeight.w400,
+          ),
         ),
         const SizedBox(height: 30),
         const Text(
           'Resume : ',
           style: TextStyle(
-            fontSize: 20,
+            color: Color(0xFF363636),
+            fontSize: 18,
+
             fontWeight: FontWeight.w400,
-            color: CommonColor.greyColor4,
-            fontFamily: AppStrings.aeonikTRIAL,
           ),
         ),
         const SizedBox(height: 5),

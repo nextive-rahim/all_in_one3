@@ -64,18 +64,19 @@ class _CompanyInvoiceTabSectionState extends State<CompanyInvoiceTabSection>
                 });
               },
               controller: tabController,
-              isScrollable: false,
-              indicatorWeight: 0,
+              tabAlignment: TabAlignment.start,
+              isScrollable: true,
+
               indicatorSize: TabBarIndicatorSize.tab,
               indicatorPadding: const EdgeInsets.only(
                 top: 47,
-                left: 20,
+                left: 0,
                 right: 20,
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 00, vertical: 0),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
               labelColor: CommonColor.purpleColor1,
               unselectedLabelColor: Colors.black,
-              labelPadding: const EdgeInsets.only(left: 5, right: 5),
+              labelPadding: const EdgeInsets.only(left: 0, right: 30),
               unselectedLabelStyle: const TextStyle(
                 color: Color(0xFF585858),
                 fontSize: 14,

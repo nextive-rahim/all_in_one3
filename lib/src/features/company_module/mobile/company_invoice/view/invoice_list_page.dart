@@ -57,18 +57,19 @@ class InvoiceListPage extends GetView<CompanyInvoiceViewController> {
                             controller.invoice[index].name ?? '',
                             style: TextStyle(
                               color: Color(0xFF262626),
-                              fontSize: 22,
-                              fontFamily: 'SF Pro Display',
+                              fontSize: 20,
+
                               fontWeight: FontWeight.w500,
                             ),
                           ),
+                          SizedBox(height: 5),
                           Text(
                             getFormattedDateTime(
                               controller.invoice[index].createdAt,
                             )!,
                             style: TextStyle(
                               color: Color(0xFF262626),
-                              fontSize: 16,
+                              fontSize: 15,
 
                               fontWeight: FontWeight.w400,
                             ),

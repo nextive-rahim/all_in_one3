@@ -1,6 +1,4 @@
 import 'package:all_in_one3/src/core/extension/string_extension.dart';
-import 'package:all_in_one3/src/core/theme/colors.dart';
-import 'package:all_in_one3/src/core/theme/text_style.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
@@ -187,7 +185,15 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text('Interviewer Feedback', style: AppTextStyle.bold16),
+            const Text(
+              'Interviewer Feedback',
+              style: TextStyle(
+                color: Color(0xFF363636),
+                fontSize: 14,
+
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             GestureDetector(
               onTap: () {
                 interviewfeedbackBottomSheet(context);
@@ -205,7 +211,12 @@ class _FeedBackSectionState extends State<_FeedBackSection> {
         const SizedBox(height: 5),
         Text(
           widget.paymentModel.feedbackContent ?? '',
-          style: AppTextStyle.bold14.copyWith(color: AppColors.lightBlack80),
+          style: TextStyle(
+            color: Color(0xFF8A8A8A),
+            fontSize: 12,
+
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ],
     );
