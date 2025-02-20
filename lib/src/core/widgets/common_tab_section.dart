@@ -43,9 +43,7 @@ class _CommonTabSectionState extends State<CommonTabSection>
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            bottom: 15,
-          ),
+          padding: const EdgeInsets.only(bottom: 15),
           child: Container(
             height: 50,
             decoration: BoxDecoration(
@@ -68,22 +66,21 @@ class _CommonTabSectionState extends State<CommonTabSection>
                   tabController?.animateTo(index);
                 });
               },
-              controller: tabController, tabAlignment: TabAlignment.start,
-              isScrollable: true,
+              controller: tabController,
+              // tabAlignment: TabAlignment.start,
+              isScrollable: false,
               // indicatorWeight: 100,
-              indicatorSize: TabBarIndicatorSize.tab, padding: EdgeInsets.zero,
+              indicatorSize: TabBarIndicatorSize.tab,
+              padding: EdgeInsets.zero,
               indicatorPadding: const EdgeInsets.only(
-                top: 45,
+                top: 47,
                 left: 0,
-                right: 20,
+                right: 25,
               ),
 
               labelColor: CommonColor.purpleColor1,
               unselectedLabelColor: Colors.black,
-              labelPadding: const EdgeInsets.only(
-                left: 0,
-                right: 35,
-              ),
+              labelPadding: const EdgeInsets.only(left: 0, right: 35),
               unselectedLabelStyle: const TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 16,

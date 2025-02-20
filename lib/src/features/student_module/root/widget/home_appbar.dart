@@ -10,20 +10,20 @@ class HomeAppBar extends AppBar {
         leadingWidth: 0,
         automaticallyImplyLeading: false,
         backgroundColor: CommonColor.whiteColor,
-        // elevation: 1.5,
+        elevation: 0,
         // shadowColor: AppColors.lightBlack10.withOpacity(0.4),
-        toolbarHeight: 65,
+        // toolbarHeight: 65,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: 30,
-              margin: const EdgeInsets.only(left: 10),
-              child: Image.asset(Assets.aioLogo, fit: BoxFit.contain),
+            SizedBox(
+              height: 40,
+              // margin: const EdgeInsets.only(left: 10),
+              child: Image.asset(Assets.aioLogo),
             ),
             const Text(
-              'All In One',
+              'All IN ONE',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
             Row(
@@ -36,13 +36,12 @@ class HomeAppBar extends AppBar {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: Image.asset(
                       Assets.notification,
-                      width: 35,
-                      height: 35,
+                      width: 40,
+                      height: 40,
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                const SizedBox(width: 0),
               ],
             ),
           ],

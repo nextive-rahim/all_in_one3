@@ -1,5 +1,4 @@
 import 'package:all_in_one3/src/core/page_state/state.dart';
-import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/widgets/common_tab_section.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/controller/job_view_controller.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/job/jobs/widgets/all_jobs_tab.dart';
@@ -15,7 +14,6 @@ class ListAndSearchJobStudentMobile extends GetView<JobsViewController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: CommonColor.greyColor1,
         body: RefreshIndicator(
           onRefresh: () async {
             controller.pageStateController(PageState.loading);
@@ -32,27 +30,18 @@ class ListAndSearchJobStudentMobile extends GetView<JobsViewController> {
               ),
               child: Column(
                 children: [
-                  Container(
-                    color: CommonColor.greyColor15,
-                    child: const Padding(
-                      padding: EdgeInsets.only(
-                        top: 10,
-                        bottom: 60,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CommonTabSection(
+                        title1: 'All jobs',
+                        title2: 'Saved jobs',
+                        title3: 'Applied jobs',
+                        firstTabViewItems: [AllJobsTab()],
+                        secondTabViewItems: [SavedJobsTab()],
+                        thirdTabViewItems: [AppliedTab()],
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CommonTabSection(
-                            title1: 'All Jobs',
-                            title2: 'Saved Jobs',
-                            title3: 'Applied jobs',
-                            firstTabViewItems: [AllJobsTab()],
-                            secondTabViewItems: [SavedJobsTab()],
-                            thirdTabViewItems: [AppliedTab()],
-                          )
-                        ],
-                      ),
-                    ),
+                    ],
                   ),
                 ],
               ),

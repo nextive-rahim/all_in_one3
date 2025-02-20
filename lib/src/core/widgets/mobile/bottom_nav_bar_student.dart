@@ -148,8 +148,8 @@ class _BottomNavBarStudentState extends State<BottomNavBarStudent> {
           controller.currentIndex == index
               ? AppColors.selectedNavItem
               : AppColors.unselectedNavItem,
-      height: 30,
-      width: 30,
+      height: 24,
+      width: 24,
       // cacheHeight: 73,
       // cacheWidth: 73,
     );
