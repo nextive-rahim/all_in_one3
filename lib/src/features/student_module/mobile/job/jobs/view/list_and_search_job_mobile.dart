@@ -12,39 +12,37 @@ class ListAndSearchJobStudentMobile extends GetView<JobsViewController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: RefreshIndicator(
-          onRefresh: () async {
-            controller.pageStateController(PageState.loading);
-            controller.getjobList().then((v) {
-              controller.pageStateController(PageState.success);
-            });
-          },
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 10,
-                right: 10,
-                // top: 30,
-              ),
-              child: Column(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CommonTabSection(
-                        title1: 'All jobs',
-                        title2: 'Saved jobs',
-                        title3: 'Applied jobs',
-                        firstTabViewItems: [AllJobsTab()],
-                        secondTabViewItems: [SavedJobsTab()],
-                        thirdTabViewItems: [AppliedTab()],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+    return Scaffold(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          controller.pageStateController(PageState.loading);
+          controller.getjobList().then((v) {
+            controller.pageStateController(PageState.success);
+          });
+        },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 15,
+              right: 15,
+              // top: 30,
+            ),
+            child: Column(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CommonTabSection(
+                      title1: 'All jobs',
+                      title2: 'Saved jobs',
+                      title3: 'Applied jobs',
+                      firstTabViewItems: [AllJobsTab()],
+                      secondTabViewItems: [SavedJobsTab()],
+                      thirdTabViewItems: [AppliedTab()],
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),

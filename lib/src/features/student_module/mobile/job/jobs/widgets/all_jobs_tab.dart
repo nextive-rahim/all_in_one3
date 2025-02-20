@@ -13,42 +13,35 @@ class AllJobsTab extends GetView<JobsViewController> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Obx(
-        () {
-          if (controller.pageState == PageState.loading) {
-            return const JobCardLoading();
-          }
-          return controller.companyJobList.isEmpty
-              ? const EmptyScreen(
-                  title: "Latest Job",
-                )
-              : ListView.separated(
-                  itemCount: controller.companyJobList.length,
-                  shrinkWrap: true,
-                  reverse: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(height: 10);
-                  },
-                  itemBuilder: (context, index) {
-                    return JobCard(
-                      onTap: () {
-                        Get.toNamed(
-                          Routes.jobDetails,
-                          arguments: [
-                            controller.companyJobList[index],
-                            JobIsFrom.all
-                          ],
-                        );
-                      },
-                      job: controller.companyJobList[index],
-                    );
-                  },
-                );
-        },
-      ),
-    );
+    return Obx(() {
+      if (controller.pageState == PageState.loading) {
+        return const JobCardLoading();
+      }
+      return controller.companyJobList.isEmpty
+          ? const EmptyScreen(title: "Latest Job")
+          : ListView.separated(
+            itemCount: controller.companyJobList.length,
+            shrinkWrap: true,
+            reverse: true,
+            physics: const NeverScrollableScrollPhysics(),
+            separatorBuilder: (context, index) {
+              return const SizedBox(height: 10);
+            },
+            itemBuilder: (context, index) {
+              return JobCard(
+                onTap: () {
+                  Get.toNamed(
+                    Routes.jobDetails,
+                    arguments: [
+                      controller.companyJobList[index],
+                      JobIsFrom.all,
+                    ],
+                  );
+                },
+                job: controller.companyJobList[index],
+              );
+            },
+          );
+    });
   }
 }

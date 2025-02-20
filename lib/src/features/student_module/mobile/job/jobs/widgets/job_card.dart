@@ -24,17 +24,20 @@ class JobCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: CommonColor.whiteColor,
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x19000000),
+            blurRadius: 10,
+            offset: Offset(0, 0),
+            spreadRadius: 0,
+          ),
+        ],
       ),
       child: Padding(
-        padding: const EdgeInsets.only(
-          left: 26,
-          top: 29,
-          right: 26,
-          bottom: 20,
-        ),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -60,7 +63,7 @@ class JobCard extends StatelessWidget {
                         height: 20,
                         width: 20,
                         fit: BoxFit.fill,
-                        // color: CommonColor.purpleColor1,
+                        // color: CommonColor.blackColor1,
                       ),
                       const SizedBox(width: 15),
                       TextWidget(

@@ -1,7 +1,7 @@
-import 'package:all_in_one3/src/core/extension/sizebox_extension.dart';
 import 'package:all_in_one3/src/core/service/file/file_service.dart';
 import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
+import 'package:all_in_one3/src/core/validators/input_form_validators.dart';
 import 'package:all_in_one3/src/core/widgets/text_form_field.dart';
 import 'package:all_in_one3/src/features/common_features/profile/controller/profile_update_view_controller.dart';
 import 'package:all_in_one3/src/features/common_features/profile/widgets/skill_update_section.dart';
@@ -18,134 +18,88 @@ class UpdateProfileForm extends GetView<UpdateProfileiewController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          labelText('Name*'),
-          TextFormFieldWidget(
-            isEmailField: true,
+          SizedBox(height: 20),
+          OutlinedInputField(
+            labelText: 'Name',
             controller: controller.nameController,
-            valtext: AppStrings.commonTextVal,
-            height: 45,
-            hintText: AppStrings.name,
-            readOnly: false,
-            maxLine: 1,
-            keyType: TextInputType.text,
-            wordLimit: 100,
-            fontFamily: AppStrings.inter,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            onChanged: (value) {},
+            hintText: AppStrings.hitTextUsername,
+            validator: InputFieldValidator.name(),
           ),
-          // labelText('On site email address'),
-          // TextFormFieldWidget(
-          //   isEmailField: true,
-          //   controller: controller.emailController,
-          //   valtext: AppStrings.commonTextVal,
-          //   height: 45,
-          //   hintText: 'example@gmail.com',
-          //   readOnly: false,
-          //   maxLine: 1,
-          //   keyType: TextInputType.text,
-          //   wordLimit: 100,
-          //   fontFamily: AppStrings.inter,
-          //   fontSize: 16,
-          //   fontWeight: FontWeight.w400,
-          //   onChanged: (value) {},
-          // ),
-          labelText('Contact no.'),
-          TextFormFieldWidget(
-            isEmailField: true,
+          OutlinedInputField(
+            labelText: 'Contact no.',
             controller: controller.contactsNumberController,
-            valtext: AppStrings.commonTextVal,
-            height: 45,
-            hintText: 'Contact number',
-            readOnly: false,
-            maxLine: 1,
-            keyType: TextInputType.text,
-            wordLimit: 100,
-            fontFamily: AppStrings.inter,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            onChanged: (value) {},
+            hintText: AppStrings.hitTextUsername,
+            validator: InputFieldValidator.name(),
+            keyboardType: TextInputType.number,
           ),
-          labelText('Address'),
-          TextFormFieldWidget(
-            isEmailField: true,
+          OutlinedInputField(
+            labelText: 'Address',
             controller: controller.addressController,
-            valtext: AppStrings.commonTextVal,
-            height: 45,
-            hintText: 'Address',
-            readOnly: false,
-            maxLine: 1,
-            keyType: TextInputType.text,
-            wordLimit: 100,
-            fontFamily: AppStrings.inter,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            onChanged: (value) {},
+            hintText: AppStrings.hitTextUsername,
+            validator: InputFieldValidator.name(),
           ),
-          20.sh,
+
           SkillUpdateSection(),
-          labelText('Upload Resume'),
-          TextFormFieldWidget(
-            isEmailField: true,
+          SizedBox(height: 20),
+          OutlinedInputField(
+            labelText: 'Upload Resume',
             controller: controller.uploadResumeController,
-            valtext: AppStrings.commonTextVal,
-            height: 45,
+
             hintText: 'Only PDF',
             readOnly: false,
-            maxLine: 1,
-            keyType: TextInputType.text,
-            wordLimit: 100,
-            fontFamily: AppStrings.inter,
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
+
             onChanged: (value) {
               String link = value.split('/').last;
               controller.uploadResumeController.text = link;
             },
-            suffixIcon: Obx(() => IconButton(
-                  onPressed: () async {
-                    await FileService().pickAFile(pdfOnly: true).then((value) {
-                      if (value == null) {
-                        return;
-                      }
-                      if (value.file.path.isNotEmpty) {
-                        controller.isUploadFile.value = true;
-                      }
-
-                      Get.put(UpdateProfileiewController())
-                          .uploadFile(value.file)
-                          .then((value2) {
-                        controller.resumeLink.value = value2;
-                        controller.uploadResumeController.text =
-                            controller.resumeLink.value;
-                        controller.isUploadFile.value = false;
-                      });
-
+            suffix: Obx(
+              () => IconButton(
+                onPressed: () async {
+                  await FileService().pickAFile(pdfOnly: true).then((value) {
+                    if (value == null) {
                       return;
+                    }
+                    if (value.file.path.isNotEmpty) {
+                      controller.isUploadFile.value = true;
+                    }
+
+                    Get.put(
+                      UpdateProfileiewController(),
+                    ).uploadFile(value.file).then((value2) {
+                      controller.resumeLink.value = value2;
+                      controller.uploadResumeController.text =
+                          controller.resumeLink.value;
+                      controller.isUploadFile.value = false;
                     });
 
-                    // await FileService()
-                    //     .pickAFile(pdfOnly: true)
-                    //     .then((value) async {
-                    //   controller.isUploadFile.value = true;
-                    //   await controller.uploadFile(value!.file).then((value2) {
-                    //     controller.resumeLink.value = value2;
-                    //     controller.uploadResumeController.text =
-                    //         controller.resumeLink.value;
-                    //   });
-                    //   controller.isUploadFile.value = false;
-                    //   return;
-                    // });
-                  },
-                  icon: controller.isUploadFile.value
-                      ? const SizedBox(
+                    return;
+                  });
+
+                  // await FileService()
+                  //     .pickAFile(pdfOnly: true)
+                  //     .then((value) async {
+                  //   controller.isUploadFile.value = true;
+                  //   await controller.uploadFile(value!.file).then((value2) {
+                  //     controller.resumeLink.value = value2;
+                  //     controller.uploadResumeController.text =
+                  //         controller.resumeLink.value;
+                  //   });
+                  //   controller.isUploadFile.value = false;
+                  //   return;
+                  // });
+                },
+                icon:
+                    controller.isUploadFile.value
+                        ? const SizedBox(
                           height: 13,
                           width: 13,
-                          child: CircularProgressIndicator())
-                      : const Icon(Icons.upload),
-                )),
+                          child: CircularProgressIndicator(),
+                        )
+                        : const Icon(Icons.upload, color: Color(0xFF667084)),
+              ),
+            ),
           ),
-          labelText(' Description'),
+          labelText(' Description', top: 0),
           TextFormFieldWidget(
             isEmailField: true,
             controller: controller.employeeDescriptionController,
@@ -166,15 +120,20 @@ class UpdateProfileForm extends GetView<UpdateProfileiewController> {
     );
   }
 
-  Widget labelText(String title) {
+  Widget labelText(String title, {double? top}) {
     return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 10,
-        top: 20,
-      ),
+      padding: EdgeInsets.only(bottom: 10, top: top ?? 20),
       child: Title(
         color: AppColors.black,
-        child: Text(title),
+        child: Text(
+          title,
+          style: TextStyle(
+            color: Color(0xFF344053),
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            height: 1.43,
+          ),
+        ),
       ),
     );
   }

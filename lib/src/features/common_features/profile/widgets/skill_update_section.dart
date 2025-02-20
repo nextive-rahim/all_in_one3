@@ -33,11 +33,11 @@ class SkillUpdateSection extends GetView<UpdateProfileiewController> {
           ),
           const SizedBox(height: 6),
           Container(
-            height: 50,
+            height: 45,
             width: double.infinity,
             decoration: BoxDecoration(
               border: Border.all(width: .5, color: AppColors.lightBlack40),
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(0.0),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
