@@ -302,6 +302,7 @@ class _LoginPageState extends State<LoginPage> {
           context: context,
           message: 'please check your email and verify your account',
           title: 'Do you want to verify account?',
+          yesText: 'Yes, Verify',
           onTap: () {
             controller.resentOtpForVerifyMail().then((value) {
               SnackBarService.showInfoSnackBar(

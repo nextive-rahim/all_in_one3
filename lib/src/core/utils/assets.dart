@@ -21,6 +21,8 @@ class Assets {
   static String notification = 'assets/images/notification.png';
   static String add = 'assets/images/plus.png';
   static String logout = 'assets/images/logout.png';
+  static String write = 'assets/images/write.png';
+  static String done = 'assets/images/done.png';
 
   static String thumbnail1 = 'assets/images/thumbnail1.png';
   static String thumbnail2 = 'assets/images/thumbnail2.png';

@@ -38,21 +38,19 @@ class AllInterviewsSection extends GetView<AllInterviewsViewController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Obx(
-                () {
-                  if (controller.pageState == PageState.loading) {
-                    return const InterviewCardLoading();
-                  }
-                  return const CommonTabSection(
-                    firstTabViewItems: [AllInterviewsBuilder()],
-                    secondTabViewItems: [ConfirmInterviewsBuilder()],
-                    thirdTabViewItems: [CompletedInterviewsBuilder()],
-                    title1: 'Interviews Request',
-                    title2: 'Confirmed Interviews',
-                    title3: 'Completed Interviews',
-                  );
-                },
-              ),
+              Obx(() {
+                if (controller.pageState == PageState.loading) {
+                  return const InterviewCardLoading();
+                }
+                return const CommonTabSection(
+                  firstTabViewItems: [AllInterviewsBuilder()],
+                  secondTabViewItems: [ConfirmInterviewsBuilder()],
+                  thirdTabViewItems: [CompletedInterviewsBuilder()],
+                  title1: 'Interviews Request',
+                  title2: 'Confirmed Interviews',
+                  title3: 'Completed Interviews',
+                );
+              }),
             ],
           ),
         ),

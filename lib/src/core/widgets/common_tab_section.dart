@@ -93,6 +93,7 @@ class _CommonTabSectionState extends State<CommonTabSection>
                 fontSize: 14,
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
+                height: 1.43,
               ),
               indicator: BoxDecoration(
                 color: CommonColor.purpleColor1,

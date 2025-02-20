@@ -1,4 +1,6 @@
 import 'package:all_in_one3/src/core/extension/string_extension.dart';
+import 'package:all_in_one3/src/core/theme/colors.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/strings.dart';
@@ -12,10 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class InterviewFeedbackCard extends StatefulWidget {
-  const InterviewFeedbackCard({
-    super.key,
-    required this.interview,
-  });
+  const InterviewFeedbackCard({super.key, required this.interview});
   final ViewInterviewResponseData interview;
   @override
   State<InterviewFeedbackCard> createState() => _InterviewFeedbackCardState();
@@ -36,58 +35,67 @@ class _InterviewFeedbackCardState extends State<InterviewFeedbackCard> {
         },
         child: Padding(
           padding: const EdgeInsets.only(top: 16),
-          child: isFeedBackDone
-              ? GestureDetector(
-                  onTap: () {
-                    // interviewfeedbackBottomSheet(widget.interview,
-                    //     isFromEdit: true);
-                  },
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.done_all,
-                        color: CommonColor.greenColor1,
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        'Completed Feedback',
-                        style: TextStyle(
+          child:
+              isFeedBackDone
+                  ? GestureDetector(
+                    onTap: () {
+                      // interviewfeedbackBottomSheet(widget.interview,
+                      //     isFromEdit: true);
+                    },
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          Assets.done,
+                          height: 20,
+                          width: 20,
+                          fit: BoxFit.cover,
                           color: CommonColor.greenColor1,
                         ),
-                      )
+                        SizedBox(width: 5),
+                        Text(
+                          'Completed Feedback',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: CommonColor.greenColor1,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                  : Row(
+                    children: [
+                      Image.asset(
+                        Assets.write,
+                        height: 20,
+                        width: 20,
+                        fit: BoxFit.cover,
+                        color: AppColors.primary,
+                      ),
+
+                      SizedBox(width: 8),
+                      Text(
+                        AppStrings.writeAFeedback,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ],
                   ),
-                )
-              : const Row(
-                  children: [
-                    Icon(
-                      Icons.mode_edit_outline_outlined,
-                      color: CommonColor.blueColor1,
-                      size: 18,
-                    ),
-                    SizedBox(width: 8),
-                    TextWidget(
-                      text: AppStrings.writeAFeedback,
-                      color: CommonColor.blueColor1,
-                      maxLine: 1,
-                      fontFamily: AppStrings.sfProDisplay,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                    ),
-                  ],
-                ),
         ),
       );
     });
   }
 
-  Future<bool> interviewfeedbackBottomSheet(ViewInterviewResponseData interview,
-      {bool? isFromEdit = false}) async {
+  Future<bool> interviewfeedbackBottomSheet(
+    ViewInterviewResponseData interview, {
+    bool? isFromEdit = false,
+  }) async {
     return await showModalBottomSheet(
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(25.0),
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
           ),
           backgroundColor: Colors.transparent,
           context: context,
@@ -96,11 +104,7 @@ class _InterviewFeedbackCardState extends State<InterviewFeedbackCard> {
           useRootNavigator: true,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.only(
-                left: 0,
-                right: 0,
-                bottom: 0,
-              ),
+              padding: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
               child: StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
                   return Container(
@@ -117,7 +121,7 @@ class _InterviewFeedbackCardState extends State<InterviewFeedbackCard> {
                           blurRadius: 100,
                           offset: Offset(0, 4),
                           spreadRadius: 5,
-                        )
+                        ),
                       ],
                     ),
                     child: Padding(
@@ -220,8 +224,9 @@ class _InterviewFeedbackCardState extends State<InterviewFeedbackCard> {
                                           ),
                                         ),
                                         TextSpan(
-                                          text:
-                                              getFormattedDate(interview.date),
+                                          text: getFormattedDate(
+                                            interview.date,
+                                          ),
                                           style: const TextStyle(
                                             color: CommonColor.blackColor1,
                                             fontSize: 16,
@@ -295,31 +300,35 @@ class _InterviewFeedbackCardState extends State<InterviewFeedbackCard> {
                               onTap: () {
                                 if (_interviewFeedbackController.text.isEmpty) {
                                   Util.displayErrorToast(
-                                      context, AppStrings.plzFillAllFields);
+                                    context,
+                                    AppStrings.plzFillAllFields,
+                                  );
                                 } else {
                                   isFromEdit == true
                                       ? controller
-                                          .editFeedback(widget.interview.id!,
-                                              _interviewFeedbackController.text)
+                                          .editFeedback(
+                                            widget.interview.id!,
+                                            _interviewFeedbackController.text,
+                                          )
                                           .then((v) {
-                                          Navigator.pop(context, true);
-                                          Get.find<
-                                                  InterviewerPaymentViewController>()
-                                              .getInterviewerPayment();
-                                        })
-                                      : controller
-                                          .submittedInterviewFeedBack(
-                                          widget.interview.id!,
-                                          _interviewFeedbackController.text,
-                                        )
-                                          .then(
-                                          (value) {
                                             Navigator.pop(context, true);
                                             Get.find<
-                                                    InterviewerPaymentViewController>()
+                                                  InterviewerPaymentViewController
+                                                >()
                                                 .getInterviewerPayment();
-                                          },
-                                        );
+                                          })
+                                      : controller
+                                          .submittedInterviewFeedBack(
+                                            widget.interview.id!,
+                                            _interviewFeedbackController.text,
+                                          )
+                                          .then((value) {
+                                            Navigator.pop(context, true);
+                                            Get.find<
+                                                  InterviewerPaymentViewController
+                                                >()
+                                                .getInterviewerPayment();
+                                          });
                                 }
                               },
                               child: Container(
@@ -331,8 +340,9 @@ class _InterviewFeedbackCardState extends State<InterviewFeedbackCard> {
                                   color: CommonColor.blueColor1,
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
-                                        width: 0.50,
-                                        color: CommonColor.blueColor1),
+                                      width: 0.50,
+                                      color: CommonColor.blueColor1,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -341,7 +351,7 @@ class _InterviewFeedbackCardState extends State<InterviewFeedbackCard> {
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: const TextWidget(
@@ -368,8 +378,9 @@ class _InterviewFeedbackCardState extends State<InterviewFeedbackCard> {
                                   color: Colors.white,
                                   shape: RoundedRectangleBorder(
                                     side: const BorderSide(
-                                        width: 0.50,
-                                        color: CommonColor.greyColor5),
+                                      width: 0.50,
+                                      color: CommonColor.greyColor5,
+                                    ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   shadows: const [
@@ -378,7 +389,7 @@ class _InterviewFeedbackCardState extends State<InterviewFeedbackCard> {
                                       blurRadius: 2,
                                       offset: Offset(0, 1),
                                       spreadRadius: 0,
-                                    )
+                                    ),
                                   ],
                                 ),
                                 child: const TextWidget(

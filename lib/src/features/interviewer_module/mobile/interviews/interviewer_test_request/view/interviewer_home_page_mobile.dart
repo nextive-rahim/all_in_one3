@@ -1,5 +1,4 @@
 import 'package:all_in_one3/src/core/page_state/state.dart';
-import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/features/common_features/profile/controller/profile_view_controller.dart';
 import 'package:all_in_one3/src/features/interviewer_module/mobile/interviews/all_interviews/controller/All_interviews_view_controller.dart';
 import 'package:all_in_one3/src/features/interviewer_module/mobile/interviews/all_interviews/view/all_interview_section_mobile.dart';
@@ -30,7 +29,6 @@ class _InterviewerHomePageMobileState extends State<InterviewerHomePageMobile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CommonColor.greyColor1,
       body: RefreshIndicator(
         onRefresh: () async {
           if (profileController.profileResponseModel.testRequest != null &&
@@ -47,23 +45,29 @@ class _InterviewerHomePageMobileState extends State<InterviewerHomePageMobile> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 10),
                 profileController.profileResponseModel.testRequest == null
                     ? InterviewerTestRequestCard(
-                        profileController: profileController)
+                      profileController: profileController,
+                    )
                     : interviewTestRequestController
-                                .verificationPending.value ||
-                            profileController
-                                    .profileResponseModel.testRequest?.status ==
-                                1
-                        ? const InterviewerTestResultPendingCard()
-                        : (interviewTestRequestController
-                                    .isInterviewerApproved.value ||
-                                profileController.profileResponseModel
-                                        .testRequest?.status ==
-                                    3)
-                            ? const AllInterviewsSection()
-                            : const Offstage()
+                            .verificationPending
+                            .value ||
+                        profileController
+                                .profileResponseModel
+                                .testRequest
+                                ?.status ==
+                            1
+                    ? const InterviewerTestResultPendingCard()
+                    : (interviewTestRequestController
+                            .isInterviewerApproved
+                            .value ||
+                        profileController
+                                .profileResponseModel
+                                .testRequest
+                                ?.status ==
+                            3)
+                    ? const AllInterviewsSection()
+                    : const Offstage(),
               ],
             );
           }),

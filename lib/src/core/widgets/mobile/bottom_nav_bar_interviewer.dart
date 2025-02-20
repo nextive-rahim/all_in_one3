@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:all_in_one3/src/core/page_state/state.dart';
 import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/utils/assets.dart';
@@ -71,7 +70,6 @@ class _BottomNavBarInterviewerState extends State<BottomNavBarInterviewer> {
               return Visibility(
                 visible: controller.navBarVisibility,
                 child: Container(
-                  height: Platform.isAndroid ? 80 : null,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(_borderRadius),
@@ -161,10 +159,8 @@ class _BottomNavBarInterviewerState extends State<BottomNavBarInterviewer> {
           controller.currentIndex == index
               ? AppColors.selectedNavItem
               : AppColors.unselectedNavItem,
-      height: 28,
-      width: 28,
-      cacheHeight: 73,
-      cacheWidth: 73,
+      height: 24,
+      width: 24,
     );
   }
 }
