@@ -20,6 +20,7 @@ class Assets {
   static String selectedCheck = 'assets/images/selected_check.png';
   static String notification = 'assets/images/notification.png';
   static String add = 'assets/images/plus.png';
+  static String logout = 'assets/images/logout.png';
 
   static String thumbnail1 = 'assets/images/thumbnail1.png';
   static String thumbnail2 = 'assets/images/thumbnail2.png';

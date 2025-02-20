@@ -1,6 +1,5 @@
 import 'package:all_in_one3/src/core/extension/sizebox_extension.dart';
 import 'package:all_in_one3/src/core/extension/string_extension.dart';
-import 'package:all_in_one3/src/core/theme/colors.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/features/student_module/mobile/notification/model/notification_model.dart';
 import 'package:flutter/widgets.dart';
@@ -14,11 +13,17 @@ class NotificationCard extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Container(
         decoration: BoxDecoration(
-            border: Border.all(
-              width: .5,
-              color: AppColors.black,
+          borderRadius: BorderRadius.circular(10),
+          color: CommonColor.whiteColor,
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x19000000),
+              blurRadius: 80,
+              offset: Offset(0, 4),
+              spreadRadius: 0,
             ),
-            borderRadius: BorderRadius.circular(5)),
+          ],
+        ),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -28,10 +33,8 @@ class NotificationCard extends StatelessWidget {
               10.sh,
               Text(
                 getFormattedDateTime(notificationModel?.createdAt) ?? '',
-                style: const TextStyle(
-                  color: CommonColor.purpleColor1,
-                ),
-              )
+                style: const TextStyle(color: CommonColor.purpleColor1),
+              ),
             ],
           ),
         ),

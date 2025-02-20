@@ -1,11 +1,11 @@
 import 'package:all_in_one3/src/core/page_state/state.dart';
 import 'package:all_in_one3/src/core/routes/app_pages.dart';
-import 'package:all_in_one3/src/core/theme/colors.dart';
-import 'package:all_in_one3/src/core/theme/text_style.dart';
+import 'package:all_in_one3/src/core/utils/assets.dart';
 import 'package:all_in_one3/src/core/utils/colors.dart';
 import 'package:all_in_one3/src/core/utils/size_config.dart';
 import 'package:all_in_one3/src/core/utils/util.dart';
-import 'package:all_in_one3/src/core/widgets/primary_button.dart';
+import 'package:all_in_one3/src/core/widgets/add_container.dart';
+import 'package:all_in_one3/src/core/widgets/delete_dailog.dart';
 import 'package:all_in_one3/src/features/common_features/profile/controller/profile_view_controller.dart';
 import 'package:all_in_one3/src/features/common_features/profile/widgets/profile_body_section.dart';
 import 'package:all_in_one3/src/features/common_features/profile/widgets/profile_header.dart';
@@ -86,73 +86,40 @@ class ProfilePage extends GetView<ProfileViewController> {
                                   //   ),
                                   // ),
                                   // const SizedBox(height: 10),
-                                  PrimaryButton(
+                                  // PrimaryButton(
+                                  //   onTap: () {
+                                  //     Get.toNamed(Routes.changePassword);
+                                  //   },
+                                  //   widget: Text(
+                                  //     'Change Password',
+                                  //     style: AppTextStyle.bold16.copyWith(
+                                  //       color: AppColors.white,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  AddContainer(
                                     onTap: () {
                                       Get.toNamed(Routes.changePassword);
                                     },
-                                    widget: Text(
-                                      'Change Password',
-                                      style: AppTextStyle.bold16.copyWith(
-                                        color: AppColors.white,
-                                      ),
-                                    ),
+                                    title: 'Change Password',
+                                    icon: Assets.edit,
                                   ),
-                                  const SizedBox(height: 20),
-                                  GestureDetector(
-                                    onTap: () async {
-                                      showDialog(
+
+                                  AddContainer(
+                                    onTap: () {
+                                      deleteDailog(
                                         context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            title: const Center(
-                                              child: Text('Are you sure?'),
-                                            ),
-                                            content: const SingleChildScrollView(
-                                              child: SelectableText(
-                                                'Once logged out, you will need to login again to access this app.',
-                                              ),
-                                            ),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: const Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () {
-                                                  Util.logout(context);
-                                                },
-                                                child: const Text(
-                                                  'OK',
-                                                  style: TextStyle(
-                                                    color:
-                                                        CommonColor.redColors,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          );
+                                        message:
+                                            'Once logged out, you will need to login again to access this app.',
+                                        onTap: () {
+                                          Util.logout(context);
                                         },
+                                        title: 'Are you sure?',
+                                        yesText: 'Yes, logout',
                                       );
                                     },
-                                    child: const Row(
-                                      children: [
-                                        Icon(
-                                          Icons.logout_outlined,
-                                          color: AppColors.red,
-                                        ),
-                                        SizedBox(width: 10),
-                                        Text(
-                                          "Logout",
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.red,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                    title: 'Logout',
+                                    icon: Assets.logout,
                                   ),
                                 ],
                               ),
